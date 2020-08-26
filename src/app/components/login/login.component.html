@@ -1,0 +1,18 @@
+<app-navbar></app-navbar>
+
+<div class="login-profile ml-auto mr-auto" *ngIf="pageReady">
+    <div class="profile-border">
+        <img width="250px" height="250px" src="{{picture}}"/>
+    </div>
+    <div>
+        <p class="helvetica">Email</p>
+        <p class="helvetica-normal">{{email}}</p>
+
+        <p class="helvetica">Name</p>
+        <p class="helvetica-normal">{{name}}</p>
+
+        <p class="helvetica">ID</p>
+        <p class="helvetica-normal">{{id}}</p>
+
+    </div>
+</div>

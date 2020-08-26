@@ -1,1 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
+@import "app/common-css/width-container";
+@import "fonts";
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.ml-auto {
+    margin-left: auto;
+}
+
+.mr-auto {
+    margin-right: auto;
+}
+
+.helvetica {
+    font-family: "Helvetica", "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+    font-weight: bold;
+}
+
+.helvetica-normal {
+    font-family: "Helvetica", "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+}

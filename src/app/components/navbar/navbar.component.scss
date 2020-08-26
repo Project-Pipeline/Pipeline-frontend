@@ -1,0 +1,25 @@
+#navbar-outer {
+    background-color: brown;
+    height: 50px;
+}
+
+#navbar {
+    margin: 0 auto;
+    padding: 10px 0;
+    display: flex;
+}
+
+.navbar-title {
+    font-family: Mohave, sans-serif;
+    font-size: 22px;
+}
+
+.navbar-title-styles {
+    &:hover, &link, &:visited {
+        color: white;
+        text-decoration: none;
+    }
+    margin-right: 15px;
+    transition: all .1s ease-in;
+
+}

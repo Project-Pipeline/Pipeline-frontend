@@ -1,0 +1,20 @@
+// Simulating bootstrap's container class
+// breakpoints: 1450px 1200px 750px
+.width-container {
+  max-width: 1350px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media screen and (max-width: 1450px) {
+  .width-container {
+    max-width: 1100px;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .width-container {
+    max-width: none;
+    padding: 0 3%;
+  }
+}
