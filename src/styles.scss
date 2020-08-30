@@ -22,6 +22,7 @@ body {
 
 .helvetica-normal {
     font-family: "Helvetica", "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+    font-weight: 300;
 }
 
 .mohave {
@@ -30,4 +31,29 @@ body {
 
 .center-text {
     text-align: center;
+}
+
+.pipeline-button {
+    background-color: brown;
+    color: white;
+    border: 2px solid brown;
+    border-radius: 7px;
+    font-family: "Helvetica", sans-serif;
+    font-size: 17px;
+    text-align: center;
+    cursor: pointer;
+    height: 35px;
+}
+
+.clear-text-paddings {
+    padding: 0;
+    margin: 0;
+}
+
+.theme-grey {
+    color: rgb(123, 123, 123);
+}
+
+.flex {
+    display: flex;
 }

@@ -16,6 +16,12 @@ export class LoginComponent implements OnInit {
     last_name: string;
     pageReady = false;
 
+    businessTypes: string[] = ["organization", "business", "school"]
+    industries: string[] = ["Architecture", "Construction", "Business", "Engineering", "Education", "My industry is not listed"]
+    selectedBusiness = this.businessTypes[0];
+    selectedIndustry = "";
+    showExtraIndustry = false;
+
     constructor(private route: ActivatedRoute) {
     }
 
@@ -31,6 +37,10 @@ export class LoginComponent implements OnInit {
                 this.last_name = param.last_name;
                 this.pageReady = true;
             });
+    }
+
+    checkIndustryNotSelected() {
+        this.showExtraIndustry = this.selectedIndustry === "My industry is not listed";
     }
 
 }
