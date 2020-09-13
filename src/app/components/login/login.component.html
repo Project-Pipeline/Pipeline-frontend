@@ -5,10 +5,6 @@
         <div class="profile-border">
             <img width="250px" height="250px" src="{{picture}}"/>
         </div>
-
-        <div style="margin-top: 15px">
-            <button class="pipeline-button" style="width: 250px">Change Profile Picture</button>
-        </div>
     </div>
     <div id="right-pane">
         <h1 class="mohave clear-text-paddings">WELCOME, {{given_name | uppercase}}!</h1>
@@ -17,7 +13,7 @@
         <hr>
 
         <span class="flex">
-            <p class="helvetica-normal theme-grey">Are you a &nbsp;&nbsp;&nbsp;</p>
+            <p class="helvetica-normal theme-grey">I belong to a &nbsp;&nbsp;&nbsp;</p>
             <select [(ngModel)]="selectedBusiness" name="cars" id="cars" class="top-margin">
                   <option *ngFor="let type of businessTypes" value="{{type}}">{{type}}</option>
             </select>
@@ -25,15 +21,14 @@
 
         <div class="flex">
             <p class="helvetica-normal theme-grey">What's the name of your {{selectedBusiness}}? &nbsp;&nbsp;&nbsp;</p>
-            <input class="underline">
+            <input [(ngModel)]="businessName" class="underline">
         </div>
 
         <div class="flex">
             <p class="helvetica-normal theme-grey">Is your industry &nbsp;&nbsp;&nbsp;</p>
-            <input type="checkbox" class="top-margin-checkbox">
-            <p class="helvetica-normal theme-grey">&nbsp; for Profit &nbsp;&nbsp;&nbsp;</p>
-            <input type="checkbox" class="top-margin-checkbox">
-            <p class="helvetica-normal theme-grey">&nbsp; non-profit &nbsp;&nbsp;&nbsp;</p>
+            <select [(ngModel)]="selectedProfitType" class="top-margin">
+                <option *ngFor="let type of profitType" value="{{type}}">{{type}}</option>
+            </select>
         </div>
 
 
@@ -43,10 +38,10 @@
                 <option *ngFor="let industry of industries" value="{{industry}}">{{industry}}</option>
             </select>
             <p>&nbsp;&nbsp;&nbsp;&nbsp;</p>
-            <input class="underline" placeholder="my industry" [hidden]="!showExtraIndustry">
+            <input class="underline" placeholder="my industry" [(ngModel)]="selectedIndustry" [hidden]="!showExtraIndustry">
         </span>
 
         <hr>
-        <button class="pipeline-button" style="width: 250px; margin-top: 15px">Continue</button>
+        <button class="pipeline-button" (click)="continueButtonClicked()" style="width: 250px; margin-top: 15px">Continue</button>
     </div>
 </div>
