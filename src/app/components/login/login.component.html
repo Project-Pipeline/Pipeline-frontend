@@ -1,18 +1,47 @@
 <app-navbar></app-navbar>
 
 <div class="login-profile ml-auto mr-auto" *ngIf="pageReady">
-    <div class="profile-border">
-        <img width="250px" height="250px" src="{{picture}}"/>
-    </div>
     <div>
-        <p class="helvetica">Email</p>
-        <p class="helvetica-normal">{{email}}</p>
+        <div class="profile-border">
+            <img width="250px" height="250px" src="{{picture}}"/>
+        </div>
+    </div>
+    <div id="right-pane">
+        <h1 class="mohave clear-text-paddings">WELCOME, {{given_name | uppercase}}!</h1>
+        <h2 class="theme-grey helvetica-normal">We need more information from you:</h2>
 
-        <p class="helvetica">Name</p>
-        <p class="helvetica-normal">{{name}}</p>
+        <hr>
 
-        <p class="helvetica">ID</p>
-        <p class="helvetica-normal">{{id}}</p>
+        <span class="flex">
+            <p class="helvetica-normal theme-grey">I belong to a &nbsp;&nbsp;&nbsp;</p>
+            <select [(ngModel)]="selectedBusiness" name="cars" id="cars" class="top-margin">
+                  <option *ngFor="let type of businessTypes" value="{{type}}">{{type}}</option>
+            </select>
+        </span>
 
+        <div class="flex">
+            <p class="helvetica-normal theme-grey">What's the name of your {{selectedBusiness}}? &nbsp;&nbsp;&nbsp;</p>
+            <input [(ngModel)]="businessName" class="underline">
+        </div>
+
+        <div class="flex">
+            <p class="helvetica-normal theme-grey">Is your industry &nbsp;&nbsp;&nbsp;</p>
+            <select [(ngModel)]="selectedProfitType" class="top-margin">
+                <option *ngFor="let type of profitType" value="{{type}}">{{type}}</option>
+            </select>
+        </div>
+
+
+        <span class="flex">
+            <p class="helvetica-normal theme-grey">What's your industry? &nbsp;&nbsp;&nbsp;</p>
+            <select [(ngModel)]="selectedIndustry" (ngModelChange)="checkIndustryNotSelected()" class="top-margin">
+                <option *ngFor="let industry of industries" value="{{industry}}">{{industry}}</option>
+            </select>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;</p>
+            <input class="underline" placeholder="my industry" [(ngModel)]="selectedIndustry" [hidden]="!showExtraIndustry">
+        </span>
+
+        <hr>
+        <button class="pipeline-button" (click)="continueButtonClicked()" style="width: 250px; margin-top: 15px">Continue</button>
     </div>
 </div>
