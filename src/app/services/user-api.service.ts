@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {User, UserEmail} from "../models/model classes/user/User";
 import {Observable} from "rxjs";
 import {ServerResponse} from "../models/model classes/ServerResponse";
@@ -31,11 +31,23 @@ export class UserApiService {
             .pipe(map((exist) => exist.exists));
     }
 
+    getUserInfo(): Observable<User> {
+        return this.http.get<User>(`${apiRoot}api/user/info`, this.authHeaders());
+    }
+
     setToken(token: JWTToken) {
         localStorage.setItem('token', token.token);
     }
 
     getToken(): string {
         return localStorage.getItem('token');
+    }
+
+    private authHeaders() {
+        return {
+            headers: new HttpHeaders({
+                Authorization: `Bearer ${this.getToken()}`
+            })
+        };
     }
 }

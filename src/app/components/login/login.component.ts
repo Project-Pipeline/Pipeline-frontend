@@ -49,7 +49,11 @@ export class LoginComponent implements OnInit {
 
         exists
             .pipe(filter((exists) => exists))
-            .subscribe(() => this.router.navigateByUrl('profile'));
+            .pipe(mergeMap(() => this.apiService.loginUserWith(this.email)))
+            .subscribe((res) => {
+                this.apiService.setToken(res);
+                this.router.navigateByUrl('profile');
+            });
 
         exists
             .pipe(filter((exists) => !exists))
