@@ -1,3 +1,26 @@
-<app-navbar></app-navbar>
+<app-navbar [user]="userInfo"></app-navbar>
 
-<h1>{{userInfo | json}}</h1>
+<div class="width-container">
+
+    <div id="profile-container">
+        <div id="left-pane">
+            <img class="profile-img" src="{{userInfo.picture}}">
+            <h2 class="helvetica clear-text-paddings">{{userInfo.givenName}}&nbsp;{{userInfo.familyName}}</h2>
+            <span style="display: flex">
+            <img src="assets/images/briefcase1.png" width="25px" height="25px">
+            <h4 class="helvetica-normal text-top-spacing">&nbsp;{{userInfo.entityBelongedTo}}</h4>
+        </span>
+            <button class="pipeline-button-secondary text-top-spacing">&nbsp;&nbsp;Complete Profile&nbsp;&nbsp;</button>
+        </div>
+
+        <div id="mid-pane">
+
+            <div id="write-a-post">
+                <img src="assets/images/writing-icon.png" width="25px" height="25px">
+                <h3 class="helvetica clear-text-paddings">&nbsp;&nbsp;Write a Post</h3>
+            </div>
+        </div>
+    </div>
+
+</div>
+

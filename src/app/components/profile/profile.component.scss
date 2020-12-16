@@ -1,0 +1,30 @@
+#profile-container {
+    display: flex;
+    padding-top: 50px;
+}
+
+#left-pane {
+    width: 200px;
+    margin-right: 20px;
+}
+
+.profile-img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+
+#mid-pane {
+    width: 600px;
+}
+
+#right-pane {
+    flex-grow: 1;
+}
+
+#write-a-post {
+    display: flex;
+    border: 1px solid brown;
+    border-radius: 7px;
+    padding: 30px;
+}

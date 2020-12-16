@@ -9,6 +9,7 @@ import {SignupComponent} from './components/signup/signup.component';
 import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import { ProfileComponent } from './components/profile/profile.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
     declarations: [
@@ -22,7 +23,8 @@ import { ProfileComponent } from './components/profile/profile.component';
         BrowserModule,
         AppRoutingModule,
         FormsModule,
-        HttpClientModule
+        HttpClientModule,
+        BrowserAnimationsModule
     ],
     providers: [],
     bootstrap: [AppComponent]

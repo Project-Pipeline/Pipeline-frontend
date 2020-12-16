@@ -45,9 +45,26 @@ body {
     height: 35px;
 }
 
+.pipeline-button-secondary {
+    background-color: transparent;
+    color: brown;
+    border: 2px solid brown;
+    border-radius: 7px;
+    font-family: "Helvetica", sans-serif;
+    font-size: 17px;
+    text-align: center;
+    cursor: pointer;
+    height: 35px;
+}
+
 .clear-text-paddings {
     padding: 0;
     margin: 0;
+}
+
+.text-top-spacing {
+    padding: 0;
+    margin: 8px 0 0 0;
 }
 
 .theme-grey {
