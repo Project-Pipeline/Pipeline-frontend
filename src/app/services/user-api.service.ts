@@ -4,7 +4,6 @@ import {User, UserEmail} from "../models/model classes/user/User";
 import {Observable} from "rxjs";
 import {ServerResponse} from "../models/model classes/ServerResponse";
 import {apiRoot} from "../models/ApiRoot";
-import {JWTToken} from "../models/model classes/user/JWTToken";
 import {UserExistence} from "../models/model classes/user/UserExistence";
 import {map} from "rxjs/operators";
 
@@ -20,10 +19,7 @@ export class UserApiService {
         return this.http.post<ServerResponse>(`${apiRoot}api/user/create`, user);
     }
 
-    loginUserWith(userEmail: string): Observable<JWTToken> {
-        let userEmail2 = new UserEmail(userEmail);
-        return this.http.post<JWTToken>(`${apiRoot}api/user/login`, userEmail2);
-    }
+
 
     userExists(userEmail: string): Observable<boolean> {
         let userEmail2 = new UserEmail(userEmail);
@@ -35,8 +31,8 @@ export class UserApiService {
         return this.http.get<User>(`${apiRoot}api/user/info`, this.authHeaders());
     }
 
-    setToken(token: JWTToken) {
-        localStorage.setItem('token', token.token);
+    setToken(token: string) {
+        localStorage.setItem('token', token);
     }
 
     getToken(): string {

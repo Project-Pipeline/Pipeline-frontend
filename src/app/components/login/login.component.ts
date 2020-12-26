@@ -40,18 +40,17 @@ export class LoginComponent implements OnInit {
                 this.email = param.email;
                 this.name = param.name;
                 this.id = param.id;
-                this.picture = param.picture
+                this.picture = param.picture;
                 this.given_name = param.given_name;
                 this.last_name = param.family_name;
+                this.apiService.setToken(param.idToken);
                 return this.apiService.userExists(this.email);
             }))
             .pipe(share());
 
         exists
             .pipe(filter((exists) => exists))
-            .pipe(mergeMap(() => this.apiService.loginUserWith(this.email)))
             .subscribe((res) => {
-                this.apiService.setToken(res);
                 this.router.navigateByUrl('profile');
             });
 
@@ -71,11 +70,9 @@ export class LoginComponent implements OnInit {
 
         this.apiService
             .createUserWith(user)
-            .pipe(mergeMap(() => this.apiService.loginUserWith(this.email)))
             .subscribe((res) => {
-                this.apiService.setToken(res);
                 this.router.navigateByUrl('profile');
-            })
+            });
     }
 
 }
