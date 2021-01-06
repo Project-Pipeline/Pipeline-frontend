@@ -8,7 +8,7 @@ export class User {
         public entityName: string,
         public industryType: string,
         public industry: string,
-        public id: number = null,
+        public id: string = null,
     ) {
     }
 }
