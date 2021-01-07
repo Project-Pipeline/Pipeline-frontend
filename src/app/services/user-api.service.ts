@@ -1,25 +1,24 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient} from "@angular/common/http";
 import {User, UserEmail} from "../models/model classes/user/User";
 import {Observable} from "rxjs";
 import {ServerResponse} from "../models/model classes/ServerResponse";
 import {apiRoot} from "../models/ApiRoot";
 import {UserExistence} from "../models/model classes/user/UserExistence";
 import {map} from "rxjs/operators";
+import {AuthService} from "./auth.service";
 
 @Injectable({
     providedIn: 'root'
 })
 export class UserApiService {
 
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient, private authService: AuthService) {
     }
 
     createUserWith(user: User): Observable<ServerResponse> {
         return this.http.post<ServerResponse>(`${apiRoot}api/user/create`, user);
     }
-
-
 
     userExists(userEmail: string): Observable<boolean> {
         let userEmail2 = new UserEmail(userEmail);
@@ -28,22 +27,10 @@ export class UserApiService {
     }
 
     getUserInfo(): Observable<User> {
-        return this.http.get<User>(`${apiRoot}api/user/info`, this.authHeaders());
+        return this.http.get<User>(`${apiRoot}api/user/info`, this.authService.authHeaders());
     }
 
     setToken(token: string) {
-        localStorage.setItem('token', token);
-    }
-
-    getToken(): string {
-        return localStorage.getItem('token');
-    }
-
-    private authHeaders() {
-        return {
-            headers: new HttpHeaders({
-                Authorization: `Bearer ${this.getToken()}`
-            })
-        };
+       this.authService.setToken(token);
     }
 }
