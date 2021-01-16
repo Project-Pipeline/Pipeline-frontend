@@ -10,6 +10,7 @@ import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import { ProfileComponent } from './components/profile/profile.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CentralHubComponent } from './components/central-hub/central-hub.component';
 
 @NgModule({
     declarations: [
@@ -17,7 +18,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         LoginComponent,
         NavbarComponent,
         SignupComponent,
-        ProfileComponent
+        ProfileComponent,
+        CentralHubComponent
     ],
     imports: [
         BrowserModule,

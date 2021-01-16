@@ -1,0 +1,45 @@
+<div style="width: 100%; margin: 2%" class="flex">
+    <div style="width: 40%; margin-right: 5%">
+        <h3 class="helvetica">Search for Users to Message</h3>
+        <input #searchUserBox id="searchBox">
+        <div class="user-row" *ngFor="let user of searchedUsers | async">
+            <div class="flex" (click)="userSelected(user)">
+                <img src="{{user.picture}}">
+                <h4 class="helvetica clear-text-paddings">&nbsp;&nbsp;{{user.givenName}}&nbsp;{{user.familyName}}</h4>
+            </div>
+        </div>
+
+        <h3 class="helvetica">Messages</h3>
+        <div class="central-hub-messages">
+            <div *ngFor="let convo of currentConversations" class="central-hub-messages-row" (click)="conversationSelected(convo)">
+<!--                <div class="flex">-->
+<!--                    <div class="flex" *ngFor="let participant of convo.participantsInfo">-->
+<!--&lt;!&ndash;                        <img width="20px" height="20px" src="{{participant.profileImageURL}}">&ndash;&gt;-->
+<!--                        <h4 class="helvetica clear-text-paddings">&nbsp;{{participant.lastName}}</h4>-->
+<!--                        &nbsp; &nbsp;-->
+<!--                    </div>-->
+<!--                </div>-->
+                <h4 class="helvetica clear-text-paddings">&nbsp;{{formatConvoUsers(convo)}}</h4>
+                <p class="helvetica-normal">{{firstConvoText(convo)}}</p>
+            </div>
+        </div>
+    </div>
+    <div style="width: 55%">
+        <h3 class="helvetica">Message Contents</h3>
+        <div *ngIf="selectedConversation != null">
+            <div *ngFor="let message of historicalMessages">
+                <p class="helvetica-normal">{{userIdToUserName(message.senderUserID)}}:&nbsp;&nbsp; {{message.text}}</p>
+            </div>
+<!--            Ongoing messages-->
+            <div *ngFor="let message of ongoingMessages">
+                <p class="helvetica-normal">{{userIdToUserName(message.senderUserID)}}:&nbsp;&nbsp; {{message.text}}</p>
+            </div>
+            <div id="message-text-box" class="flex">
+                <input [(ngModel)]="messageBeingWritten">
+                <button (click)="sendText(messageBeingWritten)">Send</button>
+                <button (click)="stopMessaging()">stop</button>
+            </div>
+        </div>
+    </div>
+
+</div>

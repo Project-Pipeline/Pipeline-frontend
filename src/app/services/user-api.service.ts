@@ -33,4 +33,11 @@ export class UserApiService {
     setToken(token: string) {
        this.authService.setToken(token);
     }
+
+    searchUser(query: string, method: string): Observable<User[]> {
+        return this.http.get<User[]>(
+            `${apiRoot}api/user/search?query=${query}&method=${method}`,
+            this.authService.authHeaders()
+        );
+    }
 }

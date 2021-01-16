@@ -66,7 +66,7 @@ export class LoginComponent implements OnInit {
     continueButtonClicked() {
         let user = new User(
             this.email, this.given_name, this.last_name, this.picture, this.businessName,
-            this.selectedBusiness, this.selectedProfitType, this.selectedIndustry);
+            this.selectedBusiness, this.selectedProfitType, this.selectedIndustry, []);
 
         this.apiService
             .createUserWith(user)
