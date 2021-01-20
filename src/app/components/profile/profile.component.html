@@ -2,7 +2,7 @@
 
 <div class="width-container">
 
-    <div id="profile-container">
+    <div id="profile-container" *ngIf="pageReady">
         <div id="left-pane">
             <img class="profile-img" src="{{userInfo.picture}}">
             <h2 class="helvetica clear-text-paddings">{{userInfo.givenName}}&nbsp;{{userInfo.familyName}}</h2>
@@ -20,7 +20,7 @@
                 <h3 class="helvetica clear-text-paddings">&nbsp;&nbsp;Write a Post</h3>
             </div>
 
-            <app-central-hub [currentUser]="userInfo"></app-central-hub>
+            <app-messaging [currentUser]="userInfo"></app-messaging>
         </div>
     </div>
 

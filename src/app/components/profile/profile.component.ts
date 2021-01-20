@@ -12,6 +12,7 @@ import {handleJWTError} from "../../models/Global";
 })
 export class ProfileComponent implements OnInit {
     userInfo: User
+    pageReady = false
 
     constructor(private usersApi: UserApiService, private router: Router) {
     }
@@ -19,7 +20,10 @@ export class ProfileComponent implements OnInit {
     ngOnInit(): void {
         this.usersApi.getUserInfo()
             .pipe(catchError((e) => handleJWTError(e, this.router)))
-            .subscribe((user) => this.userInfo = user);
+            .subscribe((user) => {
+                this.userInfo = user;
+                this.pageReady = true;
+            });
     }
 
 }

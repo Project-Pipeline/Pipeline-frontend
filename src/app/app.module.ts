@@ -10,7 +10,9 @@ import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import { ProfileComponent } from './components/profile/profile.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CentralHubComponent } from './components/central-hub/central-hub.component';
+import { MessagingComponent } from './components/messaging/messaging.component';
+import { SegmentedControlComponent } from './reusable-components/segmented-control/segmented-control.component';
+import { MessagingDateFormatterPipe } from './pipes/messaging-date-formatter.pipe';
 
 @NgModule({
     declarations: [
@@ -19,7 +21,9 @@ import { CentralHubComponent } from './components/central-hub/central-hub.compon
         NavbarComponent,
         SignupComponent,
         ProfileComponent,
-        CentralHubComponent
+        MessagingComponent,
+        SegmentedControlComponent,
+        MessagingDateFormatterPipe
     ],
     imports: [
         BrowserModule,

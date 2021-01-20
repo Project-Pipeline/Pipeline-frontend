@@ -1,7 +1,8 @@
 import {HttpErrorResponse} from "@angular/common/http";
 import {Router} from "@angular/router";
-import {from, Observable, throwError} from "rxjs";
+import {from, Observable, of, throwError} from "rxjs";
 import { v4 as uuidv4 } from 'uuid';
+import {delay} from "rxjs/operators";
 
 export function handleJWTError(error: HttpErrorResponse, router: Router): Observable<any> {
     if (error.error.reason == "malformed JWT") {
@@ -25,4 +26,8 @@ export function unixTimeStampToDate(time: number): Date {
 export function jsonAsBlob(json: any): Blob {
     const string = JSON.stringify(json)
     return new Blob([string], {type: "application/json"});
+}
+
+export function delayExecutionFor(milliseconds: number): Observable<any> {
+    return of('').pipe(delay(milliseconds));
 }

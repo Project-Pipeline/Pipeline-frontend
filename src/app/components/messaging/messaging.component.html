@@ -1,0 +1,87 @@
+<div style="width: 100%; margin: 2%" class="flex">
+    <div class="central-hub-messages-left-pane">
+        <div class="flex central-hub-search-box">
+            <input [(ngModel)]="searchText" placeholder="Search Contact to Message" id="searchBox">
+            <button (click)="searchForUsersToMessage()">Search</button>
+        </div>
+
+        <div class="user-row" *ngFor="let user of searchedUsers">
+            <div class="flex" >
+                <img src="{{user.picture}}">
+                <h4 class="helvetica clear-text-paddings">&nbsp;&nbsp;{{user.givenName}}&nbsp;{{user.familyName}}</h4>
+                <button (click)="userSelected(user)" class="ml-auto">Message</button>
+            </div>
+        </div>
+
+        <app-segmented-control
+            [options]="['All', 'School', 'Company']"
+            (optionSelected)="optionSelected($event)"
+        ></app-segmented-control>
+
+        <h3 class="helvetica">Messages</h3>
+        <div class="central-hub-messages">
+            <div *ngFor="let convo of currentConversations" class="central-hub-messages-row" (click)="conversationSelected(convo)">
+                <div class="flex">
+                    <img src="{{imageUrlFor(convo)}}">
+                    <div>
+                        <h4 class="helvetica clear-text-paddings">{{formatConvoUsers(convo)}}</h4>
+                        <p class="helvetica-normal clear-text-paddings">{{firstConvoText(convo)}}</p>
+                        <p class="helvetica-normal clear-text-paddings">{{timestampToDate(convo.modified) | messagingDateFormatter}}</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div *ngIf="currentConversations.length === 0" class="center-item-container">
+            <h4 class="helvetica-normal center-item-content">Message Someone!</h4>
+        </div>
+    </div>
+    <div class="central-hub-messages-details">
+        <div *ngIf="selectedConversation != null">
+            <div #centralHubMessagesDetails class="contents">
+                <!--            Historical Messages-->
+                <div *ngFor="let message of historicalMessages" class="central-hub-messages-detail-row">
+                    <div class="header">
+                        <img src="{{userIdToParticipantInfo(message.senderUserID).profileImageURL}}">
+                        <div>
+                            <p class="helvetica-normal clear-text-paddings">
+                                <strong>
+                                    {{userIdToParticipantInfo(message.senderUserID).firstName}}
+                                </strong>
+                                {{timestampToDate(message.timeStamp) | messagingDateFormatter}}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <p class="helvetica-normal clear-text-paddings">{{message.text}}</p>
+                    </div>
+                </div>
+                <!--            Ongoing messages-->
+                <div *ngFor="let message of ongoingMessages" class="central-hub-messages-detail-row">
+                    <div class="header">
+                        <img src="{{userIdToParticipantInfo(message.senderUserID).profileImageURL}}">
+                        <div>
+                            <p class="helvetica-normal clear-text-paddings">
+                                <strong>
+                                    {{userIdToParticipantInfo(message.senderUserID).firstName}}
+                                </strong>
+                                {{timestampToDate(message.timeStamp) | messagingDateFormatter}}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <p class="helvetica-normal clear-text-paddings">{{message.text}}</p>
+                    </div>
+                </div>
+            </div>
+            <div id="message-text-box" class="flex">
+                <input [(ngModel)]="messageBeingWritten" placeholder="Send Message">
+                <button (click)="sendText(messageBeingWritten)">Send</button>
+            </div>
+        </div>
+        <div *ngIf="selectedConversation == null" class="center-item-container">
+            <h4 class="helvetica-normal center-item-content">Select a conversation from the left</h4>
+        </div>
+    </div>
+
+</div>

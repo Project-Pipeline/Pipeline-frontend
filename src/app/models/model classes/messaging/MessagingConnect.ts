@@ -5,3 +5,7 @@ export class MessagingConnect {
     ) {
     }
 }
+
+export class MessagingConnectionEstablished {
+    connectionEstablished: boolean;
+}

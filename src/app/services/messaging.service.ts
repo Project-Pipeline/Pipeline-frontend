@@ -9,6 +9,7 @@ import {Conversation, ConversationParticipantInfo} from "../models/model classes
 import {webSocket, WebSocketSubject} from "rxjs/webSocket";
 import {StringArray} from "../models/model classes/StringArray";
 import {User} from "../models/model classes/user/User";
+import {MessagingConnectionEstablished} from "../models/model classes/messaging/MessagingConnect";
 
 @Injectable({
     providedIn: 'root'
@@ -50,11 +51,17 @@ export class MessagingService {
     ) {
         this.webSocket = webSocket({
             url: `${websocketRoot}api/messaging?token=${this.authService.getToken()}`,
-            openObserver: { next: () => onOpen() },
+            openObserver: { next: () => {} },
             closeObserver: { next: () => onClose() },
         });
         this.webSocket.subscribe(
-            msg => messageReceived(msg),
+            msg => {
+                if ((msg as MessagingConnectionEstablished).connectionEstablished) {
+                    onOpen();
+                } else {
+                    messageReceived(msg);
+                }
+            },
             err => errorReceived(err)
         )
     }
@@ -69,6 +76,9 @@ export class MessagingService {
 
     // Close the web socket
     stopMessaging() {
-        this.webSocket.unsubscribe();
+        if (this.webSocket != null) {
+            this.webSocket.unsubscribe();
+            this.webSocket = null;
+        }
     }
 }
