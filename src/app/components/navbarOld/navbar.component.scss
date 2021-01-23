@@ -1,0 +1,44 @@
+@mixin mohave-style {
+    font-family: Mohave, sans-serif;
+    font-size: 22px;
+}
+
+#navbar-outer {
+    background-color: rgb(71, 165, 42);
+    height: 50px;
+}
+
+#navbar {
+    margin: 0 auto;
+    padding: 10px 0;
+    display: flex;
+}
+
+.navbar-title {
+    @include mohave-style;
+}
+
+.navbar-title-styles {
+    &:hover, &link, &:visited {
+        color: white;
+        text-decoration: underline;
+    }
+    margin-right: 15px;
+    transition: all .1s ease-in;
+    text-decoration: none;
+}
+
+#profile-section {
+    display: flex;
+    p {
+        color: white;
+        @include mohave-style;
+        margin-top: 0;
+    }
+    img {
+        border-radius: 50%;
+        width: 34px;
+        height: 34px;
+        margin-right: 20px;
+    }
+}
