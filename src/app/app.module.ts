@@ -10,7 +10,8 @@ import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import { ProfileComponent } from './components/profile/profile.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatToolbar} from '@angular/material/toolbar';
+import { MatToolbar, MatToolbarModule} from '@angular/material/toolbar';
+import { MatIconModule} from '@angular/material/icon';
 @NgModule({
     declarations: [
         AppComponent,
@@ -18,6 +19,7 @@ import { MatToolbar} from '@angular/material/toolbar';
         NavbarComponent,
         SignupComponent,
         ProfileComponent
+
     ],
     imports: [
         BrowserModule,
@@ -25,7 +27,10 @@ import { MatToolbar} from '@angular/material/toolbar';
         FormsModule,
         HttpClientModule,
         BrowserAnimationsModule,
-        MatToolbar
+        MatToolbarModule,
+        MatIconModule
+
+
     ],
     providers: [],
     bootstrap: [AppComponent]

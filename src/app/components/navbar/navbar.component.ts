@@ -1,7 +1,5 @@
-import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
-import { Observable } from "rxjs";
-import { map } from "rxjs/operators";
-import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
+
+import {Component, Input, OnInit} from '@angular/core';
 import {User} from "../../models/model classes/user/User";
 
 @Component({
@@ -11,12 +9,10 @@ import {User} from "../../models/model classes/user/User";
 })
 export class NavbarComponent {
 
-  isHandset$: Observable<boolean> = this.breakpointObserver
-    .observe(Breakpoints.Handset)
-    .pipe(map((result) => result.matches));
+    @Input() user: User
+  constructor(){}
 
-  @Input() user: User
-  constructor(private breakpointObserver: BreakpointObserver) {
 
-  }
+  ngOnInit(): void {}
+
 }

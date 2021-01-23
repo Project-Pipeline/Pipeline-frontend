@@ -1,4 +1,22 @@
 .example-spacer {
     flex: 1 1 auto;
   }
-  
+
+.navbar-button-pair {
+    margin-right: 50%;
+    margin-left: auto;
+    width:       200px;
+    button {
+        margin-right: 5px;
+    }
+}
+
+
+.toolbar {
+    background-image: url("~src/assets/images/pipeline-logo-1.png");
+    background-size: 10%;
+    background-repeat: no-repeat;
+    background-position-y: 50%;
+
+}
+
