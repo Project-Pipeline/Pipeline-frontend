@@ -1,6 +1,8 @@
+$theme-color: #79FEB3;
+
 @mixin messaging-btn {
     border: none;
-    color: white;
+    color: black;
     padding: 8px 16px;
     text-align: center;
     text-decoration: none;
@@ -23,7 +25,7 @@
     }
     button {
         @include messaging-btn;
-        background-color:  #4CAF50;;
+        background-color: $theme-color;
         margin-top: -5px;
     }
     div {
@@ -34,6 +36,10 @@
 .central-hub-messages-left-pane {
     width: 30%;
     margin-right: 5%
+}
+
+.central-hub-messages {
+    overflow: auto;
 }
 
 .central-hub-messages-row {
@@ -55,7 +61,7 @@
 .central-hub-search-box {
     button {
         @include messaging-btn;
-        background-color:  #4CAF50;
+        background-color: $theme-color;
         margin-left: 10px;
     }
 }
@@ -75,7 +81,6 @@
 .central-hub-messages-details {
     width: 65%;
     .contents {
-        height: 600px;
         overflow: auto;
     }
 }
@@ -106,7 +111,7 @@
         margin-right: 10px;
     }
     button:nth-child(2) {
-        background-color: #4CAF50; /* Green */
+        background-color: $theme-color; /* Green */
         @include messaging-btn;
         margin-right: 10px;
     }

@@ -1,0 +1,28 @@
+.central-hub-container {
+    width: 100%;
+    .navigator {
+        width: 100px;
+        margin-right: 30px;
+        background-color: rgb(244, 244, 244);
+        .navigator-cell {
+            img {
+                margin: 10px 10px 0 10px;
+                width: 60px;
+                height: 60px;
+            }
+            cursor: pointer;
+        }
+    }
+    .details {
+        flex-grow: 1;
+    }
+}
+
+.highlighted {
+    background-color: gainsboro;
+    border-radius: 10px;
+}
+
+.navigator-inner {
+    padding: 10px;
+}

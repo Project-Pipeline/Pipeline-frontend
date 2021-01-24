@@ -1,4 +1,4 @@
-<div style="width: 100%; margin: 2%" class="flex">
+<div class="flex" style="margin-top: 30px">
     <div class="central-hub-messages-left-pane">
         <div class="flex central-hub-search-box">
             <input [(ngModel)]="searchText" placeholder="Search Contact to Message" id="searchBox">
@@ -19,7 +19,7 @@
         ></app-segmented-control>
 
         <h3 class="helvetica">Messages</h3>
-        <div class="central-hub-messages">
+        <div class="central-hub-messages" [ngStyle]="{'height': heightStringForList}">
             <div *ngFor="let convo of currentConversations" class="central-hub-messages-row" (click)="conversationSelected(convo)">
                 <div class="flex">
                     <img src="{{imageUrlFor(convo)}}">
@@ -38,26 +38,8 @@
     </div>
     <div class="central-hub-messages-details">
         <div *ngIf="selectedConversation != null">
-            <div #centralHubMessagesDetails class="contents">
-                <!--            Historical Messages-->
-                <div *ngFor="let message of historicalMessages" class="central-hub-messages-detail-row">
-                    <div class="header">
-                        <img src="{{userIdToParticipantInfo(message.senderUserID).profileImageURL}}">
-                        <div>
-                            <p class="helvetica-normal clear-text-paddings">
-                                <strong>
-                                    {{userIdToParticipantInfo(message.senderUserID).firstName}}
-                                </strong>
-                                {{timestampToDate(message.timeStamp) | messagingDateFormatter}}
-                            </p>
-                        </div>
-                    </div>
-                    <div class="content">
-                        <p class="helvetica-normal clear-text-paddings">{{message.text}}</p>
-                    </div>
-                </div>
-                <!--            Ongoing messages-->
-                <div *ngFor="let message of ongoingMessages" class="central-hub-messages-detail-row">
+            <div #centralHubMessagesDetails class="contents" [ngStyle]="{'height': heightStringForDetails}">
+                <div *ngFor="let message of historicalMessages.concat(ongoingMessages)" class="central-hub-messages-detail-row">
                     <div class="header">
                         <img src="{{userIdToParticipantInfo(message.senderUserID).profileImageURL}}">
                         <div>

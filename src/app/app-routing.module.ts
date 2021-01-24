@@ -5,6 +5,7 @@ import {SignupComponent} from "./components/signup/signup.component";
 import {ProfileComponent} from "./components/profile/profile.component";
 import {OpportunitiesComponent} from "./components/opportunities/opportunities.component";
 import {NewsCenterComponent} from "./components/news-center/news-center.component";
+import {CentralHubComponent} from "./components/central-hub/central-hub.component";
 
 const routes: Routes = [
     // login
@@ -14,7 +15,8 @@ const routes: Routes = [
     {path: 'profile', component: ProfileComponent},
     {path: '', component: ProfileComponent},
     {path: 'opportunities', component: OpportunitiesComponent},
-    {path: 'news-center', component: NewsCenterComponent}
+    {path: 'news-center', component: NewsCenterComponent},
+    {path: 'central-hub', component: CentralHubComponent}
 ];
 
 @NgModule({

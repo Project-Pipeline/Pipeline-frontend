@@ -1,22 +1,25 @@
-import {Component, ElementRef, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {Observable, of} from "rxjs";
-import {UserApiService} from "../../services/user-api.service";
-import {User} from "../../models/model classes/user/User";
-import {mergeMap} from "rxjs/operators";
-import {MessagingService} from "../../services/messaging.service";
-import {Conversation, ConversationParticipantInfo} from "../../models/model classes/messaging/Conversation";
-import {MessagingConnect} from "../../models/model classes/messaging/MessagingConnect";
-import {ConversationEntry} from "../../models/model classes/messaging/ConversationEntry";
-import {delayExecutionFor, unixTimeStampToDate} from "../../models/Global";
+import {Component, ElementRef, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, ViewChild} from '@angular/core';
+import {UserApiService} from "../../../services/user-api.service";
+import {User} from "../../../models/model classes/user/User";
+import {catchError, mergeMap} from "rxjs/operators";
+import {MessagingService} from "../../../services/messaging.service";
+import {Conversation, ConversationParticipantInfo} from "../../../models/model classes/messaging/Conversation";
+import {MessagingConnect} from "../../../models/model classes/messaging/MessagingConnect";
+import {ConversationEntry} from "../../../models/model classes/messaging/ConversationEntry";
+import {delayExecutionFor, handleJWTError, unixTimeStampToDate} from "../../../models/Global";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-messaging',
     templateUrl: './messaging.component.html',
     styleUrls: ['./messaging.component.scss']
 })
-export class MessagingComponent implements OnInit, OnDestroy {
-    @Input() currentUser: User;
+export class MessagingComponent implements OnInit, OnDestroy, OnChanges {
+    @Input() height: number;
+    heightStringForDetails: string;
+    heightStringForList: string;
     @ViewChild('centralHubMessagesDetails') private chats: ElementRef;
+    currentUser: User;
     searchedUsers: User[] = [];
     currentConversations: Conversation[] = [];
     selectedConversation: Conversation = null;
@@ -25,16 +28,30 @@ export class MessagingComponent implements OnInit, OnDestroy {
     messageBeingWritten = "";
     searchText = "";
 
-    constructor(private userApiService: UserApiService, private messagingService: MessagingService) {
+    constructor(
+        private userApiService: UserApiService,
+        private messagingService: MessagingService,
+        private router: Router) {
     }
 
     ngOnInit(): void {
-        this.createMessageList(this.currentUser);
+        this.userApiService
+            .getUserInfo()
+            .pipe(catchError((e) => handleJWTError(e, this.router)))
+            .subscribe((user) => {
+                this.currentUser = user;
+                this.createMessageList(this.currentUser);
+            });
+
     }
 
     ngOnDestroy() {
-        console.log("ng on destroy");
         this.stopMessaging();
+    }
+
+    ngOnChanges(changes: SimpleChanges) {
+        this.heightStringForDetails = `${this.height - 100}px`
+        this.heightStringForList = `${this.height - 170}px`;
     }
 
     userSelected(user: User) {
@@ -56,6 +73,7 @@ export class MessagingComponent implements OnInit, OnDestroy {
 
     createMessageList(user: User) {
         this.messagingService.messageIDToConversation(user.messages)
+            .pipe(catchError((e) => handleJWTError(e, this.router)))
             .subscribe((convos) => this.currentConversations = convos);
     }
 
