@@ -10,21 +10,29 @@ import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import { ProfileComponent } from './components/profile/profile.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { MatToolbarModule} from '@angular/material/toolbar';
+import { MatIconModule} from '@angular/material/icon';
+import { OpportunitiesComponent } from './components/opportunities/opportunities.component';
+import { NewsCenterComponent } from './components/news-center/news-center.component';
 @NgModule({
     declarations: [
         AppComponent,
         LoginComponent,
         NavbarComponent,
         SignupComponent,
-        ProfileComponent
+        ProfileComponent,
+        OpportunitiesComponent,
+        NewsCenterComponent
+
     ],
     imports: [
         BrowserModule,
         AppRoutingModule,
         FormsModule,
         HttpClientModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        MatToolbarModule,
+        MatIconModule
     ],
     providers: [],
     bootstrap: [AppComponent]

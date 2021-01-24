@@ -1,44 +1,54 @@
-@mixin mohave-style {
-    font-family: Mohave, sans-serif;
-    font-size: 22px;
-}
-
-#navbar-outer {
-    background-color: brown;
-    height: 50px;
-}
-
-#navbar {
-    margin: 0 auto;
-    padding: 10px 0;
+.navbar-button-pair {
+    margin-right: auto;
+    margin-left: auto;
+    width: 400px;
     display: flex;
+    .navbar-button {
+        margin: auto 10px auto auto;
+        padding-top: 10px;
+        width: 123.33px;
+        position: relative;
+        border-radius: 10px;
+        p {
+            text-align: center;
+            margin-top: -4px;
+            font-size: 12px;
+        }
+        img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 35%;
+            height: 35%;
+        }
+    }
+
+    a {
+        &:link, &:visited, &:focus {
+            text-decoration: none;
+            color: black;
+        }
+        &:hover {
+            p {
+                font-weight: bold;
+            }
+        }
+    }
 }
 
-.navbar-title {
-    @include mohave-style;
+.highlighted {
+    background-color: #d6ffe8;
 }
 
-.navbar-title-styles {
-    &:hover, &link, &:visited {
-        color: white;
-        text-decoration: underline;
-    }
-    margin-right: 15px;
-    transition: all .1s ease-in;
-    text-decoration: none;
+mat-toolbar {
+    height: 80px;
 }
 
-#profile-section {
-    display: flex;
-    p {
-        color: white;
-        @include mohave-style;
-        margin-top: 0;
-    }
-    img {
-        border-radius: 50%;
-        width: 34px;
-        height: 34px;
-        margin-right: 20px;
-    }
+.toolbar {
+    background-image: url("~src/assets/images/pipeline-logo-1.png");
+    background-size: 10%;
+    background-repeat: no-repeat;
+    background-position-y: 50%;
+
 }
+
