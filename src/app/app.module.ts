@@ -13,6 +13,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MessagingComponent } from './components/messaging/messaging.component';
 import { SegmentedControlComponent } from './reusable-components/segmented-control/segmented-control.component';
 import { MessagingDateFormatterPipe } from './pipes/messaging-date-formatter.pipe';
+import { MatToolbarModule} from '@angular/material/toolbar';
+import { MatIconModule} from '@angular/material/icon';
+import { OpportunitiesComponent } from './components/opportunities/opportunities.component';
+import { NewsCenterComponent } from './components/news-center/news-center.component';
 
 @NgModule({
     declarations: [
@@ -23,14 +27,18 @@ import { MessagingDateFormatterPipe } from './pipes/messaging-date-formatter.pip
         ProfileComponent,
         MessagingComponent,
         SegmentedControlComponent,
-        MessagingDateFormatterPipe
+        MessagingDateFormatterPipe,
+        OpportunitiesComponent,
+        NewsCenterComponent
     ],
     imports: [
         BrowserModule,
         AppRoutingModule,
         FormsModule,
         HttpClientModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        MatToolbarModule,
+        MatIconModule
     ],
     providers: [],
     bootstrap: [AppComponent]
