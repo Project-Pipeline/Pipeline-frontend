@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit {
         exists
             .pipe(filter((exists) => exists))
             .subscribe((res) => {
-                this.router.navigateByUrl('profile');
+                this.router.navigateByUrl('main');
             });
 
         exists
@@ -71,7 +71,7 @@ export class LoginComponent implements OnInit {
         this.apiService
             .createUserWith(user)
             .subscribe((res) => {
-                this.router.navigateByUrl('profile');
+                this.router.navigateByUrl('main');
             });
     }
 

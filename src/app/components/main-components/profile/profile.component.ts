@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {UserApiService} from "../../services/user-api.service";
-import {User} from "../../models/model classes/user/User";
+import {UserApiService} from "../../../services/user-api.service";
+import {User} from "../../../models/model classes/user/User";
 import {catchError} from "rxjs/operators";
 import {Router} from "@angular/router";
-import {handleJWTError} from "../../models/Global";
+import {handleJWTError} from "../../../models/Global";
 
 @Component({
     selector: 'app-profile',

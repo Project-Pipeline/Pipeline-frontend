@@ -1,12 +1,12 @@
 import {Component, ElementRef, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, ViewChild} from '@angular/core';
-import {UserApiService} from "../../../services/user-api.service";
-import {User} from "../../../models/model classes/user/User";
+import {UserApiService} from "../../../../services/user-api.service";
+import {User} from "../../../../models/model classes/user/User";
 import {catchError, mergeMap} from "rxjs/operators";
-import {MessagingService} from "../../../services/messaging.service";
-import {Conversation, ConversationParticipantInfo} from "../../../models/model classes/messaging/Conversation";
-import {MessagingConnect} from "../../../models/model classes/messaging/MessagingConnect";
-import {ConversationEntry} from "../../../models/model classes/messaging/ConversationEntry";
-import {delayExecutionFor, handleJWTError, unixTimeStampToDate} from "../../../models/Global";
+import {MessagingService} from "../../../../services/messaging.service";
+import {Conversation, ConversationParticipantInfo} from "../../../../models/model classes/messaging/Conversation";
+import {MessagingConnect} from "../../../../models/model classes/messaging/MessagingConnect";
+import {ConversationEntry} from "../../../../models/model classes/messaging/ConversationEntry";
+import {delayExecutionFor, handleJWTError, unixTimeStampToDate} from "../../../../models/Global";
 import {Router} from "@angular/router";
 
 @Component({
