@@ -1,6 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {User} from "../../models/model classes/user/User";
-import {UserApiService} from "../../services/user-api.service";
+import {UserApiService} from "../../../services/user-api.service";
 import {Router} from "@angular/router";
 
 @Component({
@@ -9,10 +8,8 @@ import {Router} from "@angular/router";
     styleUrls: ["./navbar.component.scss"],
 })
 export class NavbarComponent implements OnInit {
-    @Input() highlightProfile = false;
-    @Input() highlightOpportunities = false;
-    @Input() highlightNewsCenter = false;
-    @Input() highlightCentralHub = false;
+    @Input() highlightTab: number;
+    highlights = [false, false, false, false];
 
     constructor(
         private userApiService: UserApiService,
@@ -22,7 +19,13 @@ export class NavbarComponent implements OnInit {
 
 
     ngOnInit(): void {
+        this.highlights[this.highlightTab] = true;
+    }
 
+    highlightAt(index: number) {
+        for (let i = 0; i < this.highlights.length; i ++) {
+            this.highlights[i] = index === i;
+        }
     }
 
 }

@@ -1,0 +1,44 @@
+<mat-toolbar color="primary" class='toolbar'>
+
+    <div class="navbar-button-pair flex">
+        <a [ngClass]="{'highlighted': highlights[0]}"
+           [routerLink]="['profile']"
+           [routerLinkActive]="'active'"
+           (click)="highlightAt(0)"
+           class="navbar-button"
+        >
+            <img src="../../../../assets/images/navbar/profile.png">
+            <p class="helvetica-normal clear-text-paddings">Profile</p>
+        </a>
+
+        <a [ngClass]="{'highlighted': highlights[1]}"
+           [routerLink]="['central-hub']"
+           [routerLinkActive]="'active'"
+           (click)="highlightAt(1)"
+           class="navbar-button"
+        >
+            <img src="../../../../assets/images/navbar/central-hub.png">
+            <p class="helvetica-normal clear-text-paddings">Central Hub</p>
+        </a>
+
+        <a [ngClass]="{'highlighted': highlights[2]}"
+           [routerLink]="['news-center']"
+           [routerLinkActive]="'active'"
+           (click)="highlightAt(2)"
+           class="navbar-button"
+        >
+            <img src="../../../../assets/images/navbar/news-center.png">
+            <p class="helvetica-normal clear-text-paddings">News Center</p>
+        </a>
+
+        <a [ngClass]="{'highlighted': highlights[3]}"
+           [routerLink]="['opportunities']"
+           [routerLinkActive]="'active'"
+           (click)="highlightAt(3)"
+           class="navbar-button"
+        >
+            <img src="../../../../assets/images/navbar/opportunities.png">
+            <p class="helvetica-normal clear-text-paddings">Opportunities</p>
+        </a>
+    </div>
+</mat-toolbar>

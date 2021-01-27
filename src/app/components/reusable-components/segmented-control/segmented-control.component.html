@@ -1,0 +1,15 @@
+<div id="radios">
+
+    <div
+        *ngFor="let option of options; let i = index"
+        [ngClass]="{
+            'selected': checkedStatuses[i],
+            'not-selected': !checkedStatuses[i],
+            'beginning-corner-style': beginningCorner(i),
+            'regular-corner-style ': regularCorner(i),
+            'ending-corner-style': endingCorner(i)
+        }"
+        [ngStyle]="{'width': widthPercent()}"
+        ><h5 class="clear-text-paddings helvetica" (click)="selected($event,i)">{{option}}</h5>
+    </div>
+</div>

@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit {
         exists
             .pipe(filter((exists) => exists))
             .subscribe((res) => {
-                this.router.navigateByUrl('profile');
+                this.router.navigateByUrl('main');
             });
 
         exists
@@ -66,12 +66,12 @@ export class LoginComponent implements OnInit {
     continueButtonClicked() {
         let user = new User(
             this.email, this.given_name, this.last_name, this.picture, this.businessName,
-            this.selectedBusiness, this.selectedProfitType, this.selectedIndustry);
+            this.selectedBusiness, this.selectedProfitType, this.selectedIndustry, []);
 
         this.apiService
             .createUserWith(user)
             .subscribe((res) => {
-                this.router.navigateByUrl('profile');
+                this.router.navigateByUrl('main');
             });
     }
 

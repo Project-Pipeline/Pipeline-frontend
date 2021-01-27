@@ -1,0 +1,43 @@
+#radios {
+    position: relative;
+    z-index: 5;
+    width: 100%;
+    input {
+        display: none;
+    }
+}
+
+@mixin segment-common {
+    height: 22px;
+    text-align: center;
+    display: inline-block;
+    padding-top: 10px;
+    cursor: pointer;
+    border: 1px solid black;
+    margin-left: -1px;
+}
+
+.selected {
+    background-color: gainsboro;
+}
+
+.not-selected {
+    background-color: rgb(244, 244, 244);
+}
+
+.beginning-corner-style {
+    border-radius: 10px 0 0 10px;
+}
+
+.regular-corner-style {
+    border-radius: 0;
+}
+
+.ending-corner-style {
+    border-radius: 0 10px 10px 0;
+}
+
+#radios div {
+    @include segment-common;
+    z-index: 2;
+}
