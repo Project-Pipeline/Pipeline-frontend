@@ -14,7 +14,7 @@ export class ProfileComponent implements OnInit {
     userInfo: User
     pageReady = false
 
-    constructor(private usersApi: UserApiService, private router: Router) {
+    constructor(public usersApi: UserApiService, public router: Router) {
     }
 
     ngOnInit(): void {

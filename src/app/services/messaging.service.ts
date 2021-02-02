@@ -63,7 +63,7 @@ export class MessagingService {
                 }
             },
             err => errorReceived(err)
-        )
+        );
     }
 
     sendData(data: unknown) {

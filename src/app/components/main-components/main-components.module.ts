@@ -13,6 +13,7 @@ import {MessagingDateFormatterPipe} from "../../pipes/messaging-date-formatter.p
 import { MainComponent } from './main/main.component';
 import {SegmentedControlComponent} from "../reusable-components/segmented-control/segmented-control.component";
 import {MainComponentsRoutingModule} from "./main-components-routing.module";
+import { IndividualProfileComponent } from './profile/individual-profile/individual-profile.component';
 
 @NgModule({
     declarations: [
@@ -24,7 +25,8 @@ import {MainComponentsRoutingModule} from "./main-components-routing.module";
         NavbarComponent,
         MessagingDateFormatterPipe,
         MainComponent,
-        SegmentedControlComponent
+        SegmentedControlComponent,
+        IndividualProfileComponent
     ],
     imports: [
         CommonModule,
