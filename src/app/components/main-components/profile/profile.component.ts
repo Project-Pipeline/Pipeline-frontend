@@ -1,9 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {UserApiService} from "../../../services/user-api.service";
 import {User} from "../../../models/model classes/user/User";
-import {catchError} from "rxjs/operators";
+import {catchError, filter, mergeMap, share} from "rxjs/operators";
 import {Router} from "@angular/router";
 import {handleJWTError} from "../../../models/Global";
+import {UserDetails} from "../../../models/model classes/user/UserDetails";
+import {ModalPopupService} from "../modal-popup.service";
+import {IndividualUserDetailsPopupComponent} from "./individual-user-details-popup/individual-user-details-popup.component";
 
 @Component({
     selector: 'app-profile',
@@ -12,18 +15,40 @@ import {handleJWTError} from "../../../models/Global";
 })
 export class ProfileComponent implements OnInit {
     userInfo: User
+    userDetails: UserDetails;
     pageReady = false
+    shouldCompleteUserDetails = false;
 
-    constructor(public usersApi: UserApiService, public router: Router) {
+    constructor(public usersApi: UserApiService, public router: Router, public modalPopupService: ModalPopupService) {
     }
 
     ngOnInit(): void {
-        this.usersApi.getUserInfo()
+        const userDetails = this.usersApi.getUserInfo()
             .pipe(catchError((e) => handleJWTError(e, this.router)))
-            .subscribe((user) => {
+            .pipe(mergeMap((user) => {
                 this.userInfo = user;
                 this.pageReady = true;
-            });
+                return this.usersApi.getUserDetails()
+            }))
+            .pipe(share());
+
+        // user details dne - create user details
+        userDetails.pipe(filter((details) => details.length === 0))
+            .subscribe(() => this.shouldCompleteUserDetails = true);
+
+        // user detail exists
+        userDetails.pipe(filter((details) => details.length !== 0))
+            .subscribe((details) => this.userDetails = details[0]);
+    }
+
+    completeProfile() {
+        if (this.userInfo.type === 0) { // Individual user
+            this.modalPopupService.openDialogComponent(IndividualUserDetailsPopupComponent, this.userInfo)
+                .subscribe((details) => console.log(details));
+        } else {
+
+        }
+
     }
 
 }

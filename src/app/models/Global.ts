@@ -3,6 +3,10 @@ import {Router} from "@angular/router";
 import {from, Observable, of, throwError} from "rxjs";
 import { v4 as uuidv4 } from 'uuid';
 import {delay} from "rxjs/operators";
+import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
+import {DialogSize} from "./model classes/DialogSize";
+import {ComponentType} from "@angular/cdk/overlay";
+import {TemplateRef} from "@angular/core";
 
 export function handleJWTError(error: HttpErrorResponse, router: Router): Observable<any> {
     if (error.error.reason == "malformed JWT") {

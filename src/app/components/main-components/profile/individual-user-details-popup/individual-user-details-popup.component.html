@@ -1,0 +1,127 @@
+<div style="padding: 20px">
+    <div style="width: 100%" class="flex">
+        <h2 class="helvetica clear-text-paddings">Complete more info here:</h2><br><br>
+        <button class="ml-auto" (click)="close()">Close</button>
+    </div>
+
+    <br>
+    <mat-label>Tell us a bit about yourself:</mat-label><br><br>
+    <mat-form-field appearance="fill">
+        <mat-label>Bio</mat-label>
+        <textarea [(ngModel)]="bio" matInput matTextareaAutosize></textarea>
+    </mat-form-field>
+    <br>
+
+    <div class="dual-column">
+        <div class="dual-column-left">
+<!--            Public ID-->
+            <label>we need a public id to display your public profile. Customize it here:</label><br><br>
+            <mat-form-field>
+                <mat-label>Public id</mat-label>
+                <label>
+                    <input placeholder="public id" matInput required [(ngModel)]="publicId">
+                </label>
+            </mat-form-field>
+            <br>
+<!--            AGE-->
+            <label>When were you born?</label><br>
+            <mat-form-field appearance="fill">
+                <mat-label>Choose a date</mat-label>
+                <input matInput [matDatepicker]="picker" [(ngModel)]="dob">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <br>
+        </div>
+
+        <div class="dual-column-right">
+<!--            GENDER-->
+            <br>
+            <mat-form-field >
+                <mat-label>What's your gender?</mat-label><br>
+                <label>
+                    <input placeholder="Gender" matInput required>
+                </label>
+                <mat-select [(ngModel)]="selectedGender">
+                    <mat-option *ngFor="let g of genderList" value="{{g}}">{{g}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <br><br>
+<!--            Profession-->
+            <label>What's your profession?</label><br>
+            <mat-form-field>
+                <mat-label>Profession</mat-label>
+                <label>
+                    <input placeholder="Profession" matInput required [(ngModel)]="profession">
+                </label>
+            </mat-form-field>
+            <br>
+        </div>
+    </div>
+
+    <!--            Phone nUmbers-->
+    <div class="add-section">
+        <label>Add Phone Numbers</label>
+        <button mat-stroked-button (click)="addPhoneNumbers()">+</button>
+    </div>
+    <div class="dual-column" *ngFor="let number of phoneNumbers">
+        <div class="dual-column-left">
+            <mat-form-field>
+                <mat-label>Type (work / cell etc)</mat-label>
+                <label><input placeholder="Type" matInput required [(ngModel)]="number[0]"></label>
+            </mat-form-field>
+        </div>
+        <div class="dual-column-right">
+            <mat-form-field>
+                <mat-label>Number</mat-label>
+                <label><input placeholder="number" matInput required [(ngModel)]="number[1]"></label>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <!--            Links-->
+    <div class="add-section">
+        <label>Do you have any links to share? (Website Etc)</label>
+        <button mat-stroked-button (click)="addLinks()">+</button>
+    </div>
+    <div class="dual-column" *ngFor="let link of links">
+        <div class="dual-column-left">
+            <mat-form-field>
+                <mat-label>Name</mat-label>
+                <label><input placeholder="Name" matInput required [(ngModel)]="link[0]"></label>
+            </mat-form-field>
+        </div>
+        <div class="dual-column-right">
+            <mat-form-field>
+                <mat-label>URL</mat-label>
+                <label><input placeholder="url" matInput required [(ngModel)]="link[1]"></label>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <br>
+
+    <!--            Additional Info-->
+    <div class="add-section">
+        <label>Anything else you want to share with us?</label>
+        <button mat-stroked-button (click)="addAdditionalInfo()">+</button>
+    </div>
+    <div class="dual-column" *ngFor="let info of additionalInfo ">
+        <div class="dual-column-left">
+            <mat-form-field>
+                <mat-label>Name</mat-label>
+                <label><input placeholder="Name" matInput required [(ngModel)]="info[0]"></label>
+            </mat-form-field>
+        </div>
+        <div class="dual-column-right">
+            <mat-form-field>
+                <mat-label>Description</mat-label>
+                <label><input placeholder="url" matInput required [(ngModel)]="info[1]"></label>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <br>
+    <button mat-stroked-button color="primary" (click)="closeWithInformation()">Done</button>
+
+</div>

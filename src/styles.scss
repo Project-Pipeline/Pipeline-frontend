@@ -95,3 +95,15 @@ body {
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.dual-column {
+    width: 100%;
+    display: flex;
+    .dual-column-left {
+        width: 45%;
+        margin-right: 10%;
+    }
+    .dual-column-right {
+        width: 45%;
+    }
+}
