@@ -23,6 +23,7 @@ import { IndividualUserDetailsPopupComponent } from './profile/individual-user-d
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
 import {MatButtonModule} from "@angular/material/button";
+import { TextPairEditorComponent } from './helpers/text-pair-editor/text-pair-editor.component';
 
 @NgModule({
     declarations: [
@@ -36,7 +37,8 @@ import {MatButtonModule} from "@angular/material/button";
         MainComponent,
         SegmentedControlComponent,
         IndividualProfileComponent,
-        IndividualUserDetailsPopupComponent
+        IndividualUserDetailsPopupComponent,
+        TextPairEditorComponent
     ],
     imports: [
         CommonModule,

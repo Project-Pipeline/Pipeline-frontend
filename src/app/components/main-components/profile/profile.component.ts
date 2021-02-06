@@ -7,6 +7,7 @@ import {handleJWTError} from "../../../models/Global";
 import {UserDetails} from "../../../models/model classes/user/UserDetails";
 import {ModalPopupService} from "../modal-popup.service";
 import {IndividualUserDetailsPopupComponent} from "./individual-user-details-popup/individual-user-details-popup.component";
+import {DialogSize} from "../../../models/model classes/DialogSize";
 
 @Component({
     selector: 'app-profile',
@@ -42,9 +43,16 @@ export class ProfileComponent implements OnInit {
     }
 
     completeProfile() {
+        let userDetails: UserDetails;
         if (this.userInfo.type === 0) { // Individual user
-            this.modalPopupService.openDialogComponent(IndividualUserDetailsPopupComponent, this.userInfo)
-                .subscribe((details) => console.log(details));
+            this.modalPopupService
+                .openDialogComponent(IndividualUserDetailsPopupComponent, this.userInfo)
+                .pipe(filter((result) => result != null))
+                .pipe(mergeMap((result) => {
+                    userDetails = result as UserDetails;
+                    return this.usersApi.setUserDetails(result);
+                }))
+                .subscribe(() => this.userDetails = userDetails);
         } else {
 
         }

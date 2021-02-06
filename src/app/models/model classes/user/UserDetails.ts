@@ -1,7 +1,8 @@
 export class UserDetails {
+    public user: UserWrapper;
     constructor(
         // User ID
-        public user: string,
+        user: string,
         public links: DescriptionDetailPair[],
         public phoneNumbers: DescriptionDetailPair[],
         public publicID: string,
@@ -11,11 +12,19 @@ export class UserDetails {
         public latitude?: number,
         public longitude?: number,
         public dateFounded?: Date,
-        public dob?: Date,
+        public dob?: string,
         public gender?: number,
         public profession?: string,
         public id?: string
-    ) {}
+    ) {
+        this.user = new UserWrapper(user);
+    }
+}
+
+// A DTO
+class UserWrapper {
+    constructor(public id: string) {
+    }
 }
 
 export class DescriptionDetailPair {

@@ -2,6 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {User} from "../../../../models/model classes/user/User";
 import {DescriptionDetailPair, UserDetails} from "../../../../models/model classes/user/UserDetails";
+import {DatePipe} from "@angular/common";
 
 @Component({
     selector: 'app-individual-user-details-popup',
@@ -19,6 +20,7 @@ export class IndividualUserDetailsPopupComponent implements OnInit {
     links: [string, string][] = [];
     phoneNumbers: [string, string][] = [['', '']];
     additionalInfo: [string, string][] = [];
+    private datePipe = new DatePipe('en-US');
 
     constructor(private dialog: MatDialogRef<IndividualUserDetailsPopupComponent>,
                 @Inject(MAT_DIALOG_DATA) public argument: User) {
@@ -45,30 +47,16 @@ export class IndividualUserDetailsPopupComponent implements OnInit {
             null,
             null,
             null,
-            this.dob,
+            this.datePipe.transform(this.dob, 'yyyy-MM-dd\'T\'HH:mm:ssZ'),
             this.genderList.indexOf(this.selectedGender),
             this.profession
         );
+        console.log(userDetails);
         this.dialog.close(userDetails);
     }
 
     removeSpace(str: string): string {
         return str.replace(' ', '');
     }
-
-
-    addLinks() {
-        this.links.push(['', '']);
-    }
-
-    addPhoneNumbers() {
-        this.phoneNumbers.push(['', '']);
-    }
-
-    addAdditionalInfo() {
-        this.additionalInfo.push(['', '']);
-    }
-
-
 
 }

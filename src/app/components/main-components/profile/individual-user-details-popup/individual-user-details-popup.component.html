@@ -60,66 +60,30 @@
     </div>
 
     <!--            Phone nUmbers-->
-    <div class="add-section">
-        <label>Add Phone Numbers</label>
-        <button mat-stroked-button (click)="addPhoneNumbers()">+</button>
-    </div>
-    <div class="dual-column" *ngFor="let number of phoneNumbers">
-        <div class="dual-column-left">
-            <mat-form-field>
-                <mat-label>Type (work / cell etc)</mat-label>
-                <label><input placeholder="Type" matInput required [(ngModel)]="number[0]"></label>
-            </mat-form-field>
-        </div>
-        <div class="dual-column-right">
-            <mat-form-field>
-                <mat-label>Number</mat-label>
-                <label><input placeholder="number" matInput required [(ngModel)]="number[1]"></label>
-            </mat-form-field>
-        </div>
-    </div>
+    <app-text-pair-editor
+        [dataSource]="phoneNumbers"
+        [description]="'Add Phone Numbers'"
+        [leftInputPlaceholder]="'Type (work / cell etc)'"
+        [rightFieldPlaceholder]="'Number'"
+    ></app-text-pair-editor>
 
     <!--            Links-->
-    <div class="add-section">
-        <label>Do you have any links to share? (Website Etc)</label>
-        <button mat-stroked-button (click)="addLinks()">+</button>
-    </div>
-    <div class="dual-column" *ngFor="let link of links">
-        <div class="dual-column-left">
-            <mat-form-field>
-                <mat-label>Name</mat-label>
-                <label><input placeholder="Name" matInput required [(ngModel)]="link[0]"></label>
-            </mat-form-field>
-        </div>
-        <div class="dual-column-right">
-            <mat-form-field>
-                <mat-label>URL</mat-label>
-                <label><input placeholder="url" matInput required [(ngModel)]="link[1]"></label>
-            </mat-form-field>
-        </div>
-    </div>
+    <app-text-pair-editor
+        [dataSource]="links"
+        [description]="'Do you have any links to share? (Website Etc)'"
+        [leftInputPlaceholder]="'Name'"
+        [rightFieldPlaceholder]="'URL'"
+    ></app-text-pair-editor>
 
     <br>
 
     <!--            Additional Info-->
-    <div class="add-section">
-        <label>Anything else you want to share with us?</label>
-        <button mat-stroked-button (click)="addAdditionalInfo()">+</button>
-    </div>
-    <div class="dual-column" *ngFor="let info of additionalInfo ">
-        <div class="dual-column-left">
-            <mat-form-field>
-                <mat-label>Name</mat-label>
-                <label><input placeholder="Name" matInput required [(ngModel)]="info[0]"></label>
-            </mat-form-field>
-        </div>
-        <div class="dual-column-right">
-            <mat-form-field>
-                <mat-label>Description</mat-label>
-                <label><input placeholder="url" matInput required [(ngModel)]="info[1]"></label>
-            </mat-form-field>
-        </div>
-    </div>
+    <app-text-pair-editor
+        [dataSource]="additionalInfo"
+        [description]="'Anything else you want to share with us?'"
+        [leftInputPlaceholder]="'Name'"
+        [rightFieldPlaceholder]="'Description'"
+    ></app-text-pair-editor>
 
     <br>
     <button mat-stroked-button color="primary" (click)="closeWithInformation()">Done</button>
