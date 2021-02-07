@@ -1,6 +1,22 @@
 <div class="width-container" style="padding: 20px">
     <div *ngIf="userDetails != null">
-        {{userDetails | json}}
+        <h3 class="helvetica">Cards</h3>
+        <div class="horizontal-scroll-outer">
+            <div class="horizontal-scroll-inner">
+                <div class="profile-card">
+                    <h3 class="helvetica clear-text-paddings">About Me</h3>
+                    <h5 class="helvetica-normal clear-text-paddings">{{userDetails.biography}}</h5>
+                </div>
+            </div>
+        </div>
     </div>
 
+    <h3 class="helvetica">Recent Posts</h3>
+    <div class="horizontal-scroll-outer">
+        <div class="horizontal-scroll-inner">
+            <div class="post-card">
+                <button mat-raised-button color="accent">Add A Post</button>
+            </div>
+        </div>
+    </div>
 </div>

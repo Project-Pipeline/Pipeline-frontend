@@ -31,7 +31,17 @@
     margin-top: auto;
     margin-left: 20px;
     color: white;
+    max-width: 300px;
     h4 {
         margin-top: 8px;
+    }
+    a {
+        &:link, &:visited {
+            color: deepskyblue;
+            text-decoration: none;
+        }
+        &:hover {
+            text-decoration: underline;
+        }
     }
 }

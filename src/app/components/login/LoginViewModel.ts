@@ -5,7 +5,9 @@ export class LoginViewModel {
     businessTypes: string[] = ["organization", "business", "school"];
 
     accountTypeOptions: string[] = [
-        'as a student / working professional',
+        'as a student',
+        'as a teacher',
+        'as a working professional',
         'on behalf of a business',
         'on behalf of a community organization',
         'on behalf of a school'

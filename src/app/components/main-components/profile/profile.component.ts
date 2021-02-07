@@ -7,7 +7,7 @@ import {handleJWTError} from "../../../models/Global";
 import {UserDetails} from "../../../models/model classes/user/UserDetails";
 import {ModalPopupService} from "../modal-popup.service";
 import {IndividualUserDetailsPopupComponent} from "./individual-user-details-popup/individual-user-details-popup.component";
-import {DialogSize} from "../../../models/model classes/DialogSize";
+import {empty, Observable} from "rxjs";
 
 @Component({
     selector: 'app-profile',
@@ -16,9 +16,11 @@ import {DialogSize} from "../../../models/model classes/DialogSize";
 })
 export class ProfileComponent implements OnInit {
     userInfo: User
-    userDetails: UserDetails;
+    userDetails: UserDetails = null;
     pageReady = false
     shouldCompleteUserDetails = false;
+    individualUserTypes = [0, 1, 2];
+    entityUserTypes = [3, 4, 5]
 
     constructor(public usersApi: UserApiService, public router: Router, public modalPopupService: ModalPopupService) {
     }
@@ -44,19 +46,22 @@ export class ProfileComponent implements OnInit {
 
     completeProfile() {
         let userDetails: UserDetails;
-        if (this.userInfo.type === 0) { // Individual user
-            this.modalPopupService
-                .openDialogComponent(IndividualUserDetailsPopupComponent, this.userInfo)
-                .pipe(filter((result) => result != null))
-                .pipe(mergeMap((result) => {
-                    userDetails = result as UserDetails;
-                    return this.usersApi.setUserDetails(result);
-                }))
-                .subscribe(() => this.userDetails = userDetails);
-        } else {
+        let getUserDetails: Observable<any> = empty();
+        if (this.individualUserTypes.includes(this.userInfo.type)) { // Individual user
+            getUserDetails = this.modalPopupService.openDialogComponent(
+                IndividualUserDetailsPopupComponent,
+                this.userInfo
+            );
+        } else if (this.entityUserTypes.includes(this.userInfo.type)) { // an entity
 
         }
-
+        getUserDetails
+            .pipe(filter((result) => result != null))
+            .pipe(mergeMap((result) => {
+                userDetails = result as UserDetails;
+                return this.usersApi.setUserDetails(result);
+            }))
+            .subscribe(() => this.userDetails = userDetails);
     }
 
 }

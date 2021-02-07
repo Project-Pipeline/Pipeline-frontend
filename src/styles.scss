@@ -107,3 +107,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
         width: 45%;
     }
 }
+
+.horizontal-scroll-outer {
+    overflow: auto;
+    white-space: nowrap;
+}
+
+.horizontal-scroll-inner {
+    display: inline-block;
+}
