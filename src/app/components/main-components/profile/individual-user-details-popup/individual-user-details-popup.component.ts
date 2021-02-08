@@ -46,7 +46,6 @@ export class IndividualUserDetailsPopupComponent implements OnInit {
             this.bio,
             null,
             null,
-            null,
             this.datePipe.transform(this.dob, 'yyyy-MM-dd\'T\'HH:mm:ssZ'),
             this.genderList.indexOf(this.selectedGender),
             this.profession

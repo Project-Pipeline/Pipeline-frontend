@@ -1,3 +1,5 @@
+import {Address} from "./Address";
+
 export class UserDetails {
     public user: UserWrapper;
     constructor(
@@ -9,9 +11,8 @@ export class UserDetails {
         public additionalInfo: DescriptionDetailPair[],
         public backgroundImage?: string,
         public biography?: string,
-        public latitude?: number,
-        public longitude?: number,
-        public dateFounded?: Date,
+        public dateFounded?: string,
+        public address?: Address,
         public dob?: string,
         public gender?: number,
         public profession?: string,
