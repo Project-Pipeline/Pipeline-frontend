@@ -1,6 +1,9 @@
 export class Address {
-    components: string[];
-    latitude: number;
-    longitude: number;
-    postalCode?: string;
+    constructor(
+        public components: string[],
+        public latitude: number,
+        public longitude: number,
+        public postalCode?: string
+    ) {
+    }
 }

@@ -8,6 +8,8 @@ import {UserDetails} from "../../../models/model classes/user/UserDetails";
 import {ModalPopupService} from "../modal-popup.service";
 import {IndividualUserDetailsPopupComponent} from "./individual-user-details-popup/individual-user-details-popup.component";
 import {empty, Observable} from "rxjs";
+import {EntityUserDetailsPopupComponent} from "./entity-user-details-popup/entity-user-details-popup.component";
+import {entityUserTypes, individualUserTypes} from "../../../models/BusinessConstants";
 
 @Component({
     selector: 'app-profile',
@@ -19,10 +21,19 @@ export class ProfileComponent implements OnInit {
     userDetails: UserDetails = null;
     pageReady = false
     shouldCompleteUserDetails = false;
-    individualUserTypes = [0, 1, 2];
-    entityUserTypes = [3, 4, 5]
+    isIndividual = false;
+    isEntity = false;
+    private typeToStringLookup: {[key: number]: string} = {
+        0: 'student',
+        1: 'teacher',
+        2: 'working professional',
+        3: 'company',
+        4: 'community organization',
+        5: 'school'
+    }
 
     constructor(public usersApi: UserApiService, public router: Router, public modalPopupService: ModalPopupService) {
+
     }
 
     ngOnInit(): void {
@@ -30,6 +41,7 @@ export class ProfileComponent implements OnInit {
             .pipe(catchError((e) => handleJWTError(e, this.router)))
             .pipe(mergeMap((user) => {
                 this.userInfo = user;
+                this.prepareUserType(user);
                 this.pageReady = true;
                 return this.usersApi.getUserDetails()
             }))
@@ -47,13 +59,16 @@ export class ProfileComponent implements OnInit {
     completeProfile() {
         let userDetails: UserDetails;
         let getUserDetails: Observable<any> = empty();
-        if (this.individualUserTypes.includes(this.userInfo.type)) { // Individual user
+        if (individualUserTypes.includes(this.userInfo.type)) { // Individual user
             getUserDetails = this.modalPopupService.openDialogComponent(
                 IndividualUserDetailsPopupComponent,
                 this.userInfo
             );
-        } else if (this.entityUserTypes.includes(this.userInfo.type)) { // an entity
-
+        } else if (entityUserTypes.includes(this.userInfo.type)) { // an entity
+            getUserDetails = this.modalPopupService.openDialogComponent(
+                EntityUserDetailsPopupComponent,
+                this.userInfo
+            );
         }
         getUserDetails
             .pipe(filter((result) => result != null))
@@ -63,5 +78,15 @@ export class ProfileComponent implements OnInit {
             }))
             .subscribe(() => this.userDetails = userDetails);
     }
+
+    prepareUserType(userInfo: User) {
+        this.isIndividual = individualUserTypes.includes(userInfo.type);
+        this.isEntity = entityUserTypes.includes(userInfo.type);
+    }
+
+    typeToString(): string {
+        return this.typeToStringLookup[this.userInfo.type];
+    }
+
 
 }

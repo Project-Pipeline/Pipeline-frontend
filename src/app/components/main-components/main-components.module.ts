@@ -24,6 +24,9 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
 import {MatButtonModule} from "@angular/material/button";
 import { TextPairEditorComponent } from './helpers/text-pair-editor/text-pair-editor.component';
+import { EntityProfileComponent } from './profile/entity-profile/entity-profile.component';
+import { EntityUserDetailsPopupComponent } from './profile/entity-user-details-popup/entity-user-details-popup.component';
+import { AddressAutoCompleterComponent } from './helpers/address-auto-completer/address-auto-completer.component';
 
 @NgModule({
     declarations: [
@@ -38,7 +41,10 @@ import { TextPairEditorComponent } from './helpers/text-pair-editor/text-pair-ed
         SegmentedControlComponent,
         IndividualProfileComponent,
         IndividualUserDetailsPopupComponent,
-        TextPairEditorComponent
+        TextPairEditorComponent,
+        EntityProfileComponent,
+        EntityUserDetailsPopupComponent,
+        AddressAutoCompleterComponent
     ],
     imports: [
         CommonModule,
