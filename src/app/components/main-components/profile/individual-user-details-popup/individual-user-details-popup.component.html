@@ -1,0 +1,91 @@
+<div style="padding: 20px">
+    <div style="width: 100%" class="flex">
+        <h2 class="helvetica clear-text-paddings">Complete more info here:</h2><br><br>
+        <button class="ml-auto" (click)="close()">Close</button>
+    </div>
+
+    <br>
+    <mat-label>Tell us a bit about yourself:</mat-label><br><br>
+    <mat-form-field appearance="fill">
+        <mat-label>Bio</mat-label>
+        <textarea [(ngModel)]="bio" matInput matTextareaAutosize></textarea>
+    </mat-form-field>
+    <br>
+
+    <div class="dual-column">
+        <div class="dual-column-left">
+<!--            Public ID-->
+            <label>we need a public id to display your public profile. Customize it here:</label><br><br>
+            <mat-form-field>
+                <mat-label>Public id</mat-label>
+                <label>
+                    <input placeholder="public id" matInput required [(ngModel)]="publicId">
+                </label>
+            </mat-form-field>
+            <br>
+<!--            AGE-->
+            <label>When were you born?</label><br>
+            <mat-form-field appearance="fill">
+                <mat-label>Choose a date</mat-label>
+                <input matInput [matDatepicker]="picker" [(ngModel)]="dob">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <br>
+        </div>
+
+        <div class="dual-column-right">
+<!--            GENDER-->
+            <br>
+            <mat-form-field >
+                <mat-label>What's your gender?</mat-label><br>
+                <label>
+                    <input placeholder="Gender" matInput required>
+                </label>
+                <mat-select [(ngModel)]="selectedGender">
+                    <mat-option *ngFor="let g of genderList" value="{{g}}">{{g}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <br><br>
+<!--            Profession-->
+            <label>What's your profession?</label><br>
+            <mat-form-field>
+                <mat-label>Profession</mat-label>
+                <label>
+                    <input placeholder="Profession" matInput required [(ngModel)]="profession">
+                </label>
+            </mat-form-field>
+            <br>
+        </div>
+    </div>
+
+    <!--            Phone nUmbers-->
+    <app-text-pair-editor
+        [dataSource]="phoneNumbers"
+        [description]="'Add Phone Numbers'"
+        [leftInputPlaceholder]="'Type (work / cell etc)'"
+        [rightFieldPlaceholder]="'Number'"
+    ></app-text-pair-editor>
+
+    <!--            Links-->
+    <app-text-pair-editor
+        [dataSource]="links"
+        [description]="'Do you have any links to share? (Website Etc)'"
+        [leftInputPlaceholder]="'Name'"
+        [rightFieldPlaceholder]="'URL'"
+    ></app-text-pair-editor>
+
+    <br>
+
+    <!--            Additional Info-->
+    <app-text-pair-editor
+        [dataSource]="additionalInfo"
+        [description]="'Anything else you want to share with us?'"
+        [leftInputPlaceholder]="'Name'"
+        [rightFieldPlaceholder]="'Description'"
+    ></app-text-pair-editor>
+
+    <br>
+    <button mat-raised-button color="accent" (click)="closeWithInformation()">Done</button>
+
+</div>

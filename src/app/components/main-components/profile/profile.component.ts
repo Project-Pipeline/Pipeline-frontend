@@ -1,9 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {UserApiService} from "../../../services/user-api.service";
 import {User} from "../../../models/model classes/user/User";
-import {catchError} from "rxjs/operators";
+import {catchError, filter, mergeMap, share} from "rxjs/operators";
 import {Router} from "@angular/router";
 import {handleJWTError} from "../../../models/Global";
+import {UserDetails} from "../../../models/model classes/user/UserDetails";
+import {ModalPopupService} from "../modal-popup.service";
+import {IndividualUserDetailsPopupComponent} from "./individual-user-details-popup/individual-user-details-popup.component";
+import {empty, Observable} from "rxjs";
 
 @Component({
     selector: 'app-profile',
@@ -12,18 +16,52 @@ import {handleJWTError} from "../../../models/Global";
 })
 export class ProfileComponent implements OnInit {
     userInfo: User
+    userDetails: UserDetails = null;
     pageReady = false
+    shouldCompleteUserDetails = false;
+    individualUserTypes = [0, 1, 2];
+    entityUserTypes = [3, 4, 5]
 
-    constructor(private usersApi: UserApiService, private router: Router) {
+    constructor(public usersApi: UserApiService, public router: Router, public modalPopupService: ModalPopupService) {
     }
 
     ngOnInit(): void {
-        this.usersApi.getUserInfo()
+        const userDetails = this.usersApi.getUserInfo()
             .pipe(catchError((e) => handleJWTError(e, this.router)))
-            .subscribe((user) => {
+            .pipe(mergeMap((user) => {
                 this.userInfo = user;
                 this.pageReady = true;
-            });
+                return this.usersApi.getUserDetails()
+            }))
+            .pipe(share());
+
+        // user details dne - create user details
+        userDetails.pipe(filter((details) => details.length === 0))
+            .subscribe(() => this.shouldCompleteUserDetails = true);
+
+        // user detail exists
+        userDetails.pipe(filter((details) => details.length !== 0))
+            .subscribe((details) => this.userDetails = details[0]);
+    }
+
+    completeProfile() {
+        let userDetails: UserDetails;
+        let getUserDetails: Observable<any> = empty();
+        if (this.individualUserTypes.includes(this.userInfo.type)) { // Individual user
+            getUserDetails = this.modalPopupService.openDialogComponent(
+                IndividualUserDetailsPopupComponent,
+                this.userInfo
+            );
+        } else if (this.entityUserTypes.includes(this.userInfo.type)) { // an entity
+
+        }
+        getUserDetails
+            .pipe(filter((result) => result != null))
+            .pipe(mergeMap((result) => {
+                userDetails = result as UserDetails;
+                return this.usersApi.setUserDetails(result);
+            }))
+            .subscribe(() => this.userDetails = userDetails);
     }
 
 }

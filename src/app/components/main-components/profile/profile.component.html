@@ -1,24 +1,30 @@
-<div class="width-container">
-
-    <div id="profile-container" *ngIf="pageReady">
-        <div id="left-pane">
-            <img class="profile-img" src="{{userInfo.picture}}">
+<div id="bg">
+    <div class="width-container flex">
+        <img src="{{userInfo.picture}}">
+        <div class="profile-details">
             <h2 class="helvetica clear-text-paddings">{{userInfo.givenName}}&nbsp;{{userInfo.familyName}}</h2>
-            <span style="display: flex">
-                <img src="../../../../assets/images/briefcase1.png" width="25px" height="25px">
-                <h4 class="helvetica-normal text-top-spacing">&nbsp;{{userInfo.entityBelongedTo}}</h4>
-            </span>
-            <button class="pipeline-button-secondary text-top-spacing">&nbsp;&nbsp;Complete Profile&nbsp;&nbsp;</button>
-        </div>
-
-        <div id="mid-pane">
-
-            <div id="write-a-post">
-                <img src="../../../../assets/images/writing-icon.png" width="25px" height="25px">
-                <h3 class="helvetica clear-text-paddings">&nbsp;&nbsp;Write a Post</h3>
+            <h4 class="helvetica-normal clear-text-paddings">
+                <span *ngIf="userDetails != null">{{userDetails.profession}},&nbsp;</span>
+                {{userInfo.entityBelongedTo}}
+            </h4>
+            <div *ngIf="userDetails != null" style="margin-top: 8px">
+                <div class="flex">
+                    <div *ngFor="let link of userDetails.links">
+                        <a href="{{link.detail}}" target="_blank">{{link.description}}</a>
+                    </div>
+                </div>
+                <div class="flex" *ngFor="let num of userDetails.phoneNumbers">
+                    <h4 class="helvetica-normal clear-text-paddings">{{num.description}}:&nbsp;&nbsp;{{num.detail}}</h4>
+                </div>
             </div>
         </div>
+        <div class="ml-auto mt-auto flex">
+            <button *ngIf="shouldCompleteUserDetails" (click)="completeProfile()">Complete Profile</button>
+            <button>Follow</button>
+            <button>Message</button>
+            <button>Settings</button>
+        </div>
     </div>
-
 </div>
 
+<app-individual-profile></app-individual-profile>

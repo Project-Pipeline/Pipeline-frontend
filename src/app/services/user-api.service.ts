@@ -7,12 +7,13 @@ import {apiRoot} from "../models/ApiRoot";
 import {UserExistence} from "../models/model classes/user/UserExistence";
 import {map, mergeMap} from "rxjs/operators";
 import {AuthService} from "./auth.service";
+import {UserDetails} from "../models/model classes/user/UserDetails";
 
 @Injectable({
     providedIn: 'root'
 })
 export class UserApiService {
-    currentUser: User = null
+    currentUser: User = null;
 
     constructor(private http: HttpClient, private authService: AuthService) {
     }
@@ -46,6 +47,21 @@ export class UserApiService {
     searchUser(query: string, method: string): Observable<User[]> {
         return this.http.get<User[]>(
             `${apiRoot}api/user/search?query=${query}&method=${method}`,
+            this.authService.authHeaders()
+        );
+    }
+
+    getUserDetails(): Observable<UserDetails[]> {
+        return this.http.get<UserDetails[]>(
+            `${apiRoot}api/user/details`,
+            this.authService.authHeaders()
+        );
+    }
+
+    setUserDetails(details: UserDetails): Observable<ServerResponse> {
+        return this.http.post<ServerResponse>(
+            `${apiRoot}api/user/details`,
+            details,
             this.authService.authHeaders()
         );
     }

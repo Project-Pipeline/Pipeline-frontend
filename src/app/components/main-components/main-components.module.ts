@@ -13,6 +13,17 @@ import {MessagingDateFormatterPipe} from "../../pipes/messaging-date-formatter.p
 import { MainComponent } from './main/main.component';
 import {SegmentedControlComponent} from "../reusable-components/segmented-control/segmented-control.component";
 import {MainComponentsRoutingModule} from "./main-components-routing.module";
+import { IndividualProfileComponent } from './profile/individual-profile/individual-profile.component';
+import {MAT_DIALOG_DATA, MatDialogModule, MatDialogRef} from "@angular/material/dialog";
+import {ModalPopupService} from "./modal-popup.service";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatSelectModule} from "@angular/material/select";
+import {MatInputModule} from "@angular/material/input";
+import { IndividualUserDetailsPopupComponent } from './profile/individual-user-details-popup/individual-user-details-popup.component';
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatNativeDateModule} from "@angular/material/core";
+import {MatButtonModule} from "@angular/material/button";
+import { TextPairEditorComponent } from './helpers/text-pair-editor/text-pair-editor.component';
 
 @NgModule({
     declarations: [
@@ -24,14 +35,36 @@ import {MainComponentsRoutingModule} from "./main-components-routing.module";
         NavbarComponent,
         MessagingDateFormatterPipe,
         MainComponent,
-        SegmentedControlComponent
+        SegmentedControlComponent,
+        IndividualProfileComponent,
+        IndividualUserDetailsPopupComponent,
+        TextPairEditorComponent
     ],
     imports: [
         CommonModule,
+        FormsModule,
+        MainComponentsRoutingModule,
+        // Angular material imports
+        MatDialogModule,
+        MatFormFieldModule,
+        MatSelectModule,
+        MatInputModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
         MatToolbarModule,
         MatIconModule,
-        FormsModule,
-        MainComponentsRoutingModule
+        MatButtonModule
+    ],
+    providers: [
+        {
+            provide: MatDialogRef,
+            useValue: {}
+        },
+        {
+            provide: MAT_DIALOG_DATA,
+            useValue: {}
+        },
+        ModalPopupService
     ]
 })
 export class MainComponentsModule {

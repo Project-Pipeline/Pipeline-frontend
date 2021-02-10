@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {filter, mergeMap, share} from "rxjs/operators";
 import {User} from "../../models/model classes/user/User";
 import {UserApiService} from "../../services/user-api.service";
+import {LoginViewModel} from "./LoginViewModel";
 
 @Component({
     selector: 'app-login',
@@ -17,20 +18,22 @@ export class LoginComponent implements OnInit {
     given_name: string;
     last_name: string;
     pageReady = false;
-
-    businessTypes: string[] = ["organization", "business", "school"]
-    industries: string[] = ["Architecture", "Construction", "Business", "Engineering", "Education", "My industry is not listed"]
     profitType = ['for-profit', 'non-profit'];
     selectedProfitType = '';
-    selectedBusiness = this.businessTypes[0];
+    selectedBusiness: string;
+    selectedAccountType: string;
     selectedIndustry = "";
     businessName = '';
     showExtraIndustry = false;
+
+    viewModel: LoginViewModel;
 
     constructor(
         private route: ActivatedRoute,
         private apiService: UserApiService,
         private router: Router) {
+        this.viewModel = new LoginViewModel();
+        this.selectedBusiness = this.viewModel.businessTypes[0];
     }
 
     ngOnInit(): void {
@@ -66,7 +69,8 @@ export class LoginComponent implements OnInit {
     continueButtonClicked() {
         let user = new User(
             this.email, this.given_name, this.last_name, this.picture, this.businessName,
-            this.selectedBusiness, this.selectedProfitType, this.selectedIndustry, []);
+            this.selectedBusiness, this.selectedProfitType, this.selectedIndustry,
+            this.viewModel.getAccountType(this.selectedAccountType), []);
 
         this.apiService
             .createUserWith(user)

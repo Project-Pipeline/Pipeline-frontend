@@ -18,6 +18,10 @@ body {
     margin-right: auto;
 }
 
+.mt-auto {
+    margin-top: auto;
+}
+
 .center-item-container {
     width: 100%;
     height: 100%;
@@ -91,3 +95,24 @@ body {
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.dual-column {
+    width: 100%;
+    display: flex;
+    .dual-column-left {
+        width: 45%;
+        margin-right: 10%;
+    }
+    .dual-column-right {
+        width: 45%;
+    }
+}
+
+.horizontal-scroll-outer {
+    overflow: auto;
+    white-space: nowrap;
+}
+
+.horizontal-scroll-inner {
+    display: inline-block;
+}
