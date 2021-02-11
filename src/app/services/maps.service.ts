@@ -3,7 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {PlacePrediction} from "../models/model classes/maps/PlacePrediction";
 import {Observable} from "rxjs";
 import {GeocodingResponse} from "../models/model classes/maps/GeocodingResponse";
-import * as config from "../../../config.json";
+import {ConfigType} from "../models/ConfigType";
 
 @Injectable({
     providedIn: 'root'
@@ -12,7 +12,8 @@ export class MapsService {
     private apiKey: string;
 
     constructor(private http: HttpClient) {
-        this.apiKey = config.google_api_key;
+        this.http.get<ConfigType>('../../assets/config.json')
+            .subscribe((config) => this.apiKey = config.google_api_key);
     }
 
     getAddressSuggestions(searchTerm: string): Observable<PlacePrediction> {

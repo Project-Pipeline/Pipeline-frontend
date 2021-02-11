@@ -6,14 +6,17 @@ import {CloudinarySignature} from "../models/model classes/image-upload/Cloudina
 import {apiRoot} from "../models/ApiRoot";
 import {CloudinaryUploadResponse} from "../models/model classes/image-upload/CloudinaryUploadResponse";
 import {mergeMap} from "rxjs/operators";
-import * as config from "../../../config.json"
+import {ConfigType} from "../models/ConfigType";
 
 @Injectable({
     providedIn: 'root'
 })
 export class ImageUploadService {
+    private config: ConfigType;
 
     constructor(private http: HttpClient, private authService: AuthService) {
+        this.http.get<ConfigType>('../../assets/config.json')
+            .subscribe((config) => this.config = config);
     }
 
     /* form data format:
@@ -41,13 +44,13 @@ export class ImageUploadService {
             .pipe(mergeMap((signature) => {
                 const formData: FormData = new FormData();
                 formData.append('file', fileToUpload);
-                formData.append('api_key', config.cloudinary_api_key);
+                formData.append('api_key', this.config.cloudinary_api_key);
                 formData.append('timestamp', `${signature.timeStamp}`);
                 formData.append('public_id', publicID);
                 formData.append('signature', signature.signature);
                 return this.http.post<CloudinaryUploadResponse>(
-                    `https://api.cloudinary.com/v1_1/${config.cloudinary_cloud_name}/image/upload`, formData
-                )
-            }))
+                    `https://api.cloudinary.com/v1_1/${this.config.cloudinary_cloud_name}/image/upload`, formData
+                );
+            }));
     }
 }
