@@ -30,7 +30,7 @@ export class ProfileComponent implements OnInit {
         3: 'company',
         4: 'community organization',
         5: 'school'
-    }
+    };
 
     constructor(public usersApi: UserApiService, public router: Router, public modalPopupService: ModalPopupService) {
 

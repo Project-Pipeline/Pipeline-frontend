@@ -23,7 +23,7 @@ export class AddressAutoCompleterComponent implements AfterViewInit {
 
     ngAfterViewInit() {
         const autoComplete = fromEvent<KeyboardEvent>(this.autoCompleteInput.nativeElement, 'keyup')
-            .pipe(map(x=> (x.currentTarget as HTMLInputElement).value))
+            .pipe(map(x => (x.currentTarget as HTMLInputElement).value))
             .pipe(debounce(() => interval(500)))
             .pipe(switchMap(((term) => this.mapsApi.getAddressSuggestions(term))))
             .pipe(catchError(() => of(undefined)))
