@@ -5,7 +5,6 @@ import {OpportunitiesComponent} from "./opportunities/opportunities.component";
 import {NewsCenterComponent} from "./news-center/news-center.component";
 import {CentralHubComponent} from "./central-hub/central-hub.component";
 import {MainComponent} from "./main/main.component";
-import {IndividualProfileComponent} from "./profile/individual-profile/individual-profile.component";
 
 const routes: Routes = [
     // main: after logging in

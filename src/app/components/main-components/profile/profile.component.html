@@ -3,9 +3,12 @@
         <img src="{{userInfo.picture}}">
         <div class="profile-details">
             <h2 class="helvetica clear-text-paddings">{{userInfo.givenName}}&nbsp;{{userInfo.familyName}}</h2>
-            <h4 class="helvetica-normal clear-text-paddings">
+            <h4 class="helvetica-normal clear-text-paddings" *ngIf="isIndividual">
                 <span *ngIf="userDetails != null">{{userDetails.profession}},&nbsp;</span>
                 {{userInfo.entityBelongedTo}}
+            </h4>
+            <h4 class="helvetica-normal clear-text-paddings" *ngIf="isEntity">
+                {{typeToString() | titlecase}}
             </h4>
             <div *ngIf="userDetails != null" style="margin-top: 8px">
                 <div class="flex">
@@ -27,4 +30,5 @@
     </div>
 </div>
 
-<app-individual-profile></app-individual-profile>
+<app-individual-profile *ngIf="isIndividual"></app-individual-profile>
+<app-entity-profile *ngIf="isEntity"></app-entity-profile>

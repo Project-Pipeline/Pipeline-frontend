@@ -1,28 +1,32 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {User} from "../../../../models/model classes/user/User";
-import {DescriptionDetailPair, UserDetails} from "../../../../models/model classes/user/UserDetails";
 import {DatePipe} from "@angular/common";
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
+import {DescriptionDetailPair, UserDetails} from "../../../../models/model classes/user/UserDetails";
+import {Address} from "../../../../models/model classes/user/Address";
 
 @Component({
-    selector: 'app-individual-user-details-popup',
-    templateUrl: './individual-user-details-popup.component.html',
-    styleUrls: ['./individual-user-details-popup.component.scss']
+    selector: 'app-entity-user-details-popup',
+    templateUrl: './entity-user-details-popup.component.html',
+    styleUrls: ['./entity-user-details-popup.component.scss']
 })
-export class IndividualUserDetailsPopupComponent implements OnInit {
+export class EntityUserDetailsPopupComponent implements OnInit {
     user: User;
     bio: string = '';
     publicId: string = '';
-    dob: Date = null;
-    genderList: string[] = ['Male', 'Female', 'Prefer to not tell'];
-    selectedGender: string;
-    profession = '';
+    dateFounded: Date = null;
     links: [string, string][] = [];
     phoneNumbers: [string, string][] = [['', '']];
     additionalInfo: [string, string][] = [];
+    address: Address = null;
     private datePipe = new DatePipe('en-US');
+    private typeToStringLookup: {[key: number]: string} = {
+        3: 'company',
+        4: 'community organization',
+        5: 'school'
+    }
 
-    constructor(private dialog: MatDialogRef<IndividualUserDetailsPopupComponent>,
+    constructor(private dialog: MatDialogRef<EntityUserDetailsPopupComponent>,
                 @Inject(MAT_DIALOG_DATA) public argument: User) {
         this.user = argument;
     }
@@ -44,17 +48,26 @@ export class IndividualUserDetailsPopupComponent implements OnInit {
             this.additionalInfo.map((l) => new DescriptionDetailPair(l[0], l[1])),
             null,
             this.bio,
+            this.datePipe.transform(this.dateFounded, 'yyyy-MM-dd\'T\'HH:mm:ssZ'),
+            this.address,
             null,
             null,
-            this.datePipe.transform(this.dob, 'yyyy-MM-dd\'T\'HH:mm:ssZ'),
-            this.genderList.indexOf(this.selectedGender),
-            this.profession
+            null
         );
         this.dialog.close(userDetails);
     }
 
     removeSpace(str: string): string {
         return str.replace(' ', '');
+    }
+
+    typeToString(): string {
+        return this.typeToStringLookup[this.user.type];
+    }
+
+    addressSelected(address: Address) {
+        console.log(address);
+        this.address  = address;
     }
 
 }
