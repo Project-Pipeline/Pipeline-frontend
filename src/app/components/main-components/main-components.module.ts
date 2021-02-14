@@ -27,6 +27,9 @@ import { TextPairEditorComponent } from './helpers/text-pair-editor/text-pair-ed
 import { EntityProfileComponent } from './profile/entity-profile/entity-profile.component';
 import { EntityUserDetailsPopupComponent } from './profile/entity-user-details-popup/entity-user-details-popup.component';
 import { AddressAutoCompleterComponent } from './helpers/address-auto-completer/address-auto-completer.component';
+import { AddOpportunityPopupComponent } from './opportunities/add-opportunity-popup/add-opportunity-popup.component';
+import { RowTextEditorComponent } from './helpers/row-text-editor/row-text-editor.component';
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 @NgModule({
     declarations: [
@@ -44,7 +47,9 @@ import { AddressAutoCompleterComponent } from './helpers/address-auto-completer/
         TextPairEditorComponent,
         EntityProfileComponent,
         EntityUserDetailsPopupComponent,
-        AddressAutoCompleterComponent
+        AddressAutoCompleterComponent,
+        AddOpportunityPopupComponent,
+        RowTextEditorComponent
     ],
     imports: [
         CommonModule,
@@ -59,7 +64,8 @@ import { AddressAutoCompleterComponent } from './helpers/address-auto-completer/
         MatNativeDateModule,
         MatToolbarModule,
         MatIconModule,
-        MatButtonModule
+        MatButtonModule,
+        MatCheckboxModule
     ],
     providers: [
         {

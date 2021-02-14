@@ -8,6 +8,7 @@ import {UserExistence} from "../models/model classes/user/UserExistence";
 import {map, mergeMap} from "rxjs/operators";
 import {AuthService} from "./auth.service";
 import {UserDetails} from "../models/model classes/user/UserDetails";
+import {Opportunity} from "../models/model classes/opportunities/Opportunity";
 
 @Injectable({
     providedIn: 'root'
@@ -62,6 +63,13 @@ export class UserApiService {
         return this.http.post<ServerResponse>(
             `${apiRoot}api/user/details`,
             details,
+            this.authService.authHeaders()
+        );
+    }
+
+    getOpportunities(): Observable<Opportunity[]> {
+        return this.http.get<Opportunity[]>(
+            `${apiRoot}api/user/opportunities`,
             this.authService.authHeaders()
         );
     }

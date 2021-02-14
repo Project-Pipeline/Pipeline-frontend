@@ -1,0 +1,83 @@
+<div style="padding: 20px">
+    <div class="flex">
+        <h2 class="helvetica clear-text-paddings">Post an opportunity:</h2><br><br>
+        <button class="ml-auto ppl-button-green" (click)="close()">Cancel</button>
+    </div>
+
+    <br>
+    <mat-label>Give a brief overview about this opportunity:</mat-label><br><br>
+    <mat-form-field appearance="fill">
+        <mat-label>Overview</mat-label>
+        <textarea [(ngModel)]="overview" matInput matTextareaAutosize></textarea>
+    </mat-form-field>
+    <br>
+
+    <div class="dual-column">
+
+        <div class="dual-column-left">
+            <!--            Opportunity Name-->
+            <label>Name your opportunity:</label><br>
+            <mat-form-field>
+                <mat-label>Opportunity name</mat-label>
+                <label>
+                    <input style="width: 100%" placeholder="Name" matInput required [(ngModel)]="name">
+                </label>
+            </mat-form-field>
+            <br><br>
+
+<!--            Responsibility-->
+            <app-row-text-editor
+                [dataSource]="responsibilities"
+                [description]="'What duties should a candidate perform?'"
+                [inputPlaceholder]="'responsibility'"
+            ></app-row-text-editor>
+
+            <!--            Compensation-->
+            <br>
+            <mat-form-field >
+                <mat-label>How do you compensate a candidate?</mat-label><br>
+                <label>
+                    <input placeholder="Compensation" matInput required>
+                </label>
+                <mat-select [(ngModel)]="compensation">
+                    <mat-option *ngFor="let g of possibleCompensations" value="{{g}}">{{g}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <br>
+        </div>
+
+        <div class="dual-column-right">
+            <label>The opportunity is</label><br><br>
+            <div>
+                <mat-checkbox [checked]="fullTimeCheckedBool" (change)="fullTimeChecked($event.checked)">Full-time</mat-checkbox>
+                <mat-checkbox [checked]="partTimeCheckedBool" (change)="partTimeChecked($event.checked)" style="margin-left: 50px">Part-time</mat-checkbox>
+            </div>
+
+            <!--            Qualifications-->
+            <br><br>
+            <app-row-text-editor
+                [dataSource]="qualifications"
+                [description]="'What qualifications should candidates have?'"
+                [inputPlaceholder]="'Qualification'"
+            ></app-row-text-editor>
+
+            <br><br>
+            <mat-checkbox (change)="differentLocationChecked($event.checked)">
+                Is the opportunity at a different location than on file?
+            </mat-checkbox>
+            <br><br>
+            <label *ngIf="differentLocation">Add address:</label>
+            <br>
+            <app-address-auto-completer
+                *ngIf="differentLocation"
+                (addressSelected)="differentLocationFound($event)"
+            ></app-address-auto-completer>
+
+
+        </div>
+    </div>
+
+    <button class="ml-auto ppl-button-green" (click)="closeWithResult()">Post Opportunity</button>
+</div>
+
+
