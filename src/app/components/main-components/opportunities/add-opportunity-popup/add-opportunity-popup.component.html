@@ -25,25 +25,38 @@
             </mat-form-field>
             <br><br>
 
-<!--            Responsibility-->
+            <!--            Responsibility-->
             <app-row-text-editor
                 [dataSource]="responsibilities"
                 [description]="'What duties should a candidate perform?'"
                 [inputPlaceholder]="'responsibility'"
             ></app-row-text-editor>
 
-            <!--            Compensation-->
+            <!--            Category-->
             <br>
             <mat-form-field >
-                <mat-label>How do you compensate a candidate?</mat-label><br>
+                <mat-label>Set a category for this opportunity:</mat-label><br>
                 <label>
-                    <input placeholder="Compensation" matInput required>
+                    <input placeholder="Category" matInput required>
                 </label>
-                <mat-select [(ngModel)]="compensation">
-                    <mat-option *ngFor="let g of possibleCompensations" value="{{g}}">{{g}}</mat-option>
+                <mat-select [(ngModel)]="category">
+                    <mat-option *ngFor="let g of possibleCategories" value="{{g}}">{{g}}</mat-option>
                 </mat-select>
             </mat-form-field>
             <br>
+
+            <!--            Different location-->
+            <br>
+            <mat-checkbox (change)="differentLocationChecked($event.checked)">
+                Is the opportunity at a different location than on file?
+            </mat-checkbox>
+            <br><br>
+            <label *ngIf="differentLocation">Add address:</label>
+            <br>
+            <app-address-auto-completer
+                *ngIf="differentLocation"
+                (addressSelected)="differentLocationFound($event)"
+            ></app-address-auto-completer>
         </div>
 
         <div class="dual-column-right">
@@ -61,19 +74,18 @@
                 [inputPlaceholder]="'Qualification'"
             ></app-row-text-editor>
 
-            <br><br>
-            <mat-checkbox (change)="differentLocationChecked($event.checked)">
-                Is the opportunity at a different location than on file?
-            </mat-checkbox>
-            <br><br>
-            <label *ngIf="differentLocation">Add address:</label>
+            <!--            Compensation-->
             <br>
-            <app-address-auto-completer
-                *ngIf="differentLocation"
-                (addressSelected)="differentLocationFound($event)"
-            ></app-address-auto-completer>
-
-
+            <mat-form-field >
+                <mat-label>How do you compensate a candidate?</mat-label><br>
+                <label>
+                    <input placeholder="Compensation" matInput required>
+                </label>
+                <mat-select [(ngModel)]="compensation">
+                    <mat-option *ngFor="let g of possibleCompensations" value="{{g}}">{{g}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <br>
         </div>
     </div>
 

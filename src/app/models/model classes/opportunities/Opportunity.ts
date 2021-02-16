@@ -2,6 +2,7 @@ import {Address} from "../user/Address";
 import {UserWrapper} from "../user/UserDetails";
 import {Zipcode} from "./Zipcode";
 import {generateUUID} from "../../Global";
+import {OpportunityCategory} from "./OpportunityCategory";
 
 export class Opportunity {
     public user: UserWrapper
@@ -14,6 +15,7 @@ export class Opportunity {
         public compensation: string,
         public isFullTime: boolean,
         public address: Address,
+        public category: string,
         userId: string,
         public id: string = generateUUID()
     ) {
@@ -24,7 +26,8 @@ export class Opportunity {
 export class OpportunitiesContentsWrapper {
     constructor(
         public opportunity: Opportunity,
-        public zipcode: Zipcode
+        public zipcode: Zipcode,
+        public category: OpportunityCategory
     ) {
     }
 }

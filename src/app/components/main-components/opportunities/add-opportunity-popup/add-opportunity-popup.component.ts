@@ -3,6 +3,7 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {Address} from "../../../../models/model classes/user/Address";
 import {UserAndDetailCombo} from "../../../../models/model classes/user/UserAndDetailCombo";
 import {Opportunity} from "../../../../models/model classes/opportunities/Opportunity";
+import {opportunityCategories} from "../../../../models/BusinessConstants";
 
 @Component({
     selector: 'app-add-opportunity-popup',
@@ -11,6 +12,7 @@ import {Opportunity} from "../../../../models/model classes/opportunities/Opport
 })
 export class AddOpportunityPopupComponent implements OnInit {
     possibleCompensations: string[] = ['Paid', 'Volunteer'];
+    possibleCategories = opportunityCategories;
     // vars below are bound to view
     name: string = '';
     fullTimeCheckedBool = false;
@@ -19,6 +21,7 @@ export class AddOpportunityPopupComponent implements OnInit {
     responsibilities: [string][] = [[""]];
     qualifications: [string][] = [[""]];
     compensation: string = '';
+    category: string = '';
     differentLocation = false;
     addressForDiffLocation: Address = null;
 
@@ -46,6 +49,7 @@ export class AddOpportunityPopupComponent implements OnInit {
                 this.addressForDiffLocation == null
                     ? this.argument.userDetails.address
                     : this.addressForDiffLocation,
+                this.category,
                 this.argument.user.id
             )
         )

@@ -43,7 +43,12 @@ export class EntityProfileComponent extends ProfileComponent implements OnInit {
                 createdOpportunity = op as Opportunity;
                 return this.opportunitiesService.createOpportunity(createdOpportunity);
             }))
-            .subscribe(() => this.opportunities = [createdOpportunity].concat(this.opportunities));
+            .subscribe(() => this.opportunities.push(createdOpportunity[0]));
+    }
+
+    removeOpportunityAt(index: number, opportunity: Opportunity) {
+        this.opportunitiesService.deleteOpportunity(opportunity)
+            .subscribe(() => this.opportunities.splice(index, 1));
     }
 
 }
