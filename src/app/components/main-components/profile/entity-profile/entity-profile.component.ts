@@ -28,8 +28,8 @@ export class EntityProfileComponent extends ProfileComponent implements OnInit {
 
     ngOnInit(): void {
         super.ngOnInit();
-        this.usersApi.getOpportunities()
-            .subscribe((ops) => this.opportunities = ops)
+        this.usersApi.getOpportunities(1)
+            .subscribe((ops) => this.opportunities = ops.items)
     }
 
     addOpportunity() {
@@ -43,7 +43,7 @@ export class EntityProfileComponent extends ProfileComponent implements OnInit {
                 createdOpportunity = op as Opportunity;
                 return this.opportunitiesService.createOpportunity(createdOpportunity);
             }))
-            .subscribe(() => this.opportunities.push(createdOpportunity[0]));
+            .subscribe(() => this.opportunities.push(createdOpportunity));
     }
 
     removeOpportunityAt(index: number, opportunity: Opportunity) {

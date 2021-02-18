@@ -4,6 +4,7 @@ import {Address} from "../../../../models/model classes/user/Address";
 import {UserAndDetailCombo} from "../../../../models/model classes/user/UserAndDetailCombo";
 import {Opportunity} from "../../../../models/model classes/opportunities/Opportunity";
 import {opportunityCategories} from "../../../../models/BusinessConstants";
+import {dateAsUnixTimeStamp} from "../../../../models/Global";
 
 @Component({
     selector: 'app-add-opportunity-popup',
@@ -24,6 +25,7 @@ export class AddOpportunityPopupComponent implements OnInit {
     category: string = '';
     differentLocation = false;
     addressForDiffLocation: Address = null;
+    dueDate: Date;
 
     constructor(private dialog: MatDialogRef<AddOpportunityPopupComponent>,
                 @Inject(MAT_DIALOG_DATA) public argument: UserAndDetailCombo) {
@@ -40,7 +42,7 @@ export class AddOpportunityPopupComponent implements OnInit {
         this.dialog.close(
             new Opportunity(
                 this.name,
-                `${this.argument.user.givenName} ${this.argument.user.givenName}`,
+                `${this.argument.user.givenName} ${this.argument.user.familyName}`,
                 this.overview,
                 this.qualifications.map((q) => q[0]),
                 this.responsibilities.map((r) => r[0]),
@@ -50,7 +52,8 @@ export class AddOpportunityPopupComponent implements OnInit {
                     ? this.argument.userDetails.address
                     : this.addressForDiffLocation,
                 this.category,
-                this.argument.user.id
+                dateAsUnixTimeStamp(this.dueDate),
+                this.argument.user.id,
             )
         )
     }

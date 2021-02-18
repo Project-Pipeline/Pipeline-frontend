@@ -15,8 +15,8 @@ export function generateUUID(): string {
     return uuidv4().toUpperCase()
 }
 
-export function dateAsUnixTimeStamp(): number {
-    return Math.floor(new Date().getTime() / 1000); // get unix timestamp
+export function dateAsUnixTimeStamp(date: Date = new Date()): number {
+    return Math.floor(date.getTime() / 1000); // get unix timestamp
 }
 
 export function unixTimeStampToDate(time: number): Date {

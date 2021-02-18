@@ -1,7 +1,7 @@
 import {Address} from "../user/Address";
 import {UserWrapper} from "../user/UserDetails";
 import {Zipcode} from "./Zipcode";
-import {generateUUID} from "../../Global";
+import {dateAsUnixTimeStamp, generateUUID} from "../../Global";
 import {OpportunityCategory} from "./OpportunityCategory";
 
 export class Opportunity {
@@ -16,7 +16,10 @@ export class Opportunity {
         public isFullTime: boolean,
         public address: Address,
         public category: string,
+        public due: number,
         userId: string,
+        public created: number = dateAsUnixTimeStamp(),
+        public state: number = 0,
         public id: string = generateUUID()
     ) {
         this.user = new UserWrapper(userId);

@@ -35,18 +35,6 @@ export class MapsService {
         );
     }
 
-    getNearbyZipcodes(latitude: number = 42.3578, longitude: number = -71.1309): Observable<GeonamesXMLConvertedResponseCode[]> {
-        const headers = new HttpHeaders({ 'Content-Type': 'text/xml' }).set('Accept', 'text/xml');
-        return this.http.get(
-            `http://api.geonames.org/findNearbyPostalCodes?lat=${latitude}&lng=${longitude}&username=ljw980105&style=SHORT`, {
-                headers: headers,
-                responseType: 'text'
-            }
-        )
-            .pipe(mergeMap((xml) => this.xmlToJson<GeonamesXMLConvertedResponse>(xml)))
-            .pipe(map((res) => res.geonames.code));
-    }
-
     private xmlToJson<Result>(xml: any): Observable<Result> {
         const parser: xml2js.Parser = new xml2js.Parser();
         return new Observable<Result>((observer) => {

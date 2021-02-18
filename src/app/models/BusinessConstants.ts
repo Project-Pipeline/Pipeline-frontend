@@ -19,6 +19,11 @@ export const opportunityCategories = [
     "Transportation, Distribution and Logistics"
 ];
 
+export const opportunityState = [
+    0, // open
+    1 // closed
+]
+
 export function opportunityCategoryToId(category: string): string {
     return category
         .replace(',', '')

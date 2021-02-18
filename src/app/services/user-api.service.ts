@@ -9,6 +9,7 @@ import {map, mergeMap} from "rxjs/operators";
 import {AuthService} from "./auth.service";
 import {UserDetails} from "../models/model classes/user/UserDetails";
 import {Opportunity} from "../models/model classes/opportunities/Opportunity";
+import {PageData} from "../models/model classes/common/PageData";
 
 @Injectable({
     providedIn: 'root'
@@ -67,10 +68,13 @@ export class UserApiService {
         );
     }
 
-    getOpportunities(): Observable<Opportunity[]> {
-        return this.http.get<Opportunity[]>(
+    getOpportunities(page: number, per: number = 5): Observable<PageData<Opportunity>> {
+        return this.http.get<PageData<Opportunity>>(
             `${apiRoot}api/user/opportunities`,
-            this.authService.authHeaders()
+            this.authService.authHeadersWithParams({
+                page: `${page}`,
+                per: `${per}`
+            })
         );
     }
 }
