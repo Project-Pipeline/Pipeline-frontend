@@ -17,6 +17,7 @@ export class Opportunity {
         public address: Address,
         public category: string,
         public due: number,
+        public gradesWanted: number[],
         userId: string,
         public created: number = dateAsUnixTimeStamp(),
         public state: number = 0,

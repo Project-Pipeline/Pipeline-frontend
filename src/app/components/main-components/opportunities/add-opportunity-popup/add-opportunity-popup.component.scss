@@ -6,3 +6,10 @@ textarea {
 mat-form-field {
     width: 100%;
 }
+
+hr {
+    border: none;
+    height: 1px;
+    color: gray; /* old IE */
+    background-color: gray; /* Modern Browsers */
+}

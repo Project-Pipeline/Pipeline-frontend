@@ -24,6 +24,8 @@ export const opportunityState = [
     1 // closed
 ]
 
+export const allowedOpportunityGradeLevels = [9, 10, 11, 12];
+
 export function opportunityCategoryToId(category: string): string {
     return category
         .replace(',', '')

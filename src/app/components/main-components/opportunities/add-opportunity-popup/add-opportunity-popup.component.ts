@@ -3,7 +3,7 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {Address} from "../../../../models/model classes/user/Address";
 import {UserAndDetailCombo} from "../../../../models/model classes/user/UserAndDetailCombo";
 import {Opportunity} from "../../../../models/model classes/opportunities/Opportunity";
-import {opportunityCategories} from "../../../../models/BusinessConstants";
+import {allowedOpportunityGradeLevels, opportunityCategories} from "../../../../models/BusinessConstants";
 import {dateAsUnixTimeStamp} from "../../../../models/Global";
 
 @Component({
@@ -14,7 +14,9 @@ import {dateAsUnixTimeStamp} from "../../../../models/Global";
 export class AddOpportunityPopupComponent implements OnInit {
     possibleCompensations: string[] = ['Paid', 'Volunteer'];
     possibleCategories = opportunityCategories;
+    allowedGrades: number[] = allowedOpportunityGradeLevels;
     // vars below are bound to view
+    gradesChecked: boolean[] = [];
     name: string = '';
     fullTimeCheckedBool = false;
     partTimeCheckedBool = false;
@@ -29,6 +31,7 @@ export class AddOpportunityPopupComponent implements OnInit {
 
     constructor(private dialog: MatDialogRef<AddOpportunityPopupComponent>,
                 @Inject(MAT_DIALOG_DATA) public argument: UserAndDetailCombo) {
+        this.gradesChecked = this.allowedGrades.map(() => false);
     }
 
     ngOnInit(): void {
@@ -53,6 +56,7 @@ export class AddOpportunityPopupComponent implements OnInit {
                     : this.addressForDiffLocation,
                 this.category,
                 dateAsUnixTimeStamp(this.dueDate),
+                this.allowedGrades.filter((val, index) => this.gradesChecked[index]),
                 this.argument.user.id,
             )
         )
