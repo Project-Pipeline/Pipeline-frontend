@@ -25,7 +25,7 @@ export class AuthService {
         };
     }
 
-    authHeadersWithParams(params: { [key: string]: string }) {
+    authHeadersWithParams(params: { [key: string]: string } | HttpParams) {
         return {
             headers: new HttpHeaders({
                 Authorization: `Bearer ${this.getToken()}`

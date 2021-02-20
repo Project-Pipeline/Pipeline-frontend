@@ -41,15 +41,18 @@ export class OpportunitiesService {
 
     getOpportunities(categories: string[] = [], zipcodes: string[] = []): Observable<Opportunity[]> {
         let params = new HttpParams();
-        if (categories.length > 0) {
+        if (zipcodes.length > 0) {
             params = params.append('zipcode', zipcodes.join(','));
         }
-        if (zipcodes.length > 0) {
+        if (categories.length > 0) {
             params = params.append(
                 'category',
                 categories.map((c) => opportunityCategoryToId(c)).join(',')
             );
         }
-        return this.http.get<Opportunity[]>(`${apiRoot}api/opportunities`, {params: params});
+        return this.http.get<Opportunity[]>(
+            `${apiRoot}api/opportunities`,
+            this.authService.authHeadersWithParams(params)
+        );
     }
 }

@@ -30,6 +30,7 @@ import { AddressAutoCompleterComponent } from './helpers/address-auto-completer/
 import { AddOpportunityPopupComponent } from './opportunities/add-opportunity-popup/add-opportunity-popup.component';
 import { RowTextEditorComponent } from './helpers/row-text-editor/row-text-editor.component';
 import {MatCheckboxModule} from "@angular/material/checkbox";
+import {GoogleMapsModule, MapMarker} from "@angular/google-maps";
 
 @NgModule({
     declarations: [
@@ -65,7 +66,9 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
         MatToolbarModule,
         MatIconModule,
         MatButtonModule,
-        MatCheckboxModule
+        MatCheckboxModule,
+        // Google maps,
+        GoogleMapsModule
     ],
     providers: [
         {

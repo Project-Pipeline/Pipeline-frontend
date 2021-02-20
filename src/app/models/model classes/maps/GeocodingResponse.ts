@@ -31,6 +31,9 @@ export class GeocodingViewport {
 }
 
 export class LatLng {
-    lat: number;
-    lng: number;
+    constructor(
+        public lat: number,
+        public lng: number
+    ) {
+    }
 }
