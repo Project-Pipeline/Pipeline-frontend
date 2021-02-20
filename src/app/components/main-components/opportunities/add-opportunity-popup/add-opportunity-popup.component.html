@@ -45,8 +45,18 @@
             </mat-form-field>
             <br>
 
+            <!--            Grades level-->
+            <label>This opportunity is available for applicants in grade levels:</label><br><br>
+            <div>
+                <mat-checkbox
+                    *ngFor="let grade of allowedGrades; let i = index" [attr.data-index]="i"
+                    style="margin-right: 20px"
+                    [(ngModel)]="gradesChecked[i]"
+                >{{grade}}</mat-checkbox>
+            </div>
+
             <!--            Different location-->
-            <br>
+            <br><hr><br>
             <mat-checkbox (change)="differentLocationChecked($event.checked)">
                 Is the opportunity at a different location than on file?
             </mat-checkbox>
@@ -88,7 +98,7 @@
             <br>
 
             <!--        Due date-->
-            <label>Set a date where applications close:</label><br><br>
+            <label>Set a date when applications close:</label><br><br>
             <mat-form-field appearance="fill">
                 <mat-label>Choose a date</mat-label>
                 <input matInput [matDatepicker]="picker" [(ngModel)]="dueDate">
