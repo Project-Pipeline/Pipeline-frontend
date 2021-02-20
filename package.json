@@ -22,8 +22,11 @@
     "@angular/platform-browser-dynamic": "~11.1.0",
     "@angular/router": "~11.1.0",
     "rxjs": "~6.6.3",
+    "stream": "0.0.2",
+    "timers": "^0.1.1",
     "tslib": "^2.0.0",
     "uuid": "^8.3.2",
+    "xml2js": "^0.4.23",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {

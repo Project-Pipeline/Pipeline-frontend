@@ -13,12 +13,41 @@
         margin-top: 8px;
     }
     margin-right: 20px;
+    position: relative;
+    button {
+        position: absolute;
+        bottom: 20px;
+    }
+}
+
+.profile-card-icon {
+    width:20px;
+    height: 20px;
+    margin-left: 10px;
+    display: block;
+    cursor: pointer;
+    &:hover {
+        transform: scale(1.2);
+        transition: all .2s ease-in-out;
+    }
 }
 
 .post-card {
     @include card-common;
-    button {
-        display: block;
-        margin: 60px auto auto auto;
+    height: 20px;
+    margin-top: 70px;
+    margin-bottom: auto;
+}
+
+.post-card-no-post {
+    @include card-common;
+    h5 {
+        text-align: center;
     }
+}
+
+.no-post {
+    height: 20px;
+    margin-top: 70px;
+    margin-bottom: auto;
 }

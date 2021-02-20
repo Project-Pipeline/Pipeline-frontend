@@ -23,7 +23,7 @@ export class UserDetails {
 }
 
 // A DTO
-class UserWrapper {
+export class UserWrapper {
     constructor(public id: string) {
     }
 }
