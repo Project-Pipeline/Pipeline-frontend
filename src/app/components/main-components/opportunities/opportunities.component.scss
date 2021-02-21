@@ -4,8 +4,8 @@
 
 .opportunities-right {
     width: 500px;
-    padding: 20px 40px;
-    box-shadow: -10px 5px 5px black;
+    padding: 20px 30px;
+    border-top: 1px solid gainsboro;
 }
 
 .opportunity-row {
@@ -28,6 +28,14 @@
     }
 }
 
+.opportunity-filter {
+    height: 30px;
+    width: 100%;
+    padding: 10px;
+}
 
+.google-map-wrapper {
+    border: 1px solid gainsboro;
+}
 
 

@@ -31,6 +31,7 @@ import { AddOpportunityPopupComponent } from './opportunities/add-opportunity-po
 import { RowTextEditorComponent } from './helpers/row-text-editor/row-text-editor.component';
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {GoogleMapsModule, MapMarker} from "@angular/google-maps";
+import { OpportunitiesFilterBarComponent } from './opportunities/opportunities-filter-bar/opportunities-filter-bar.component';
 
 @NgModule({
     declarations: [
@@ -50,7 +51,8 @@ import {GoogleMapsModule, MapMarker} from "@angular/google-maps";
         EntityUserDetailsPopupComponent,
         AddressAutoCompleterComponent,
         AddOpportunityPopupComponent,
-        RowTextEditorComponent
+        RowTextEditorComponent,
+        OpportunitiesFilterBarComponent
     ],
     imports: [
         CommonModule,

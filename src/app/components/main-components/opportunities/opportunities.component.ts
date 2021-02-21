@@ -1,34 +1,36 @@
-import {Component, HostListener, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, HostListener, OnInit, ViewChild} from '@angular/core';
 import {MapsService} from "../../../services/maps.service";
 import {OpportunitiesViewModel} from "./OpportunitiesViewModel";
 import {OpportunitiesService} from "../../../services/opportunities.service";
 import {Opportunity} from "../../../models/model classes/opportunities/Opportunity";
-import {Subject} from "rxjs";
-import {mergeMap} from "rxjs/operators";
+import {combineLatest, interval, Subject} from "rxjs";
+import {debounce, switchMap} from "rxjs/operators";
 import {LatLng} from "../../../models/model classes/maps/GeocodingResponse";
 import {GoogleMap} from "@angular/google-maps";
 import {
     CurrentLocationMarkerData,
     OpportunityMarkerData
 } from "../../../models/model classes/opportunities/OpportunityMarkerData";
+import {OpportunityFilter} from "../../../models/model classes/opportunities/OpportunityFilter";
 
 @Component({
     selector: 'app-opportunities',
     templateUrl: './opportunities.component.html',
     styleUrls: ['./opportunities.component.scss']
 })
-export class OpportunitiesComponent implements OnInit {
-    @ViewChild(GoogleMap, { static: false }) map: GoogleMap
+export class OpportunitiesComponent implements OnInit, AfterViewInit {
+    // view styling
+    @ViewChild('googleMap') map: GoogleMap
     viewportHeight: number = null;
     viewportHeightString: string = null;
-    viewModel: OpportunitiesViewModel;
-    opportunities: Opportunity[] = [];
-    // center location is the type
-    opportunitiesUpdater: Subject<LatLng> = new Subject<LatLng>();
-    center: LatLng;
     mapOptions: google.maps.MapOptions = null;
+    viewModel: OpportunitiesViewModel;
+    // data bindings
+    center: LatLng;
     markers: OpportunityMarkerData[] = [];
     centerMarker: CurrentLocationMarkerData = null;
+    opportunities: Opportunity[] = [];
+    filteredOpportunities: Opportunity[] = [];
 
     constructor(private mapsService: MapsService, private opportunitiesService: OpportunitiesService) {
         this.viewportHeightString = this.getViewportHeight();
@@ -41,14 +43,24 @@ export class OpportunitiesComponent implements OnInit {
             .subscribe((latlng) => {
                 this.center = latlng;
                 this.centerMarker = new CurrentLocationMarkerData(latlng);
-                this.updateOpportunities(latlng);
+                this.updateCenterLocation(latlng);
             });
 
-        this.opportunitiesUpdater
-            .pipe(mergeMap(() => this.viewModel.getOpportunitiesCenteredOn(this.center)))
-            .subscribe(([opportunities, markers]) => {
+        this.viewModel.centerLocationUpdater
+            .pipe(switchMap((latLng) => this.viewModel.getOpportunitiesCenteredOn(latLng)))
+            .subscribe(([opportunities, filteredOpportunities, markers]) => {
                 this.opportunities = opportunities;
+                this.filteredOpportunities = filteredOpportunities;
                 this.markers = markers;
+            });
+    }
+
+    ngAfterViewInit() {
+        this.map.centerChanged
+            .pipe(debounce(() => interval(500)))
+            .subscribe(() => {
+                const center = this.map.getCenter();
+                this.updateCenterLocation(new LatLng(center.lat(), center.lng()));
             });
     }
 
@@ -58,16 +70,18 @@ export class OpportunitiesComponent implements OnInit {
     }
 
     getViewportHeight(): string {
-        this.viewportHeight = window.innerHeight - 80;
+        this.viewportHeight = window.innerHeight - 150;
         return `${this.viewportHeight}px`;
     }
 
-    updateOpportunities(newCenter: LatLng) {
-        this.opportunitiesUpdater.next(newCenter);
+    updateCenterLocation(newCenter: LatLng) {
+        this.viewModel.centerLocationUpdater.next(newCenter);
     }
 
-    centerChanged() {
-
+    filterUpdated(filter: OpportunityFilter) {
+        this.viewModel.currentFilter = filter;
+        const [original, filtered, markers] = this.viewModel.filterOpportunities(this.opportunities, filter);
+        this.filteredOpportunities = filtered;
+        this.markers = markers;
     }
-
 }

@@ -1,28 +1,34 @@
+<div class="opportunity-filter">
+   <app-opportunities-filter-bar (filterUpdated)="filterUpdated($event)"></app-opportunities-filter-bar>
+</div>
+
 <div class="flex">
     <div class="opportunities-left">
-        <google-map
-            [width]="'100%'"
-            [height]="viewportHeightString"
-            [center]="center"
-            [options]="mapOptions"
-        >
-            <map-marker
-                *ngIf="centerMarker"
-                [position]="centerMarker.position"
-                [label]="centerMarker.label"
-                [options]="centerMarker.options"
-            ></map-marker>
-            <map-marker
-                *ngFor="let marker of markers"
-                [position]="marker.position"
-                [label]="marker.label"
-                [options]="marker.options"
-            ></map-marker>
-        </google-map>
+        <div class="google-map-wrapper">
+            <google-map #googleMap
+                        [width]="'100%'"
+                        [height]="viewportHeightString"
+                        [center]="center"
+                        [options]="mapOptions"
+            >
+                <map-marker
+                    *ngIf="centerMarker"
+                    [position]="centerMarker.position"
+                    [label]="centerMarker.label"
+                    [options]="centerMarker.options"
+                ></map-marker>
+                <map-marker
+                    *ngFor="let marker of markers"
+                    [position]="marker.position"
+                    [label]="marker.label"
+                    [options]="marker.options"
+                ></map-marker>
+            </google-map>
+        </div>
     </div>
     <div class="opportunities-right">
         <h2 class="helvetica">Opportunities</h2>
-        <div *ngFor="let opportunity of opportunities" class="opportunity-row flex">
+        <div *ngFor="let opportunity of filteredOpportunities" class="opportunity-row flex">
             <img src="assets/images/navbar/opportunities.png">
             <div>
                 <p class="helvetica">{{opportunity.name}}</p>
