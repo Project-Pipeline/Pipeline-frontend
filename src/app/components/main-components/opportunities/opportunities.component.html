@@ -18,23 +18,41 @@
                     [options]="centerMarker.options"
                 ></map-marker>
                 <map-marker
-                    *ngFor="let marker of markers"
+                    *ngFor="let marker of markers; let i = index"
+                    [attr.data-index]="i"
                     [position]="marker.position"
                     [label]="marker.label"
                     [options]="marker.options"
+                    (mapClick)="markerClicked(i)"
                 ></map-marker>
             </google-map>
         </div>
     </div>
-    <div class="opportunities-right">
-        <h2 class="helvetica">Opportunities</h2>
-        <div *ngFor="let opportunity of filteredOpportunities" class="opportunity-row flex">
-            <img src="assets/images/navbar/opportunities.png">
-            <div>
-                <p class="helvetica">{{opportunity.name}}</p>
-                <p class="helvetica-normal body-text">{{opportunity.companyName}}</p>
-                <p class="helvetica-normal body-text">{{opportunity.category}}</p>
+    <div class="opportunities-right"  [@expandRightPanel]="rightSideExpanded ? 'expanded' : 'default'">
+        <div [@rightPanelFade] *ngIf="!rightSideComponentReplaced" >
+            <h2 class="helvetica">Opportunities</h2>
+            <div
+                *ngFor="let opportunity of filteredOpportunities"
+                class="opportunity-row flex"
+                (click)="toggleRightSideExpansion(); setOpportunityToShowDetail(opportunity)"
+            >
+                <img src="assets/images/navbar/opportunities.png">
+                <div>
+                    <p class="helvetica">{{opportunity.name}}</p>
+                    <p class="helvetica-normal body-text">{{opportunity.companyName}}</p>
+                    <p class="helvetica-normal body-text">{{opportunity.category}}</p>
+                </div>
             </div>
         </div>
+
+        <app-opportunity-details
+            [@rightPanelFade]
+            *ngIf="rightSideComponentReplaced"
+            [opportunity]="opportunityToShowDetail"
+            (closeButtonClicked)="toggleRightSideExpansion()"
+            [width]="'700px'"
+        ></app-opportunity-details>
     </div>
+
+
 </div>

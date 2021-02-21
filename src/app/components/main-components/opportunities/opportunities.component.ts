@@ -1,9 +1,9 @@
 import {AfterViewInit, Component, HostListener, OnInit, ViewChild} from '@angular/core';
 import {MapsService} from "../../../services/maps.service";
-import {OpportunitiesViewModel} from "./OpportunitiesViewModel";
+import {expandRightPanel, OpportunitiesViewModel, rightPanelFade} from "./OpportunitiesViewModel";
 import {OpportunitiesService} from "../../../services/opportunities.service";
 import {Opportunity} from "../../../models/model classes/opportunities/Opportunity";
-import {combineLatest, interval, Subject} from "rxjs";
+import {interval} from "rxjs";
 import {debounce, switchMap} from "rxjs/operators";
 import {LatLng} from "../../../models/model classes/maps/GeocodingResponse";
 import {GoogleMap} from "@angular/google-maps";
@@ -16,7 +16,8 @@ import {OpportunityFilter} from "../../../models/model classes/opportunities/Opp
 @Component({
     selector: 'app-opportunities',
     templateUrl: './opportunities.component.html',
-    styleUrls: ['./opportunities.component.scss']
+    styleUrls: ['./opportunities.component.scss'],
+    animations: [expandRightPanel, rightPanelFade]
 })
 export class OpportunitiesComponent implements OnInit, AfterViewInit {
     // view styling
@@ -25,12 +26,15 @@ export class OpportunitiesComponent implements OnInit, AfterViewInit {
     viewportHeightString: string = null;
     mapOptions: google.maps.MapOptions = null;
     viewModel: OpportunitiesViewModel;
+    opportunityToShowDetail: Opportunity;
     // data bindings
     center: LatLng;
     markers: OpportunityMarkerData[] = [];
     centerMarker: CurrentLocationMarkerData = null;
     opportunities: Opportunity[] = [];
     filteredOpportunities: Opportunity[] = [];
+    rightSideExpanded = false;
+    rightSideComponentReplaced = false;
 
     constructor(private mapsService: MapsService, private opportunitiesService: OpportunitiesService) {
         this.viewportHeightString = this.getViewportHeight();
@@ -83,5 +87,20 @@ export class OpportunitiesComponent implements OnInit, AfterViewInit {
         const [original, filtered, markers] = this.viewModel.filterOpportunities(this.opportunities, filter);
         this.filteredOpportunities = filtered;
         this.markers = markers;
+    }
+
+    toggleRightSideExpansion() {
+        this.rightSideExpanded = !this.rightSideExpanded;
+        setTimeout(() => this.rightSideComponentReplaced = !this.rightSideComponentReplaced, 300);
+    }
+
+    setOpportunityToShowDetail(opp: Opportunity) {
+        this.opportunityToShowDetail = opp;
+    }
+
+    markerClicked(markerIndex: number) {
+        let opportunity = this.filteredOpportunities[markerIndex];
+        this.toggleRightSideExpansion();
+        this.setOpportunityToShowDetail(opportunity)
     }
 }

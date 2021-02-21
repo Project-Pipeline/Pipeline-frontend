@@ -6,6 +6,7 @@
     width: 500px;
     padding: 20px 30px;
     border-top: 1px solid gainsboro;
+    position: relative;
 }
 
 .opportunity-row {
@@ -36,6 +37,12 @@
 
 .google-map-wrapper {
     border: 1px solid gainsboro;
+}
+
+app-opportunity-details {
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 

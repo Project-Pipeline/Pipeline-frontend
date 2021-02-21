@@ -30,8 +30,10 @@ import { AddressAutoCompleterComponent } from './helpers/address-auto-completer/
 import { AddOpportunityPopupComponent } from './opportunities/add-opportunity-popup/add-opportunity-popup.component';
 import { RowTextEditorComponent } from './helpers/row-text-editor/row-text-editor.component';
 import {MatCheckboxModule} from "@angular/material/checkbox";
-import {GoogleMapsModule, MapMarker} from "@angular/google-maps";
+import {GoogleMapsModule} from "@angular/google-maps";
 import { OpportunitiesFilterBarComponent } from './opportunities/opportunities-filter-bar/opportunities-filter-bar.component';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { OpportunityDetailsComponent } from './opportunities/opportunity-details/opportunity-details.component';
 
 @NgModule({
     declarations: [
@@ -52,7 +54,8 @@ import { OpportunitiesFilterBarComponent } from './opportunities/opportunities-f
         AddressAutoCompleterComponent,
         AddOpportunityPopupComponent,
         RowTextEditorComponent,
-        OpportunitiesFilterBarComponent
+        OpportunitiesFilterBarComponent,
+        OpportunityDetailsComponent
     ],
     imports: [
         CommonModule,

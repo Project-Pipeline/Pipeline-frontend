@@ -6,6 +6,7 @@ import {Opportunity} from "../../../models/model classes/opportunities/Opportuni
 import {distinctUntilChanged, map, switchMap} from "rxjs/operators";
 import {OpportunityMarkerData} from "../../../models/model classes/opportunities/OpportunityMarkerData";
 import {OpportunityFilter} from "../../../models/model classes/opportunities/OpportunityFilter";
+import {animate, state, style, transition, trigger} from "@angular/animations";
 
 export class OpportunitiesViewModel {
     centerLocationUpdater: Subject<LatLng> = new Subject<LatLng>(); // center location is the type
@@ -52,7 +53,7 @@ export class OpportunitiesViewModel {
             }));
     }
 
-    /// Return values: unfiltered opportunities, filter opportunities, and markers based on filters opps
+    /// Return values: unfiltered opportunities, filter opportunities, and markers based on filtered opps
     filterOpportunities(opportunities: Opportunity[], filter: OpportunityFilter): [Opportunity[], Opportunity[], OpportunityMarkerData[]] {
         const filtered = filter.filter(opportunities);
         return [
@@ -62,3 +63,23 @@ export class OpportunitiesViewModel {
         ];
     }
 }
+
+export const expandRightPanel = trigger('expandRightPanel', [
+    state('default', style(  { width: '500px' })),
+    state('expanded', style({ width: '700px' })),
+    transition('expanded => default', animate('300ms ease-out')),
+    transition('default => expanded', animate('300ms ease-in'))
+]);
+
+export const rightPanelFade = trigger('rightPanelFade', [
+    transition(':enter', [
+        style({ opacity: 0 }),
+        animate('300ms ease-out', style({opacity: 1}))
+    ]),
+    transition(':leave', [
+        style({ opacity: 1 }),
+        animate('300ms ease-in', style({opacity: 0}))
+    ])
+]);
+
+
