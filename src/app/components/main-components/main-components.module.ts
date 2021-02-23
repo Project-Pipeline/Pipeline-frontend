@@ -32,7 +32,6 @@ import { RowTextEditorComponent } from './helpers/row-text-editor/row-text-edito
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {GoogleMapsModule} from "@angular/google-maps";
 import { OpportunitiesFilterBarComponent } from './opportunities/opportunities-filter-bar/opportunities-filter-bar.component';
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { OpportunityDetailsComponent } from './opportunities/opportunity-details/opportunity-details.component';
 
 @NgModule({

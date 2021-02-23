@@ -29,19 +29,31 @@
         </div>
     </div>
     <div class="opportunities-right"  [@expandRightPanel]="rightSideExpanded ? 'expanded' : 'default'">
-        <div [@rightPanelFade] *ngIf="!rightSideComponentReplaced" >
+        <div [@rightPanelFade] *ngIf="!rightSideComponentReplaced">
             <h2 class="helvetica">Opportunities</h2>
-            <div
-                *ngFor="let opportunity of filteredOpportunities"
-                class="opportunity-row flex"
-                (click)="toggleRightSideExpansion(); setOpportunityToShowDetail(opportunity)"
+            <div [ngStyle]="{'height': viewportHeightStringSidebar}"
+                 *ngIf="filteredOpportunities.length !== 0"
+                 class="default-overflow"
             >
-                <img src="assets/images/navbar/opportunities.png">
-                <div>
-                    <p class="helvetica">{{opportunity.name}}</p>
-                    <p class="helvetica-normal body-text">{{opportunity.companyName}}</p>
-                    <p class="helvetica-normal body-text">{{opportunity.category}}</p>
+                <div
+                    *ngFor="let opportunity of filteredOpportunities"
+                    class="opportunity-row flex"
+                    (click)="expandRightSide(); setOpportunityToShowDetail(opportunity)"
+                >
+                    <img src="assets/images/navbar/opportunities.png">
+                    <div>
+                        <p class="helvetica">{{opportunity.name}}</p>
+                        <p class="helvetica-normal body-text">{{opportunity.companyName}}</p>
+                        <p class="helvetica-normal body-text">{{opportunity.category}}</p>
+                    </div>
                 </div>
+            </div>
+            <div
+                class="center-item-container"
+                [ngStyle]="{'height': viewportHeightStringSidebar}"
+                *ngIf="filteredOpportunities.length === 0"
+            >
+                <h4 class="helvetica-normal center-item-content">No opportunities found. <br> Keep scrolling the map!</h4>
             </div>
         </div>
 
@@ -49,8 +61,10 @@
             [@rightPanelFade]
             *ngIf="rightSideComponentReplaced"
             [opportunity]="opportunityToShowDetail"
-            (closeButtonClicked)="toggleRightSideExpansion()"
+            (closeButtonClicked)="collapseRightSide()"
             [width]="'700px'"
+            class="default-overflow"
+            [ngStyle]="{'height': viewportHeightString}"
         ></app-opportunity-details>
     </div>
 

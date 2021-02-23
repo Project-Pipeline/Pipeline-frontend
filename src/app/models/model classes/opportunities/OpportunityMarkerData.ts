@@ -10,11 +10,17 @@ export class OpportunityMarkerData {
     constructor(opportunity: Opportunity) {
         this.position = new LatLng(opportunity.address.latitude, opportunity.address.longitude);
         this.label = {
-            color: 'red',
+            color: 'green',
             text: opportunity.name
         };
         this.title = opportunity.name;
-        this.options = { animation: google.maps.Animation.DROP };
+        this.options = {
+            animation: google.maps.Animation.DROP,
+            icon: {
+                url: 'assets/images/opportunities/opp-marker-icon.png',
+                labelOrigin: new google.maps.Point(10, 40)
+            }
+        };
     }
 }
 
@@ -25,10 +31,9 @@ export class CurrentLocationMarkerData {
 
     constructor(loc: LatLng) {
         this.position = loc;
-        this.label = {
-            color: 'blue',
-            text: 'i'
+        this.options = {
+            animation: google.maps.Animation.DROP,
+            icon: "assets/images/opportunities/current-location.png"
         };
-        this.options = { animation: google.maps.Animation.DROP };
     }
 }

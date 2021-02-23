@@ -18,7 +18,6 @@ export class OpportunitiesViewModel {
     }
 
     mapOptions: google.maps.MapOptions = {
-        streetViewControl: false,
         disableDoubleClickZoom: true,
         fullscreenControl: false,
         maxZoom: 20,
@@ -53,7 +52,7 @@ export class OpportunitiesViewModel {
             }));
     }
 
-    /// Return values: unfiltered opportunities, filter opportunities, and markers based on filtered opps
+    /// Return values: unfiltered opportunities, filtered opportunities, and markers based on filtered opps
     filterOpportunities(opportunities: Opportunity[], filter: OpportunityFilter): [Opportunity[], Opportunity[], OpportunityMarkerData[]] {
         const filtered = filter.filter(opportunities);
         return [

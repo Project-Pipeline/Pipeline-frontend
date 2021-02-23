@@ -3,13 +3,13 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {PlacePrediction} from "../models/model classes/maps/PlacePrediction";
 import {Observable} from "rxjs";
 import {GeocodingResponse, LatLng} from "../models/model classes/maps/GeocodingResponse";
-import {ConfigType} from "../models/ConfigType";
 import * as xml2js from 'xml2js';
 import {map, mergeMap} from "rxjs/operators";
 import {
     GeonamesXMLConvertedResponse,
     GeonamesXMLConvertedResponseCode
 } from "../models/model classes/maps/GeonamesXMLConvertedResponse";
+import {ConfigService} from "./config.service";
 
 @Injectable({
     providedIn: 'root'
@@ -17,9 +17,9 @@ import {
 export class MapsService {
     private apiKey: string;
 
-    constructor(private http: HttpClient) {
-        this.http.get<ConfigType>('../../assets/config.json')
-            .subscribe((config) => this.apiKey = config.google_api_key);
+    constructor(private http: HttpClient, private configService: ConfigService) {
+        this.configService.loadConfig()
+            .then((config) => this.apiKey = config.google_api_key);
     }
 
     getAddressSuggestions(searchTerm: string): Observable<PlacePrediction> {

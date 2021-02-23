@@ -24,6 +24,7 @@ export class OpportunitiesComponent implements OnInit, AfterViewInit {
     @ViewChild('googleMap') map: GoogleMap
     viewportHeight: number = null;
     viewportHeightString: string = null;
+    viewportHeightStringSidebar: string = null;
     mapOptions: google.maps.MapOptions = null;
     viewModel: OpportunitiesViewModel;
     opportunityToShowDetail: Opportunity;
@@ -36,8 +37,12 @@ export class OpportunitiesComponent implements OnInit, AfterViewInit {
     rightSideExpanded = false;
     rightSideComponentReplaced = false;
 
-    constructor(private mapsService: MapsService, private opportunitiesService: OpportunitiesService) {
+    constructor(
+        private mapsService: MapsService,
+        private opportunitiesService: OpportunitiesService
+    ) {
         this.viewportHeightString = this.getViewportHeight();
+        this.viewportHeightStringSidebar = this.getViewportHeightForSideBar();
         this.viewModel = new OpportunitiesViewModel(mapsService, opportunitiesService);
         this.mapOptions = this.viewModel.mapOptions;
     }
@@ -71,10 +76,16 @@ export class OpportunitiesComponent implements OnInit, AfterViewInit {
     @HostListener('window:resize', ['$event'])
     onResize(event?) {
         this.viewportHeightString = this.getViewportHeight();
+        this.viewportHeightStringSidebar = this.getViewportHeightForSideBar();
     }
 
     getViewportHeight(): string {
-        this.viewportHeight = window.innerHeight - 150;
+        this.viewportHeight = window.innerHeight - 133;
+        return `${this.viewportHeight}px`;
+    }
+
+    getViewportHeightForSideBar(): string {
+        this.viewportHeight = window.innerHeight - 240;
         return `${this.viewportHeight}px`;
     }
 
@@ -84,14 +95,18 @@ export class OpportunitiesComponent implements OnInit, AfterViewInit {
 
     filterUpdated(filter: OpportunityFilter) {
         this.viewModel.currentFilter = filter;
-        const [original, filtered, markers] = this.viewModel.filterOpportunities(this.opportunities, filter);
+        const [, filtered, markers] = this.viewModel.filterOpportunities(this.opportunities, filter);
         this.filteredOpportunities = filtered;
         this.markers = markers;
     }
 
-    toggleRightSideExpansion() {
-        this.rightSideExpanded = !this.rightSideExpanded;
-        setTimeout(() => this.rightSideComponentReplaced = !this.rightSideComponentReplaced, 300);
+    expandRightSide() { this.setRightSideExpanded(true); }
+
+    collapseRightSide() { this.setRightSideExpanded(false); }
+
+    private setRightSideExpanded(expanded: boolean) {
+        this.rightSideExpanded = expanded;
+        setTimeout(() => this.rightSideComponentReplaced = expanded, 300);
     }
 
     setOpportunityToShowDetail(opp: Opportunity) {
@@ -100,7 +115,7 @@ export class OpportunitiesComponent implements OnInit, AfterViewInit {
 
     markerClicked(markerIndex: number) {
         let opportunity = this.filteredOpportunities[markerIndex];
-        this.toggleRightSideExpansion();
+        this.expandRightSide();
         this.setOpportunityToShowDetail(opportunity)
     }
 }
