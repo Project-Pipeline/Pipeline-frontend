@@ -8,6 +8,11 @@ export class ConfigService {
     public config: ConfigType;
 
     constructor() {
-        this.config = require('../../assets/config.json') as ConfigType;
+        try {
+            this.config = require('../../assets/config.json') as ConfigType;
+        } catch(e) {
+            console.log(e);
+            this.config = null;
+        }
     }
 }
