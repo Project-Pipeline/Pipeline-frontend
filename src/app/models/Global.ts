@@ -12,7 +12,7 @@ export function handleJWTError(error: HttpErrorResponse, router: Router): Observ
 }
 
 export function generateUUID(): string {
-    return uuidv4().toUpperCase()
+    return uuidv4().toUpperCase();
 }
 
 export function dateAsUnixTimeStamp(date: Date = new Date()): number {
@@ -20,11 +20,11 @@ export function dateAsUnixTimeStamp(date: Date = new Date()): number {
 }
 
 export function unixTimeStampToDate(time: number): Date {
-    return new Date(time * 1000)
+    return new Date(time * 1000);
 }
 
 export function jsonAsBlob(json: any): Blob {
-    const string = JSON.stringify(json)
+    const string = JSON.stringify(json);
     return new Blob([string], {type: "application/json"});
 }
 

@@ -2,8 +2,6 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {OpportunityFilter} from "../../../../models/model classes/opportunities/OpportunityFilter";
 import {allowedOpportunityGradeLevels, opportunityCategories} from "../../../../models/BusinessConstants";
 import {OpportunitiesFilterBarViewModel} from "./OpportunitiesFilterBarViewModel";
-import {interval, Subject} from "rxjs";
-import {debounce} from "rxjs/operators";
 
 @Component({
     selector: 'app-opportunities-filter-bar',
@@ -16,7 +14,6 @@ export class OpportunitiesFilterBarComponent implements OnInit {
     categories = opportunityCategories;
     showingOverlays = [false, false, false, false];
     viewModel = new OpportunitiesFilterBarViewModel();
-    searchTextUpdater: Subject<string> = new Subject<string>();
 
     //bindings
     searchText = '';
@@ -33,12 +30,7 @@ export class OpportunitiesFilterBarComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.searchTextUpdater
-            .pipe(debounce(() => interval(500)))
-            .subscribe((text) => {
-                this.viewModel.applyTextFilter(text);
-                this.updateFilter();
-            });
+
     }
 
     toggleOverlayAt(index: number) {
@@ -71,8 +63,9 @@ export class OpportunitiesFilterBarComponent implements OnInit {
         this.updateFilter();
     }
 
-    inputTextChanged() {
-        this.searchTextUpdater.next(this.searchText);
+    applySearchText() {
+        this.viewModel.applyTextFilter(this.searchText);
+        this.updateFilter();
     }
 
     reset() {

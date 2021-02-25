@@ -5,11 +5,9 @@ import {ConfigType} from "../models/ConfigType";
     providedIn: 'root'
 })
 export class ConfigService {
+    public config: ConfigType;
 
     constructor() {
-    }
-
-    loadConfig(): Promise<ConfigType> {
-        return import('../../assets/config.json');
+        this.config = require('../../assets/config.json') as ConfigType;
     }
 }

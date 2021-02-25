@@ -1,5 +1,8 @@
-<div class="flex default-overflow">
-    <input [(ngModel)]="searchText" (change)="inputTextChanged()" class="ppl-input-style" placeholder="Search">
+<div class="flex">
+    <input [(ngModel)]="searchText" class="ppl-input-style" placeholder="Search">
+    <div (click)="applySearchText()">
+        <img class="opp-search-icon" src="assets/images/opportunities/search-icon.png">
+    </div>
 
     <div class="dropdown">
         <div (click)="toggleOverlayAt(0)" class="opportunities-dropdown-container">

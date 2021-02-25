@@ -20,8 +20,7 @@ export class ImageUploadService {
         private configService: ConfigService,
         private authService: AuthService
     ) {
-        this.configService.loadConfig()
-            .then((config) => this.config = config);
+        this.config = configService.config;
     }
 
     /* form data format:

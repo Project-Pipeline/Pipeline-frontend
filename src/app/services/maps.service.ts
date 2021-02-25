@@ -15,23 +15,25 @@ import {ConfigService} from "./config.service";
     providedIn: 'root'
 })
 export class MapsService {
-    private apiKey: string;
+    private googleApiKey: string;
+    private geonamesUsername: string;
 
     constructor(private http: HttpClient, private configService: ConfigService) {
-        this.configService.loadConfig()
-            .then((config) => this.apiKey = config.google_api_key);
+        const config = configService.config;
+        this.googleApiKey = config.google_api_key;
+        this.geonamesUsername = config.geonames_username;
     }
 
     getAddressSuggestions(searchTerm: string): Observable<PlacePrediction> {
         return this.http.get<PlacePrediction>(
-            `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${searchTerm}&key=${this.apiKey}`
+            `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${searchTerm}&key=${this.googleApiKey}`
         );
     }
 
     getGeocodingResponse(address: string): Observable<GeocodingResponse> {
         const formattedAddress = address.replace(' ', '+');
         return this.http.get<GeocodingResponse>(
-            `https://maps.googleapis.com/maps/api/geocode/json?address=${formattedAddress}&key=${this.apiKey}`
+            `https://maps.googleapis.com/maps/api/geocode/json?address=${formattedAddress}&key=${this.googleApiKey}`
         );
     }
 
@@ -50,7 +52,7 @@ export class MapsService {
     getNearbyZipcodes(latitude: number, longitude: number): Observable<GeonamesXMLConvertedResponseCode[]> {
         const headers = new HttpHeaders({ 'Content-Type': 'text/xml' }).set('Accept', 'text/xml');
         return this.http.get(
-            `http://api.geonames.org/findNearbyPostalCodes?lat=${latitude}&lng=${longitude}&username=ljw980105&style=SHORT`, {
+            `http://api.geonames.org/findNearbyPostalCodes?lat=${latitude}&lng=${longitude}&username=${this.geonamesUsername}&style=SHORT`, {
                 headers: headers,
                 responseType: 'text'
             }

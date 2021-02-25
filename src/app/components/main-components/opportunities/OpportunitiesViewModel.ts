@@ -21,7 +21,7 @@ export class OpportunitiesViewModel {
         disableDoubleClickZoom: true,
         fullscreenControl: false,
         maxZoom: 20,
-        minZoom: 8,
+        minZoom: 14,
         styles: [
             {
                 "featureType": "poi",

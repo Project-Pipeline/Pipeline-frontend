@@ -4,7 +4,7 @@ import {expandRightPanel, OpportunitiesViewModel, rightPanelFade} from "./Opport
 import {OpportunitiesService} from "../../../services/opportunities.service";
 import {Opportunity} from "../../../models/model classes/opportunities/Opportunity";
 import {interval} from "rxjs";
-import {debounce, switchMap} from "rxjs/operators";
+import {catchError, debounce, switchMap} from "rxjs/operators";
 import {LatLng} from "../../../models/model classes/maps/GeocodingResponse";
 import {GoogleMap} from "@angular/google-maps";
 import {
@@ -12,6 +12,9 @@ import {
     OpportunityMarkerData
 } from "../../../models/model classes/opportunities/OpportunityMarkerData";
 import {OpportunityFilter} from "../../../models/model classes/opportunities/OpportunityFilter";
+import {handleJWTError} from "../../../models/Global";
+import {Router} from "@angular/router";
+import {Title} from "@angular/platform-browser";
 
 @Component({
     selector: 'app-opportunities',
@@ -39,12 +42,15 @@ export class OpportunitiesComponent implements OnInit, AfterViewInit {
 
     constructor(
         private mapsService: MapsService,
-        private opportunitiesService: OpportunitiesService
+        private opportunitiesService: OpportunitiesService,
+        private router: Router,
+        private title: Title
     ) {
         this.viewportHeightString = this.getViewportHeight();
         this.viewportHeightStringSidebar = this.getViewportHeightForSideBar();
         this.viewModel = new OpportunitiesViewModel(mapsService, opportunitiesService);
         this.mapOptions = this.viewModel.mapOptions;
+        this.title.setTitle('Opportunities');
     }
 
     ngOnInit(): void {
@@ -57,6 +63,7 @@ export class OpportunitiesComponent implements OnInit, AfterViewInit {
 
         this.viewModel.centerLocationUpdater
             .pipe(switchMap((latLng) => this.viewModel.getOpportunitiesCenteredOn(latLng)))
+            .pipe(catchError((e) => handleJWTError(e, this.router)))
             .subscribe(([opportunities, filteredOpportunities, markers]) => {
                 this.opportunities = opportunities;
                 this.filteredOpportunities = filteredOpportunities;
