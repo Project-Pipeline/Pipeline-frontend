@@ -1,15 +1,12 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient} from "@angular/common/http";
 import {PlacePrediction} from "../models/model classes/maps/PlacePrediction";
 import {Observable} from "rxjs";
 import {GeocodingResponse, LatLng} from "../models/model classes/maps/GeocodingResponse";
 import * as xml2js from 'xml2js';
-import {map, mergeMap} from "rxjs/operators";
-import {
-    GeonamesXMLConvertedResponse,
-    GeonamesXMLConvertedResponseCode
-} from "../models/model classes/maps/GeonamesXMLConvertedResponse";
+import {map} from "rxjs/operators";
 import {ConfigService} from "./config.service";
+import {GeonamesPostalCode, GeonamesResponse} from "../models/model classes/maps/GeonamesResponse";
 
 @Injectable({
     providedIn: 'root'
@@ -17,6 +14,7 @@ import {ConfigService} from "./config.service";
 export class MapsService {
     private googleApiKey: string;
     private geonamesUsername: string;
+    private geoNamesAPIRoot = 'https://secure.geonames.org/';
 
     constructor(private http: HttpClient, private configService: ConfigService) {
         const config = configService.config;
@@ -49,16 +47,17 @@ export class MapsService {
         });
     }
 
-    getNearbyZipcodes(latitude: number, longitude: number): Observable<GeonamesXMLConvertedResponseCode[]> {
-        const headers = new HttpHeaders({ 'Content-Type': 'text/xml' }).set('Accept', 'text/xml');
-        return this.http.get(
-            `http://api.geonames.org/findNearbyPostalCodes?lat=${latitude}&lng=${longitude}&username=${this.geonamesUsername}&style=SHORT`, {
-                headers: headers,
-                responseType: 'text'
-            }
-        )
-            .pipe(mergeMap((xml) => this.xmlToJson<GeonamesXMLConvertedResponse>(xml)))
-            .pipe(map((res) => res.geonames.code));
+    getNearbyZipcodes(latitude: number, longitude: number): Observable<GeonamesPostalCode[]> {
+        return this.http.get<GeonamesResponse>(
+            `${this.geoNamesAPIRoot}findNearbyPostalCodesJSON`, {
+                params: {
+                    lat: `${latitude}`,
+                    lng: `${longitude}`,
+                    username: this.geonamesUsername,
+                    style: "SHORT"
+                }
+            })
+            .pipe(map((res) => res.postalCodes));
     }
 
     private xmlToJson<Result>(xml: any): Observable<Result> {
@@ -73,6 +72,4 @@ export class MapsService {
             });
         });
     }
-
-
 }

@@ -44,7 +44,7 @@ export class OpportunitiesViewModel {
             .getNearbyZipcodes(center.lat, center.lng)
             .pipe(distinctUntilChanged((res1, res2) => res1 === res2))
             .pipe(map((zipcodes) => {
-                return zipcodes.map((z) => z.postalcode[0]);
+                return zipcodes.map((z) => z.postalCode);
             }))
             .pipe(switchMap((zipcodes) => this.opportunitiesService.getOpportunities([], zipcodes)))
             .pipe(map((opportunities) => {
