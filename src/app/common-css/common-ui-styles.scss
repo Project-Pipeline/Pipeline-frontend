@@ -1,0 +1,76 @@
+$theme-color: #79FEB3;
+// font etc
+@mixin helvetica-style {
+    font-family: "Helvetica", "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+    font-weight: bold;
+}
+
+@mixin helvetica-thin-style {
+    font-family: "Helvetica", "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+    font-weight: 300;
+}
+.helvetica {
+    @include helvetica-style;
+}
+
+.helvetica-normal {
+    @include helvetica-thin-style;
+}
+
+// UIs
+
+.ppl-input-style {
+    @include helvetica-thin-style;
+    width: 100%;
+    padding: 5px;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
+.ppl-button-green {
+    background-color: $theme-color;
+    border: none;
+    color: black;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+    border-radius: 10px;
+    height: 31px;
+    cursor: pointer;
+    margin-top: 8px;
+}
+
+// Dropdown
+
+/* The dropdown container */
+.dropdown {
+    position: relative;
+    /* Show the dropdown menu on hover */
+    &:hover .dropdown-content {
+        display: block;
+    }
+}
+
+/* Dropdown content (hidden by default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    width: 220px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    left: 0;
+    margin-top: 7%;
+    float: none;
+}
+
+.dropdown-no-hover {
+    position: absolute;
+    width: 220px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    left: 0;
+    margin-top: 7%;
+}
+

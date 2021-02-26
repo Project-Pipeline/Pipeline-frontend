@@ -1,0 +1,47 @@
+.opportunities-left {
+    flex-grow: 1;
+}
+
+.opportunities-right {
+    width: 500px;
+    padding: 20px 30px;
+    border-top: 1px solid gainsboro;
+    position: relative;
+}
+
+.opportunity-row {
+    border-radius: 10px;
+    padding: 15px 15px 10px 15px;
+    background-color: rgb(244,244,244);
+    margin-bottom: 10px;
+    cursor: pointer;
+    p {
+        margin: 0 0 4px 0;
+        padding: 0;
+    }
+    img {
+        width: 40px;
+        height: 40px;
+        margin: 10px 20px 0 0;
+    }
+    .body-text {
+        font-size: 13px;
+    }
+}
+
+.opportunity-filter {
+    height: 30px;
+    padding: 10px;
+}
+
+.google-map-wrapper {
+    border: 1px solid gainsboro;
+}
+
+app-opportunity-details {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+

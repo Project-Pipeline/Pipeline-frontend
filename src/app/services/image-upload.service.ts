@@ -1,5 +1,4 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
 import {AuthService} from "./auth.service";
 import {Observable} from "rxjs";
 import {CloudinarySignature} from "../models/model classes/image-upload/CloudinarySignature";
@@ -7,6 +6,8 @@ import {apiRoot} from "../models/ApiRoot";
 import {CloudinaryUploadResponse} from "../models/model classes/image-upload/CloudinaryUploadResponse";
 import {mergeMap} from "rxjs/operators";
 import {ConfigType} from "../models/ConfigType";
+import {ConfigService} from "./config.service";
+import {HttpClient} from "@angular/common/http";
 
 @Injectable({
     providedIn: 'root'
@@ -14,9 +15,12 @@ import {ConfigType} from "../models/ConfigType";
 export class ImageUploadService {
     private config: ConfigType;
 
-    constructor(private http: HttpClient, private authService: AuthService) {
-        this.http.get<ConfigType>('../../assets/config.json')
-            .subscribe((config) => this.config = config);
+    constructor(
+        private http: HttpClient,
+        private configService: ConfigService,
+        private authService: AuthService
+    ) {
+        this.config = configService.config;
     }
 
     /* form data format:

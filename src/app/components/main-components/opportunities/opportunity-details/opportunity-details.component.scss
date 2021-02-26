@@ -1,0 +1,49 @@
+.opp-details-container {
+    padding: 20px 30px;
+}
+
+.opp-details-header {
+    img {
+        width: 70px;
+        height: 70px;
+        margin-right: 10px;
+    }
+    h2 {
+        margin-top: 7px;
+        margin-bottom: 7px;
+    }
+}
+
+p, h5, h4 {
+    margin-bottom: 7px;
+}
+
+.opp-body-text {
+    font-size: 15px;
+}
+
+.opp-details-tri-items{
+    display: flex;
+
+    div {
+        padding: 7px 3px 3px 0;
+    }
+
+    div:nth-child(1) {
+        border-right: 1px solid gainsboro;
+        width: 31%;
+        margin-right: 3.5%;
+    }
+
+    div:nth-child(2) {
+        border-right: 1px solid gainsboro;
+        width: 31%;
+        margin-right: 3.5%;
+    }
+
+    div:nth-child(3) {
+        width: 31%;
+    }
+
+}
+
