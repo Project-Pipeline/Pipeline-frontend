@@ -1,0 +1,64 @@
+<div *ngIf="opportunity" class="opp-details-container" [ngStyle]="{'width': width}">
+    <div class="flex opp-details-header">
+        <img src="assets/images/briefcase1.png">
+        <div>
+            <h2 class="helvetica clear-text-paddings">{{opportunity.name}}</h2>
+            <p class="helvetica-normal clear-text-paddings">{{opportunity.companyName}}</p>
+            <p class="helvetica-normal clear-text-paddings">{{opportunity.address.components.join(', ')}}</p>
+            <button class="ml-auto ppl-button-green">Apply</button>
+        </div>
+        <button class="ml-auto ppl-button-green" (click)="close()">Close</button>
+    </div>
+    <br>
+
+    <div class="opp-details-tri-items">
+        <div>
+            <h4 class="helvetica clear-text-paddings">Schedule</h4>
+            <h5 class="helvetica-normal clear-text-paddings" *ngIf="opportunity.isFullTime">Full Time</h5>
+            <h5 class="helvetica-normal clear-text-paddings" *ngIf="!opportunity.isFullTime">Part Time</h5>
+        </div>
+        <div>
+            <h4 class="helvetica clear-text-paddings">Compensation</h4>
+            <h5 class="helvetica-normal clear-text-paddings">{{opportunity.compensation}}</h5>
+        </div>
+        <div>
+            <h4 class="helvetica clear-text-paddings">Grade Levels</h4>
+            <h5 class="helvetica-normal clear-text-paddings">{{opportunity.gradesWanted.join(', ')}}</h5>
+        </div>
+    </div>
+
+    <br>
+    <h4 class="helvetica clear-text-paddings">Overview</h4>
+    <p class="opp-body-text helvetica-normal clear-text-paddings">{{opportunity.overview}}</p>
+
+    <br>
+    <h4 class="helvetica clear-text-paddings">Responsibilities</h4>
+    <ul>
+        <li class="opp-body-text helvetica-normal clear-text-paddings"
+           *ngFor="let duty of opportunity.responsibilities"
+        >{{duty}}</li>
+    </ul>
+
+    <br>
+    <h4 class="helvetica clear-text-paddings">Qualifications</h4>
+    <ul>
+        <li class="opp-body-text helvetica-normal clear-text-paddings"
+           *ngFor="let qualification of opportunity.qualifications"
+        >{{qualification}}</li>
+    </ul>
+
+    <div class="opp-details-tri-items">
+        <div>
+            <h4 class="helvetica clear-text-paddings">Category</h4>
+            <h5 class="helvetica-normal clear-text-paddings">{{opportunity.category}}</h5>
+        </div>
+        <div>
+            <h4 class="helvetica clear-text-paddings">Applications Close</h4>
+            <h5 class="helvetica-normal clear-text-paddings">{{formatDateToNormalDate(opportunity.due) | date }}</h5>
+        </div>
+        <div>
+            <h4 class="helvetica clear-text-paddings">Posted</h4>
+            <h5 class="helvetica-normal clear-text-paddings">{{formatDateToNormalDate(opportunity.created) | messagingDateFormatter}}</h5>
+        </div>
+    </div>
+</div>

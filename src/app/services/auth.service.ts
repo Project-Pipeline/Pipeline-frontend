@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpHeaders} from "@angular/common/http";
+import {HttpHeaders, HttpParams} from "@angular/common/http";
 
 @Injectable({
     providedIn: 'root'
@@ -22,6 +22,15 @@ export class AuthService {
             headers: new HttpHeaders({
                 Authorization: `Bearer ${this.getToken()}`
             })
+        };
+    }
+
+    authHeadersWithParams(params: { [key: string]: string } | HttpParams) {
+        return {
+            headers: new HttpHeaders({
+                Authorization: `Bearer ${this.getToken()}`
+            }),
+            params: params
         };
     }
 }

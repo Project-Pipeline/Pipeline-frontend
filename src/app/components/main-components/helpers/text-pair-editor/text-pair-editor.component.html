@@ -1,0 +1,19 @@
+<div class="add-section">
+    <label>{{description}}</label>
+    <button mat-stroked-button (click)="addRow()">+</button>
+</div>
+<div class="dual-column" *ngFor="let textPair of dataSource; let i = index" [attr.data-index]="i">
+    <div class="dual-column-left">
+        <mat-form-field>
+            <mat-label>{{leftInputPlaceholder}}</mat-label>
+            <label><input placeholder="{{leftInputPlaceholder}}" matInput required [(ngModel)]="textPair[0]"></label>
+        </mat-form-field>
+    </div>
+    <div class="dual-column-right remove-section">
+        <mat-form-field>
+            <mat-label>{{rightFieldPlaceholder}}</mat-label>
+            <label><input placeholder="{{rightFieldPlaceholder}}" matInput required [(ngModel)]="textPair[1]"></label>
+        </mat-form-field>
+        <button mat-stroked-button (click)="deleteRowAt(i)">-</button>
+    </div>
+</div>

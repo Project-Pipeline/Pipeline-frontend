@@ -7,7 +7,6 @@ import {SignupComponent} from './components/signup/signup.component';
 import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { SegmentedControlComponent } from './components/reusable-components/segmented-control/segmented-control.component';
 
 @NgModule({
     declarations: [

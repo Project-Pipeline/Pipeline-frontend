@@ -1,0 +1,82 @@
+$dark-green: #1b5e20;
+
+input {
+    width: 200px;
+    height: 30px;
+}
+
+.opportunities-dropdown {
+    background-color: white;
+    padding: 10px;
+}
+
+@mixin opportunity-btn {
+    border-radius: 10px;
+    margin-left: 10px;
+    padding: 0 10px;
+    border-style: solid;
+    border-width: 1.5px;
+    cursor: pointer;
+    transition: all linear 0.15s;
+}
+
+.opportunities-dropdown-container {
+    border-color: black;
+    height: 28px;
+    @include opportunity-btn;
+    &:hover {
+        border: 1px solid $dark-green;
+        background-color: $dark-green;
+        p {
+            color: white;
+        }
+    }
+}
+
+.opp-search-icon {
+    width: 20px;
+    height: 20px;
+    margin-top: 4px;
+    margin-left: 6px;
+    cursor: pointer;
+    &:hover {
+        transform: scale(1.2);
+        transition: all .2s ease-in-out;
+    }
+}
+
+.clear-button {
+    @include opportunity-btn;
+    border-color: red;
+    color: red;
+    &:hover {
+        border: 1px solid red;
+        background-color: red;
+        p {
+            color: white;
+        }
+    }
+}
+
+p {
+    margin-top: 7px;
+    font-size: 12px;
+}
+
+.opportunities-left-margin {
+    margin-left: 10px;
+}
+
+mat-checkbox {
+    display: block;
+    padding: 10px;
+}
+
+.opportunities-done-btn {
+    cursor: pointer;
+    background-color: $dark-green;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: 10px;
+}

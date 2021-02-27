@@ -1,0 +1,15 @@
+textarea {
+    width: 100%;
+    height: 100px;
+}
+
+mat-form-field {
+    width: 100%;
+}
+
+hr {
+    border: none;
+    height: 1px;
+    color: gray; /* old IE */
+    background-color: gray; /* Modern Browsers */
+}

@@ -13,6 +13,26 @@ import {MessagingDateFormatterPipe} from "../../pipes/messaging-date-formatter.p
 import { MainComponent } from './main/main.component';
 import {SegmentedControlComponent} from "../reusable-components/segmented-control/segmented-control.component";
 import {MainComponentsRoutingModule} from "./main-components-routing.module";
+import { IndividualProfileComponent } from './profile/individual-profile/individual-profile.component';
+import {MAT_DIALOG_DATA, MatDialogModule, MatDialogRef} from "@angular/material/dialog";
+import {ModalPopupService} from "./modal-popup.service";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatSelectModule} from "@angular/material/select";
+import {MatInputModule} from "@angular/material/input";
+import { IndividualUserDetailsPopupComponent } from './profile/individual-user-details-popup/individual-user-details-popup.component';
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatNativeDateModule} from "@angular/material/core";
+import {MatButtonModule} from "@angular/material/button";
+import { TextPairEditorComponent } from './helpers/text-pair-editor/text-pair-editor.component';
+import { EntityProfileComponent } from './profile/entity-profile/entity-profile.component';
+import { EntityUserDetailsPopupComponent } from './profile/entity-user-details-popup/entity-user-details-popup.component';
+import { AddressAutoCompleterComponent } from './helpers/address-auto-completer/address-auto-completer.component';
+import { AddOpportunityPopupComponent } from './opportunities/add-opportunity-popup/add-opportunity-popup.component';
+import { RowTextEditorComponent } from './helpers/row-text-editor/row-text-editor.component';
+import {MatCheckboxModule} from "@angular/material/checkbox";
+import {GoogleMapsModule} from "@angular/google-maps";
+import { OpportunitiesFilterBarComponent } from './opportunities/opportunities-filter-bar/opportunities-filter-bar.component';
+import { OpportunityDetailsComponent } from './opportunities/opportunity-details/opportunity-details.component';
 
 @NgModule({
     declarations: [
@@ -24,14 +44,46 @@ import {MainComponentsRoutingModule} from "./main-components-routing.module";
         NavbarComponent,
         MessagingDateFormatterPipe,
         MainComponent,
-        SegmentedControlComponent
+        SegmentedControlComponent,
+        IndividualProfileComponent,
+        IndividualUserDetailsPopupComponent,
+        TextPairEditorComponent,
+        EntityProfileComponent,
+        EntityUserDetailsPopupComponent,
+        AddressAutoCompleterComponent,
+        AddOpportunityPopupComponent,
+        RowTextEditorComponent,
+        OpportunitiesFilterBarComponent,
+        OpportunityDetailsComponent
     ],
     imports: [
         CommonModule,
+        FormsModule,
+        MainComponentsRoutingModule,
+        // Angular material imports
+        MatDialogModule,
+        MatFormFieldModule,
+        MatSelectModule,
+        MatInputModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
         MatToolbarModule,
         MatIconModule,
-        FormsModule,
-        MainComponentsRoutingModule
+        MatButtonModule,
+        MatCheckboxModule,
+        // Google maps,
+        GoogleMapsModule
+    ],
+    providers: [
+        {
+            provide: MatDialogRef,
+            useValue: {}
+        },
+        {
+            provide: MAT_DIALOG_DATA,
+            useValue: {}
+        },
+        ModalPopupService
     ]
 })
 export class MainComponentsModule {

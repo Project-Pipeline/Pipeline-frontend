@@ -1,0 +1,15 @@
+<mat-form-field>
+    <mat-label>Search Addresses</mat-label>
+    <label>
+        <input matInput #autoCompleteInput>
+    </label>
+</mat-form-field>
+
+<label *ngIf="selectedAddress">Selected: {{selectedAddress}}</label>
+<h4 class="helvetica-normal err">{{errorText}}</h4>
+
+<div class="search-result" *ngIf="showSearches">
+    <div class="search-result-row" *ngFor="let place of searchResults">
+        <h4 class="helvetica-normal clear-text-paddings" (click)="placeSelected(place)">{{place.description}}</h4>
+    </div>
+</div>

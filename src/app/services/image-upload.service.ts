@@ -1,19 +1,26 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
 import {AuthService} from "./auth.service";
 import {Observable} from "rxjs";
 import {CloudinarySignature} from "../models/model classes/image-upload/CloudinarySignature";
 import {apiRoot} from "../models/ApiRoot";
 import {CloudinaryUploadResponse} from "../models/model classes/image-upload/CloudinaryUploadResponse";
 import {mergeMap} from "rxjs/operators";
-import * as config from "../../../config.json"
+import {ConfigType} from "../models/ConfigType";
+import {ConfigService} from "./config.service";
+import {HttpClient} from "@angular/common/http";
 
 @Injectable({
     providedIn: 'root'
 })
 export class ImageUploadService {
+    private config: ConfigType;
 
-    constructor(private http: HttpClient, private authService: AuthService) {
+    constructor(
+        private http: HttpClient,
+        private configService: ConfigService,
+        private authService: AuthService
+    ) {
+        this.config = configService.config;
     }
 
     /* form data format:
@@ -41,13 +48,13 @@ export class ImageUploadService {
             .pipe(mergeMap((signature) => {
                 const formData: FormData = new FormData();
                 formData.append('file', fileToUpload);
-                formData.append('api_key', config.cloudinary_api_key);
+                formData.append('api_key', this.config.cloudinary_api_key);
                 formData.append('timestamp', `${signature.timeStamp}`);
                 formData.append('public_id', publicID);
                 formData.append('signature', signature.signature);
                 return this.http.post<CloudinaryUploadResponse>(
-                    `https://api.cloudinary.com/v1_1/${config.cloudinary_cloud_name}/image/upload`, formData
-                )
-            }))
+                    `https://api.cloudinary.com/v1_1/${this.config.cloudinary_cloud_name}/image/upload`, formData
+                );
+            }));
     }
 }

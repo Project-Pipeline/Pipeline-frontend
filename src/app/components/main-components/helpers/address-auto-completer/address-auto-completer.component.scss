@@ -1,0 +1,21 @@
+mat-form-field {
+    width: 100%;
+}
+
+.search-result {
+    h4 {
+        overflow: hidden;
+    }
+    .search-result-row {
+        cursor: pointer;
+        padding: 7px;
+        border: 1px solid gainsboro;
+        &:hover {
+            background-color: gainsboro;
+        }
+    }
+}
+
+.err {
+    color: red;
+}

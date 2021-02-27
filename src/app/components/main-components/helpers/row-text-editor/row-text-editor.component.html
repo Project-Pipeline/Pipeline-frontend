@@ -1,0 +1,13 @@
+<div class="add-section">
+    <label>{{description}}&nbsp;&nbsp;&nbsp;</label>
+    <button mat-stroked-button (click)="addRow()">+</button>
+</div>
+<div class="remove-section" *ngFor="let txt of dataSource; let i = index" [attr.data-index]="i">
+    <mat-form-field>
+        <mat-label>{{inputPlaceholder}}</mat-label>
+        <label>
+            <input [(ngModel)]="txt[0]" placeholder="{{inputPlaceholder}}" matInput required>
+        </label>
+    </mat-form-field>
+    <button mat-stroked-button (click)="deleteRowAt(i)">-</button>
+</div>
