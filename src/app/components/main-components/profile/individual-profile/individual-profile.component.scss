@@ -13,12 +13,36 @@
         margin-top: 8px;
     }
     margin-right: 20px;
+    position: relative;
+    button {
+        position: absolute;
+        bottom: 20px;
+    }
 }
 
 .post-card {
     @include card-common;
+    h5 {
+        margin-top: 8px;
+    }
+    margin-right: 20px;
+    position: relative;
     button {
-        display: block;
-        margin: 60px auto auto auto;
+        position: absolute;
+        bottom: 20px;
     }
 }
+
+.post-card-no-post {
+    @include card-common;
+    h5 {
+        text-align: center;
+    }
+}
+
+.no-post {
+    height: 20px;
+    margin-top: 70px;
+    margin-bottom: auto;
+}
+

@@ -10,6 +10,9 @@ import {AuthService} from "./auth.service";
 import {UserDetails} from "../models/model classes/user/UserDetails";
 import {Opportunity} from "../models/model classes/opportunities/Opportunity";
 import {PageData} from "../models/model classes/common/PageData";
+import {Post} from "../models/model classes/posts/Post";
+import {CategoryForPost} from "../models/model classes/posts/CateogryForPost";
+import {categoryToId, postCategoryLookUp} from "../models/BusinessConstants";
 
 @Injectable({
     providedIn: 'root'
@@ -77,4 +80,21 @@ export class UserApiService {
             })
         );
     }
+
+    getPosts(user: User, page: number, per: number = 5): Observable<PageData<Post>> {
+        return this.http.get<PageData<Post>>(
+            `${apiRoot}api/user/posts`,
+            this.authService.authHeadersWithParams({
+                id: user.id,
+                page: `${page}`,
+                per: `${per}`
+            })
+        );
+    }
+
+    getCategoryForPost(): CategoryForPost {
+        const cat = postCategoryLookUp[this.currentUser.type];
+        return new CategoryForPost(categoryToId(cat), cat);
+    }
+
 }

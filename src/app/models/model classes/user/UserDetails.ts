@@ -1,7 +1,7 @@
 import {Address} from "./Address";
 
 export class UserDetails {
-    public user: UserWrapper;
+    public user: UserDTO;
     constructor(
         // User ID
         user: string,
@@ -18,12 +18,12 @@ export class UserDetails {
         public profession?: string,
         public id?: string
     ) {
-        this.user = new UserWrapper(user);
+        this.user = new UserDTO(user);
     }
 }
 
 // A DTO
-export class UserWrapper {
+export class UserDTO {
     constructor(public id: string) {
     }
 }

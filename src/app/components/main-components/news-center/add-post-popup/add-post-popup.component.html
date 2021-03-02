@@ -1,0 +1,29 @@
+<div class="add-post-container">
+
+    <h2 style="text-align: center" class="helvetica clear-text-paddings">Write a Post</h2><br><br>
+    <button class="ppl-button-green add-post-close-btn" (click)="close()">Close</button>
+
+    <div #midSection class="add-post-mid">
+        <input [(ngModel)]="title" class="underlined-input" style="margin-bottom: 8px" placeholder="Add a Title">
+        <label>
+            <textarea [(ngModel)]="body" placeholder="Write your post"></textarea>
+        </label>
+
+        <app-text-pair-editor
+            *ngIf="addingLinks"
+            [dataSource]="links"
+            [description]="'Add links here'"
+            [leftInputPlaceholder]="'description'"
+            [rightFieldPlaceholder]="'link'"
+        ></app-text-pair-editor>
+
+    </div>
+
+    <div class="add-post-bottom-section">
+        <div class="flex">
+            <img (click)="addingLinks = !addingLinks" class="zoom-hover-fx" src="assets/images/news-center/link.png">
+        </div>
+        <button (click)="closeWithResult()" class="ppl-button-green" style="width: 640px">Post</button>
+    </div>
+</div>
+

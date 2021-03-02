@@ -33,6 +33,7 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
 import {GoogleMapsModule} from "@angular/google-maps";
 import { OpportunitiesFilterBarComponent } from './opportunities/opportunities-filter-bar/opportunities-filter-bar.component';
 import { OpportunityDetailsComponent } from './opportunities/opportunity-details/opportunity-details.component';
+import { AddPostPopupComponent } from './news-center/add-post-popup/add-post-popup.component';
 
 @NgModule({
     declarations: [
@@ -54,7 +55,8 @@ import { OpportunityDetailsComponent } from './opportunities/opportunity-details
         AddOpportunityPopupComponent,
         RowTextEditorComponent,
         OpportunitiesFilterBarComponent,
-        OpportunityDetailsComponent
+        OpportunityDetailsComponent,
+        AddPostPopupComponent
     ],
     imports: [
         CommonModule,
