@@ -1,7 +1,10 @@
 .add-post-close-btn {
     position: absolute;
-    right: 0;
+    right: 10px;
     top: 0;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
 }
 
 .add-post-container {
@@ -31,4 +34,15 @@ textarea {
     padding: 10px 0;
     font-size: 17px;
     box-sizing: border-box;
+    &:focus {
+        outline: none;
+    }
+}
+
+.btn-selected {
+    filter: none;
+}
+
+.btn-unselected {
+    filter: grayscale(100%);
 }

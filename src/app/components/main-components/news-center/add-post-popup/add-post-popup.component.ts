@@ -13,7 +13,7 @@ export class AddPostPopupComponent implements OnInit {
     title: string = '';
     body: string = '';
     addingLinks = false;
-    links: [string, string][] = [];
+    links: [string, string][] = [['', '']];
 
     constructor(
         private dialog: MatDialogRef<AddPostPopupComponent>,
@@ -48,8 +48,10 @@ export class AddPostPopupComponent implements OnInit {
         setTimeout(() => {
             try {
                 this.midSection.nativeElement.scrollTop = this.midSection.nativeElement.scrollHeight;
-            } catch(err) { }
-        }, 1000);
+            } catch(err) {
+                console.log(err);
+            }
+        }, 100);
     }
 
 }

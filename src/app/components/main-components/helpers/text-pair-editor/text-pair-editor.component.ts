@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
     selector: 'app-text-pair-editor',
@@ -11,6 +11,7 @@ export class TextPairEditorComponent implements OnInit {
     @Input() leftInputPlaceholder: string;
     @Input() rightFieldPlaceholder: string;
     @Input() defaultValueWhenAddingRows: [string, string] = ['', ''];
+    @Output() numberOfRowsChanged: EventEmitter<void> = new EventEmitter();
 
     private leftDefaultValue: string;
     private rightDefaultValue: string;
@@ -25,10 +26,12 @@ export class TextPairEditorComponent implements OnInit {
 
     addRow() {
         this.dataSource.push([this.leftDefaultValue, this.rightDefaultValue]);
+        this.numberOfRowsChanged.emit();
     }
 
     deleteRowAt(index: number) {
         this.dataSource.splice(index, 1);
+        this.numberOfRowsChanged.emit();
     }
 
 }
