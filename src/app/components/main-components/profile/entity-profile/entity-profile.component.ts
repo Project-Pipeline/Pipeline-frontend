@@ -8,6 +8,7 @@ import {UserAndDetailCombo} from "../../../../models/model classes/user/UserAndD
 import {OpportunitiesService} from "../../../../services/opportunities.service";
 import {filter, mergeMap} from "rxjs/operators";
 import {Opportunity} from "../../../../models/model classes/opportunities/Opportunity";
+import {PostsService} from "../../../../services/posts.service";
 
 @Component({
     selector: 'app-entity-profile',
@@ -21,9 +22,10 @@ export class EntityProfileComponent extends ProfileComponent implements OnInit {
         public usersApi: UserApiService,
         public router: Router,
         public dialogService: ModalPopupService,
-        public opportunitiesService: OpportunitiesService)
+        public opportunitiesService: OpportunitiesService,
+        public postsService: PostsService)
     {
-        super(usersApi, router, dialogService);
+        super(usersApi, router, dialogService, postsService);
     }
 
     ngOnInit(): void {

@@ -3,6 +3,7 @@
 @import "fonts";
 @import "assets/material-theme.scss";
 @import "app/common-css/common-ui-styles";
+@import "app/common-css/profile-page-styles";
 
 body {
     margin: 0;
@@ -101,6 +102,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .horizontal-scroll-outer {
     overflow: auto;
     white-space: nowrap;
+    display: flex;
 }
 
 .horizontal-scroll-inner {

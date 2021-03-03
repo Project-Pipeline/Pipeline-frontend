@@ -1,0 +1,17 @@
+<div class="post-card" *ngIf="!noPost">
+    <h3 class="helvetica clear-text-paddings" style="width: 220px">{{post.title}}</h3>
+    <h5 class="helvetica-normal clear-text-paddings">{{post.body}}</h5>
+    <div *ngIf="post.links.length !== 0" class="flex post-link">
+        <img src="assets/images/news-center/link.png">
+        <h5 class="helvetica-normal clear-text-paddings">{{post.links.length | i18nPlural: mapping }}</h5>
+    </div>
+    <button (click)="moreButtonClicked()" class="ppl-button-green">View More</button>
+</div>
+
+<div class="horizontal-scroll-inner" *ngIf="noPost">
+    <div class="post-card-no-post">
+        <div class="no-post">
+            <h5 class="helvetica-normal clear-text-paddings">You don't have posts yet. Add a post!</h5>
+        </div>
+    </div>
+</div>

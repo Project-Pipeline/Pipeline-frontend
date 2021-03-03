@@ -17,25 +17,17 @@
     </div>
 
     <div class="horizontal-scroll-outer">
-        <div class="horizontal-scroll-inner" *ngIf="posts.length === 0">
-            <div class="post-card-no-post">
-                <div class="no-post">
-                    <h5 class="helvetica-normal clear-text-paddings">You don't have posts yet. Add a post!</h5>
-                </div>
-            </div>
-        </div>
-        <div class="horizontal-scroll-inner post-card"
-             *ngFor="let post of posts;
-             let i = index"
-             [attr.data-index]="i"
-        >
-            <h3 class="helvetica clear-text-paddings" style="width: 220px">{{post.title}}</h3>
-            <h5 class="helvetica-normal clear-text-paddings">{{post.body}}</h5>
-            <div *ngIf="post.links.length !== 0" class="flex" style="margin-top: 8px">
-                <img width="15" height="15" src="assets/images/news-center/link.png">
-                <h5 class="helvetica-normal clear-text-paddings" style="margin: 0 0 0 10px">{{post.links.length}} links</h5>
-            </div>
-            <button class="ppl-button-green">View More</button>
-        </div>
+        <app-post-summary-card
+            *ngIf="posts.length === 0"
+            class="horizontal-scroll-inner"
+            [noPost]="true"
+        ></app-post-summary-card>
+        <app-post-summary-card
+            class="horizontal-scroll-inner"
+            *ngFor="let post of posts;
+            let i = index"
+            [attr.data-index]="i"
+            [post]="post"
+        ></app-post-summary-card>
     </div>
 </div>
