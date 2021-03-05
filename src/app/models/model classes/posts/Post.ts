@@ -1,5 +1,5 @@
 import {UserDTO} from "../user/UserDetails";
-import {CategoryForPostDTO} from "./CateogryForPost";
+import {CategoryForPost, CategoryForPostDTO} from "./CateogryForPost";
 
 export class Post {
     public user: UserDTO;
@@ -23,6 +23,14 @@ export class TitledLink {
     constructor(
         public title: string,
         public link: string
+    ) {
+    }
+}
+
+export class PostAndCategoryWrapper {
+    constructor(
+        public post: Post,
+        public category: CategoryForPost
     ) {
     }
 }

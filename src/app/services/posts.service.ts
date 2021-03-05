@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Post} from "../models/model classes/posts/Post";
+import {PostAndCategoryWrapper, Post} from "../models/model classes/posts/Post";
 import {CategoryForPost} from "../models/model classes/posts/CateogryForPost";
 import {apiRoot} from "../models/ApiRoot";
 import {AuthService} from "./auth.service";
@@ -20,14 +20,6 @@ export class PostsService {
 
     // Categories
 
-    createCategory(category: CategoryForPost): Observable<CategoryForPost> {
-        return this.http.post<CategoryForPost>(
-            this.postsCategoryRoute,
-            category,
-            this.authService.authHeaders()
-        )
-    }
-
     getCategories(): Observable<CategoryForPost[]> {
         return this.http.get<CategoryForPost[]>(
             this.postsCategoryRoute,
@@ -37,10 +29,10 @@ export class PostsService {
 
     // POSTS
 
-    createPost(post: Post): Observable<any> {
+    createPost(postAndCategory: PostAndCategoryWrapper): Observable<any> {
         return this.http.post<CategoryForPost>(
             this.postsRoute,
-            post,
+            postAndCategory,
             this.authService.authHeaders()
         )
     }
