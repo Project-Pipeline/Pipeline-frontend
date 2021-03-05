@@ -1,4 +1,7 @@
 $theme-color: #79FEB3;
+$theme-color-dark: #1B5E20;
+$theme-color-gray: rgb(244, 244, 244);
+
 // font etc
 @mixin helvetica-style {
     font-family: "Helvetica", "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
@@ -9,6 +12,12 @@ $theme-color: #79FEB3;
     font-family: "Helvetica", "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
     font-weight: 300;
 }
+
+@mixin ppl-button-outline {
+    padding: 8px 16px;
+    border-radius: 10px;
+}
+
 .helvetica {
     @include helvetica-style;
 }
@@ -28,18 +37,21 @@ $theme-color: #79FEB3;
 }
 
 .ppl-button-green {
+    @include ppl-button-outline;
     background-color: $theme-color;
     border: none;
     color: black;
-    padding: 8px 16px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 13px;
-    border-radius: 10px;
     height: 31px;
     cursor: pointer;
     margin-top: 8px;
+}
+
+.ppl-button-outline {
+    @include ppl-button-outline;
 }
 
 // Dropdown

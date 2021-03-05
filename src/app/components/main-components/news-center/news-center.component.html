@@ -1,1 +1,24 @@
-<p>news-center works!</p>
+<div class="width-container">
+
+    <div class="ml-auto mr-auto" style="width: 700px">
+        <!--    Category pills-->
+        <div class="flex news-center-category">
+            <div class="ppl-button-outline news-center-category-pill"
+                 *ngFor="let category of categories; let i = index"
+                 [attr.data-index]="i"
+                 [ngClass]="{'news-center-category-pill-selected': categoryFilters[i]}"
+                 (click)="selectCategoryFilterAt(i)"
+            >{{category.name}}</div>
+
+        </div>
+
+        <!--    Posts-->
+        <div class="news-center-posts">
+            <div class="post" *ngFor="let post of posts">
+                <h4 class="helvetica clear-text-paddings">{{post.title}}</h4>
+                <p class="helvetica-normal clear-text-paddings">{{post.body}}</p>
+            </div>
+        </div>
+    </div>
+
+</div>

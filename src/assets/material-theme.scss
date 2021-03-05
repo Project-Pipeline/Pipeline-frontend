@@ -1,8 +1,9 @@
 @import '~@angular/material/theming';
+@import "src/app/common-css/common-ui-styles";
 
 @include mat-core();
 
-$dark-green: #1b5e20;
+$dark-green: $theme-color-dark;
 
 $ppl-dark-green: (
     50: #e8f5e9,
@@ -48,7 +49,7 @@ $ppl-green: (
     700: #388e3c,
     800: #2e7d32,
     A100: #b9f6ca,
-    A200: #69f0ae,
+    A200: $theme-color,
     A400: #00e676,
     A700: #00c853,
     contrast: (
