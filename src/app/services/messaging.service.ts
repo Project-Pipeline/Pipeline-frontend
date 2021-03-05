@@ -3,13 +3,13 @@ import {HttpClient} from "@angular/common/http";
 import {AuthService} from "./auth.service";
 import {Observable} from "rxjs";
 import {ServerResponse} from "../models/model classes/ServerResponse";
-import {apiRoot, websocketRoot} from "../models/ApiRoot";
 import {ConversationEntry} from "../models/model classes/messaging/ConversationEntry";
 import {Conversation, ConversationParticipantInfo} from "../models/model classes/messaging/Conversation";
 import {webSocket, WebSocketSubject} from "rxjs/webSocket";
 import {StringArray} from "../models/model classes/StringArray";
 import {User} from "../models/model classes/user/User";
 import {MessagingConnectionEstablished} from "../models/model classes/messaging/MessagingConnect";
+import {ConfigService} from "./config.service";
 
 @Injectable({
     providedIn: 'root'
@@ -19,7 +19,8 @@ export class MessagingService {
 
     constructor(
         private http: HttpClient,
-        private authService: AuthService) {
+        private authService: AuthService,
+        private configService: ConfigService) {
     }
 
     startConversation(participants: User[]): Observable<ServerResponse> {
@@ -28,7 +29,7 @@ export class MessagingService {
             participants.map((u) => new ConversationParticipantInfo(u))
         )
         return this.http.post<ServerResponse>(
-            `${apiRoot}api/messaging/start`,
+            `${this.configService.apiRoot}api/messaging/start`,
             conversation,
             this.authService.authHeaders()
         )
@@ -37,7 +38,7 @@ export class MessagingService {
     messageIDToConversation(messageIDs: string[]): Observable<Conversation[]> {
         const stringArr = new StringArray(messageIDs);
         return this.http.post<Conversation[]>(
-            `${apiRoot}api/messaging/conversation-details`,
+            `${this.configService.apiRoot}api/messaging/conversation-details`,
             stringArr,
             this.authService.authHeaders()
         )
@@ -50,7 +51,7 @@ export class MessagingService {
         errorReceived: (any) => void
     ) {
         this.webSocket = webSocket({
-            url: `${websocketRoot}api/messaging?token=${this.authService.getToken()}`,
+            url: `${this.configService.websocketRoot}api/messaging?token=${this.authService.getToken()}`,
             openObserver: { next: () => {} },
             closeObserver: { next: () => onClose() },
         });

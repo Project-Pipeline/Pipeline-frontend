@@ -3,17 +3,20 @@ import {HttpClient, HttpParams} from "@angular/common/http";
 import {AuthService} from "./auth.service";
 import {OpportunitiesContentsWrapper, Opportunity} from "../models/model classes/opportunities/Opportunity";
 import {Observable} from "rxjs";
-import {apiRoot} from "../models/ApiRoot";
 import {Zipcode} from "../models/model classes/opportunities/Zipcode";
 import {OpportunityCategory} from "../models/model classes/opportunities/OpportunityCategory";
 import {opportunityCategoryToId} from "../models/BusinessConstants";
+import {ConfigService} from "./config.service";
 
 @Injectable({
     providedIn: 'root'
 })
 export class OpportunitiesService {
 
-    constructor(private http: HttpClient, private authService: AuthService) {
+    constructor(
+        private http: HttpClient,
+        private authService: AuthService,
+        private configService: ConfigService) {
 
     }
 
@@ -24,14 +27,14 @@ export class OpportunitiesService {
             new OpportunityCategory(opportunityCategoryToId(opportunity.category))
         );
         return this.http.post<any>(
-            `${apiRoot}api/opportunities`,
+            `${this.configService.apiRoot}api/opportunities`,
             wrapper,
             this.authService.authHeaders()
         )
     }
 
     deleteOpportunity(opportunity: Opportunity): Observable<any> {
-        const url = `${apiRoot}api/opportunities`
+        const url = `${this.configService.apiRoot}api/opportunities`
         return this.http.delete(url, this.authService.authHeadersWithParams({
             opportunityId: opportunity.id,
             zipcode: opportunity.address.postalCode,
@@ -51,7 +54,7 @@ export class OpportunitiesService {
             );
         }
         return this.http.get<Opportunity[]>(
-            `${apiRoot}api/opportunities`,
+            `${this.configService.apiRoot}api/opportunities`,
             this.authService.authHeadersWithParams(params)
         );
     }
