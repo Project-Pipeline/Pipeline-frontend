@@ -18,6 +18,11 @@ $theme-color-gray: rgb(244, 244, 244);
     border-radius: 10px;
 }
 
+@mixin clear-spacing {
+    padding: 0;
+    margin: 0;
+}
+
 .helvetica {
     @include helvetica-style;
 }
@@ -100,6 +105,26 @@ $theme-color-gray: rgb(244, 244, 244);
     &:hover {
         transform: scale(1.2);
         transition: all .2s ease-in-out;
+    }
+}
+
+.header-img-3-line-txt {
+    display: flex;
+    img {
+        width: 50px;
+        height: 50px;
+        border-radius: 30px;
+        margin-right: 10px;
+    }
+    h4 {
+        @include helvetica-style();
+        @include clear-spacing;
+    }
+    p {
+        @include helvetica-thin-style();
+        @include clear-spacing;
+        font-size: 12px;
+        margin-top: 4px;
     }
 }
 

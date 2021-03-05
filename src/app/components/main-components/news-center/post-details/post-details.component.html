@@ -1,0 +1,19 @@
+<div class="post-detail">
+    <div *ngIf="user" class="header-img-3-line-txt">
+        <img src="{{user.picture}}">
+        <div>
+            <h4>{{user.givenName}}&nbsp;{{user.familyName}}</h4>
+            <p>{{getUserTypeString(user)}}</p>
+            <p>{{transformOptionalDate(post.created) | messagingDateFormatter }}</p>
+        </div>
+    </div>
+    <div class="post-detail-body">
+        <h4 class="helvetica clear-text-paddings">{{post.title}}</h4>
+        <p class="helvetica-normal clear-text-paddings">{{post.body}}</p>
+    </div>
+    <div style="margin-top: 10px">
+        <div class="post-detail-links" *ngFor="let link of post.links">
+            <a class="helvetica clear-text-paddings" target="_blank" href="{{link.link}}">{{link.title}}</a>
+        </div>
+    </div>
+</div>

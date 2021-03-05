@@ -5,6 +5,10 @@
     overflow: auto;
 }
 
+.news-center-posts-container {
+    width: 700px;
+}
+
 .news-center-category-pill {
     height: 16px;
     margin-right: 10px;
@@ -26,14 +30,12 @@
 
 .news-center-posts {
     margin-top: 30px;
-    .post {
+}
+
+
+@media only screen and (max-width: 750px) {
+    .news-center-posts-container, .width-container {
         width: 100%;
-        margin-bottom: 10px;
-        padding: 15px;
-        border-radius: 20px;
-        background-color: $theme-color-gray;
-        h4 {
-            margin-bottom: 8px;
-        }
     }
+
 }

@@ -21,12 +21,12 @@
         <h3 class="helvetica">Messages</h3>
         <div class="central-hub-messages" [ngStyle]="{'height': heightStringForList}">
             <div *ngFor="let convo of currentConversations" class="central-hub-messages-row" (click)="conversationSelected(convo)">
-                <div class="flex">
+                <div class="header-img-3-line-txt">
                     <img src="{{imageUrlFor(convo)}}">
                     <div>
-                        <h4 class="helvetica clear-text-paddings">{{formatConvoUsers(convo)}}</h4>
-                        <p class="helvetica-normal clear-text-paddings">{{firstConvoText(convo)}}</p>
-                        <p class="helvetica-normal clear-text-paddings">{{timestampToDate(convo.modified) | messagingDateFormatter}}</p>
+                        <h4>{{formatConvoUsers(convo)}}</h4>
+                        <p>{{firstConvoText(convo)}}</p>
+                        <p>{{timestampToDate(convo.modified) | messagingDateFormatter}}</p>
                     </div>
 
                 </div>

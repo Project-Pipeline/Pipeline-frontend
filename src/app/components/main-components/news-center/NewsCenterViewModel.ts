@@ -5,6 +5,7 @@ import {Observable, Subject} from "rxjs";
 import {map, mergeMap} from "rxjs/operators";
 import {Post} from "../../../models/model classes/posts/Post";
 import {PageData} from "../../../models/model classes/common/PageData";
+import {User} from "../../../models/model classes/user/User";
 
 export class NewsCenterViewModel {
     categorySelected: Subject<CategoryForPost> = new Subject();
@@ -25,5 +26,9 @@ export class NewsCenterViewModel {
                 [new CategoryForPost('All', 'All')].concat(categories),
                 [false].concat(categories.map(() => false))
             ]));
+    }
+
+    getUsersFromPosts(posts: Post[]): Observable<User[]> {
+        return this.usersApi.getMultipleUserInfo(posts.map((p) => p.user.id));
     }
 }

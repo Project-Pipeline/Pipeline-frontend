@@ -35,6 +35,7 @@ import { OpportunitiesFilterBarComponent } from './opportunities/opportunities-f
 import { OpportunityDetailsComponent } from './opportunities/opportunity-details/opportunity-details.component';
 import { AddPostPopupComponent } from './news-center/add-post-popup/add-post-popup.component';
 import { PostSummaryCardComponent } from './profile/utility/post-summary-card/post-summary-card.component';
+import { PostDetailsComponent } from './news-center/post-details/post-details.component';
 
 @NgModule({
     declarations: [
@@ -58,7 +59,8 @@ import { PostSummaryCardComponent } from './profile/utility/post-summary-card/po
         OpportunitiesFilterBarComponent,
         OpportunityDetailsComponent,
         AddPostPopupComponent,
-        PostSummaryCardComponent
+        PostSummaryCardComponent,
+        PostDetailsComponent
     ],
     imports: [
         CommonModule,

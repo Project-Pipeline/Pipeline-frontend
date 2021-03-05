@@ -39,7 +39,7 @@ export class PostsService {
 
     getAllPosts(): Observable<PageData<Post>> {
         return this.http.get<PageData<Post>>(
-            this.postsRoute + '/all',
+            this.postsRoute,
             this.authService.authHeaders()
         )
     }

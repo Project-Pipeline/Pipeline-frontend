@@ -4,6 +4,8 @@ import {UserApiService} from "../../../services/user-api.service";
 import {PostsService} from "../../../services/posts.service";
 import {CategoryForPost} from "../../../models/model classes/posts/CateogryForPost";
 import {Post} from "../../../models/model classes/posts/Post";
+import {User} from "../../../models/model classes/user/User";
+import {mergeMap} from "rxjs/operators";
 
 @Component({
     selector: 'app-news-center',
@@ -17,6 +19,7 @@ export class NewsCenterComponent implements OnInit {
     categories: CategoryForPost[] = [];
     categoryFilters: boolean[] = [];
     posts: Post[] = [];
+    postsUsers: User[];
 
     constructor(usersApi: UserApiService, postsApi: PostsService) {
         this.viewModel = new NewsCenterViewModel(postsApi, usersApi);
@@ -32,7 +35,12 @@ export class NewsCenterComponent implements OnInit {
             });
 
         this.viewModel.postsFetched
-            .subscribe((posts) => this.posts = posts.items)
+            .pipe(mergeMap((posts) => {
+                this.postsUsers = posts.items.map(() => null);
+                this.posts = posts.items;
+                return this.viewModel.getUsersFromPosts(posts.items)
+            }))
+            .subscribe((users) => this.postsUsers = users);
     }
 
     selectCategoryFilterAt(index: number) {

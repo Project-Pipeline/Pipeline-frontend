@@ -1,0 +1,42 @@
+@import "src/app/common-css/common-ui-styles";
+
+p {
+    font-size: 15px;
+}
+
+.post-detail {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 15px;
+    border-radius: 20px;
+    background-color: $theme-color-gray;
+
+}
+
+
+.post-detail-body {
+    margin-top: 10px;
+    h4 {
+        margin-bottom: 8px;
+    }
+
+}
+
+.post-detail-links {
+    background-color: white;
+    border-radius: 10px;
+    padding: 6px 10px;
+    a {
+        margin-bottom: 4px;
+        &:link, &:visited {
+            color: black;
+            text-decoration: underline;
+        }
+        &:hover {
+            color: $theme-color-dark;
+        }
+        transition: all .1s ease-in-out;
+    }
+    margin-bottom: 4px;
+
+}

@@ -1,6 +1,6 @@
 <div class="width-container">
 
-    <div class="ml-auto mr-auto" style="width: 700px">
+    <div class="ml-auto mr-auto news-center-posts-container">
         <!--    Category pills-->
         <div class="flex news-center-category">
             <div class="ppl-button-outline news-center-category-pill"
@@ -14,11 +14,16 @@
 
         <!--    Posts-->
         <div class="news-center-posts">
-            <div class="post" *ngFor="let post of posts">
-                <h4 class="helvetica clear-text-paddings">{{post.title}}</h4>
-                <p class="helvetica-normal clear-text-paddings">{{post.body}}</p>
+            <div *ngFor="let post of posts let i = index"
+                 [attr.data-index]="i">
+                <app-post-details
+                    [post]="post"
+                    [user]="postsUsers[i]"
+                ></app-post-details>
             </div>
         </div>
     </div>
+
+    <div style="height: 30px"></div>
 
 </div>
