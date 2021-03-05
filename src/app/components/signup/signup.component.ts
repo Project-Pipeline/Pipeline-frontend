@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {filter} from "rxjs/operators";
+import {ConfigService} from "../../services/config.service";
 
 @Component({
     selector: 'app-signup',
@@ -10,7 +11,7 @@ import {filter} from "rxjs/operators";
 export class SignupComponent implements OnInit {
     errorMessage = "";
 
-    constructor(private routes: ActivatedRoute) {
+    constructor(private routes: ActivatedRoute, public config: ConfigService) {
     }
 
     ngOnInit(): void {
