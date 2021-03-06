@@ -53,10 +53,10 @@ export class AddressAutoCompleterComponent implements AfterViewInit {
 
         getGeocode
             .pipe(filter((res) => res != undefined))
-            .subscribe((geocode) => {
+            .subscribe((results) => {
                 let postalCode: string = null;
                 this.errorText = null;
-                const result = geocode.results[0];
+                const result = results[0];
                 result.address_components.forEach((comp) => {
                    if (comp.types.includes('postal_code')) {
                        postalCode = comp.long_name;
@@ -64,8 +64,8 @@ export class AddressAutoCompleterComponent implements AfterViewInit {
                 });
                 const address = new Address(
                     place.terms.map((t) => t.value),
-                    result.geometry.location.lat,
-                    result.geometry.location.lng,
+                    result.geometry.location.lat(),
+                    result.geometry.location.lng(),
                     postalCode
                 );
                 this.addressSelected.emit(address);

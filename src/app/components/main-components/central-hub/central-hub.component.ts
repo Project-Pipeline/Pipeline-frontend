@@ -1,4 +1,5 @@
 import {Component, HostListener, OnInit} from '@angular/core';
+import {Title} from "@angular/platform-browser";
 
 @Component({
     selector: 'app-central-hub',
@@ -10,8 +11,9 @@ export class CentralHubComponent implements OnInit {
     viewportHeightString: string = null;
     showMessages = false;
 
-    constructor() {
+    constructor(private title: Title) {
         this.viewportHeightString = this.getViewportHeight();
+        this.title.setTitle('Central Hub');
     }
 
     ngOnInit(): void {

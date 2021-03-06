@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {AuthService} from "./auth.service";
 import {Observable} from "rxjs";
 import {CloudinarySignature} from "../models/model classes/image-upload/CloudinarySignature";
-import {apiRoot} from "../models/ApiRoot";
 import {CloudinaryUploadResponse} from "../models/model classes/image-upload/CloudinaryUploadResponse";
 import {mergeMap} from "rxjs/operators";
 import {ConfigType} from "../models/ConfigType";
@@ -41,7 +40,7 @@ export class ImageUploadService {
         return this.http
             // get the signature and timestamp from backend
             .get<CloudinarySignature>(
-                `${apiRoot}api/images/signature?public_id=${publicID}`,
+                `${this.configService.apiRoot}api/images/signature?public_id=${publicID}`,
                 this.authService.authHeaders()
             )
             // upload to Cloudinary, returns the url of uploaded image, should be re-sent to server for proper storage

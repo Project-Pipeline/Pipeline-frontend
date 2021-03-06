@@ -27,7 +27,21 @@ export const opportunityState = [
 export const allowedOpportunityGradeLevels = [9, 10, 11, 12];
 
 export function opportunityCategoryToId(category: string): string {
+    return categoryToId(category);
+}
+
+export function categoryToId(category: string): string {
     return category
         .replace(',', '')
         .replace(/\s/g, '');
+}
+
+/// User type -> Category
+export const postCategoryLookUp = {
+    0: 'Student',
+    1: 'Teacher',
+    2: 'Working Professional',
+    3: 'Business',
+    4: 'Community Organization',
+    5: 'School'
 }

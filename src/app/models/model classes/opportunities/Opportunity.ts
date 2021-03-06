@@ -1,11 +1,11 @@
 import {Address} from "../user/Address";
-import {UserWrapper} from "../user/UserDetails";
+import {UserDTO} from "../user/UserDetails";
 import {Zipcode} from "./Zipcode";
 import {dateAsUnixTimeStamp, generateUUID} from "../../Global";
 import {OpportunityCategory} from "./OpportunityCategory";
 
 export class Opportunity {
-    public user: UserWrapper
+    public user: UserDTO
     constructor(
         public name: string,
         public companyName: string,
@@ -23,7 +23,7 @@ export class Opportunity {
         public state: number = 0,
         public id: string = generateUUID()
     ) {
-        this.user = new UserWrapper(userId);
+        this.user = new UserDTO(userId);
     }
 }
 

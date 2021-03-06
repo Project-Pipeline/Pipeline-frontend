@@ -1,0 +1,48 @@
+.add-post-close-btn {
+    position: absolute;
+    right: 10px;
+    top: 0;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
+
+.add-post-container {
+    padding: 0 20px;
+    position: relative;
+}
+
+.add-post-mid {
+    height: 305px;
+    overflow: auto;
+}
+
+.add-post-bottom-section {
+    div:nth-child(1) {
+        margin-bottom: 5px;
+        img {
+            cursor: pointer;
+        }
+    }
+
+}
+
+textarea {
+    width: 100%;
+    height: 250px;
+    border: none;
+    padding: 10px 0;
+    font-size: 17px;
+    box-sizing: border-box;
+    &:focus {
+        outline: none;
+    }
+}
+
+.btn-selected {
+    filter: none;
+}
+
+.btn-unselected {
+    filter: grayscale(100%);
+}

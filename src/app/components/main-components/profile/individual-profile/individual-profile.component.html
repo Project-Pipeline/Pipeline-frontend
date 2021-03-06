@@ -11,12 +11,23 @@
         </div>
     </div>
 
-    <h3 class="helvetica">Recent Posts</h3>
+    <div class="flex" style="width: 100%">
+        <h3 class="helvetica">Recent Posts</h3>
+        <button class="ml-auto ppl-button-green" (click)="addPost()">Add A Post</button>
+    </div>
+
     <div class="horizontal-scroll-outer">
-        <div class="horizontal-scroll-inner">
-            <div class="post-card">
-                <button mat-raised-button color="accent">Add A Post</button>
-            </div>
-        </div>
+        <app-post-summary-card
+            *ngIf="posts.length === 0"
+            class="horizontal-scroll-inner"
+            [noPost]="true"
+        ></app-post-summary-card>
+        <app-post-summary-card
+            class="horizontal-scroll-inner"
+            *ngFor="let post of posts;
+            let i = index"
+            [attr.data-index]="i"
+            [post]="post"
+        ></app-post-summary-card>
     </div>
 </div>

@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {PlacePrediction} from "../models/model classes/maps/PlacePrediction";
+import {PlacePrediction, PlacePredictionResult} from "../models/model classes/maps/PlacePrediction";
 import {Observable} from "rxjs";
-import {GeocodingResponse, LatLng} from "../models/model classes/maps/GeocodingResponse";
+import {LatLng} from "../models/model classes/maps/GeocodingResponse";
 import * as xml2js from 'xml2js';
 import {map} from "rxjs/operators";
 import {ConfigService} from "./config.service";
@@ -12,27 +12,49 @@ import {GeonamesPostalCode, GeonamesResponse} from "../models/model classes/maps
     providedIn: 'root'
 })
 export class MapsService {
-    private googleApiKey: string;
     private geonamesUsername: string;
     private geoNamesAPIRoot = 'https://secure.geonames.org/';
+    private geoCoder = new google.maps.Geocoder();
+    private autoCompleter = new google.maps.places.AutocompleteService();
 
     constructor(private http: HttpClient, private configService: ConfigService) {
         const config = configService.config;
-        this.googleApiKey = config.google_api_key;
         this.geonamesUsername = config.geonames_username;
     }
 
     getAddressSuggestions(searchTerm: string): Observable<PlacePrediction> {
-        return this.http.get<PlacePrediction>(
-            `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${searchTerm}&key=${this.googleApiKey}`
-        );
+        return new Observable<PlacePrediction>((observer) => {
+            this.autoCompleter.getQueryPredictions(
+                {input: searchTerm},
+                (predictions, status) => {
+                if (status != google.maps.places.PlacesServiceStatus.OK || !predictions) {
+                    observer.error('Autocomplete error');
+                } else {
+                    observer.next(new PlacePrediction(
+                        predictions.map((p) => new PlacePredictionResult(
+                            p.description,
+                            p.matched_substrings,
+                            p.place_id,
+                            '',
+                            p.terms
+                        ))
+                    ));
+                }
+            });
+        });
     }
 
-    getGeocodingResponse(address: string): Observable<GeocodingResponse> {
+    getGeocodingResponse(address: string): Observable<google.maps.GeocoderResult[]> {
         const formattedAddress = address.replace(' ', '+');
-        return this.http.get<GeocodingResponse>(
-            `https://maps.googleapis.com/maps/api/geocode/json?address=${formattedAddress}&key=${this.googleApiKey}`
-        );
+        return new Observable<google.maps.GeocoderResult[]>((observer) => {
+            this.geoCoder.geocode({address: formattedAddress}, (res, status) => {
+               if (status == google.maps.GeocoderStatus.ERROR) {
+                   observer.error("geocoding error");
+               } else {
+                   observer.next(res);
+               }
+            });
+        });
     }
 
     getCurrentLocation(): Observable<LatLng> {

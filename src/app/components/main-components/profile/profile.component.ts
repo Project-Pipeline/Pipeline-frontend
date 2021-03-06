@@ -1,15 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {UserApiService} from "../../../services/user-api.service";
 import {User} from "../../../models/model classes/user/User";
-import {catchError, filter, mergeMap, share} from "rxjs/operators";
 import {Router} from "@angular/router";
-import {handleJWTError} from "../../../models/Global";
 import {UserDetails} from "../../../models/model classes/user/UserDetails";
 import {ModalPopupService} from "../modal-popup.service";
-import {IndividualUserDetailsPopupComponent} from "./individual-user-details-popup/individual-user-details-popup.component";
-import {empty, Observable} from "rxjs";
-import {EntityUserDetailsPopupComponent} from "./entity-user-details-popup/entity-user-details-popup.component";
-import {entityUserTypes, individualUserTypes} from "../../../models/BusinessConstants";
+import {PostsService} from "../../../services/posts.service";
+import {Post} from "../../../models/model classes/posts/Post";
+import {ProfileViewModel} from "./ProfileViewModel";
+import {Title} from "@angular/platform-browser";
 
 @Component({
     selector: 'app-profile',
@@ -23,70 +21,51 @@ export class ProfileComponent implements OnInit {
     shouldCompleteUserDetails = false;
     isIndividual = false;
     isEntity = false;
-    private typeToStringLookup: {[key: number]: string} = {
-        0: 'student',
-        1: 'teacher',
-        2: 'working professional',
-        3: 'company',
-        4: 'community organization',
-        5: 'school'
-    };
+    posts: Post[] = [];
+    viewModel: ProfileViewModel;
 
-    constructor(public usersApi: UserApiService, public router: Router, public modalPopupService: ModalPopupService) {
-
+    constructor(
+        public usersApi: UserApiService,
+        public router: Router,
+        public modalPopupService: ModalPopupService,
+        public postsService: PostsService,
+        public title: Title
+    ) {
+        this.viewModel = new ProfileViewModel(usersApi, router, modalPopupService, postsService);
+        this.title.setTitle('Profile');
     }
 
     ngOnInit(): void {
-        const userDetails = this.usersApi.getUserInfo()
-            .pipe(catchError((e) => handleJWTError(e, this.router)))
-            .pipe(mergeMap((user) => {
-                this.userInfo = user;
-                this.prepareUserType(user);
-                this.pageReady = true;
-                return this.usersApi.getUserDetails()
-            }))
-            .pipe(share());
+        this.viewModel.getUser().subscribe((result) => {
+            this.userInfo = result.user;
+            this.isIndividual = result.isIndividual;
+            this.isEntity = result.isEntity;
+            this.pageReady = true;
+            // get posts
+            this.viewModel.getPosts(this.userInfo)
+                .subscribe((posts) => this.posts = posts.items);
+        });
 
         // user details dne - create user details
-        userDetails.pipe(filter((details) => details.length === 0))
+       this.viewModel.noUserDetails
             .subscribe(() => this.shouldCompleteUserDetails = true);
 
         // user detail exists
-        userDetails.pipe(filter((details) => details.length !== 0))
-            .subscribe((details) => this.userDetails = details[0]);
+        this.viewModel.hasUserDetails
+            .subscribe((detail) => this.userDetails = detail);
     }
 
     completeProfile() {
-        let userDetails: UserDetails;
-        let getUserDetails: Observable<any> = empty();
-        if (individualUserTypes.includes(this.userInfo.type)) { // Individual user
-            getUserDetails = this.modalPopupService.openDialogComponent(
-                IndividualUserDetailsPopupComponent,
-                this.userInfo
-            );
-        } else if (entityUserTypes.includes(this.userInfo.type)) { // an entity
-            getUserDetails = this.modalPopupService.openDialogComponent(
-                EntityUserDetailsPopupComponent,
-                this.userInfo
-            );
-        }
-        getUserDetails
-            .pipe(filter((result) => result != null))
-            .pipe(mergeMap((result) => {
-                userDetails = result as UserDetails;
-                return this.usersApi.setUserDetails(result);
-            }))
-            .subscribe(() => this.userDetails = userDetails);
-    }
-
-    prepareUserType(userInfo: User) {
-        this.isIndividual = individualUserTypes.includes(userInfo.type);
-        this.isEntity = entityUserTypes.includes(userInfo.type);
+        this.viewModel.completeProfileFor(this.userInfo)
+            .subscribe((userDetails) => this.userDetails = userDetails);
     }
 
     typeToString(): string {
-        return this.typeToStringLookup[this.userInfo.type];
+        return this.viewModel.typeToStringFor(this.userInfo);
     }
 
-
+    addPost() {
+        this.viewModel.addPost()
+            .subscribe((post) => this.posts.push(post));
+    }
 }
