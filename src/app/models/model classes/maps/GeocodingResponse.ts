@@ -1,16 +1,20 @@
 // https://developers.google.com/maps/documentation/geocoding/start
 export class GeocodingResponse {
     // omit plus_code
-    results: GeocodingResponseResult[];
+    constructor(public results: GeocodingResponseResult[]) {
+    }
 }
 
 export class GeocodingResponseResult {
-    address_components: GeocodingAddressComponents[];
-    formatted_address: string;
-    geometry: GeocodingGeometry;
-    place_id: string;
-    // omit plus_code
-    types: string[];
+    constructor(
+        public address_components: GeocodingAddressComponents[],
+        public formatted_address: string,
+        public geometry: GeocodingGeometry,
+        public place_id: string,
+        // omit plus_code
+        public types: string[],
+    ) {
+    }
 }
 
 export class GeocodingAddressComponents {

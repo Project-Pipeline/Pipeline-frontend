@@ -51,7 +51,7 @@ export class MessagingService {
         errorReceived: (any) => void
     ) {
         this.webSocket = webSocket({
-            url: `${this.configService.websocketRoot}api/messaging?token=${this.authService.getToken()}`,
+            url: `${this.configService.websocketRoot}ws/messaging?token=${this.authService.getToken()}`,
             openObserver: { next: () => {} },
             closeObserver: { next: () => onClose() },
         });

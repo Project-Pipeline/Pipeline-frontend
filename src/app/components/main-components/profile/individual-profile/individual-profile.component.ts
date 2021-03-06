@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {ProfileComponent} from "../profile.component";
 import {ModalPopupService} from "../../modal-popup.service";
 import {PostsService} from "../../../../services/posts.service";
+import {Title} from "@angular/platform-browser";
 
 @Component({
     selector: 'app-individual-profile',
@@ -15,9 +16,10 @@ export class IndividualProfileComponent extends ProfileComponent implements OnIn
         public usersApi: UserApiService,
         public router: Router,
         public dialogService: ModalPopupService,
-        public postsService: PostsService)
+        public postsService: PostsService,
+        public title: Title)
     {
-        super(usersApi, router, dialogService, postsService);
+        super(usersApi, router, dialogService, postsService, title);
     }
 
     ngOnInit(): void {
