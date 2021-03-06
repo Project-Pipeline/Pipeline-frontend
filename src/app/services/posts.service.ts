@@ -2,20 +2,24 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {PostAndCategoryWrapper, Post} from "../models/model classes/posts/Post";
 import {CategoryForPost} from "../models/model classes/posts/CateogryForPost";
-import {apiRoot} from "../models/ApiRoot";
 import {AuthService} from "./auth.service";
 import {Observable} from "rxjs";
 import {PageData} from "../models/model classes/common/PageData";
+import {ConfigService} from "./config.service";
 
 @Injectable({
     providedIn: 'root'
 })
 export class PostsService {
-    private postsCategoryRoute = `${apiRoot}api/posts/category`;
-    private postsRoute = `${apiRoot}api/posts`;
+    private postsCategoryRoute;
+    private postsRoute;
 
-    constructor(private http: HttpClient, private authService: AuthService) {
-
+    constructor(
+        private http: HttpClient,
+        private authService: AuthService,
+        private configService: ConfigService) {
+        this.postsRoute = `${configService.apiRoot}api/posts`;
+        this.postsCategoryRoute =  `${configService.apiRoot}api/posts/category`;
     }
 
     // Categories

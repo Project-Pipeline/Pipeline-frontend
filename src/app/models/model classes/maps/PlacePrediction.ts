@@ -9,11 +9,14 @@ export class PlacePrediction {
 }
 
 export class PlacePredictionResult {
-    description: string;
-    matched_substrings: LengthOffset[];
-    place_id: string;
-    reference: string;
-    terms: OffsetAndValue[];
+    constructor(
+        public description: string,
+        public matched_substrings: LengthOffset[],
+        public place_id: string,
+        public reference: string,
+        public terms: OffsetAndValue[],
+    ) {
+    }
 }
 
 export class LengthOffset {

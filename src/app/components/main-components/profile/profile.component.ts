@@ -7,6 +7,7 @@ import {ModalPopupService} from "../modal-popup.service";
 import {PostsService} from "../../../services/posts.service";
 import {Post} from "../../../models/model classes/posts/Post";
 import {ProfileViewModel} from "./ProfileViewModel";
+import {Title} from "@angular/platform-browser";
 
 @Component({
     selector: 'app-profile',
@@ -27,9 +28,11 @@ export class ProfileComponent implements OnInit {
         public usersApi: UserApiService,
         public router: Router,
         public modalPopupService: ModalPopupService,
-        public postsService: PostsService
+        public postsService: PostsService,
+        public title: Title
     ) {
         this.viewModel = new ProfileViewModel(usersApi, router, modalPopupService, postsService);
+        this.title.setTitle('Profile');
     }
 
     ngOnInit(): void {

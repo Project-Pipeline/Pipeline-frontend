@@ -4,6 +4,7 @@ import {filter, mergeMap, share} from "rxjs/operators";
 import {User} from "../../models/model classes/user/User";
 import {UserApiService} from "../../services/user-api.service";
 import {LoginViewModel} from "./LoginViewModel";
+import {Title} from "@angular/platform-browser";
 
 @Component({
     selector: 'app-login',
@@ -31,9 +32,12 @@ export class LoginComponent implements OnInit {
     constructor(
         private route: ActivatedRoute,
         private apiService: UserApiService,
-        private router: Router) {
+        private router: Router,
+        private title: Title
+    ) {
         this.viewModel = new LoginViewModel();
         this.selectedBusiness = this.viewModel.businessTypes[0];
+        this.title.setTitle('Login Details');
     }
 
     ngOnInit(): void {
