@@ -3,9 +3,10 @@ import {HttpClient} from "@angular/common/http";
 import {PostAndCategoryWrapper, Post} from "../models/model classes/posts/Post";
 import {CategoryForPost} from "../models/model classes/posts/CateogryForPost";
 import {AuthService} from "./auth.service";
-import {Observable} from "rxjs";
+import {Observable, of} from "rxjs";
 import {PageData} from "../models/model classes/common/PageData";
 import {ConfigService} from "./config.service";
+import {PageDataMetadata} from "../models/model classes/common/PageData";
 
 @Injectable({
     providedIn: 'root'
@@ -56,6 +57,9 @@ export class PostsService {
         page: number = 1,
         per: number = 5,
     ): Observable<PageData<Post>> {
+        if (categories.length === 0) {
+            return of(new PageData<Post>([], new PageDataMetadata(0, 0, 0)));
+        }
         return this.http.get<PageData<Post>>(
             this.postsRoute,
             this.authService.authHeadersWithParams({

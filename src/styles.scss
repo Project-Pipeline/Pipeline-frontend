@@ -5,6 +5,9 @@
 @import "app/common-css/common-ui-styles";
 @import "app/common-css/profile-page-styles";
 
+// do not import bootstrap - it messes with current styling
+//@import '~bootstrap/dist/css/bootstrap.min.css';
+
 body {
     margin: 0;
     padding: 0;

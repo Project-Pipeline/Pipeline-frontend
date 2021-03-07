@@ -65,8 +65,10 @@ export class PaginatorComponent implements OnInit {
         this.nextBtnDisabled = this.page === totalPages - 1;
     }
 
-    checkButtonStates() {
-        console.log(this.page, this.per, this.total);
+    checkButtonStates(resetPage: boolean) {
+        if (resetPage) {
+            this.page = 0;
+        }
         this.checkDisablingNextBtn();
         this.checkDisablingPrevBtn();
     }

@@ -1,5 +1,6 @@
 import {UserDTO} from "../user/UserDetails";
 import {CategoryForPost, CategoryForPostDTO} from "./CateogryForPost";
+import {User} from "../user/User";
 
 export class Post {
     public user: UserDTO;
@@ -34,5 +35,14 @@ export class PostAndCategoryWrapper {
     ) {
     }
 }
+
+export class UsersAndPosts {
+    constructor(
+        public users: User[],
+        public posts: Post[]
+    ) {
+    }
+}
+
 
 

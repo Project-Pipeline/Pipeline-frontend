@@ -37,6 +37,7 @@ import { AddPostPopupComponent } from './news-center/add-post-popup/add-post-pop
 import { PostSummaryCardComponent } from './profile/utility/post-summary-card/post-summary-card.component';
 import { PostDetailsComponent } from './news-center/post-details/post-details.component';
 import {PaginatorComponent} from '../reusable-components/paginator/paginator.component';
+import {NgxSpinnerModule} from "ngx-spinner";
 
 @NgModule({
     declarations: [
@@ -80,7 +81,9 @@ import {PaginatorComponent} from '../reusable-components/paginator/paginator.com
         MatButtonModule,
         MatCheckboxModule,
         // Google maps,
-        GoogleMapsModule
+        GoogleMapsModule,
+        // Misc
+        NgxSpinnerModule
     ],
     providers: [
         {

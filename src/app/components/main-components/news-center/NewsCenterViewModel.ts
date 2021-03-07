@@ -1,37 +1,34 @@
 import {PostsService} from '../../../services/posts.service';
 import {UserApiService} from '../../../services/user-api.service';
 import {CategoryForPost} from '../../../models/model classes/posts/CateogryForPost';
-import {combineLatest, Observable, Subject} from 'rxjs';
-import {exhaustMap, map} from 'rxjs/operators';
+import {Observable, Subject} from 'rxjs';
+import {exhaustMap, filter, map, share} from 'rxjs/operators';
 import {Post} from '../../../models/model classes/posts/Post';
-import {PageData} from '../../../models/model classes/common/PageData';
+import {PageData, PageDataMetadata} from '../../../models/model classes/common/PageData';
 import {User} from '../../../models/model classes/user/User';
 
 export class NewsCenterViewModel {
-    categorySelected$: Subject<CategoryForPost> = new Subject();
     pageChanged$: Subject<number> = new Subject();
     postsFetched$: Observable<PageData<Post>>;
+    postsFetchedWithNewCategory$: Observable<PageDataMetadata>;
     newCategory = false;
+    category: CategoryForPost;
 
-    private per = 5;
+    private per = 10;
 
     constructor(private postsApi: PostsService, private usersApi: UserApiService) {
-       this.initPostsObservations();
-    }
+        this.postsFetched$ = this.pageChanged$
+            .pipe(exhaustMap((page) => {
+                if (this.category.name === 'All') {
+                    return this.postsApi.getAllPosts(page, this.per);
+                }
+                return this.postsApi.getPostsWithCategories([this.category], page, this.per);
+            }))
+            .pipe(share());
 
-    initPostsObservations() {
-        this.postsFetched$ = combineLatest([
-            this.categorySelected$.pipe(map((p) => {
-                this.newCategory = true;
-                return p;
-            })),
-            this.pageChanged$
-        ]).pipe(exhaustMap(([category, page]) => {
-            if (category.name === 'All') {
-                return this.postsApi.getAllPosts(page, this.per);
-            }
-            return this.postsApi.getPostsWithCategories([category], page, this.per);
-        }));
+        this.postsFetchedWithNewCategory$ = this.postsFetched$
+            .pipe(filter(() => this.newCategory))
+            .pipe(map((posts) => posts.metadata));
     }
 
     getPostsCategories(): Observable<[CategoryForPost[], boolean[]]>  {
@@ -46,5 +43,11 @@ export class NewsCenterViewModel {
         return this.usersApi.getMultipleUserInfo(
             posts.map((p) => p.user.id)
         );
+    }
+
+    setNewCategory(category: CategoryForPost) {
+        this.category = category;
+        this.newCategory = true;
+        this.pageChanged$.next(1);
     }
 }

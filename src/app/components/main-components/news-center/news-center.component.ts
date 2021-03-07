@@ -3,14 +3,15 @@ import {NewsCenterViewModel} from './NewsCenterViewModel';
 import {UserApiService} from '../../../services/user-api.service';
 import {PostsService} from '../../../services/posts.service';
 import {CategoryForPost} from '../../../models/model classes/posts/CateogryForPost';
-import {Post} from '../../../models/model classes/posts/Post';
+import {Post, UsersAndPosts} from '../../../models/model classes/posts/Post';
 import {User} from '../../../models/model classes/user/User';
-import {catchError, mergeMap, takeUntil} from 'rxjs/operators';
+import {catchError, delay, map, mergeMap, takeUntil} from 'rxjs/operators';
 import {Title} from '@angular/platform-browser';
 import {PaginatorComponent} from '../../reusable-components/paginator/paginator.component';
-import {Subject} from 'rxjs';
+import {of, Subject} from 'rxjs';
 import {handleJWTError} from '../../../models/Global';
 import {Router} from '@angular/router';
+import {NgxSpinnerService} from 'ngx-spinner';
 
 @Component({
     selector: 'app-news-center',
@@ -35,13 +36,15 @@ export class NewsCenterComponent implements OnInit , OnDestroy {
         usersApi: UserApiService,
         postsApi: PostsService,
         title: Title,
-        private router: Router
+        private router: Router,
+        private spinner: NgxSpinnerService
     ) {
         this.viewModel = new NewsCenterViewModel(postsApi, usersApi);
         title.setTitle('News Center');
     }
 
     ngOnInit(): void {
+        this.spinner.show();
         this.viewModel
             .getPostsCategories()
             .pipe(catchError((e) => handleJWTError(e, this.router)))
@@ -56,19 +59,28 @@ export class NewsCenterComponent implements OnInit , OnDestroy {
         this.viewModel.postsFetched$
             .pipe(catchError((e) => handleJWTError(e, this.router)))
             .pipe(mergeMap((posts) => {
-                this.postsUsers = posts.items.map(() => null);
-                this.posts = posts.items;
-                if (this.viewModel.newCategory) {
-                    this.viewModel.newCategory = false;
-                    this.per = posts.metadata.per;
-                    this.total = posts.metadata.total;
-                    this.page = posts.metadata.page;
-                    setTimeout(() => this.paginator.checkButtonStates(), 50);
-                }
-                return this.viewModel.getUsersFromPosts(posts.items);
+                return this.viewModel
+                    .getUsersFromPosts(posts.items)
+                    .pipe(map((users) => new UsersAndPosts(users, posts.items)));
             }))
+            .pipe(catchError(() => of(new UsersAndPosts([], []))))
             .pipe(takeUntil(this.unsubscribe$))
-            .subscribe((users) => this.postsUsers = users);
+            .subscribe((usersAndPosts) => {
+                this.postsUsers = usersAndPosts.users;
+                this.posts = usersAndPosts.posts;
+                this.spinner.hide();
+            }, (e) => this.spinner.hide(e.message));
+
+        this.viewModel.postsFetchedWithNewCategory$
+            .pipe(takeUntil(this.unsubscribe$))
+            .subscribe((metadata) => {
+                this.viewModel.newCategory = false;
+                this.per = metadata.per;
+                this.total = metadata.total;
+                this.page = metadata.page;
+                setTimeout(() => this.paginator.checkButtonStates(true), 50);
+            });
+
     }
 
     ngOnDestroy() {
@@ -81,14 +93,14 @@ export class NewsCenterComponent implements OnInit , OnDestroy {
             this.categoryFilters[i] = index === i ? !this.categoryFilters[index] : false;
         });
         if (this.categoryFilters[index]) {
-            this.viewModel.categorySelected$.next(this.categories[index]);
             this.page = 1;
-            this.viewModel.pageChanged$.next(1);
+            this.viewModel.setNewCategory(this.categories[index]);
+            this.spinner.show();
         }
     }
 
     pagesChanged(page: number) {
         this.viewModel.pageChanged$.next(page);
+        this.spinner.show();
     }
-
 }
