@@ -38,23 +38,32 @@ export class PostsService {
             this.postsRoute,
             postAndCategory,
             this.authService.authHeaders()
-        )
+        );
     }
 
-    getAllPosts(): Observable<PageData<Post>> {
-        return this.http.get<PageData<Post>>(
-            this.postsRoute,
-            this.authService.authHeaders()
-        )
-    }
-
-    getPostsWithCategories(categories: CategoryForPost[]): Observable<PageData<Post>> {
+    getAllPosts(page: number = 1, per: number = 5): Observable<PageData<Post>> {
         return this.http.get<PageData<Post>>(
             this.postsRoute,
             this.authService.authHeadersWithParams({
-                category: categories.map((c) => c.id).join(',')
+                page: `${page}`,
+                per: `${per}`
             })
-        )
+        );
+    }
+
+    getPostsWithCategories(
+        categories: CategoryForPost[],
+        page: number = 1,
+        per: number = 5,
+    ): Observable<PageData<Post>> {
+        return this.http.get<PageData<Post>>(
+            this.postsRoute,
+            this.authService.authHeadersWithParams({
+                category: categories.map((c) => c.id).join(','),
+                page: `${page}`,
+                per: `${per}`
+            })
+        );
     }
 
 

@@ -1,6 +1,7 @@
 $theme-color: #79FEB3;
 $theme-color-dark: #1B5E20;
 $theme-color-gray: rgb(244, 244, 244);
+$theme-color-lighter: #dbffde;
 
 // font etc
 @mixin helvetica-style {
@@ -53,6 +54,9 @@ $theme-color-gray: rgb(244, 244, 244);
     height: 31px;
     cursor: pointer;
     margin-top: 8px;
+    &:focus {
+        outline: none;
+    }
 }
 
 .ppl-button-outline {

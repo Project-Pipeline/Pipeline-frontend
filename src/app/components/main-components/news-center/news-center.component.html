@@ -22,7 +22,17 @@
                 ></app-post-details>
             </div>
         </div>
+
+        <app-paginator
+            #paginator
+            style="margin-top: 15px"
+            [page]="page"
+            [per]="per"
+            [total]="total"
+            (pageChanged)="pagesChanged($event)"
+        ></app-paginator>
     </div>
+
 
     <div style="height: 30px"></div>
 

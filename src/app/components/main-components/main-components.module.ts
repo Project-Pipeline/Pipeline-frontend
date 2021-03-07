@@ -36,6 +36,7 @@ import { OpportunityDetailsComponent } from './opportunities/opportunity-details
 import { AddPostPopupComponent } from './news-center/add-post-popup/add-post-popup.component';
 import { PostSummaryCardComponent } from './profile/utility/post-summary-card/post-summary-card.component';
 import { PostDetailsComponent } from './news-center/post-details/post-details.component';
+import {PaginatorComponent} from '../reusable-components/paginator/paginator.component';
 
 @NgModule({
     declarations: [
@@ -60,7 +61,8 @@ import { PostDetailsComponent } from './news-center/post-details/post-details.co
         OpportunityDetailsComponent,
         AddPostPopupComponent,
         PostSummaryCardComponent,
-        PostDetailsComponent
+        PostDetailsComponent,
+        PaginatorComponent
     ],
     imports: [
         CommonModule,

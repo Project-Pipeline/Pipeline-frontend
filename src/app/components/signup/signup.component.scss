@@ -1,3 +1,5 @@
+@import "src/app/common-css/common-ui-styles";
+
 #signup {
     margin-top: 50px;
     width: 400px;
@@ -5,7 +7,7 @@
 
 #signup-inner {
     padding: 25px 50px;
-    background-color: rgb(253, 215, 228, 0.3);
+    background-color: $theme-color-lighter;
     border-radius: 10px;
 }
 
@@ -27,7 +29,7 @@
     margin-bottom: auto;
     padding: 1px 0;
     width: 100%;
-    background-color: brown;
+    background-color: $theme-color-dark;
     border-radius: 5px;
     cursor: pointer;
 }
