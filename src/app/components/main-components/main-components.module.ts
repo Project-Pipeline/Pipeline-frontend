@@ -38,6 +38,7 @@ import { PostSummaryCardComponent } from './profile/utility/post-summary-card/po
 import { PostDetailsComponent } from './news-center/post-details/post-details.component';
 import {PaginatorComponent} from '../reusable-components/paginator/paginator.component';
 import {NgxSpinnerModule} from "ngx-spinner";
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 @NgModule({
     declarations: [
@@ -80,6 +81,7 @@ import {NgxSpinnerModule} from "ngx-spinner";
         MatIconModule,
         MatButtonModule,
         MatCheckboxModule,
+        MatTooltipModule,
         // Google maps,
         GoogleMapsModule,
         // Misc

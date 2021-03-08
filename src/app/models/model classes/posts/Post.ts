@@ -13,7 +13,8 @@ export class Post {
         categoryId: string,
         public title?: string,
         public modified?: Date,
-        public created?: Date
+        public created?: Date,
+        public id?: string
     ) {
         this.user = new UserDTO(userId);
         this.category = new CategoryForPostDTO(categoryId);
@@ -41,6 +42,11 @@ export class UsersAndPosts {
         public users: User[],
         public posts: Post[]
     ) {
+    }
+}
+
+export class PostDTO {
+    constructor(public id: string) {
     }
 }
 

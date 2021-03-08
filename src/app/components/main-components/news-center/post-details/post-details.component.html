@@ -16,4 +16,49 @@
             <a class="helvetica clear-text-paddings" target="_blank" href="{{link.link}}">{{link.title}}</a>
         </div>
     </div>
+    <div class="flex">
+        <div class="like-or-comments" [ngClass]="{'liked-a-post': likedPost}" (click)="addLike()">
+            <img src="assets/images/common/like.svg">
+            <h4 class="clear-text-paddings helvetica-normal">Like</h4>
+        </div>
+        <div class="post-caret dropdown" (mouseenter)="showLikes()" (mouseleave)="hideLikes()">
+            <img src="assets/images/common/down-caret.svg">
+            <div class="dropdown-content posts-dropdown-panel" >
+                <h4 class="helvetica clear-text-paddings">Likes</h4>
+                <h5 class="helvetica-normal clear-text-paddings" *ngFor="let like of likes">{{like.nameOfUser}}</h5>
+                <h5 class="helvetica-normal clear-text-paddings" *ngIf="likes.length === 0">There are no likes for this post</h5>
+                <h5 class="helvetica-normal clear-text-paddings" *ngIf="moreLikesText">{{moreLikesText}}</h5>
+            </div>
+        </div>
+        <div class="like-or-comments" (click)="showComment(true)">
+            <img src="assets/images/common/comment.svg">
+            <h4 class="clear-text-paddings helvetica-normal">Comment</h4>
+        </div>
+        <div class="post-caret dropdown" matTooltip="Click to show comments" (click)="showComment()">
+            <img *ngIf="!showComments" src="assets/images/common/down-caret.svg">
+            <img *ngIf="showComments" src="assets/images/common/up-caret.svg">
+        </div>
+    </div>
+    <div *ngIf="showComments" class="comments-panel" [@rightPanelFade]>
+        <div class="flex">
+            <input #commentInputOne class="ppl-input-style" *ngIf="comments.length !== 0" placeholder="Write a comment" [(ngModel)]="pendingComment">
+            <input #commentInputTwo class="ppl-input-style" *ngIf="comments.length === 0" placeholder="Be the first to write a comment" [(ngModel)]="pendingComment">
+            <button class="ppl-button-green" (click)="addComment()">Send</button>
+        </div>
+        <div *ngFor="let comment of comments; let i = index"
+             [attr.data-index]="i"
+        >
+            <div class="single-comment">
+                <img src="{{usersForComments[i].picture}}">
+                <div class="single-comment-bubble">
+                    <div class="flex">
+                        <h4>{{comment.nameOfUser}}</h4>
+                        <p class="name-accessory">{{transformOptionalDate(comment.created) | messagingDateFormatter }}</p>
+                    </div>
+                    <p>{{comment.content}}</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
 </div>

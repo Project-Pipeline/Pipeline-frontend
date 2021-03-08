@@ -40,6 +40,9 @@ $theme-color-lighter: #dbffde;
     padding: 5px;
     box-sizing: border-box;
     border-radius: 10px;
+    &:focus {
+        outline: none;
+    }
 }
 
 .ppl-button-green {

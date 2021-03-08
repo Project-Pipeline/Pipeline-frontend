@@ -7,6 +7,8 @@ import {Observable, of} from "rxjs";
 import {PageData} from "../models/model classes/common/PageData";
 import {ConfigService} from "./config.service";
 import {PageDataMetadata} from "../models/model classes/common/PageData";
+import {LikeForPost} from "../models/model classes/posts/LikeForPost";
+import {CommentForPost} from "../models/model classes/posts/CommentForPost";
 
 @Injectable({
     providedIn: 'root'
@@ -14,6 +16,8 @@ import {PageDataMetadata} from "../models/model classes/common/PageData";
 export class PostsService {
     private postsCategoryRoute;
     private postsRoute;
+    private postsLikeRoute;
+    private postsCommentRoute;
 
     constructor(
         private http: HttpClient,
@@ -21,6 +25,8 @@ export class PostsService {
         private configService: ConfigService) {
         this.postsRoute = `${configService.apiRoot}api/posts`;
         this.postsCategoryRoute =  `${configService.apiRoot}api/posts/category`;
+        this.postsLikeRoute = `${configService.apiRoot}api/posts/like`;
+        this.postsCommentRoute = `${configService.apiRoot}api/posts/comment`;
     }
 
     // Categories
@@ -67,6 +73,40 @@ export class PostsService {
                 page: `${page}`,
                 per: `${per}`
             })
+        );
+    }
+
+    getCommentsForPostsWithId(postId: string): Observable<PageData<CommentForPost>>{
+        return this.http.get<PageData<CommentForPost>>(
+            this.postsCommentRoute,
+            this.authService.authHeadersWithParams({
+                postId: postId
+            })
+        );
+    }
+
+    addCommentToPost(comment: CommentForPost): Observable<any> {
+        return this.http.post<any>(
+            this.postsCommentRoute,
+            comment,
+            this.authService.authHeaders()
+        );
+    }
+
+    getLikesForPostWithId(postId: string): Observable<PageData<LikeForPost>> {
+        return this.http.get<PageData<LikeForPost>>(
+            this.postsLikeRoute,
+            this.authService.authHeadersWithParams({
+                postId: postId
+            })
+        );
+    }
+
+    addLikeToPost(like: LikeForPost): Observable<any> {
+        return this.http.post<any>(
+            this.postsLikeRoute,
+            like,
+            this.authService.authHeaders()
         );
     }
 
