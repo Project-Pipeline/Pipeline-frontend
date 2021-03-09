@@ -6,6 +6,7 @@ import {exhaustMap, filter, map, share} from 'rxjs/operators';
 import {Post} from '../../../models/model classes/posts/Post';
 import {PageData, PageDataMetadata} from '../../../models/model classes/common/PageData';
 import {User} from '../../../models/model classes/user/User';
+import {ModalPopupService} from "../modal-popup.service";
 
 export class NewsCenterViewModel {
     pageChanged$: Subject<number> = new Subject();
@@ -16,7 +17,11 @@ export class NewsCenterViewModel {
 
     private per = 10;
 
-    constructor(private postsApi: PostsService, private usersApi: UserApiService) {
+    constructor(
+        private postsApi: PostsService,
+        private usersApi: UserApiService,
+        private modalPopupService: ModalPopupService
+    ) {
         this.postsFetched$ = this.pageChanged$
             .pipe(exhaustMap((page) => {
                 if (this.category.name === 'All') {
@@ -49,5 +54,9 @@ export class NewsCenterViewModel {
         this.category = category;
         this.newCategory = true;
         this.pageChanged$.next(1);
+    }
+
+    addPost(): Observable<Post> {
+        return this.postsApi.addPostWithPopup(this.modalPopupService, this.usersApi);
     }
 }

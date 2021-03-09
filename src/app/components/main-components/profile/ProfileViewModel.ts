@@ -98,19 +98,10 @@ export class ProfileViewModel {
     }
 
     addPost(): Observable<Post> {
-        return this.modalPopupService.openDialogComponent(
-            AddPostPopupComponent,
-            null,
-            DialogSize.mediumLarge
-        )
-            .pipe(filter((res) => res != null))
-            .pipe(mergeMap((p) => {
-                const post = p as Post;
-                const category = this.usersApi.getCategoryForPost();
-                const postAndCategory = new PostAndCategoryWrapper(post, category);
-                return this.postsService.createPost(postAndCategory)
-                    .pipe(map(() => post));
-            }));
+        return this.postsService.addPostWithPopup(
+            this.modalPopupService,
+            this.usersApi
+        );
     }
 }
 

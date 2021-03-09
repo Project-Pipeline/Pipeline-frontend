@@ -9,6 +9,11 @@ import {ConfigService} from "./config.service";
 import {PageDataMetadata} from "../models/model classes/common/PageData";
 import {LikeForPost} from "../models/model classes/posts/LikeForPost";
 import {CommentForPost} from "../models/model classes/posts/CommentForPost";
+import {AddPostPopupComponent} from "../components/main-components/news-center/add-post-popup/add-post-popup.component";
+import {DialogSize} from "../models/model classes/DialogSize";
+import {filter, map, mergeMap, take} from "rxjs/operators";
+import {ModalPopupService} from "../components/main-components/modal-popup.service";
+import {UserApiService} from "./user-api.service";
 
 @Injectable({
     providedIn: 'root'
@@ -108,6 +113,26 @@ export class PostsService {
             like,
             this.authService.authHeaders()
         );
+    }
+
+    addPostWithPopup(
+        modalPopupService: ModalPopupService,
+        usersApi: UserApiService
+    ): Observable<Post> {
+        return modalPopupService.openDialogComponent(
+            AddPostPopupComponent,
+            null,
+            DialogSize.mediumLarge
+        )
+            .pipe(filter((res) => res != null))
+            .pipe(mergeMap((p) => {
+                const post = p as Post;
+                const category = usersApi.getCategoryForPost();
+                const postAndCategory = new PostAndCategoryWrapper(post, category);
+                return this.createPost(postAndCategory)
+                    .pipe(map(() => post));
+            }))
+            .pipe(take(1));
     }
 
 

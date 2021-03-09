@@ -2,14 +2,23 @@
 
     <div class="ml-auto mr-auto news-center-posts-container">
         <!--    Category pills-->
-        <div class="flex news-center-category">
-            <div class="ppl-button-outline news-center-category-pill"
+        <div class="flex news-center-category horizontal-scroll-outer">
+            <div
+                class="ppl-button-outline news-center-category-pill news-center-write-a-post horizontal-scroll-inner"
+                (click)="writePost()"
+            >
+                <img src="assets/images/writing-icon.png">
+                <h4 class="helvetica-normal clear-text-paddings">Write a Post</h4>
+            </div>
+
+            <div class="ppl-button-outline news-center-category-pill horizontal-scroll-inner"
                  *ngFor="let category of categories; let i = index"
                  [attr.data-index]="i"
                  [ngClass]="{'news-center-category-pill-selected': categoryFilters[i]}"
                  (click)="selectCategoryFilterAt(i)"
-            >{{category.name}}</div>
-
+            >
+                <h4 class="clear-text-paddings helvetica-normal">{{category.name}}</h4>
+            </div>
         </div>
 
         <!--    Posts-->

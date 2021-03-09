@@ -46,15 +46,12 @@ export class PostDetailsViewModel {
             .getCommentsForPostsWithId(this.post.id)
             .pipe(mergeMap((comments) => {
                 if (comments.items.length === 0) {
-                    return of(
-                        new UsersAndComments(
-                            [],
-                            new PageData(
+                    return of(new UsersAndComments(
+                            [], new PageData(
                                 [],
                                 new PageDataMetadata(1, 0, 0)
                             )
-                        )
-                    );
+                    ));
                 }
                 return this.usersApi
                     .getMultipleUserInfo(comments.items.map((c) => c.userID))

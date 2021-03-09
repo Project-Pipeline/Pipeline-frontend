@@ -5,13 +5,14 @@ import {PostsService} from '../../../services/posts.service';
 import {CategoryForPost} from '../../../models/model classes/posts/CateogryForPost';
 import {Post, UsersAndPosts} from '../../../models/model classes/posts/Post';
 import {User} from '../../../models/model classes/user/User';
-import {catchError, delay, map, mergeMap, takeUntil} from 'rxjs/operators';
+import {catchError, map, mergeMap, takeUntil} from 'rxjs/operators';
 import {Title} from '@angular/platform-browser';
 import {PaginatorComponent} from '../../reusable-components/paginator/paginator.component';
 import {of, Subject} from 'rxjs';
 import {handleJWTError} from '../../../models/Global';
 import {Router} from '@angular/router';
 import {NgxSpinnerService} from 'ngx-spinner';
+import {ModalPopupService} from "../modal-popup.service";
 
 @Component({
     selector: 'app-news-center',
@@ -36,10 +37,11 @@ export class NewsCenterComponent implements OnInit , OnDestroy {
         usersApi: UserApiService,
         postsApi: PostsService,
         title: Title,
+        modalPopupService: ModalPopupService,
         private router: Router,
         private spinner: NgxSpinnerService
     ) {
-        this.viewModel = new NewsCenterViewModel(postsApi, usersApi);
+        this.viewModel = new NewsCenterViewModel(postsApi, usersApi, modalPopupService);
         title.setTitle('News Center');
     }
 
@@ -102,5 +104,10 @@ export class NewsCenterComponent implements OnInit , OnDestroy {
     pagesChanged(page: number) {
         this.viewModel.pageChanged$.next(page);
         this.spinner.show();
+    }
+
+    writePost() {
+        this.viewModel.addPost()
+            .subscribe(() => {});
     }
 }

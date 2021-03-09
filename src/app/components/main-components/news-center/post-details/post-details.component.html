@@ -1,20 +1,27 @@
 <div class="post-detail">
-    <div *ngIf="user" class="header-img-3-line-txt">
-        <img src="{{user.picture}}">
-        <div>
-            <h4>{{user.givenName}}&nbsp;{{user.familyName}}</h4>
-            <p>{{getUserTypeString(user)}}</p>
-            <p>{{transformOptionalDate(post.created) | messagingDateFormatter }}</p>
+    <div class="flex">
+        <div *ngIf="user" class="header-img-3-line-txt">
+            <img src="{{user.picture}}">
+            <div>
+                <h4>{{user.givenName}}&nbsp;{{user.familyName}}</h4>
+                <p>{{getUserTypeString(user)}}</p>
+                <p>{{transformOptionalDate(post.created) | messagingDateFormatter }}</p>
+            </div>
+        </div>
+        <div class="ml-auto three-dots">
+            <img src="assets/images/common/three-dots.svg">
         </div>
     </div>
     <div class="post-detail-body">
         <h4 class="helvetica clear-text-paddings">{{post.title}}</h4>
-        <p class="helvetica-normal clear-text-paddings">{{post.body}}</p>
-    </div>
-    <div style="margin-top: 10px">
-        <div class="post-detail-links" *ngFor="let link of post.links">
-            <a class="helvetica clear-text-paddings" target="_blank" href="{{link.link}}">{{link.title}}</a>
-        </div>
+        <p class="helvetica-normal clear-text-paddings">
+            {{post.body}}
+            <a
+                class="helvetica clear-text-paddings post-detail-links"
+                target="_blank"
+                *ngFor="let link of post.links" href="{{link.link}}"
+            >{{link.title}}</a>
+        </p>
     </div>
     <div class="flex">
         <div class="like-or-comments" [ngClass]="{'liked-a-post': likedPost}" (click)="addLike()">

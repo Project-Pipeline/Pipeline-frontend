@@ -1,4 +1,4 @@
-import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {Post} from "../../../../models/model classes/posts/Post";
 import {User} from "../../../../models/model classes/user/User";
 import {postCategoryLookUp} from "../../../../models/BusinessConstants";
@@ -16,17 +16,17 @@ import {rightPanelFade} from "../../opportunities/OpportunitiesViewModel";
     styleUrls: ['./post-details.component.scss'],
     animations: [rightPanelFade]
 })
-export class PostDetailsComponent implements OnInit {
+export class PostDetailsComponent implements OnInit, OnDestroy {
     @Input() post: Post;
     @Input() user: User = null;
-    viewModel: PostDetailsViewModel;
-
     @ViewChild('commentInputOne') inputOne: ElementRef;
     @ViewChild('commentInputTwo') inputTwo: ElementRef;
 
+    viewModel: PostDetailsViewModel;
+
     likedPost = false;
     likes: LikeForPost[] = [];
-    likesSubscription: Subscription;
+    likesSubscription: Subscription = null;
     moreLikesText: string = null;
 
     showComments = false;
@@ -40,6 +40,10 @@ export class PostDetailsComponent implements OnInit {
 
     ngOnInit(): void {
         this.viewModel = new PostDetailsViewModel(this.post, this.postsService, this.userApi);
+    }
+
+    ngOnDestroy() {
+        this.hideLikes();
     }
 
     transformOptionalDate(date?: Date): Date {
@@ -63,7 +67,9 @@ export class PostDetailsComponent implements OnInit {
     }
 
     hideLikes() {
-        this.likesSubscription.unsubscribe();
+        if(this.likesSubscription) {
+            this.likesSubscription.unsubscribe();
+        }
     }
 
     addComment() {

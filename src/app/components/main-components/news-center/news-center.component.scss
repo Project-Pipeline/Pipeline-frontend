@@ -2,7 +2,17 @@
 
 .news-center-category {
     margin-top: 20px;
-    overflow: auto;
+    width: 730px;
+}
+
+.news-center-write-a-post {
+    display: flex;
+    width: 250px;
+    img {
+        width: 20px;
+        height: 20px;
+        margin-right: 10px;
+    }
 }
 
 .news-center-posts-container {
@@ -13,8 +23,6 @@
     height: 16px;
     margin-right: 10px;
     cursor: pointer;
-    overflow: hidden;
-    white-space: nowrap;
     border: 1px solid $theme-color-gray;
     background-color: $theme-color-gray;
     &:hover {
@@ -35,6 +43,10 @@
 
 @media only screen and (max-width: 750px) {
     .news-center-posts-container, .width-container {
+        width: 90%;
+    }
+
+    .news-center-category {
         width: 100%;
     }
 
