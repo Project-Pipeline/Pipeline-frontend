@@ -9,12 +9,13 @@ import {LikeForPost} from "../../../../models/model classes/posts/LikeForPost";
 import {Subscription} from "rxjs";
 import {CommentForPost} from "../../../../models/model classes/posts/CommentForPost";
 import {rightPanelFade} from "../../opportunities/OpportunitiesViewModel";
+import {rotate180Degrees} from "../../../../models/model classes/AngularAnimations";
 
 @Component({
     selector: 'app-post-details',
     templateUrl: './post-details.component.html',
     styleUrls: ['./post-details.component.scss'],
-    animations: [rightPanelFade]
+    animations: [rightPanelFade, rotate180Degrees]
 })
 export class PostDetailsComponent implements OnInit, OnDestroy {
     @Input() post: Post;

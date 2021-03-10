@@ -3,7 +3,7 @@ import {UserApiService} from '../../../services/user-api.service';
 import {CategoryForPost} from '../../../models/model classes/posts/CateogryForPost';
 import {Observable, Subject} from 'rxjs';
 import {exhaustMap, filter, map, share} from 'rxjs/operators';
-import {Post} from '../../../models/model classes/posts/Post';
+import {Post, UsersAndPosts} from '../../../models/model classes/posts/Post';
 import {PageData, PageDataMetadata} from '../../../models/model classes/common/PageData';
 import {User} from '../../../models/model classes/user/User';
 import {ModalPopupService} from "../modal-popup.service";
@@ -56,7 +56,7 @@ export class NewsCenterViewModel {
         this.pageChanged$.next(1);
     }
 
-    addPost(): Observable<Post> {
+    addPost(): Observable<UsersAndPosts> {
         return this.postsApi.addPostWithPopup(this.modalPopupService, this.usersApi);
     }
 }

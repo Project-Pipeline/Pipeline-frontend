@@ -108,6 +108,9 @@ export class NewsCenterComponent implements OnInit , OnDestroy {
 
     writePost() {
         this.viewModel.addPost()
-            .subscribe(() => {});
+            .subscribe((usersAndPosts) => {
+                this.postsUsers = usersAndPosts.users.concat(this.postsUsers);
+                this.posts = usersAndPosts.posts.concat(this.posts);
+            });
     }
 }

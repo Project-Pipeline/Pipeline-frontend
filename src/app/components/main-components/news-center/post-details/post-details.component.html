@@ -42,8 +42,7 @@
             <h4 class="clear-text-paddings helvetica-normal">Comment</h4>
         </div>
         <div class="post-caret dropdown" matTooltip="Click to show comments" (click)="showComment()">
-            <img *ngIf="!showComments" src="assets/images/common/down-caret.svg">
-            <img *ngIf="showComments" src="assets/images/common/up-caret.svg">
+            <img [@rotate180Degrees]="showComments ? 'rotated' : 'default'" src="assets/images/common/down-caret.svg">
         </div>
     </div>
     <div *ngIf="showComments" class="comments-panel" [@rightPanelFade]>

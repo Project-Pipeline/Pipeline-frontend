@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {PostAndCategoryWrapper, Post} from "../models/model classes/posts/Post";
+import {PostAndCategoryWrapper, Post, UsersAndPosts} from "../models/model classes/posts/Post";
 import {CategoryForPost} from "../models/model classes/posts/CateogryForPost";
 import {AuthService} from "./auth.service";
 import {Observable, of} from "rxjs";
@@ -14,6 +14,7 @@ import {DialogSize} from "../models/model classes/DialogSize";
 import {filter, map, mergeMap, take} from "rxjs/operators";
 import {ModalPopupService} from "../components/main-components/modal-popup.service";
 import {UserApiService} from "./user-api.service";
+import {User} from "../models/model classes/user/User";
 
 @Injectable({
     providedIn: 'root'
@@ -118,7 +119,7 @@ export class PostsService {
     addPostWithPopup(
         modalPopupService: ModalPopupService,
         usersApi: UserApiService
-    ): Observable<Post> {
+    ): Observable<UsersAndPosts> {
         return modalPopupService.openDialogComponent(
             AddPostPopupComponent,
             null,
@@ -130,7 +131,8 @@ export class PostsService {
                 const category = usersApi.getCategoryForPost();
                 const postAndCategory = new PostAndCategoryWrapper(post, category);
                 return this.createPost(postAndCategory)
-                    .pipe(map(() => post));
+                    .pipe(mergeMap(() => usersApi.getUserInfo()))
+                    .pipe(map((user) => new UsersAndPosts([user], [post])));
             }))
             .pipe(take(1));
     }
