@@ -1,10 +1,16 @@
 export class PageData<T> {
-    items: T[];
-    metadata: PageDataMetadata;
+    constructor(
+        public items: T[],
+        public metadata: PageDataMetadata
+    ) {
+    }
 }
 
 export class PageDataMetadata {
-    page: number;
-    per: number;
-    total: number;
+    constructor(
+        public page: number,
+        public per: number,
+        public total: number,
+    ) {
+    }
 }

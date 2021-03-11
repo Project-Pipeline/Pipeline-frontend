@@ -1,4 +1,8 @@
 $theme-color: #79FEB3;
+$theme-color-dark: #1B5E20;
+$theme-color-gray: rgb(244, 244, 244);
+$theme-color-lighter: #dbffde;
+
 // font etc
 @mixin helvetica-style {
     font-family: "Helvetica", "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
@@ -9,6 +13,17 @@ $theme-color: #79FEB3;
     font-family: "Helvetica", "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
     font-weight: 300;
 }
+
+@mixin ppl-button-outline {
+    padding: 8px 16px;
+    border-radius: 10px;
+}
+
+@mixin clear-spacing {
+    padding: 0;
+    margin: 0;
+}
+
 .helvetica {
     @include helvetica-style;
 }
@@ -25,21 +40,30 @@ $theme-color: #79FEB3;
     padding: 5px;
     box-sizing: border-box;
     border-radius: 10px;
+    &:focus {
+        outline: none;
+    }
 }
 
 .ppl-button-green {
+    @include ppl-button-outline;
     background-color: $theme-color;
     border: none;
     color: black;
-    padding: 8px 16px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 13px;
-    border-radius: 10px;
     height: 31px;
     cursor: pointer;
     margin-top: 8px;
+    &:focus {
+        outline: none;
+    }
+}
+
+.ppl-button-outline {
+    @include ppl-button-outline;
 }
 
 // Dropdown
@@ -88,6 +112,26 @@ $theme-color: #79FEB3;
     &:hover {
         transform: scale(1.2);
         transition: all .2s ease-in-out;
+    }
+}
+
+.header-img-3-line-txt {
+    display: flex;
+    img {
+        width: 50px;
+        height: 50px;
+        border-radius: 30px;
+        margin-right: 10px;
+    }
+    h4 {
+        @include helvetica-style();
+        @include clear-spacing;
+    }
+    p {
+        @include helvetica-thin-style();
+        @include clear-spacing;
+        font-size: 12px;
+        margin-top: 4px;
     }
 }
 

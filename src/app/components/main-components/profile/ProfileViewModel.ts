@@ -2,10 +2,8 @@ import {UserApiService} from "../../../services/user-api.service";
 import {Router} from "@angular/router";
 import {ModalPopupService} from "../modal-popup.service";
 import {PostsService} from "../../../services/posts.service";
-import {AddPostPopupComponent} from "../news-center/add-post-popup/add-post-popup.component";
-import {DialogSize} from "../../../models/model classes/DialogSize";
 import {catchError, filter, map, mergeMap, share} from "rxjs/operators";
-import {Post, PostAndCategoryWrapper} from "../../../models/model classes/posts/Post";
+import {Post} from "../../../models/model classes/posts/Post";
 import {empty, Observable, of} from "rxjs";
 import {User} from "../../../models/model classes/user/User";
 import {PageData} from "../../../models/model classes/common/PageData";
@@ -98,19 +96,10 @@ export class ProfileViewModel {
     }
 
     addPost(): Observable<Post> {
-        return this.modalPopupService.openDialogComponent(
-            AddPostPopupComponent,
-            null,
-            DialogSize.mediumLarge
-        )
-            .pipe(filter((res) => res != null))
-            .pipe(mergeMap((p) => {
-                const post = p as Post;
-                const category = this.usersApi.getCategoryForPost();
-                const postAndCategory = new PostAndCategoryWrapper(post, category);
-                return this.postsService.createPost(postAndCategory)
-                    .pipe(map(() => post));
-            }));
+        return this.postsService.addPostWithPopup(
+            this.modalPopupService,
+            this.usersApi
+        ).pipe(map((usersAndPosts) => usersAndPosts.posts[0]));
     }
 }
 

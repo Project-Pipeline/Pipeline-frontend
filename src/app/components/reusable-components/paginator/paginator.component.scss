@@ -1,0 +1,17 @@
+.paginator-container {
+    width: 260px;
+    display: flex;
+    div, button {
+        margin-right: 7px;
+    }
+}
+
+h4 {
+    margin: 15px 0;
+    padding: 0;
+}
+
+.btn-disabled {
+    opacity: 0.4;
+    cursor: default;
+}

@@ -1,0 +1,53 @@
+@import "src/app/common-css/common-ui-styles";
+
+.news-center-category {
+    margin-top: 20px;
+    width: 730px;
+}
+
+.news-center-write-a-post {
+    display: flex;
+    width: 250px;
+    img {
+        width: 20px;
+        height: 20px;
+        margin-right: 10px;
+    }
+}
+
+.news-center-posts-container {
+    width: 700px;
+}
+
+.news-center-category-pill {
+    height: 16px;
+    margin-right: 10px;
+    cursor: pointer;
+    border: 1px solid $theme-color-gray;
+    background-color: $theme-color-gray;
+    &:hover {
+        border: 1px solid black;
+    }
+    transition: all .1s ease-in-out;
+}
+
+.news-center-category-pill-selected {
+    border: 1px solid $theme-color;
+    background-color: $theme-color;
+}
+
+.news-center-posts {
+    margin-top: 30px;
+}
+
+
+@media only screen and (max-width: 750px) {
+    .news-center-posts-container, .width-container {
+        width: 90%;
+    }
+
+    .news-center-category {
+        width: 100%;
+    }
+
+}

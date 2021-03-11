@@ -1,0 +1,148 @@
+@import "src/app/common-css/common-ui-styles";
+
+@mixin posts-transition-style {
+    transition: all .1s ease-in-out;
+}
+
+p {
+    font-size: 15px;
+}
+
+.post-detail {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 15px 15px 5px 15px;
+    border-radius: 20px;
+    background-color: $theme-color-gray;
+}
+
+.post-detail-body {
+    margin: 10px 0;
+    h4 {
+        margin-bottom: 8px;
+    }
+}
+
+@mixin post-hover-fx {
+    border-radius: 5px;
+    background-color: $theme-color-lighter;
+}
+
+.post-detail-links {
+    display: inline-block;
+    margin: 4px 4px 0 0;
+    &:link, &:visited {
+        color: $theme-color-dark;
+        text-decoration: none;
+    }
+    &:hover {
+        text-decoration: underline;
+    }
+    transition: all .1s ease-in-out;
+}
+
+.three-dots {
+    padding: 5px;
+    height: 15px;
+    img {
+        width: 15px;
+        height: 15px;
+    }
+    cursor: pointer;
+    @include posts-transition-style;
+    &:hover {
+        @include post-hover-fx;
+    }
+}
+
+.like-or-comments {
+    padding: 5px;
+    @include posts-transition-style;
+    display: flex;
+    cursor: pointer;
+    img {
+        width: 15px;
+        height: 15px;
+        margin-right: 8px;
+    }
+    h4 {
+        font-size: 12px;
+        margin-top: 2px;
+    }
+    &:hover {
+        @include post-hover-fx;
+    }
+}
+
+.post-caret {
+    padding: 5px;
+    @include posts-transition-style;
+    cursor: pointer;
+    img {
+        width: 15px;
+        height: 15px;
+    }
+    &:hover {
+        @include post-hover-fx;
+    }
+}
+
+.liked-a-post {
+    @include post-hover-fx;
+}
+
+.posts-dropdown-panel {
+    padding: 10px;
+    border-radius: 5px;
+    background-color: white;
+    h5 {
+        font-size: 12px;
+        margin-top: 4px;
+    }
+}
+
+.comments-panel {
+    padding: 7px;
+    margin-left: 40px;
+    input {
+        height: 31px;
+        margin-right: 10px;
+        border: none;
+    }
+    button {
+        margin: 0;
+    }
+    & > h4 {
+        padding: 7px;
+    }
+}
+
+.single-comment {
+    padding: 10px 0;
+    display: flex;
+    img {
+        width: 44px;
+        height: 44px;
+        border-radius: 22px;
+        margin-right: 10px;
+    }
+    h4 {
+        @include helvetica-style();
+        @include clear-spacing;
+        font-size: 14px;
+    }
+    p {
+        @include helvetica-thin-style();
+        @include clear-spacing;
+        font-size: 12px;
+        margin-top: 4px;
+    }
+    .name-accessory {
+        margin: 2px 0 0 10px;
+    }
+    .single-comment-bubble {
+        border-radius: 10px;
+        background-color: white;
+        padding: 7px;
+    }
+}

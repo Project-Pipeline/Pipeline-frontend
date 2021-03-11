@@ -2,6 +2,7 @@ import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {MatDialogRef} from "@angular/material/dialog";
 import {Post, TitledLink} from "../../../../models/model classes/posts/Post";
 import {UserApiService} from "../../../../services/user-api.service";
+import {take} from "rxjs/operators";
 
 @Component({
     selector: 'app-add-post-popup',
@@ -29,14 +30,18 @@ export class AddPostPopupComponent implements OnInit {
     }
 
     closeWithResult() {
-        this.dialog.close(new Post(
-            this.body,
-            [],
-            this.addingLinks ? this.links.map((l) => new TitledLink(l[0], l[1])) : [],
-            this.usersApi.currentUser.id,
-            this.usersApi.getCategoryForPost().id,
-            this.title.length === 0 ? null : this.title,
-        ));
+        this.usersApi.getUserInfo()
+            .pipe(take(1))
+            .subscribe((user) => {
+                this.dialog.close(new Post(
+                    this.body,
+                    [],
+                    this.addingLinks ? this.links.map((l) => new TitledLink(l[0], l[1])) : [],
+                    user.id,
+                    this.usersApi.getCategoryForPost().id,
+                    this.title.length === 0 ? null : this.title,
+                ));
+            });
     }
 
     toggleAddingLinks() {

@@ -35,6 +35,10 @@ import { OpportunitiesFilterBarComponent } from './opportunities/opportunities-f
 import { OpportunityDetailsComponent } from './opportunities/opportunity-details/opportunity-details.component';
 import { AddPostPopupComponent } from './news-center/add-post-popup/add-post-popup.component';
 import { PostSummaryCardComponent } from './profile/utility/post-summary-card/post-summary-card.component';
+import { PostDetailsComponent } from './news-center/post-details/post-details.component';
+import {PaginatorComponent} from '../reusable-components/paginator/paginator.component';
+import {NgxSpinnerModule} from "ngx-spinner";
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 @NgModule({
     declarations: [
@@ -58,7 +62,9 @@ import { PostSummaryCardComponent } from './profile/utility/post-summary-card/po
         OpportunitiesFilterBarComponent,
         OpportunityDetailsComponent,
         AddPostPopupComponent,
-        PostSummaryCardComponent
+        PostSummaryCardComponent,
+        PostDetailsComponent,
+        PaginatorComponent
     ],
     imports: [
         CommonModule,
@@ -75,8 +81,11 @@ import { PostSummaryCardComponent } from './profile/utility/post-summary-card/po
         MatIconModule,
         MatButtonModule,
         MatCheckboxModule,
+        MatTooltipModule,
         // Google maps,
-        GoogleMapsModule
+        GoogleMapsModule,
+        // Misc
+        NgxSpinnerModule
     ],
     providers: [
         {

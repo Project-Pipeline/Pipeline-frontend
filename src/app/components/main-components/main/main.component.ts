@@ -14,7 +14,7 @@ export class MainComponent implements OnInit {
         "news-center",
         "opportunities"
     ];
-    highlightIndex = 3;
+    highlightIndex = 0;
 
     constructor(private router: Router) {
     }

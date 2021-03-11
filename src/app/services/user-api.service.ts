@@ -49,6 +49,17 @@ export class UserApiService {
             }));
     }
 
+    getMultipleUserInfo(userIds: string[]): Observable<User[]> {
+        return this.http
+            .get<User[]>(
+                `${this.configService.apiRoot}api/user/info/multiple`,
+                this.authService.authHeadersWithParams({
+                    ids: userIds.join(',')
+                })
+            );
+    }
+
+
     setToken(token: string) {
        this.authService.setToken(token);
     }

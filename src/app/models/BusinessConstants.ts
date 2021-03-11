@@ -22,7 +22,7 @@ export const opportunityCategories = [
 export const opportunityState = [
     0, // open
     1 // closed
-]
+];
 
 export const allowedOpportunityGradeLevels = [9, 10, 11, 12];
 
@@ -44,4 +44,4 @@ export const postCategoryLookUp = {
     3: 'Business',
     4: 'Community Organization',
     5: 'School'
-}
+};
