@@ -2,13 +2,19 @@ import {UserApiService} from "../../../services/user-api.service";
 import {Router} from "@angular/router";
 import {ModalPopupService} from "../modal-popup.service";
 import {PostsService} from "../../../services/posts.service";
-import {catchError, filter, map, mergeMap, share} from "rxjs/operators";
+import {catchError, filter, map, mergeMap, share, take} from "rxjs/operators";
 import {Post} from "../../../models/model classes/posts/Post";
 import {empty, Observable, of} from "rxjs";
 import {User} from "../../../models/model classes/user/User";
 import {PageData} from "../../../models/model classes/common/PageData";
 import {UserDetails} from "../../../models/model classes/user/UserDetails";
-import {entityUserTypes, individualUserTypes} from "../../../models/BusinessConstants";
+import {
+    entityUserTypes,
+    individualUserTypes,
+    postCategoryLookUp,
+    profileTabsForUsersWithType,
+    profileTabTitles
+} from "../../../models/BusinessConstants";
 import {IndividualUserDetailsPopupComponent} from "./individual-user-details-popup/individual-user-details-popup.component";
 import {EntityUserDetailsPopupComponent} from "./entity-user-details-popup/entity-user-details-popup.component";
 import {handleJWTError} from "../../../models/Global";
@@ -20,14 +26,7 @@ export class ProfileViewModel {
 
     private isIndividual = false;
     private isEntity = false;
-    private typeToStringLookup: {[key: number]: string} = {
-        0: 'student',
-        1: 'teacher',
-        2: 'working professional',
-        3: 'company',
-        4: 'community organization',
-        5: 'school'
-    };
+    private typeToStringLookup: {[key: number]: string} = postCategoryLookUp;
 
     constructor(
         public usersApi: UserApiService,
@@ -37,10 +36,14 @@ export class ProfileViewModel {
     ) {
         const getUserDetails = this.usersApi.getUserDetails().pipe(share());
 
-        this.noUserDetails = getUserDetails.pipe(filter((details) => details.length === 0));
+        this.noUserDetails = getUserDetails
+            .pipe(filter((details) => details.length === 0))
+            .pipe(take(1));
+
         this.hasUserDetails = getUserDetails
             .pipe(filter((details) => details.length !== 0))
-            .pipe(map((details) => details[0]));
+            .pipe(map((details) => details[0]))
+            .pipe(take(1));
     }
 
     /// USER ///
@@ -55,7 +58,8 @@ export class ProfileViewModel {
                     this.isIndividual,
                     this.isEntity
                 ));
-            }));
+            }))
+            .pipe(take(1));
     }
 
     completeProfileFor(userInfo: User): Observable<UserDetails> {
@@ -78,6 +82,7 @@ export class ProfileViewModel {
                 return this.usersApi.setUserDetails(result)
                     .pipe(map(() => userDetails));
             }))
+            .pipe(take(1));
     }
 
     typeToStringFor(userInfo: User): string {
@@ -89,17 +94,30 @@ export class ProfileViewModel {
         this.isEntity = entityUserTypes.includes(userInfo.type);
     }
 
+    userToTabTitles(user: User): string[] {
+        return profileTabsForUsersWithType[user.type].map((t) => profileTabTitles[t]);
+    }
+
+    userToTabMappings(user: User): boolean[] {
+        let mappings = profileTabsForUsersWithType[user.type].map(() => false);
+        mappings[0] = true;
+        return mappings;
+    }
+
     /// POSTS ///
 
     getPosts(user: User): Observable<PageData<Post>> {
-        return this.usersApi.getPosts(user, 1);
+        return this.usersApi.getPosts(user, 1)
+            .pipe(take(1));
     }
 
     addPost(): Observable<Post> {
         return this.postsService.addPostWithPopup(
             this.modalPopupService,
             this.usersApi
-        ).pipe(map((usersAndPosts) => usersAndPosts.posts[0]));
+        )
+            .pipe(map((usersAndPosts) => usersAndPosts.posts[0]))
+            .pipe(take(1));
     }
 }
 

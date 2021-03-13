@@ -23,6 +23,8 @@ export class ProfileComponent implements OnInit {
     isEntity = false;
     posts: Post[] = [];
     viewModel: ProfileViewModel;
+    tabs: string[] = [];
+    tabMappings: boolean[] = [];
 
     constructor(
         public usersApi: UserApiService,
@@ -41,6 +43,8 @@ export class ProfileComponent implements OnInit {
             this.isIndividual = result.isIndividual;
             this.isEntity = result.isEntity;
             this.pageReady = true;
+            this.tabMappings = this.viewModel.userToTabMappings(result.user);
+            this.tabs = this.viewModel.userToTabTitles(result.user);
             // get posts
             this.viewModel.getPosts(this.userInfo)
                 .subscribe((posts) => this.posts = posts.items);
@@ -67,5 +71,9 @@ export class ProfileComponent implements OnInit {
     addPost() {
         this.viewModel.addPost()
             .subscribe((post) => this.posts.push(post));
+    }
+
+    tabSelected(event: [string, number]) {
+        console.log(event[0], event[1]);
     }
 }

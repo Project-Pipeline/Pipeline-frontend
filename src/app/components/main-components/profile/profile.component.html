@@ -30,5 +30,16 @@
     </div>
 </div>
 
+<div class="profile-tab-container">
+    <div class="width-container">
+        <app-horizontal-scrollable-tabs
+            [tabs]="tabs"
+            [tabMappings]="tabMappings"
+            [boldFont]="true"
+            (tabSelected)="tabSelected($event)"
+        ></app-horizontal-scrollable-tabs>
+    </div>
+</div>
+
 <app-individual-profile *ngIf="isIndividual"></app-individual-profile>
 <app-entity-profile *ngIf="isEntity"></app-entity-profile>

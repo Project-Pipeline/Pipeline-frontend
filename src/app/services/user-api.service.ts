@@ -59,7 +59,6 @@ export class UserApiService {
             );
     }
 
-
     setToken(token: string) {
        this.authService.setToken(token);
     }

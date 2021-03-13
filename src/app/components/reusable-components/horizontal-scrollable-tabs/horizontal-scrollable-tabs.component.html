@@ -1,0 +1,12 @@
+<div class="flex horiz-tab-container">
+    <div class="ppl-button-outline horiz-tab horizontal-scroll-inner"
+         *ngFor="let tab of tabs; let i = index"
+         [attr.data-index]="i"
+         [ngClass]="{'horiz-tab-selected': tabMappings[i]}"
+         (click)="selectTabAt(i)"
+    >
+        <h4 class="clear-text-paddings" [ngClass]="{'helvetica': boldFont, 'helvetica-normal': !boldFont}">
+            {{tab}}
+        </h4>
+    </div>
+</div>

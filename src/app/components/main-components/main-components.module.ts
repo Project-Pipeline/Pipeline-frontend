@@ -39,6 +39,7 @@ import { PostDetailsComponent } from './news-center/post-details/post-details.co
 import {PaginatorComponent} from '../reusable-components/paginator/paginator.component';
 import {NgxSpinnerModule} from "ngx-spinner";
 import {MatTooltipModule} from "@angular/material/tooltip";
+import {HorizontalScrollableTabsComponent} from "../reusable-components/horizontal-scrollable-tabs/horizontal-scrollable-tabs.component";
 
 @NgModule({
     declarations: [
@@ -64,7 +65,8 @@ import {MatTooltipModule} from "@angular/material/tooltip";
         AddPostPopupComponent,
         PostSummaryCardComponent,
         PostDetailsComponent,
-        PaginatorComponent
+        PaginatorComponent,
+        HorizontalScrollableTabsComponent
     ],
     imports: [
         CommonModule,
