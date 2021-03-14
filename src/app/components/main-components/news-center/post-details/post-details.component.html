@@ -46,24 +46,39 @@
         </div>
     </div>
     <div *ngIf="showComments" class="comments-panel" [@rightPanelFade]>
-        <div class="flex">
-            <input #commentInputOne class="ppl-input-style" *ngIf="comments.length !== 0" placeholder="Write a comment" [(ngModel)]="pendingComment">
-            <input #commentInputTwo class="ppl-input-style" *ngIf="comments.length === 0" placeholder="Be the first to write a comment" [(ngModel)]="pendingComment">
-            <button class="ppl-button-green" (click)="addComment()">Send</button>
-        </div>
-        <div *ngFor="let comment of comments; let i = index"
-             [attr.data-index]="i"
-        >
-            <div class="single-comment">
-                <img src="{{usersForComments[i].picture}}">
-                <div class="single-comment-bubble">
-                    <div class="flex">
-                        <h4>{{comment.nameOfUser}}</h4>
-                        <p class="name-accessory">{{transformOptionalDate(comment.created) | messagingDateFormatter }}</p>
+        <div class="left"></div>
+        <div class="right">
+            <div class="flex">
+                <input
+                    #commentInputOne
+                    class="ppl-input-style"
+                    *ngIf="comments.length !== 0"
+                    placeholder="Write a comment"
+                    [(ngModel)]="pendingComment"
+                >
+                <input
+                    #commentInputTwo
+                    class="ppl-input-style"
+                    *ngIf="comments.length === 0"
+                    placeholder="Be the first to write a comment"
+                    [(ngModel)]="pendingComment"
+                >
+                <button class="ppl-button-green" (click)="addComment()">Send</button>
+            </div>
+            <div *ngFor="let comment of comments; let i = index"
+                 [attr.data-index]="i"
+            >
+                <div class="single-comment">
+                    <img src="{{usersForComments[i].picture}}">
+                    <div class="single-comment-bubble">
+                        <div class="flex">
+                            <h4>{{comment.nameOfUser}}</h4>
+                            <p class="name-accessory">{{transformOptionalDate(comment.created) | messagingDateFormatter }}</p>
+                        </div>
+                        <p>{{comment.content}}</p>
                     </div>
-                    <p>{{comment.content}}</p>
-                </div>
 
+                </div>
             </div>
         </div>
     </div>

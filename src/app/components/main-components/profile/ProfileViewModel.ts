@@ -18,6 +18,10 @@ import {
 import {IndividualUserDetailsPopupComponent} from "./individual-user-details-popup/individual-user-details-popup.component";
 import {EntityUserDetailsPopupComponent} from "./entity-user-details-popup/entity-user-details-popup.component";
 import {handleJWTError} from "../../../models/Global";
+import {ComponentType} from "@angular/cdk/overlay";
+import {ProfilePostsComponent} from "./profile-posts/profile-posts.component";
+import {ProfileAboutComponent} from "./profile-about/profile-about.component";
+import {ProfileOpportunitiesComponent} from "./profile-opportunities/profile-opportunities.component";
 
 export class ProfileViewModel {
 
@@ -27,6 +31,12 @@ export class ProfileViewModel {
     private isIndividual = false;
     private isEntity = false;
     private typeToStringLookup: {[key: number]: string} = postCategoryLookUp;
+
+    tabIdToComponent: {[key: string]: ComponentType<any> } = {
+        About: ProfileAboutComponent,
+        Posts: ProfilePostsComponent,
+        Opportunities: ProfileOpportunitiesComponent
+    }
 
     constructor(
         public usersApi: UserApiService,

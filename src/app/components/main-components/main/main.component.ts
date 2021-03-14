@@ -34,4 +34,8 @@ export class MainComponent implements OnInit {
         }
     }
 
+    getDate(): string {
+        return `${new Date().getFullYear()}`;
+    }
+
 }

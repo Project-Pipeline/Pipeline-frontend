@@ -1,5 +1,5 @@
 <div id="bg">
-    <div class="width-container flex">
+    <div class="width-container-narrower flex">
         <img src="{{userInfo.picture}}">
         <div class="profile-details">
             <h2 class="helvetica clear-text-paddings">{{userInfo.givenName}}&nbsp;{{userInfo.familyName}}</h2>
@@ -31,7 +31,7 @@
 </div>
 
 <div class="profile-tab-container">
-    <div class="width-container">
+    <div class="width-container-narrower inner">
         <app-horizontal-scrollable-tabs
             [tabs]="tabs"
             [tabMappings]="tabMappings"
@@ -41,5 +41,6 @@
     </div>
 </div>
 
-<app-individual-profile *ngIf="isIndividual"></app-individual-profile>
-<app-entity-profile *ngIf="isEntity"></app-entity-profile>
+<div class="width-container-narrower profile-content-container">
+    <ng-template #profileTabContent></ng-template>
+</div>

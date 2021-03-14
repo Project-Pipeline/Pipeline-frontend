@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, ComponentFactoryResolver, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
 import {UserApiService} from "../../../services/user-api.service";
 import {User} from "../../../models/model classes/user/User";
 import {Router} from "@angular/router";
@@ -25,13 +25,15 @@ export class ProfileComponent implements OnInit {
     viewModel: ProfileViewModel;
     tabs: string[] = [];
     tabMappings: boolean[] = [];
+    @ViewChild('profileTabContent', { read: ViewContainerRef }) profileTabContent: ViewContainerRef;
 
     constructor(
         public usersApi: UserApiService,
         public router: Router,
         public modalPopupService: ModalPopupService,
         public postsService: PostsService,
-        public title: Title
+        public title: Title,
+        public cfr: ComponentFactoryResolver
     ) {
         this.viewModel = new ProfileViewModel(usersApi, router, modalPopupService, postsService);
         this.title.setTitle('Profile');
@@ -45,9 +47,7 @@ export class ProfileComponent implements OnInit {
             this.pageReady = true;
             this.tabMappings = this.viewModel.userToTabMappings(result.user);
             this.tabs = this.viewModel.userToTabTitles(result.user);
-            // get posts
-            this.viewModel.getPosts(this.userInfo)
-                .subscribe((posts) => this.posts = posts.items);
+            setTimeout(() => this.injectComponentForTab(this.tabs[0]), 100)
         });
 
         // user details dne - create user details
@@ -69,11 +69,17 @@ export class ProfileComponent implements OnInit {
     }
 
     addPost() {
-        this.viewModel.addPost()
-            .subscribe((post) => this.posts.push(post));
+
     }
 
     tabSelected(event: [string, number]) {
-        console.log(event[0], event[1]);
+        this.injectComponentForTab(event[0]);
+    }
+
+    private injectComponentForTab(tab: string) {
+        const component = this.viewModel.tabIdToComponent[tab];
+        const componentFactory = this.cfr.resolveComponentFactory(component);
+        this.profileTabContent.clear();
+        this.profileTabContent.createComponent(componentFactory).instance;
     }
 }

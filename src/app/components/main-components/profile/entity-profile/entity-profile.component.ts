@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ComponentFactoryResolver, OnInit} from '@angular/core';
 import {ProfileComponent} from "../profile.component";
 import {UserApiService} from "../../../../services/user-api.service";
 import {Router} from "@angular/router";
@@ -25,9 +25,10 @@ export class EntityProfileComponent extends ProfileComponent implements OnInit {
         public dialogService: ModalPopupService,
         public opportunitiesService: OpportunitiesService,
         public postsService: PostsService,
-        public title: Title)
+        public title: Title,
+        public cfr: ComponentFactoryResolver)
     {
-        super(usersApi, router, dialogService, postsService, title);
+        super(usersApi, router, dialogService, postsService, title, cfr);
     }
 
     ngOnInit(): void {

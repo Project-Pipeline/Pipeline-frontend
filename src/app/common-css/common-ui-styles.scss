@@ -24,6 +24,10 @@ $theme-color-lighter: #dbffde;
     margin: 0;
 }
 
+@mixin ppl-animation-transition {
+    transition: all .2s ease-in-out;
+}
+
 .helvetica {
     @include helvetica-style;
 }
@@ -59,6 +63,26 @@ $theme-color-lighter: #dbffde;
     margin-top: 8px;
     &:focus {
         outline: none;
+    }
+}
+
+.ppl-button-green-with-image {
+    border: 1px solid black;
+    cursor: pointer;
+    @include ppl-animation-transition;
+    @include ppl-button-outline;
+    img {
+        width: 20px;
+        height: 20px;
+        margin-right: 10px;
+    }
+    &:hover {
+        background-color: $theme-color;
+    }
+    h4 {
+        @include helvetica-thin-style;
+        margin: 0;
+        padding: 0;
     }
 }
 

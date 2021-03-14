@@ -60,7 +60,7 @@ export const profileTabsForUsersWithType: {[key: number]: number[] } = {
 }
 
 export const profileTabTitles: {[key: number]: string } = {
-    1: 'Cards',
+    1: 'About',
     2: 'Posts',
     3: 'Opportunities'
 }

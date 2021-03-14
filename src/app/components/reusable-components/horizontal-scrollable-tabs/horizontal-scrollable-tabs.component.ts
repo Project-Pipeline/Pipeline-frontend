@@ -16,11 +16,7 @@ export class HorizontalScrollableTabsComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.tabMappings.forEach((val, index) => {
-            if (val) {
-                this.tabSelected.emit([this.tabs[index], index]);
-            }
-        });
+
     }
 
     selectTabAt(index: number) {

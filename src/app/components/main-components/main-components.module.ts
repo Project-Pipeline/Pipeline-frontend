@@ -40,6 +40,9 @@ import {PaginatorComponent} from '../reusable-components/paginator/paginator.com
 import {NgxSpinnerModule} from "ngx-spinner";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {HorizontalScrollableTabsComponent} from "../reusable-components/horizontal-scrollable-tabs/horizontal-scrollable-tabs.component";
+import { ProfilePostsComponent } from './profile/profile-posts/profile-posts.component';
+import { ProfileAboutComponent } from './profile/profile-about/profile-about.component';
+import { ProfileOpportunitiesComponent } from './profile/profile-opportunities/profile-opportunities.component';
 
 @NgModule({
     declarations: [
@@ -66,7 +69,10 @@ import {HorizontalScrollableTabsComponent} from "../reusable-components/horizont
         PostSummaryCardComponent,
         PostDetailsComponent,
         PaginatorComponent,
-        HorizontalScrollableTabsComponent
+        HorizontalScrollableTabsComponent,
+        ProfilePostsComponent,
+        ProfileAboutComponent,
+        ProfileOpportunitiesComponent
     ],
     imports: [
         CommonModule,

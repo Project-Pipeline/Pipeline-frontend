@@ -103,7 +103,7 @@ p {
 
 .comments-panel {
     padding: 7px;
-    margin-left: 40px;
+    display: flex;
     input {
         height: 31px;
         margin-right: 10px;
@@ -114,6 +114,12 @@ p {
     }
     & > h4 {
         padding: 7px;
+    }
+    .left {
+        width: 7%;
+    }
+    .right {
+        width: 93%;
     }
 }
 

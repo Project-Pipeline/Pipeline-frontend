@@ -1,0 +1,30 @@
+<div class="flex">
+    <div class="left-section">
+        <div
+            class="ppl-button-green-with-image flex"
+            (click)="writePost()"
+        >
+            <img src="assets/images/writing-icon.png">
+            <h4>Write a Post</h4>
+        </div>
+    </div>
+    <div class="right-section">
+        <app-post-details
+            class="ml-auto mr-auto"
+            *ngFor="let post of posts"
+            [post]="post"
+            [user]="user"
+        ></app-post-details>
+
+        <app-paginator
+            [page]="page"
+            [per]="per"
+            [total]="total"
+            (pageChanged)="pageChanged($event)"
+        ></app-paginator>
+
+        <ngx-spinner [type]="'ball-spin-fade'"></ngx-spinner>
+    </div>
+
+</div>
+
