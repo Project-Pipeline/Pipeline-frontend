@@ -15,6 +15,7 @@ import {Title} from "@angular/platform-browser";
     styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
+    @ViewChild('profileTabContent', { read: ViewContainerRef }) profileTabContent: ViewContainerRef;
     userInfo: User
     userDetails: UserDetails = null;
     pageReady = false
@@ -25,7 +26,6 @@ export class ProfileComponent implements OnInit {
     viewModel: ProfileViewModel;
     tabs: string[] = [];
     tabMappings: boolean[] = [];
-    @ViewChild('profileTabContent', { read: ViewContainerRef }) profileTabContent: ViewContainerRef;
 
     constructor(
         public usersApi: UserApiService,
