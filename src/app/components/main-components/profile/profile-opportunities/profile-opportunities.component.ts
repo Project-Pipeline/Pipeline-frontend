@@ -6,13 +6,19 @@ import {UserApiService} from "../../../../services/user-api.service";
 import {NgxSpinnerService} from "ngx-spinner";
 import {Subject} from "rxjs";
 import {takeUntil} from "rxjs/operators";
+import {ModalPopupService} from "../../modal-popup.service";
+import {ProfileTabComponent} from "../ProfileTabComponent";
+import {User} from "../../../../models/model classes/user/User";
+import {UserDetails} from "../../../../models/model classes/user/UserDetails";
 
 @Component({
     selector: 'app-profile-opportunities',
     templateUrl: './profile-opportunities.component.html',
     styleUrls: ['./profile-opportunities.component.scss']
 })
-export class ProfileOpportunitiesComponent implements OnInit, OnDestroy {
+export class ProfileOpportunitiesComponent implements OnInit, OnDestroy, ProfileTabComponent {
+    userDetails: UserDetails;
+    userInfo: User;
     opportunities: Opportunity[] = [];
     viewModel: ProfileOpportunitiesViewModel;
     page = 1;
@@ -23,9 +29,10 @@ export class ProfileOpportunitiesComponent implements OnInit, OnDestroy {
     constructor(
         opportunitiesService: OpportunitiesService,
         userApi: UserApiService,
+        modalPopupService: ModalPopupService,
         private spinner: NgxSpinnerService
     ) {
-        this.viewModel = new ProfileOpportunitiesViewModel(opportunitiesService, userApi);
+        this.viewModel = new ProfileOpportunitiesViewModel(opportunitiesService, userApi, modalPopupService);
     }
 
     ngOnInit(): void {
@@ -63,4 +70,16 @@ export class ProfileOpportunitiesComponent implements OnInit, OnDestroy {
         this.spinner.show();
     }
 
+    showOpportunity(opportunity: Opportunity) {
+        this.viewModel.showOpportunity(opportunity)
+            .subscribe(() => {});
+    }
+
+    addOpportunity() {
+        this.viewModel.addOpportunity(this.userInfo, this.userDetails)
+            .subscribe((opp) => {
+                console.log('pushing');
+                this.opportunities.push(opp);
+            });
+    }
 }

@@ -8,6 +8,7 @@ import {PostsService} from "../../../services/posts.service";
 import {Post} from "../../../models/model classes/posts/Post";
 import {ProfileViewModel} from "./ProfileViewModel";
 import {Title} from "@angular/platform-browser";
+import {ProfileTabComponent} from "./ProfileTabComponent";
 
 @Component({
     selector: 'app-profile',
@@ -47,16 +48,20 @@ export class ProfileComponent implements OnInit {
             this.pageReady = true;
             this.tabMappings = this.viewModel.userToTabMappings(result.user);
             this.tabs = this.viewModel.userToTabTitles(result.user);
-            setTimeout(() => this.injectComponentForTab(this.tabs[0]), 100)
+            // user details dne - create user details
+            this.viewModel.noUserDetails
+                .subscribe(() => {
+                    this.shouldCompleteUserDetails = true;
+                    this.injectComponentWithDelay(this.tabs[0], result.user, null);
+                });
+
+            // user detail exists
+            this.viewModel.hasUserDetails
+                .subscribe((detail) => {
+                    this.userDetails = detail;
+                    this.injectComponentWithDelay(this.tabs[0], result.user, detail);
+                });
         });
-
-        // user details dne - create user details
-       this.viewModel.noUserDetails
-            .subscribe(() => this.shouldCompleteUserDetails = true);
-
-        // user detail exists
-        this.viewModel.hasUserDetails
-            .subscribe((detail) => this.userDetails = detail);
     }
 
     completeProfile() {
@@ -68,18 +73,27 @@ export class ProfileComponent implements OnInit {
         return this.viewModel.typeToStringFor(this.userInfo);
     }
 
+    private injectComponentWithDelay(tab: string, user: User, userDetails: UserDetails) {
+        setTimeout(
+            () => this.injectComponentForTab(tab, user, userDetails),
+            100
+        );
+    }
+
     addPost() {
 
     }
 
     tabSelected(event: [string, number]) {
-        this.injectComponentForTab(event[0]);
+        this.injectComponentForTab(event[0], this.userInfo, this.userDetails);
     }
 
-    private injectComponentForTab(tab: string) {
+    private injectComponentForTab(tab: string, user: User, userDetails: UserDetails) {
         const component = this.viewModel.tabIdToComponent[tab];
         const componentFactory = this.cfr.resolveComponentFactory(component);
         this.profileTabContent.clear();
-        this.profileTabContent.createComponent(componentFactory).instance;
+        const tabComponent = <ProfileTabComponent>this.profileTabContent.createComponent(componentFactory).instance;
+        tabComponent.userInfo = user;
+        tabComponent.userDetails = userDetails;
     }
 }

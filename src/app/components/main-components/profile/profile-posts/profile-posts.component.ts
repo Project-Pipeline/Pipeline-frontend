@@ -9,13 +9,17 @@ import {ProfilePostsViewModel} from "./ProfilePostsViewModel";
 import {ModalPopupService} from "../../modal-popup.service";
 import {Subject} from "rxjs";
 import {NgxSpinnerService} from "ngx-spinner";
+import {ProfileTabComponent} from "../ProfileTabComponent";
+import {UserDetails} from "../../../../models/model classes/user/UserDetails";
 
 @Component({
     selector: 'app-profile-posts',
     templateUrl: './profile-posts.component.html',
     styleUrls: ['./profile-posts.component.scss']
 })
-export class ProfilePostsComponent implements OnInit, OnDestroy {
+export class ProfilePostsComponent implements OnInit, OnDestroy, ProfileTabComponent {
+    userDetails: UserDetails;
+    userInfo: User;
     posts: Post[] = [];
     user: User = null;
     viewModel: ProfilePostsViewModel;

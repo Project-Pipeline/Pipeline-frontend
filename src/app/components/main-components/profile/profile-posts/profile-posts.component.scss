@@ -1,10 +1,12 @@
 @import "src/app/common-css/common-ui-styles";
+@import "src/app/common-css/profile-page-styles";
 
 .right-section {
-    width: 680px;
+    margin-left: 220px;
 }
 .left-section {
-    flex-grow: 1;
+    width: $profile-left-btn-width;
     margin-right: 20px;
+    float: left;
 
 }

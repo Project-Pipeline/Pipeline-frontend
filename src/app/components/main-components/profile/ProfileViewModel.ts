@@ -22,6 +22,7 @@ import {ComponentType} from "@angular/cdk/overlay";
 import {ProfilePostsComponent} from "./profile-posts/profile-posts.component";
 import {ProfileAboutComponent} from "./profile-about/profile-about.component";
 import {ProfileOpportunitiesComponent} from "./profile-opportunities/profile-opportunities.component";
+import {ProfileTabComponent} from "./ProfileTabComponent";
 
 export class ProfileViewModel {
 
@@ -32,7 +33,7 @@ export class ProfileViewModel {
     private isEntity = false;
     private typeToStringLookup: {[key: number]: string} = postCategoryLookUp;
 
-    tabIdToComponent: {[key: string]: ComponentType<any> } = {
+    tabIdToComponent: {[key: string]: ComponentType<ProfileTabComponent> } = {
         About: ProfileAboutComponent,
         Posts: ProfilePostsComponent,
         Opportunities: ProfileOpportunitiesComponent

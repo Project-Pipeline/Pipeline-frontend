@@ -44,6 +44,7 @@ import {ProfilePostsComponent} from './profile/profile-posts/profile-posts.compo
 import {ProfileAboutComponent} from './profile/profile-about/profile-about.component';
 import {ProfileOpportunitiesComponent} from './profile/profile-opportunities/profile-opportunities.component';
 import {MatGridListModule} from "@angular/material/grid-list";
+import { ModalPopupComponent } from './helpers/modal-popup/modal-popup.component';
 
 @NgModule({
     declarations: [
@@ -73,7 +74,8 @@ import {MatGridListModule} from "@angular/material/grid-list";
         HorizontalScrollableTabsComponent,
         ProfilePostsComponent,
         ProfileAboutComponent,
-        ProfileOpportunitiesComponent
+        ProfileOpportunitiesComponent,
+        ModalPopupComponent
     ],
     imports: [
         CommonModule,
