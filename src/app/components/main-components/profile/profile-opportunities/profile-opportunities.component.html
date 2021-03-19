@@ -1,10 +1,12 @@
-<div class="profile-opp-container">
-    <div class="ppl-button-green-with-image left">
-        <img src="assets/images/briefcase1.png">
-        <h4 (click)="addOpportunity()">Add an Opportunity</h4>
+<div>
+    <div class="profile-tab-left-section">
+        <div class="ppl-button-green-with-image" (click)="addOpportunity()">
+            <img src="assets/images/briefcase1.png">
+            <h4>Add an Opportunity</h4>
+        </div>
     </div>
 
-    <mat-grid-list class="right" cols="3" rowHeight="190px" [gutterSize]="'10px'" *ngIf="opportunities.length === 0">
+    <mat-grid-list class="profile-tab-right-section" cols="3" rowHeight="190px" [gutterSize]="'10px'" *ngIf="opportunities.length === 0">
         <mat-grid-tile>
             <div class="post-card-no-post">
                 <div class="no-post" >
@@ -14,7 +16,7 @@
         </mat-grid-tile>
     </mat-grid-list>
 
-    <div class="right">
+    <div class="profile-tab-right-section">
         <mat-grid-list cols="3" rowHeight="190px" [gutterSize]="'10px'">
             <mat-grid-tile  *ngFor="let opportunity of opportunities; let i = index" [attr.data-index]="i">
                 <div class="profile-card">

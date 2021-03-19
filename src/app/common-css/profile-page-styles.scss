@@ -4,7 +4,7 @@
     padding: 20px;
 }
 
-$profile-left-btn-width: 200px;
+$profile-left-btn-width: 250px;
 
 .profile-card {
     @include card-common;
@@ -58,6 +58,17 @@ $profile-left-btn-width: 200px;
     display: block;
     cursor: pointer;
 }
+
+.profile-tab-right-section {
+    margin-left: 270px;
+}
+
+.profile-tab-left-section {
+    width: $profile-left-btn-width;
+    margin-right: 20px;
+    float: left;
+}
+
 
 
 

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g transform="matrix(1,0,0,1,-399.831,-262.695)">
+        <g id="Info-Key" serif:id="Info Key" transform="matrix(1,0,0,1,-431.848,262.695)">
+            <rect x="831.678" y="0" width="100" height="100" style="fill:none;"/>
+            <g transform="matrix(1.17967,0,0,1.17967,336.749,-319.422)">
+                <path d="M461.935,275.262C482.85,275.262 499.831,292.242 499.831,313.157C499.831,334.073 482.85,351.053 461.935,351.053C441.019,351.053 424.039,334.073 424.039,313.157C424.039,292.242 441.019,275.262 461.935,275.262ZM461.935,282.326C478.951,282.326 492.766,296.141 492.766,313.157C492.766,330.174 478.951,343.989 461.935,343.989C444.918,343.989 431.103,330.174 431.103,313.157C431.103,296.141 444.918,282.326 461.935,282.326Z"/>
+            </g>
+            <g transform="matrix(1.19688,0,0,1.12649,337.511,-268.474)">
+                <text x="438.688px" y="303.038px" style="font-family:'Menlo-Bold', 'Menlo', monospace;font-weight:700;font-size:50px;">i</text>
+            </g>
+        </g>
+    </g>
+</svg>

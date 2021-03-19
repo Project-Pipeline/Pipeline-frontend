@@ -37,15 +37,6 @@
     h4 {
         margin-top: 8px;
     }
-    a {
-        &:link, &:visited {
-            color: deepskyblue;
-            text-decoration: none;
-        }
-        &:hover {
-            text-decoration: underline;
-        }
-    }
 }
 
 .profile-tab-container {

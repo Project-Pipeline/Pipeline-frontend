@@ -19,6 +19,7 @@ import {UserDetails} from "../../../../models/model classes/user/UserDetails";
 export class ProfileOpportunitiesComponent implements OnInit, OnDestroy, ProfileTabComponent {
     userDetails: UserDetails;
     userInfo: User;
+    userDetailSet: (details: UserDetails) => void;
     opportunities: Opportunity[] = [];
     viewModel: ProfileOpportunitiesViewModel;
     page = 1;
@@ -78,7 +79,6 @@ export class ProfileOpportunitiesComponent implements OnInit, OnDestroy, Profile
     addOpportunity() {
         this.viewModel.addOpportunity(this.userInfo, this.userDetails)
             .subscribe((opp) => {
-                console.log('pushing');
                 this.opportunities.push(opp);
             });
     }

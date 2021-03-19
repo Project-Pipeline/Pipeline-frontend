@@ -4,4 +4,5 @@ import {UserDetails} from "../../../models/model classes/user/UserDetails";
 export interface ProfileTabComponent {
     userInfo: User;
     userDetails: UserDetails;
+    userDetailSet: (details: UserDetails) => void;
 }

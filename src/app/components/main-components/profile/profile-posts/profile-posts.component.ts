@@ -20,6 +20,7 @@ import {UserDetails} from "../../../../models/model classes/user/UserDetails";
 export class ProfilePostsComponent implements OnInit, OnDestroy, ProfileTabComponent {
     userDetails: UserDetails;
     userInfo: User;
+    userDetailSet: (details: UserDetails) => void;
     posts: Post[] = [];
     user: User = null;
     viewModel: ProfilePostsViewModel;

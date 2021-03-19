@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+    <g transform="matrix(1,0,0,1,-140.043,-263.428)">
+        <g id="Mail" transform="matrix(1,0,0,1,-691.635,263.428)">
+            <rect x="831.678" y="0" width="100" height="100" style="fill:none;"/>
+            <g transform="matrix(1,0,0,1.06752,691.635,-297.321)">
+                <path d="M240.043,309.048C240.043,300.049 232.244,292.742 222.637,292.742L157.45,292.742C147.843,292.742 140.043,300.049 140.043,309.048L140.043,341.66C140.043,350.659 147.843,357.965 157.45,357.965L222.637,357.965C232.244,357.965 240.043,350.659 240.043,341.66L240.043,309.048ZM231.71,309.048L231.71,341.66C231.71,346.351 227.645,350.159 222.637,350.159C222.637,350.159 157.45,350.159 157.45,350.159C152.442,350.159 148.377,346.351 148.377,341.66L148.377,309.048C148.377,304.357 152.442,300.549 157.45,300.549L222.637,300.549C227.645,300.549 231.71,304.357 231.71,309.048Z"/>
+            </g>
+            <g transform="matrix(0.947624,0,0,1.21393,701.589,-323.757)">
+                <path d="M147.752,285.432C147.752,285.432 157.771,307.286 190.043,307.286" style="fill:none;stroke:black;stroke-width:7.65px;"/>
+            </g>
+            <g transform="matrix(-0.947624,0,0,1.21393,1061.77,-323.757)">
+                <path d="M147.752,285.432C147.752,285.432 157.771,307.286 190.043,307.286" style="fill:none;stroke:black;stroke-width:7.65px;"/>
+            </g>
+        </g>
+    </g>
+</svg>

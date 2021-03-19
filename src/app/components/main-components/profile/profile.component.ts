@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ComponentFactoryResolver, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
+import {Component, ComponentFactoryResolver, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
 import {UserApiService} from "../../../services/user-api.service";
 import {User} from "../../../models/model classes/user/User";
 import {Router} from "@angular/router";
@@ -20,7 +20,6 @@ export class ProfileComponent implements OnInit {
     userInfo: User
     userDetails: UserDetails = null;
     pageReady = false
-    shouldCompleteUserDetails = false;
     isIndividual = false;
     isEntity = false;
     posts: Post[] = [];
@@ -51,7 +50,6 @@ export class ProfileComponent implements OnInit {
             // user details dne - create user details
             this.viewModel.noUserDetails
                 .subscribe(() => {
-                    this.shouldCompleteUserDetails = true;
                     this.injectComponentWithDelay(this.tabs[0], result.user, null);
                 });
 
@@ -62,11 +60,6 @@ export class ProfileComponent implements OnInit {
                     this.injectComponentWithDelay(this.tabs[0], result.user, detail);
                 });
         });
-    }
-
-    completeProfile() {
-        this.viewModel.completeProfileFor(this.userInfo)
-            .subscribe((userDetails) => this.userDetails = userDetails);
     }
 
     typeToString(): string {
@@ -95,5 +88,6 @@ export class ProfileComponent implements OnInit {
         const tabComponent = <ProfileTabComponent>this.profileTabContent.createComponent(componentFactory).instance;
         tabComponent.userInfo = user;
         tabComponent.userDetails = userDetails;
+        tabComponent.userDetailSet = (details) => this.userDetails = details;
     }
 }

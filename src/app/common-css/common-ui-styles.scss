@@ -96,6 +96,35 @@ $theme-color-lighter: #dbffde;
     @include ppl-button-outline;
 }
 
+.ppl-img-text-pair {
+    display: flex;
+    @include ppl-button-outline;
+    img {
+        width: 25px;
+        height: 25px;
+        margin-right: 10px;
+    }
+    h4 {
+        @include helvetica-thin-style;
+        margin: 2px 0 0 0;
+        padding: 0;
+        word-break: break-all;
+    }
+    a {
+        @include helvetica-thin-style;
+        margin: 2px 0 0 0;
+        padding: 0;
+        word-break: break-all;
+        &:link, &:visited {
+            text-decoration: none;
+            color: $theme-color-dark;
+        }
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
 // Dropdown
 
 /* The dropdown container */

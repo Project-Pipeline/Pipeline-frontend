@@ -4,7 +4,7 @@ import {ModalPopupService} from "../modal-popup.service";
 import {PostsService} from "../../../services/posts.service";
 import {catchError, filter, map, mergeMap, share, take} from "rxjs/operators";
 import {Post} from "../../../models/model classes/posts/Post";
-import {empty, Observable, of} from "rxjs";
+import {Observable, of} from "rxjs";
 import {User} from "../../../models/model classes/user/User";
 import {PageData} from "../../../models/model classes/common/PageData";
 import {UserDetails} from "../../../models/model classes/user/UserDetails";
@@ -15,8 +15,6 @@ import {
     profileTabsForUsersWithType,
     profileTabTitles
 } from "../../../models/BusinessConstants";
-import {IndividualUserDetailsPopupComponent} from "./individual-user-details-popup/individual-user-details-popup.component";
-import {EntityUserDetailsPopupComponent} from "./entity-user-details-popup/entity-user-details-popup.component";
 import {handleJWTError} from "../../../models/Global";
 import {ComponentType} from "@angular/cdk/overlay";
 import {ProfilePostsComponent} from "./profile-posts/profile-posts.component";
@@ -69,29 +67,6 @@ export class ProfileViewModel {
                     this.isIndividual,
                     this.isEntity
                 ));
-            }))
-            .pipe(take(1));
-    }
-
-    completeProfileFor(userInfo: User): Observable<UserDetails> {
-        let getUserDetails: Observable<any> = empty();
-        if (individualUserTypes.includes(userInfo.type)) { // Individual user
-            getUserDetails = this.modalPopupService.openDialogComponent(
-                IndividualUserDetailsPopupComponent,
-                userInfo
-            );
-        } else if (entityUserTypes.includes(userInfo.type)) { // an entity
-            getUserDetails = this.modalPopupService.openDialogComponent(
-                EntityUserDetailsPopupComponent,
-                userInfo
-            );
-        }
-        return getUserDetails
-            .pipe(filter((result) => result != null))
-            .pipe(mergeMap((result) => {
-                const userDetails = result as UserDetails;
-                return this.usersApi.setUserDetails(result)
-                    .pipe(map(() => userDetails));
             }))
             .pipe(take(1));
     }
