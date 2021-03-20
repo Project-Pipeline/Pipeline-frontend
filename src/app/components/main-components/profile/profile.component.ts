@@ -73,10 +73,6 @@ export class ProfileComponent implements OnInit {
         );
     }
 
-    addPost() {
-
-    }
-
     tabSelected(event: [string, number]) {
         this.injectComponentForTab(event[0], this.userInfo, this.userDetails);
     }
