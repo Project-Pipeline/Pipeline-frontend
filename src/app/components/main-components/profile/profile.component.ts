@@ -28,12 +28,12 @@ export class ProfileComponent implements OnInit {
     tabMappings: boolean[] = [];
 
     constructor(
-        public usersApi: UserApiService,
-        public router: Router,
-        public modalPopupService: ModalPopupService,
-        public postsService: PostsService,
-        public title: Title,
-        public cfr: ComponentFactoryResolver
+        usersApi: UserApiService,
+        router: Router,
+        modalPopupService: ModalPopupService,
+        postsService: PostsService,
+        private title: Title,
+        private cfr: ComponentFactoryResolver
     ) {
         this.viewModel = new ProfileViewModel(usersApi, router, modalPopupService, postsService);
         this.title.setTitle('Profile');

@@ -3,8 +3,7 @@ import {UserApiService} from "../../../../services/user-api.service";
 import {Router} from "@angular/router";
 import {empty, Observable, Subject} from "rxjs";
 import {UsersAndPosts} from "../../../../models/model classes/posts/Post";
-import {catchError, map, mergeMap, take} from "rxjs/operators";
-import {handleJWTError} from "../../../../models/Global";
+import {map, mergeMap, take} from "rxjs/operators";
 import {ModalPopupService} from "../../modal-popup.service";
 import {PageDataMetadata} from "../../../../models/model classes/common/PageData";
 
@@ -17,7 +16,6 @@ export class ProfilePostsViewModel {
     constructor(
         private postsService: PostsService,
         private usersApi: UserApiService,
-        private router: Router,
         private modalPopupService: ModalPopupService
     ) {
         this.postsFetched$ = this.pageChanged$
@@ -25,7 +23,6 @@ export class ProfilePostsViewModel {
                 return this.usersApi.getUserInfo()
                     .pipe(mergeMap((user) => {
                         return this.usersApi.getPosts(user, page, this.per)
-                            .pipe(catchError((e) => handleJWTError(e, this.router)))
                             .pipe(map((posts) => {
                                 this.pageMetadataFetched$.next(posts.metadata);
                                 return new UsersAndPosts([user], posts.items)

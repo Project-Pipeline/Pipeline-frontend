@@ -32,11 +32,10 @@ export class ProfilePostsComponent implements OnInit, OnDestroy, ProfileTabCompo
     constructor(
         postsService: PostsService,
         usersApi: UserApiService,
-        router: Router,
         modalPopupService: ModalPopupService,
         private spinner: NgxSpinnerService
     ) {
-        this.viewModel = new ProfilePostsViewModel(postsService, usersApi, router, modalPopupService);
+        this.viewModel = new ProfilePostsViewModel(postsService, usersApi, modalPopupService);
     }
 
     ngOnInit(): void {
