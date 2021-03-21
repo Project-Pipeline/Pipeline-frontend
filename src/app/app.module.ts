@@ -7,7 +7,7 @@ import {SignupComponent} from './components/signup/signup.component';
 import {FormsModule} from "@angular/forms";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {JWTErrorInterceptor} from "./models/model classes/common/JWTErrorInterceptor";
+import {JWTErrorInterceptor} from "./models/helpers/JWTErrorInterceptor";
 
 @NgModule({
     declarations: [

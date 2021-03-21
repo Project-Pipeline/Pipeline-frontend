@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Opportunity} from "../../../../models/model classes/opportunities/Opportunity";
 import {unixTimeStampToDate} from "../../../../models/Global";
-import {ModalPresentable} from "../../../../models/modal-popup/ModalPresentable";
+import {ModalPresentable} from "../../../../models/helpers/modal-popup/ModalPresentable";
 
 @Component({
     selector: 'app-opportunity-details',

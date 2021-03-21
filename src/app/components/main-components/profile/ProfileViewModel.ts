@@ -15,7 +15,6 @@ import {
     profileTabsForUsersWithType,
     profileTabTitles
 } from "../../../models/BusinessConstants";
-import {handleJWTError} from "../../../models/Global";
 import {ComponentType} from "@angular/cdk/overlay";
 import {ProfilePostsComponent} from "./profile-posts/profile-posts.component";
 import {ProfileAboutComponent} from "./profile-about/profile-about.component";
@@ -59,7 +58,6 @@ export class ProfileViewModel {
 
     getUser(): Observable<GetUserResult> {
         return this.usersApi.getUserInfo()
-            .pipe(catchError((e) => handleJWTError(e, this.router)))
             .pipe(mergeMap((user) => {
                 this.prepareUserType(user);
                 return of(new GetUserResult(

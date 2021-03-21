@@ -9,8 +9,6 @@ import {catchError, map, mergeMap, takeUntil} from 'rxjs/operators';
 import {Title} from '@angular/platform-browser';
 import {PaginatorComponent} from '../../reusable-components/paginator/paginator.component';
 import {of, Subject} from 'rxjs';
-import {handleJWTError} from '../../../models/Global';
-import {Router} from '@angular/router';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {ModalPopupService} from "../modal-popup.service";
 
@@ -38,7 +36,6 @@ export class NewsCenterComponent implements OnInit , OnDestroy {
         postsApi: PostsService,
         title: Title,
         modalPopupService: ModalPopupService,
-        private router: Router,
         private spinner: NgxSpinnerService
     ) {
         this.viewModel = new NewsCenterViewModel(postsApi, usersApi, modalPopupService);
@@ -49,7 +46,6 @@ export class NewsCenterComponent implements OnInit , OnDestroy {
         this.spinner.show();
         this.viewModel
             .getPostsCategories()
-            .pipe(catchError((e) => handleJWTError(e, this.router)))
             .pipe(takeUntil(this.unsubscribe$))
             .subscribe(([categories, filterStatuses]) => {
                 this.categories = categories;
@@ -59,7 +55,6 @@ export class NewsCenterComponent implements OnInit , OnDestroy {
             });
 
         this.viewModel.postsFetched$
-            .pipe(catchError((e) => handleJWTError(e, this.router)))
             .pipe(mergeMap((posts) => {
                 return this.viewModel
                     .getUsersFromPosts(posts.items)
