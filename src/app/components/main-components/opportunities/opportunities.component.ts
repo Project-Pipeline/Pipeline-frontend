@@ -12,8 +12,6 @@ import {
     OpportunityMarkerData
 } from "../../../models/model classes/opportunities/OpportunityMarkerData";
 import {OpportunityFilter} from "../../../models/model classes/opportunities/OpportunityFilter";
-import {handleJWTError} from "../../../models/Global";
-import {Router} from "@angular/router";
 import {Title} from "@angular/platform-browser";
 
 @Component({
@@ -43,7 +41,6 @@ export class OpportunitiesComponent implements OnInit, AfterViewInit {
     constructor(
         private mapsService: MapsService,
         private opportunitiesService: OpportunitiesService,
-        private router: Router,
         private title: Title
     ) {
         this.viewportHeightString = this.getViewportHeight();
@@ -63,7 +60,6 @@ export class OpportunitiesComponent implements OnInit, AfterViewInit {
 
         this.viewModel.centerLocationUpdater
             .pipe(switchMap((latLng) => this.viewModel.getOpportunitiesCenteredOn(latLng)))
-            .pipe(catchError((e) => handleJWTError(e, this.router)))
             .subscribe(([opportunities, filteredOpportunities, markers]) => {
                 this.opportunities = opportunities;
                 this.filteredOpportunities = filteredOpportunities;

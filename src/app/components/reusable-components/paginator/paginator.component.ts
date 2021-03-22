@@ -1,11 +1,16 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 
 @Component({
     selector: 'app-paginator',
     templateUrl: './paginator.component.html',
     styleUrls: ['./paginator.component.scss']
 })
-export class PaginatorComponent implements OnInit {
+// Notes on usage:
+// 1. Inputs page, per and total are only supposed to be set ONCE when the page metadata is first fetched. Setting them
+//  manually after first set might cause bugs
+// 2. Later page changes in the paginator are delivered via the pageChanged output event - ideally you would next the
+// value into an rxjs subject to get the data on the next page
+export class PaginatorComponent implements OnInit, OnChanges {
     @Input() page = 0;
     @Input() per = 0;
     @Input() total = 0;
@@ -14,6 +19,7 @@ export class PaginatorComponent implements OnInit {
     prevBtnDisabled = false;
     nextBtnDisabled = false;
     lastBtnDisabled = false;
+    private changeCount = 0;
 
     constructor() {
     }
@@ -23,7 +29,16 @@ export class PaginatorComponent implements OnInit {
         this.page -= 1;
         this.checkDisablingPrevBtn();
         this.checkDisablingNextBtn();
-        // console.log(this.total, this.per, this.totalPages);
+    }
+
+    ngOnChanges(changes: SimpleChanges) {
+        this.changeCount += 1;
+        // first change - when inputs are initially bound on init
+        // second change - when the inputs are first set by a consumer - need to check btn states
+        if (this.changeCount === 2) {
+            this.checkButtonStates(false);
+        }
+
     }
 
     itemsStart(): number {

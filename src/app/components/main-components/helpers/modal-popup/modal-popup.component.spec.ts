@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { IndividualProfileComponent } from './individual-profile.component';
+import { ModalPopupComponent } from './modal-popup.component';
 
-describe('IndividualProfileComponent', () => {
-  let component: IndividualProfileComponent;
-  let fixture: ComponentFixture<IndividualProfileComponent>;
+describe('ModalPopupComponent', () => {
+  let component: ModalPopupComponent<any, any>;
+  let fixture: ComponentFixture<ModalPopupComponent<any, any>>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ IndividualProfileComponent ]
+      declarations: [ ModalPopupComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(IndividualProfileComponent);
+    fixture = TestBed.createComponent(ModalPopupComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

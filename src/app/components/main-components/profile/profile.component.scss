@@ -1,3 +1,5 @@
+@import "src/app/common-css/common-ui-styles";
+
 #bg {
     height: 160px;
     padding: 20px 0;
@@ -35,13 +37,17 @@
     h4 {
         margin-top: 8px;
     }
-    a {
-        &:link, &:visited {
-            color: deepskyblue;
-            text-decoration: none;
-        }
-        &:hover {
-            text-decoration: underline;
-        }
-    }
+}
+
+.profile-tab-container {
+    background-color: $theme-color-gray;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+}
+
+.profile-content-container {
+    margin-top: 20px;
+    margin-bottom: 20px;
 }

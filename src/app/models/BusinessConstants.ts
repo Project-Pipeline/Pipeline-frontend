@@ -45,3 +45,22 @@ export const postCategoryLookUp = {
     4: 'Community Organization',
     5: 'School'
 };
+
+// Profile tabs
+const individualProfileTabs = [1, 2];
+const entityProfileTabs = [1, 2, 3];
+
+export const profileTabsForUsersWithType: {[key: number]: number[] } = {
+    0: individualProfileTabs,
+    1: individualProfileTabs,
+    2: individualProfileTabs,
+    3: entityProfileTabs,
+    4: entityProfileTabs,
+    5: entityProfileTabs
+}
+
+export const profileTabTitles: {[key: number]: string } = {
+    1: 'About',
+    2: 'Posts',
+    3: 'Opportunities'
+}

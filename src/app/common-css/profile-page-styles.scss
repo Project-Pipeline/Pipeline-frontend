@@ -1,22 +1,27 @@
 @mixin card-common {
-    width: 250px;
     background-color: rgb(244, 244, 244);
     height: 160px;
-    white-space: normal;
-    border-radius: 20px;
     padding: 20px;
 }
+
+$profile-left-btn-width: 250px;
 
 .profile-card {
     @include card-common;
     h5 {
         margin-top: 8px;
     }
-    margin-right: 20px;
+    h3 {
+        font-size: 17px;
+    }
     position: relative;
     button {
         position: absolute;
         bottom: 20px;
+    }
+    .profile-card-content {
+        height: 120px;
+        overflow: hidden;
     }
 }
 
@@ -53,6 +58,17 @@
     display: block;
     cursor: pointer;
 }
+
+.profile-tab-right-section {
+    margin-left: 270px;
+}
+
+.profile-tab-left-section {
+    width: $profile-left-btn-width;
+    margin-right: 20px;
+    float: left;
+}
+
 
 
 

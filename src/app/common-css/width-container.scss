@@ -18,3 +18,17 @@
     padding: 0 3%;
   }
 }
+
+// for use in a more compact setting, where width should be narrower
+.width-container-narrower {
+    max-width: 900px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+@media screen and (max-width: 930px) {
+    .width-container-narrower {
+        max-width: none;
+        padding: 0 5%;
+    }
+}

@@ -9,7 +9,7 @@ import {Post} from "../../../../../models/model classes/posts/Post";
 export class PostSummaryCardComponent implements OnInit {
     @Input() post: Post;
     @Input() noPost = false;
-    @Output() moreButtonEvent: EventEmitter<any> = new EventEmitter<any>();
+    @Output() moreButtonEvent: EventEmitter<Post> = new EventEmitter<Post>();
 
     // i18n pipe
     mapping: {[k: string]: string} = {
@@ -25,7 +25,7 @@ export class PostSummaryCardComponent implements OnInit {
     }
 
     moreButtonClicked() {
-        this.moreButtonEvent.emit('');
+        this.moreButtonEvent.emit(this.post);
     }
 
 

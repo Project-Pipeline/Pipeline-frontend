@@ -1,13 +1,12 @@
 import {Component, ElementRef, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, ViewChild} from '@angular/core';
 import {UserApiService} from "../../../../services/user-api.service";
 import {User} from "../../../../models/model classes/user/User";
-import {catchError, mergeMap} from "rxjs/operators";
+import {mergeMap} from "rxjs/operators";
 import {MessagingService} from "../../../../services/messaging.service";
 import {Conversation, ConversationParticipantInfo} from "../../../../models/model classes/messaging/Conversation";
 import {MessagingConnect} from "../../../../models/model classes/messaging/MessagingConnect";
 import {ConversationEntry} from "../../../../models/model classes/messaging/ConversationEntry";
-import {delayExecutionFor, handleJWTError, unixTimeStampToDate} from "../../../../models/Global";
-import {Router} from "@angular/router";
+import {delayExecutionFor, unixTimeStampToDate} from "../../../../models/Global";
 
 @Component({
     selector: 'app-messaging',
@@ -30,14 +29,12 @@ export class MessagingComponent implements OnInit, OnDestroy, OnChanges {
 
     constructor(
         private userApiService: UserApiService,
-        private messagingService: MessagingService,
-        private router: Router) {
+        private messagingService: MessagingService) {
     }
 
     ngOnInit(): void {
         this.userApiService
             .getUserInfo()
-            .pipe(catchError((e) => handleJWTError(e, this.router)))
             .subscribe((user) => {
                 this.currentUser = user;
                 this.createMessageList(this.currentUser);
@@ -73,7 +70,6 @@ export class MessagingComponent implements OnInit, OnDestroy, OnChanges {
 
     createMessageList(user: User) {
         this.messagingService.messageIDToConversation(user.messages)
-            .pipe(catchError((e) => handleJWTError(e, this.router)))
             .subscribe((convos) => this.currentConversations = convos);
     }
 

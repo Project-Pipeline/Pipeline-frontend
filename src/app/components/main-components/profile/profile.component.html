@@ -1,28 +1,17 @@
 <div id="bg">
-    <div class="width-container flex">
+    <div class="width-container flex" *ngIf="userInfo">
         <img src="{{userInfo.picture}}">
         <div class="profile-details">
             <h2 class="helvetica clear-text-paddings">{{userInfo.givenName}}&nbsp;{{userInfo.familyName}}</h2>
             <h4 class="helvetica-normal clear-text-paddings" *ngIf="isIndividual">
-                <span *ngIf="userDetails != null">{{userDetails.profession}},&nbsp;</span>
+                <span *ngIf="userDetails">{{userDetails.profession}},&nbsp;</span>
                 {{userInfo.entityBelongedTo}}
             </h4>
             <h4 class="helvetica-normal clear-text-paddings" *ngIf="isEntity">
                 {{typeToString() | titlecase}}
             </h4>
-            <div *ngIf="userDetails != null" style="margin-top: 8px">
-                <div class="flex">
-                    <div *ngFor="let link of userDetails.links">
-                        <a href="{{link.detail}}" target="_blank">{{link.description}}</a>
-                    </div>
-                </div>
-                <div class="flex" *ngFor="let num of userDetails.phoneNumbers">
-                    <h4 class="helvetica-normal clear-text-paddings">{{num.description}}:&nbsp;&nbsp;{{num.detail}}</h4>
-                </div>
-            </div>
         </div>
         <div class="ml-auto mt-auto flex">
-            <button *ngIf="shouldCompleteUserDetails" (click)="completeProfile()">Complete Profile</button>
             <button>Follow</button>
             <button>Message</button>
             <button>Settings</button>
@@ -30,5 +19,17 @@
     </div>
 </div>
 
-<app-individual-profile *ngIf="isIndividual"></app-individual-profile>
-<app-entity-profile *ngIf="isEntity"></app-entity-profile>
+<div class="profile-tab-container">
+    <div class="width-container inner">
+        <app-horizontal-scrollable-tabs
+            [tabs]="tabs"
+            [tabMappings]="tabMappings"
+            [boldFont]="true"
+            (tabSelected)="tabSelected($event)"
+        ></app-horizontal-scrollable-tabs>
+    </div>
+</div>
+
+<div class="width-container profile-content-container">
+    <ng-template #profileTabContent></ng-template>
+</div>

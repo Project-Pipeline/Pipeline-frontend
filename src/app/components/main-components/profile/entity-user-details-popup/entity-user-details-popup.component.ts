@@ -66,7 +66,6 @@ export class EntityUserDetailsPopupComponent implements OnInit {
     }
 
     addressSelected(address: Address) {
-        console.log(address);
         this.address  = address;
     }
 

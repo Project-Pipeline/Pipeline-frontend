@@ -7,6 +7,12 @@ import {Zipcode} from "../models/model classes/opportunities/Zipcode";
 import {OpportunityCategory} from "../models/model classes/opportunities/OpportunityCategory";
 import {opportunityCategoryToId} from "../models/BusinessConstants";
 import {ConfigService} from "./config.service";
+import {AddOpportunityPopupComponent} from "../components/main-components/opportunities/add-opportunity-popup/add-opportunity-popup.component";
+import {UserAndDetailCombo} from "../models/model classes/user/UserAndDetailCombo";
+import {filter, map, mergeMap} from "rxjs/operators";
+import {ModalPopupService} from "../components/main-components/modal-popup.service";
+import {User} from "../models/model classes/user/User";
+import {UserDetails} from "../models/model classes/user/UserDetails";
 
 @Injectable({
     providedIn: 'root'
@@ -57,5 +63,23 @@ export class OpportunitiesService {
             `${this.configService.apiRoot}api/opportunities`,
             this.authService.authHeadersWithParams(params)
         );
+    }
+
+    addOpportunityWithPopup(
+        modalPopupService: ModalPopupService,
+        userInfo: User,
+        userDetails: UserDetails
+    ): Observable<Opportunity> {
+        let createdOpportunity: Opportunity = null;
+        return modalPopupService.openDialogComponent(
+            AddOpportunityPopupComponent,
+            new UserAndDetailCombo(userInfo, userDetails)
+        )
+            .pipe(filter((result) => result != null))
+            .pipe(mergeMap((op) => {
+                createdOpportunity = op as Opportunity;
+                return this.createOpportunity(createdOpportunity)
+                    .pipe(map(() => createdOpportunity));
+            }));
     }
 }

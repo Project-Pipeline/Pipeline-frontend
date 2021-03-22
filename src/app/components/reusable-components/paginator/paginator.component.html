@@ -1,9 +1,19 @@
 <div class="ml-auto mr-auto paginator-container">
 <!--    <button [disabled]="firstBtnDisabled" class="ppl-button-green">First</button>-->
-    <button [disabled]="prevBtnDisabled" [ngClass]="{'btn-disabled': prevBtnDisabled}" class="ppl-button-green" (click)="gotoPrevPage()">Previous</button>
+    <button
+        [disabled]="prevBtnDisabled"
+        [ngClass]="{'btn-disabled': prevBtnDisabled}"
+        class="ppl-button-green"
+        (click)="gotoPrevPage()"
+    >Previous</button>
 
     <h4 class="helvetica-normal">{{itemsStart()}} - {{itemsEnd()}} of {{total}}&nbsp;&nbsp;</h4>
 
-    <button [disabled]="nextBtnDisabled" [ngClass]="{'btn-disabled': nextBtnDisabled}" class="ppl-button-green" (click)="gotoNextPage()">Next</button>
+    <button
+        [disabled]="nextBtnDisabled"
+        [ngClass]="{'btn-disabled': nextBtnDisabled}"
+        class="ppl-button-green"
+        (click)="gotoNextPage()"
+    >Next</button>
 <!--    <button [disabled]="lastBtnDisabled" class="ppl-button-green">Last</button>-->
 </div>

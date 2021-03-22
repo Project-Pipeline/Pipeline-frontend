@@ -24,6 +24,10 @@ $theme-color-lighter: #dbffde;
     margin: 0;
 }
 
+@mixin ppl-animation-transition {
+    transition: all .2s ease-in-out;
+}
+
 .helvetica {
     @include helvetica-style;
 }
@@ -47,8 +51,8 @@ $theme-color-lighter: #dbffde;
 
 .ppl-button-green {
     @include ppl-button-outline;
+    @include ppl-animation-transition;
     background-color: $theme-color;
-    border: none;
     color: black;
     text-align: center;
     text-decoration: none;
@@ -57,13 +61,68 @@ $theme-color-lighter: #dbffde;
     height: 31px;
     cursor: pointer;
     margin-top: 8px;
+    border: 1px solid $theme-color;
     &:focus {
         outline: none;
+    }
+    &:hover {
+        border-color: black;
+    }
+}
+
+.ppl-button-green-with-image {
+    background-color: $theme-color;
+    border: 1px solid $theme-color;
+    cursor: pointer;
+    display: flex;
+    @include ppl-animation-transition;
+    @include ppl-button-outline;
+    img {
+        width: 20px;
+        height: 20px;
+        margin-right: 10px;
+    }
+    &:hover {
+        border-color: black;
+    }
+    h4 {
+        @include helvetica-thin-style;
+        margin: 0;
+        padding: 0;
     }
 }
 
 .ppl-button-outline {
     @include ppl-button-outline;
+}
+
+.ppl-img-text-pair {
+    display: flex;
+    @include ppl-button-outline;
+    img {
+        width: 25px;
+        height: 25px;
+        margin-right: 10px;
+    }
+    h4 {
+        @include helvetica-thin-style;
+        margin: 2px 0 0 0;
+        padding: 0;
+        word-break: break-all;
+    }
+    a {
+        @include helvetica-thin-style;
+        margin: 2px 0 0 0;
+        padding: 0;
+        word-break: break-all;
+        &:link, &:visited {
+            text-decoration: none;
+            color: $theme-color-dark;
+        }
+        &:hover {
+            text-decoration: underline;
+        }
+    }
 }
 
 // Dropdown
