@@ -3,7 +3,7 @@ import {ProfileTabComponent} from "../ProfileTabComponent";
 import {UserDetails} from "../../../../models/model classes/user/UserDetails";
 import {User} from "../../../../models/model classes/user/User";
 import {ProfileAboutViewModel} from "./ProfileAboutViewModel";
-import {ModalPopupService} from "../../modal-popup.service";
+import {ModalPopupService} from "../../../../shared/services/modal-popup.service";
 import {UserApiService} from "../../../../services/user-api.service";
 
 @Component({

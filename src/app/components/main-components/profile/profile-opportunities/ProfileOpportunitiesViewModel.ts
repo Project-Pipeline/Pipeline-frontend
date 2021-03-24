@@ -4,7 +4,7 @@ import {Observable, Subject, throwError} from "rxjs";
 import {Opportunity} from "../../../../models/model classes/opportunities/Opportunity";
 import {PageData, PageDataMetadata} from "../../../../models/model classes/common/PageData";
 import {first, map, mergeMap, share, take} from "rxjs/operators";
-import {ModalPopupService} from "../../modal-popup.service";
+import {ModalPopupService} from "../../../../shared/services/modal-popup.service";
 import {OpportunityDetailsComponent} from "../../opportunities/opportunity-details/opportunity-details.component";
 import {DialogSize} from "../../../../models/model classes/DialogSize";
 import {User} from "../../../../models/model classes/user/User";

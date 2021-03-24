@@ -8,8 +8,8 @@ import {
 } from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {ComponentType} from "@angular/cdk/overlay";
-import {ComponentAndArgument} from "../../../../models/helpers/modal-popup/ComponentAndArgument";
-import {ModalPresentable} from "../../../../models/helpers/modal-popup/ModalPresentable";
+import {ComponentAndArgument} from "../../../models/helpers/modal-popup/ComponentAndArgument";
+import {ModalPresentable} from "../../../models/helpers/modal-popup/ModalPresentable";
 
 @Component({
     selector: 'app-modal-popup',

@@ -6,7 +6,7 @@ import {UserApiService} from "../../../../services/user-api.service";
 import {NgxSpinnerService} from "ngx-spinner";
 import {Subject} from "rxjs";
 import {takeUntil} from "rxjs/operators";
-import {ModalPopupService} from "../../modal-popup.service";
+import {ModalPopupService} from "../../../../shared/services/modal-popup.service";
 import {ProfileTabComponent} from "../ProfileTabComponent";
 import {User} from "../../../../models/model classes/user/User";
 import {UserDetails} from "../../../../models/model classes/user/UserDetails";

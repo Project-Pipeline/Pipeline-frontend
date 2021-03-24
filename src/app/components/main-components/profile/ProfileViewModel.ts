@@ -1,6 +1,6 @@
 import {UserApiService} from "../../../services/user-api.service";
 import {Router} from "@angular/router";
-import {ModalPopupService} from "../modal-popup.service";
+import {ModalPopupService} from "../../../shared/services/modal-popup.service";
 import {PostsService} from "../../../services/posts.service";
 import {catchError, filter, map, mergeMap, share, take} from "rxjs/operators";
 import {Post} from "../../../models/model classes/posts/Post";

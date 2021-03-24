@@ -4,7 +4,7 @@ import {Router} from "@angular/router";
 import {empty, Observable, Subject} from "rxjs";
 import {UsersAndPosts} from "../../../../models/model classes/posts/Post";
 import {map, mergeMap, take} from "rxjs/operators";
-import {ModalPopupService} from "../../modal-popup.service";
+import {ModalPopupService} from "../../../../shared/services/modal-popup.service";
 import {PageDataMetadata} from "../../../../models/model classes/common/PageData";
 
 export class ProfilePostsViewModel {

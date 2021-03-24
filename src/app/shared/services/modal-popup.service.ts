@@ -3,12 +3,13 @@ import {ComponentType} from "@angular/cdk/overlay";
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {DialogSize} from "../../models/model classes/DialogSize";
 import {Observable} from "rxjs";
-import {ModalPopupComponent} from "./helpers/modal-popup/modal-popup.component";
+import {ModalPopupComponent} from "../components/modal-popup/modal-popup.component";
 import {ComponentAndArgument} from "../../models/helpers/modal-popup/ComponentAndArgument";
 import {ModalPresentable} from "../../models/helpers/modal-popup/ModalPresentable";
+import {SharedModule} from "../shared.module";
 
 @Injectable({
-    providedIn: 'root'
+    providedIn: SharedModule
 })
 export class ModalPopupService {
 

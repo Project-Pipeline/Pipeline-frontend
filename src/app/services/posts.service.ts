@@ -12,9 +12,8 @@ import {CommentForPost} from "../models/model classes/posts/CommentForPost";
 import {AddPostPopupComponent} from "../components/main-components/news-center/add-post-popup/add-post-popup.component";
 import {DialogSize} from "../models/model classes/DialogSize";
 import {filter, map, mergeMap, take} from "rxjs/operators";
-import {ModalPopupService} from "../components/main-components/modal-popup.service";
+import {ModalPopupService} from "../shared/services/modal-popup.service";
 import {UserApiService} from "./user-api.service";
-import {User} from "../models/model classes/user/User";
 
 @Injectable({
     providedIn: 'root'

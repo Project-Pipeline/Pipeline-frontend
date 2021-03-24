@@ -6,7 +6,7 @@ import {UserApiService} from "../../../../services/user-api.service";
 import {User} from "../../../../models/model classes/user/User";
 import {Router} from "@angular/router";
 import {ProfilePostsViewModel} from "./ProfilePostsViewModel";
-import {ModalPopupService} from "../../modal-popup.service";
+import {ModalPopupService} from "../../../../shared/services/modal-popup.service";
 import {Subject} from "rxjs";
 import {NgxSpinnerService} from "ngx-spinner";
 import {ProfileTabComponent} from "../ProfileTabComponent";
