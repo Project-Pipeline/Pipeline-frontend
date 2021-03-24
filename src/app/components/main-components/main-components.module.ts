@@ -11,7 +11,7 @@ import {MatIconModule} from "@angular/material/icon";
 import {FormsModule} from "@angular/forms";
 import {MessagingDateFormatterPipe} from "../../pipes/messaging-date-formatter.pipe";
 import {MainComponent} from './main/main.component';
-import {SegmentedControlComponent} from "../reusable-components/segmented-control/segmented-control.component";
+import {SegmentedControlComponent} from "../shared/segmented-control/segmented-control.component";
 import {MainComponentsRoutingModule} from "./main-components-routing.module";
 import {MAT_DIALOG_DATA, MatDialogModule, MatDialogRef} from "@angular/material/dialog";
 import {ModalPopupService} from "./modal-popup.service";
@@ -34,15 +34,16 @@ import {OpportunityDetailsComponent} from './opportunities/opportunity-details/o
 import {AddPostPopupComponent} from './news-center/add-post-popup/add-post-popup.component';
 import {PostSummaryCardComponent} from './profile/utility/post-summary-card/post-summary-card.component';
 import {PostDetailsComponent} from './news-center/post-details/post-details.component';
-import {PaginatorComponent} from '../reusable-components/paginator/paginator.component';
+import {PaginatorComponent} from '../shared/paginator/paginator.component';
 import {NgxSpinnerModule} from "ngx-spinner";
 import {MatTooltipModule} from "@angular/material/tooltip";
-import {HorizontalScrollableTabsComponent} from "../reusable-components/horizontal-scrollable-tabs/horizontal-scrollable-tabs.component";
+import {HorizontalScrollableTabsComponent} from "../shared/horizontal-scrollable-tabs/horizontal-scrollable-tabs.component";
 import {ProfilePostsComponent} from './profile/profile-posts/profile-posts.component';
 import {ProfileAboutComponent} from './profile/profile-about/profile-about.component';
 import {ProfileOpportunitiesComponent} from './profile/profile-opportunities/profile-opportunities.component';
 import {MatGridListModule} from "@angular/material/grid-list";
 import { ModalPopupComponent } from './helpers/modal-popup/modal-popup.component';
+import {SharedModule} from "../shared/shared.module";
 
 @NgModule({
     declarations: [
@@ -54,7 +55,6 @@ import { ModalPopupComponent } from './helpers/modal-popup/modal-popup.component
         NavbarComponent,
         MessagingDateFormatterPipe,
         MainComponent,
-        SegmentedControlComponent,
         IndividualUserDetailsPopupComponent,
         TextPairEditorComponent,
         EntityUserDetailsPopupComponent,
@@ -66,8 +66,6 @@ import { ModalPopupComponent } from './helpers/modal-popup/modal-popup.component
         AddPostPopupComponent,
         PostSummaryCardComponent,
         PostDetailsComponent,
-        PaginatorComponent,
-        HorizontalScrollableTabsComponent,
         ProfilePostsComponent,
         ProfileAboutComponent,
         ProfileOpportunitiesComponent,
@@ -76,6 +74,7 @@ import { ModalPopupComponent } from './helpers/modal-popup/modal-popup.component
     imports: [
         CommonModule,
         FormsModule,
+        SharedModule,
         MainComponentsRoutingModule,
         // Angular material imports
         MatDialogModule,
