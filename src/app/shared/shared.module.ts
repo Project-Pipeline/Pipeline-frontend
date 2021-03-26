@@ -10,13 +10,14 @@ import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
 import {MatCheckboxModule} from "@angular/material/checkbox";
-import {HorizontalScrollableTabsComponent} from "./components/horizontal-scrollable-tabs/horizontal-scrollable-tabs.component";
-import {PaginatorComponent} from "./components/paginator/paginator.component";
-import {SegmentedControlComponent} from "./components/segmented-control/segmented-control.component";
-import {TextPairEditorComponent} from "./components/text-pair-editor/text-pair-editor.component";
-import {RowTextEditorComponent} from "./components/row-text-editor/row-text-editor.component";
-import {ModalPopupComponent} from "./components/modal-popup/modal-popup.component";
+import {HorizontalScrollableTabsComponent} from "./ui-components/horizontal-scrollable-tabs/horizontal-scrollable-tabs.component";
+import {PaginatorComponent} from "./ui-components/paginator/paginator.component";
+import {SegmentedControlComponent} from "./ui-components/segmented-control/segmented-control.component";
+import {TextPairEditorComponent} from "./ui-components/text-pair-editor/text-pair-editor.component";
+import {RowTextEditorComponent} from "./ui-components/row-text-editor/row-text-editor.component";
+import {ModalPopupComponent} from "./ui-components/modal-popup/modal-popup.component";
 import {FormsModule} from "@angular/forms";
+import {AddressAutoCompleterComponent} from "./ui-components/address-auto-completer/address-auto-completer.component";
 
 @NgModule({
     declarations: [
@@ -25,7 +26,8 @@ import {FormsModule} from "@angular/forms";
         SegmentedControlComponent,
         TextPairEditorComponent,
         RowTextEditorComponent,
-        ModalPopupComponent
+        ModalPopupComponent,
+        AddressAutoCompleterComponent
     ],
     imports: [
         CommonModule,
@@ -47,7 +49,8 @@ import {FormsModule} from "@angular/forms";
         SegmentedControlComponent,
         TextPairEditorComponent,
         RowTextEditorComponent,
-        ModalPopupComponent
+        ModalPopupComponent,
+        AddressAutoCompleterComponent
     ]
 })
 export class SharedModule {

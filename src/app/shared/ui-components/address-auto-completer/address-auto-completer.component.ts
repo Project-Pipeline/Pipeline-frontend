@@ -1,9 +1,9 @@
 import {AfterViewInit, Component, EventEmitter, Output, ViewChild} from '@angular/core';
-import {MapsService} from "../../../../services/maps.service";
+import {MapsService} from "../../../services/maps.service";
 import {fromEvent, interval, of} from "rxjs";
 import {catchError, debounce, filter, map, share, switchMap} from "rxjs/operators";
-import {PlacePredictionResult} from "../../../../models/model classes/maps/PlacePrediction";
-import {Address} from "../../../../models/model classes/user/Address";
+import {PlacePredictionResult} from "../../../models/model classes/maps/PlacePrediction";
+import {Address} from "../../../models/model classes/user/Address";
 
 @Component({
     selector: 'app-address-auto-completer',
