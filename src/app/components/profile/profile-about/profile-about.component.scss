@@ -1,4 +1,4 @@
-@import "src/app/common-css/common-ui-styles";
+@import "../../../common-css/common-ui-styles";
 
 @mixin profile-about-bg-style($padding) {
     background-color: $theme-color-gray;

@@ -2,24 +2,24 @@
     <div class="profile-about-card">
         <div *ngIf="userDetails">
             <div class="ppl-img-text-pair" *ngFor="let link of userDetails.links">
-                <img src="assets/images/navbar/news-center.png">
+                <img src="../../../../assets/images/navbar/news-center.png">
                 <a target="_blank" href="{{link.detail}}">{{link.description}}</a>
             </div>
             <div class="ppl-img-text-pair" *ngFor="let phone of userDetails.phoneNumbers">
-                <img src="assets/images/common/phone.svg">
+                <img src="../../../../assets/images/common/phone.svg">
                 <h4>{{phone.description}}:<br>{{phone.detail}}</h4>
             </div>
             <div class="ppl-img-text-pair" *ngFor="let extra of userDetails.additionalInfo">
-                <img src="assets/images/common/info-key.svg">
+                <img src="../../../../assets/images/common/info-key.svg">
                 <h4>{{extra.description}}:<br>{{extra.detail}}</h4>
             </div>
         </div>
         <div class="ppl-img-text-pair">
-            <img src="assets/images/common/mail.svg">
+            <img src="../../../../assets/images/common/mail.svg">
             <h4>{{userInfo.email}}</h4>
         </div>
         <div class="ppl-img-text-pair">
-            <img src="assets/images/common/info-key.svg">
+            <img src="../../../../assets/images/common/info-key.svg">
             <h4>Industry:&nbsp;{{userInfo.industry}}</h4>
         </div>
     </div>
@@ -28,7 +28,7 @@
         class="ppl-button-green-with-image"
         (click)="completeProfile()"
     >
-        <img src="assets/images/common/plus.svg">
+        <img src="../../../../assets/images/common/plus.svg">
         <h4>Complete Profile</h4>
     </div>
 </div>

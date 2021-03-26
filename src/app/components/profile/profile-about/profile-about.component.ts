@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {ProfileTabComponent} from "../ProfileTabComponent";
-import {UserDetails} from "../../../../models/model classes/user/UserDetails";
-import {User} from "../../../../models/model classes/user/User";
+import {UserDetails} from "../../../models/model classes/user/UserDetails";
+import {User} from "../../../models/model classes/user/User";
 import {ProfileAboutViewModel} from "./ProfileAboutViewModel";
-import {ModalPopupService} from "../../../../shared/services/modal-popup.service";
-import {UserApiService} from "../../../../services/user-api.service";
+import {ModalPopupService} from "../../../shared/services/modal-popup.service";
+import {UserApiService} from "../../../services/user-api.service";
 
 @Component({
     selector: 'app-profile-about',

@@ -2,7 +2,7 @@
     <h3 class="helvetica clear-text-paddings" style="width: 220px">{{post.title}}</h3>
     <h5 class="helvetica-normal clear-text-paddings">{{post.body}}</h5>
     <div *ngIf="post.links.length !== 0" class="flex post-link">
-        <img src="assets/images/news-center/link.png">
+        <img src="../../../../../assets/images/news-center/link.png">
         <h5 class="helvetica-normal clear-text-paddings">{{post.links.length | i18nPlural: mapping }}</h5>
     </div>
     <button (click)="moreButtonClicked()" class="ppl-button-green">View More</button>

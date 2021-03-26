@@ -1,16 +1,16 @@
 import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {NewsCenterViewModel} from './NewsCenterViewModel';
-import {UserApiService} from '../../../services/user-api.service';
-import {PostsService} from '../../../services/posts.service';
-import {CategoryForPost} from '../../../models/model classes/posts/CateogryForPost';
-import {Post, UsersAndPosts} from '../../../models/model classes/posts/Post';
-import {User} from '../../../models/model classes/user/User';
+import {UserApiService} from '../../services/user-api.service';
+import {PostsService} from '../../services/posts.service';
+import {CategoryForPost} from '../../models/model classes/posts/CateogryForPost';
+import {Post, UsersAndPosts} from '../../models/model classes/posts/Post';
+import {User} from '../../models/model classes/user/User';
 import {catchError, map, mergeMap, takeUntil} from 'rxjs/operators';
 import {Title} from '@angular/platform-browser';
-import {PaginatorComponent} from '../../../shared/ui-components/paginator/paginator.component';
+import {PaginatorComponent} from '../../shared/ui-components/paginator/paginator.component';
 import {of, Subject} from 'rxjs';
 import {NgxSpinnerService} from 'ngx-spinner';
-import {ModalPopupService} from "../../../shared/services/modal-popup.service";
+import {ModalPopupService} from "../../shared/services/modal-popup.service";
 
 @Component({
     selector: 'app-news-center',

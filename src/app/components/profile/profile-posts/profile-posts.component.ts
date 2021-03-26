@@ -1,16 +1,16 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {PostsService} from "../../../../services/posts.service";
-import {Post} from "../../../../models/model classes/posts/Post";
+import {PostsService} from "../../../services/posts.service";
+import {Post} from "../../../models/model classes/posts/Post";
 import {takeUntil} from "rxjs/operators";
-import {UserApiService} from "../../../../services/user-api.service";
-import {User} from "../../../../models/model classes/user/User";
+import {UserApiService} from "../../../services/user-api.service";
+import {User} from "../../../models/model classes/user/User";
 import {Router} from "@angular/router";
 import {ProfilePostsViewModel} from "./ProfilePostsViewModel";
-import {ModalPopupService} from "../../../../shared/services/modal-popup.service";
+import {ModalPopupService} from "../../../shared/services/modal-popup.service";
 import {Subject} from "rxjs";
 import {NgxSpinnerService} from "ngx-spinner";
 import {ProfileTabComponent} from "../ProfileTabComponent";
-import {UserDetails} from "../../../../models/model classes/user/UserDetails";
+import {UserDetails} from "../../../models/model classes/user/UserDetails";
 
 @Component({
     selector: 'app-profile-posts',

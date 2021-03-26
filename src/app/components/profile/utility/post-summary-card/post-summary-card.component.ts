@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Post} from "../../../../../models/model classes/posts/Post";
+import {Post} from "../../../../models/model classes/posts/Post";
 
 @Component({
     selector: 'app-post-summary-card',

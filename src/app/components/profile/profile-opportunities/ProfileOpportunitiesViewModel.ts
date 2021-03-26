@@ -1,14 +1,14 @@
-import {OpportunitiesService} from "../../../../services/opportunities.service";
-import {UserApiService} from "../../../../services/user-api.service";
+import {OpportunitiesService} from "../../../services/opportunities.service";
+import {UserApiService} from "../../../services/user-api.service";
 import {Observable, Subject, throwError} from "rxjs";
-import {Opportunity} from "../../../../models/model classes/opportunities/Opportunity";
-import {PageData, PageDataMetadata} from "../../../../models/model classes/common/PageData";
+import {Opportunity} from "../../../models/model classes/opportunities/Opportunity";
+import {PageData, PageDataMetadata} from "../../../models/model classes/common/PageData";
 import {first, map, mergeMap, share, take} from "rxjs/operators";
-import {ModalPopupService} from "../../../../shared/services/modal-popup.service";
-import {OpportunityDetailsComponent} from "../../opportunities/opportunity-details/opportunity-details.component";
-import {DialogSize} from "../../../../models/model classes/DialogSize";
-import {User} from "../../../../models/model classes/user/User";
-import {UserDetails} from "../../../../models/model classes/user/UserDetails";
+import {ModalPopupService} from "../../../shared/services/modal-popup.service";
+import {OpportunityDetailsComponent} from "../../main-components/opportunities/opportunity-details/opportunity-details.component";
+import {DialogSize} from "../../../models/model classes/DialogSize";
+import {User} from "../../../models/model classes/user/User";
+import {UserDetails} from "../../../models/model classes/user/UserDetails";
 
 export class ProfileOpportunitiesViewModel {
     private per = 6;

@@ -1,15 +1,15 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Opportunity} from "../../../../models/model classes/opportunities/Opportunity";
+import {Opportunity} from "../../../models/model classes/opportunities/Opportunity";
 import {ProfileOpportunitiesViewModel} from "./ProfileOpportunitiesViewModel";
-import {OpportunitiesService} from "../../../../services/opportunities.service";
-import {UserApiService} from "../../../../services/user-api.service";
+import {OpportunitiesService} from "../../../services/opportunities.service";
+import {UserApiService} from "../../../services/user-api.service";
 import {NgxSpinnerService} from "ngx-spinner";
 import {Subject} from "rxjs";
 import {takeUntil} from "rxjs/operators";
-import {ModalPopupService} from "../../../../shared/services/modal-popup.service";
+import {ModalPopupService} from "../../../shared/services/modal-popup.service";
 import {ProfileTabComponent} from "../ProfileTabComponent";
-import {User} from "../../../../models/model classes/user/User";
-import {UserDetails} from "../../../../models/model classes/user/UserDetails";
+import {User} from "../../../models/model classes/user/User";
+import {UserDetails} from "../../../models/model classes/user/UserDetails";
 
 @Component({
     selector: 'app-profile-opportunities',

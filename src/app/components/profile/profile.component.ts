@@ -1,11 +1,11 @@
 import {Component, ComponentFactoryResolver, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
-import {UserApiService} from "../../../services/user-api.service";
-import {User} from "../../../models/model classes/user/User";
+import {UserApiService} from "../../services/user-api.service";
+import {User} from "../../models/model classes/user/User";
 import {Router} from "@angular/router";
-import {UserDetails} from "../../../models/model classes/user/UserDetails";
-import {ModalPopupService} from "../../../shared/services/modal-popup.service";
-import {PostsService} from "../../../services/posts.service";
-import {Post} from "../../../models/model classes/posts/Post";
+import {UserDetails} from "../../models/model classes/user/UserDetails";
+import {ModalPopupService} from "../../shared/services/modal-popup.service";
+import {PostsService} from "../../services/posts.service";
+import {Post} from "../../models/model classes/posts/Post";
 import {ProfileViewModel} from "./ProfileViewModel";
 import {Title} from "@angular/platform-browser";
 import {ProfileTabComponent} from "./ProfileTabComponent";

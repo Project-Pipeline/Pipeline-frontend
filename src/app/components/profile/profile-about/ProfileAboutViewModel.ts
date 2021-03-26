@@ -1,12 +1,12 @@
-import {UserApiService} from "../../../../services/user-api.service";
-import {User} from "../../../../models/model classes/user/User";
+import {UserApiService} from "../../../services/user-api.service";
+import {User} from "../../../models/model classes/user/User";
 import {empty, Observable} from "rxjs";
-import {UserDetails} from "../../../../models/model classes/user/UserDetails";
-import {entityUserTypes, individualUserTypes} from "../../../../models/BusinessConstants";
+import {UserDetails} from "../../../models/model classes/user/UserDetails";
+import {entityUserTypes, individualUserTypes} from "../../../models/BusinessConstants";
 import {IndividualUserDetailsPopupComponent} from "../individual-user-details-popup/individual-user-details-popup.component";
 import {EntityUserDetailsPopupComponent} from "../entity-user-details-popup/entity-user-details-popup.component";
 import {filter, map, mergeMap, take} from "rxjs/operators";
-import {ModalPopupService} from "../../../../shared/services/modal-popup.service";
+import {ModalPopupService} from "../../../shared/services/modal-popup.service";
 
 export class ProfileAboutViewModel {
     constructor(private usersApi: UserApiService, private modalPopupService: ModalPopupService) {

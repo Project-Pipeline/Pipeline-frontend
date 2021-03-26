@@ -21,6 +21,7 @@ import {AddressAutoCompleterComponent} from "./ui-components/address-auto-comple
 
 @NgModule({
     declarations: [
+        // minor-UI
         HorizontalScrollableTabsComponent,
         PaginatorComponent,
         SegmentedControlComponent,
@@ -32,6 +33,7 @@ import {AddressAutoCompleterComponent} from "./ui-components/address-auto-comple
     imports: [
         CommonModule,
         FormsModule,
+        // angular material
         MatDialogModule,
         MatFormFieldModule,
         MatSelectModule,
@@ -44,6 +46,7 @@ import {AddressAutoCompleterComponent} from "./ui-components/address-auto-comple
         MatCheckboxModule,
     ],
     exports: [
+        // minor-UI
         HorizontalScrollableTabsComponent,
         PaginatorComponent,
         SegmentedControlComponent,

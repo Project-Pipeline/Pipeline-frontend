@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {ProfileComponent} from "./profile/profile.component";
 import {OpportunitiesComponent} from "./opportunities/opportunities.component";
-import {NewsCenterComponent} from "./news-center/news-center.component";
 import {CentralHubComponent} from "./central-hub/central-hub.component";
 import {MainComponent} from "./main/main.component";
 
@@ -12,10 +10,20 @@ const routes: Routes = [
         path: '',
         component: MainComponent,
         children: [
-            {path: 'profile', component: ProfileComponent},
             {path: 'opportunities', component: OpportunitiesComponent},
-            {path: 'news-center', component: NewsCenterComponent},
-            {path: 'central-hub', component: CentralHubComponent}
+            {
+                path: 'news-center',
+                loadChildren: () => {
+                    return import('../news-center/news-center.module').then(m => m.NewsCenterModule);
+                }
+            },
+            {path: 'central-hub', component: CentralHubComponent},
+            {
+                path: 'profile',
+                loadChildren: () => {
+                    return import('../profile/profile.module').then(m => m.ProfileModule);
+                }
+            }
         ]
     }
 ];

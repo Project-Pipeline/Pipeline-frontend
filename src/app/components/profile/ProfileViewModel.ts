@@ -1,20 +1,20 @@
-import {UserApiService} from "../../../services/user-api.service";
+import {UserApiService} from "../../services/user-api.service";
 import {Router} from "@angular/router";
-import {ModalPopupService} from "../../../shared/services/modal-popup.service";
-import {PostsService} from "../../../services/posts.service";
-import {catchError, filter, map, mergeMap, share, take} from "rxjs/operators";
-import {Post} from "../../../models/model classes/posts/Post";
+import {ModalPopupService} from "../../shared/services/modal-popup.service";
+import {PostsService} from "../../services/posts.service";
+import {filter, map, mergeMap, share, take} from "rxjs/operators";
+import {Post} from "../../models/model classes/posts/Post";
 import {Observable, of} from "rxjs";
-import {User} from "../../../models/model classes/user/User";
-import {PageData} from "../../../models/model classes/common/PageData";
-import {UserDetails} from "../../../models/model classes/user/UserDetails";
+import {User} from "../../models/model classes/user/User";
+import {PageData} from "../../models/model classes/common/PageData";
+import {UserDetails} from "../../models/model classes/user/UserDetails";
 import {
     entityUserTypes,
     individualUserTypes,
     postCategoryLookUp,
     profileTabsForUsersWithType,
     profileTabTitles
-} from "../../../models/BusinessConstants";
+} from "../../models/BusinessConstants";
 import {ComponentType} from "@angular/cdk/overlay";
 import {ProfilePostsComponent} from "./profile-posts/profile-posts.component";
 import {ProfileAboutComponent} from "./profile-about/profile-about.component";
