@@ -1,6 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {OpportunityFilter} from "../../../../models/model classes/opportunities/OpportunityFilter";
-import {allowedOpportunityGradeLevels, opportunityCategories} from "../../../../models/BusinessConstants";
+import {OpportunityFilter} from "../../../models/model classes/opportunities/OpportunityFilter";
+import {allowedOpportunityGradeLevels, opportunityCategories} from "../../../models/BusinessConstants";
 import {OpportunitiesFilterBarViewModel} from "./OpportunitiesFilterBarViewModel";
 
 @Component({

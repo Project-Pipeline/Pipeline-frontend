@@ -1,17 +1,17 @@
 import {AfterViewInit, Component, HostListener, OnInit, ViewChild} from '@angular/core';
-import {MapsService} from "../../../services/maps.service";
+import {MapsService} from "../../services/maps.service";
 import {expandRightPanel, OpportunitiesViewModel, rightPanelFade} from "./OpportunitiesViewModel";
-import {OpportunitiesService} from "../../../services/opportunities.service";
-import {Opportunity} from "../../../models/model classes/opportunities/Opportunity";
+import {OpportunitiesService} from "../../services/opportunities.service";
+import {Opportunity} from "../../models/model classes/opportunities/Opportunity";
 import {interval} from "rxjs";
 import {catchError, debounce, switchMap} from "rxjs/operators";
-import {LatLng} from "../../../models/model classes/maps/GeocodingResponse";
+import {LatLng} from "../../models/model classes/maps/GeocodingResponse";
 import {GoogleMap} from "@angular/google-maps";
 import {
     CurrentLocationMarkerData,
     OpportunityMarkerData
-} from "../../../models/model classes/opportunities/OpportunityMarkerData";
-import {OpportunityFilter} from "../../../models/model classes/opportunities/OpportunityFilter";
+} from "../../models/model classes/opportunities/OpportunityMarkerData";
+import {OpportunityFilter} from "../../models/model classes/opportunities/OpportunityFilter";
 import {Title} from "@angular/platform-browser";
 
 @Component({

@@ -1,5 +1,5 @@
-import {OpportunityFilter} from "../../../../models/model classes/opportunities/OpportunityFilter";
-import {allowedOpportunityGradeLevels, opportunityCategories} from "../../../../models/BusinessConstants";
+import {OpportunityFilter} from "../../../models/model classes/opportunities/OpportunityFilter";
+import {allowedOpportunityGradeLevels, opportunityCategories} from "../../../models/BusinessConstants";
 
 export class OpportunitiesFilterBarViewModel {
     private filter = new OpportunityFilter();

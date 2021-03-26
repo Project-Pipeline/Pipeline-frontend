@@ -1,10 +1,10 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {Address} from "../../../../models/model classes/user/Address";
-import {UserAndDetailCombo} from "../../../../models/model classes/user/UserAndDetailCombo";
-import {Opportunity} from "../../../../models/model classes/opportunities/Opportunity";
-import {allowedOpportunityGradeLevels, opportunityCategories} from "../../../../models/BusinessConstants";
-import {dateAsUnixTimeStamp} from "../../../../models/Global";
+import {Address} from "../../../models/model classes/user/Address";
+import {UserAndDetailCombo} from "../../../models/model classes/user/UserAndDetailCombo";
+import {Opportunity} from "../../../models/model classes/opportunities/Opportunity";
+import {allowedOpportunityGradeLevels, opportunityCategories} from "../../../models/BusinessConstants";
+import {dateAsUnixTimeStamp} from "../../../models/Global";
 
 @Component({
     selector: 'app-add-opportunity-popup',

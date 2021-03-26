@@ -24,6 +24,7 @@ import {MatGridListModule} from "@angular/material/grid-list";
 import {NgxSpinnerModule} from "ngx-spinner";
 import {FormsModule} from "@angular/forms";
 import {ProfileComponent} from "./profile.component";
+import {AddOpportunityPopupComponent} from "./add-opportunity-popup/add-opportunity-popup.component";
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import {ProfileComponent} from "./profile.component";
         ProfileOpportunitiesComponent,
         ProfilePostsComponent,
         PostSummaryCardComponent,
-        ProfileComponent
+        ProfileComponent,
+        AddOpportunityPopupComponent
     ],
     imports: [
         CommonModule,

@@ -1,10 +1,5 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {OpportunitiesComponent} from "./opportunities/opportunities.component";
-import {CentralHubComponent} from "./central-hub/central-hub.component";
-import {MessagingComponent} from "./central-hub/messaging/messaging.component";
-import {ProfileComponent} from "../profile/profile.component";
-import {NewsCenterComponent} from "../news-center/news-center.component";
 import {NavbarComponent} from "./navbar/navbar.component";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatIconModule} from "@angular/material/icon";
@@ -19,10 +14,8 @@ import {MatInputModule} from "@angular/material/input";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
 import {MatButtonModule} from "@angular/material/button";
-import {AddOpportunityPopupComponent} from './opportunities/add-opportunity-popup/add-opportunity-popup.component';
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {GoogleMapsModule} from "@angular/google-maps";
-import {OpportunitiesFilterBarComponent} from './opportunities/opportunities-filter-bar/opportunities-filter-bar.component';
 import {OpportunityDetailsComponent} from './opportunities/opportunity-details/opportunity-details.component';
 import {AddPostPopupComponent} from './news-center/add-post-popup/add-post-popup.component';
 import {PostDetailsComponent} from './news-center/post-details/post-details.component';
@@ -33,14 +26,9 @@ import {SharedModule} from "../../shared/shared.module";
 
 @NgModule({
     declarations: [
-        OpportunitiesComponent,
-        CentralHubComponent,
-        MessagingComponent,
         NavbarComponent,
         MessagingDateFormatterPipe,
         MainComponent,
-        AddOpportunityPopupComponent,
-        OpportunitiesFilterBarComponent,
         OpportunityDetailsComponent,
         AddPostPopupComponent,
         PostDetailsComponent
@@ -71,7 +59,8 @@ import {SharedModule} from "../../shared/shared.module";
     exports: [
         OpportunityDetailsComponent,
         AddPostPopupComponent,
-        PostDetailsComponent
+        PostDetailsComponent,
+        MessagingDateFormatterPipe
     ]
 })
 export class MainComponentsModule {

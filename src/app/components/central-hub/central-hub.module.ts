@@ -1,27 +1,25 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-
-import {NewsCenterRoutingModule} from './news-center-routing.module';
-import {NewsCenterComponent} from "./news-center.component";
+import {CentralHubRoutingModule} from './central-hub-routing.module';
+import {CentralHubComponent} from "./central-hub.component";
+import {MessagingComponent} from "./messaging/messaging.component";
 import {FormsModule} from "@angular/forms";
 import {MainComponentsModule} from "../main-components/main-components.module";
 import {SharedModule} from "../../shared/shared.module";
-import {NgxSpinnerModule} from "ngx-spinner";
 
 
 @NgModule({
     declarations: [
-        NewsCenterComponent
+        CentralHubComponent,
+        MessagingComponent
     ],
     imports: [
         CommonModule,
-        NewsCenterRoutingModule,
+        CentralHubRoutingModule,
         FormsModule,
         MainComponentsModule,
         SharedModule,
-        // Misc
-        NgxSpinnerModule
     ]
 })
-export class NewsCenterModule {
+export class CentralHubModule {
 }

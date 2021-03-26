@@ -1,11 +1,11 @@
-import {MapsService} from "../../../services/maps.service";
-import {OpportunitiesService} from "../../../services/opportunities.service";
+import {MapsService} from "../../services/maps.service";
+import {OpportunitiesService} from "../../services/opportunities.service";
 import {Observable, Subject} from "rxjs";
-import {LatLng} from "../../../models/model classes/maps/GeocodingResponse";
-import {Opportunity} from "../../../models/model classes/opportunities/Opportunity";
+import {LatLng} from "../../models/model classes/maps/GeocodingResponse";
+import {Opportunity} from "../../models/model classes/opportunities/Opportunity";
 import {distinctUntilChanged, map, switchMap} from "rxjs/operators";
-import {OpportunityMarkerData} from "../../../models/model classes/opportunities/OpportunityMarkerData";
-import {OpportunityFilter} from "../../../models/model classes/opportunities/OpportunityFilter";
+import {OpportunityMarkerData} from "../../models/model classes/opportunities/OpportunityMarkerData";
+import {OpportunityFilter} from "../../models/model classes/opportunities/OpportunityFilter";
 import {animate, state, style, transition, trigger} from "@angular/animations";
 
 export class OpportunitiesViewModel {

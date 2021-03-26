@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
-import {last} from "rxjs/operators";
 
 @Component({
     selector: 'app-main',
