@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
+import {urlComponentAfter} from "../../../models/Global";
 
 @Component({
     selector: 'app-main',
@@ -19,22 +20,14 @@ export class MainComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        const segments = window.location.href.split('/');
-        const lastIndex = segments.length - 1;
-        const lastComponent = segments[lastIndex];
-        if (this.tabs.includes(lastComponent)) {
-            const mainIndex = segments.indexOf('main')
-            if (lastIndex - 1 === mainIndex) {
-                this.highlightIndex = this.tabs.indexOf(lastComponent);
+        const componentAfterMain = urlComponentAfter('main');
+        if (componentAfterMain) {
+            if (this.tabs.includes(componentAfterMain)) {
+                this.highlightIndex = this.tabs.indexOf(componentAfterMain);
             }
-        } else if (lastComponent === 'main') {
+        } else { // on main comp
             this.highlightIndex = 0;
             this.router.navigateByUrl('main/profile');
         }
     }
-
-    getDate(): string {
-        return `${new Date().getFullYear()}`;
-    }
-
 }

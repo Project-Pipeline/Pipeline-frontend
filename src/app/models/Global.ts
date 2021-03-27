@@ -22,3 +22,13 @@ export function jsonAsBlob(json: any): Blob {
 export function delayExecutionFor(milliseconds: number): Observable<any> {
     return of('').pipe(delay(milliseconds));
 }
+
+export function urlComponentAfter(component: string): string {
+    let components = window.location.href.split('/')
+        .map((c) => c.split("?")[0]); // remove query params
+    let indexOfGivenComp = components.indexOf(component);
+    if (indexOfGivenComp != -1 && indexOfGivenComp + 1 < components.length) {
+        return components[indexOfGivenComp + 1];
+    }
+    return null;
+}

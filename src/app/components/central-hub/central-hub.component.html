@@ -1,12 +1,20 @@
 <div class="width-container central-hub-container flex" [ngStyle]="{'height': viewportHeightString}">
     <div class="navigator">
         <div class="navigator-inner">
-            <div class="navigator-cell" (click)="showMessage()" [ngClass]="{'highlighted': showMessages}">
-                <img src="assets/images/central-hub/messaging-icon.png">
-            </div>
+
+            <a class="navigator-cell"
+               [routerLink]="'messaging'"
+               [routerLinkActive]="'active'"
+               (click)="highlightTabAt('messaging')"
+            >
+                <div [ngClass]="{'highlighted': highlights['messaging']}">
+                    <img src="assets/images/central-hub/messaging-icon.png">
+                </div>
+            </a>
+
         </div>
     </div>
     <div class="details">
-        <app-messaging *ngIf="showMessages" [height]="viewportHeight"></app-messaging>
+        <router-outlet> </router-outlet>
     </div>
 </div>

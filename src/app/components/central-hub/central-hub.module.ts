@@ -6,12 +6,14 @@ import {MessagingComponent} from "./messaging/messaging.component";
 import {FormsModule} from "@angular/forms";
 import {MainComponentsModule} from "../main-components/main-components.module";
 import {SharedModule} from "../../shared/shared.module";
+import { CentralHubBaseComponent } from './central-hub-base/central-hub-base.component';
 
 
 @NgModule({
     declarations: [
         CentralHubComponent,
-        MessagingComponent
+        MessagingComponent,
+        CentralHubBaseComponent
     ],
     imports: [
         CommonModule,

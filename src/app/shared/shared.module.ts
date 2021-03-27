@@ -18,7 +18,9 @@ import {RowTextEditorComponent} from "./ui-components/row-text-editor/row-text-e
 import {ModalPopupComponent} from "./ui-components/modal-popup/modal-popup.component";
 import {FormsModule} from "@angular/forms";
 import {AddressAutoCompleterComponent} from "./ui-components/address-auto-completer/address-auto-completer.component";
+import {MessagingDateFormatterPipe} from "./pipes/messaging-date-formatter.pipe";
 
+/// Angular module that holds all reusable/shared components, services and pipes
 @NgModule({
     declarations: [
         // minor-UI
@@ -28,7 +30,9 @@ import {AddressAutoCompleterComponent} from "./ui-components/address-auto-comple
         TextPairEditorComponent,
         RowTextEditorComponent,
         ModalPopupComponent,
-        AddressAutoCompleterComponent
+        AddressAutoCompleterComponent,
+        // pipes
+        MessagingDateFormatterPipe
     ],
     imports: [
         CommonModule,
@@ -53,7 +57,9 @@ import {AddressAutoCompleterComponent} from "./ui-components/address-auto-comple
         TextPairEditorComponent,
         RowTextEditorComponent,
         ModalPopupComponent,
-        AddressAutoCompleterComponent
+        AddressAutoCompleterComponent,
+        // pipes
+        MessagingDateFormatterPipe
     ]
 })
 export class SharedModule {

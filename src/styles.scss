@@ -13,6 +13,8 @@ body {
     padding: 0;
 }
 
+html, body { height: 100%; }
+
 .ml-auto {
     margin-left: auto;
 }
@@ -45,30 +47,6 @@ body {
     text-align: center;
 }
 
-.pipeline-button {
-    background-color: brown;
-    color: white;
-    border: 2px solid brown;
-    border-radius: 7px;
-    font-family: "Helvetica", sans-serif;
-    font-size: 17px;
-    text-align: center;
-    cursor: pointer;
-    height: 35px;
-}
-
-.pipeline-button-secondary {
-    background-color: transparent;
-    color: brown;
-    border: 2px solid brown;
-    border-radius: 7px;
-    font-family: "Helvetica", sans-serif;
-    font-size: 17px;
-    text-align: center;
-    cursor: pointer;
-    height: 35px;
-}
-
 .clear-text-paddings {
     padding: 0;
     margin: 0;
@@ -86,9 +64,6 @@ body {
 .flex {
     display: flex;
 }
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .dual-column {
     width: 100%;

@@ -1,23 +1,23 @@
-import {Component, ElementRef, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {UserApiService} from "../../../services/user-api.service";
 import {User} from "../../../models/model classes/user/User";
-import {mergeMap} from "rxjs/operators";
+import {mergeMap, takeUntil} from "rxjs/operators";
 import {MessagingService} from "../../../services/messaging.service";
 import {Conversation, ConversationParticipantInfo} from "../../../models/model classes/messaging/Conversation";
 import {MessagingConnect} from "../../../models/model classes/messaging/MessagingConnect";
 import {ConversationEntry} from "../../../models/model classes/messaging/ConversationEntry";
 import {delayExecutionFor, unixTimeStampToDate} from "../../../models/Global";
+import {CentralHubBaseComponent} from "../central-hub-base/central-hub-base.component";
 
 @Component({
     selector: 'app-messaging',
     templateUrl: './messaging.component.html',
     styleUrls: ['./messaging.component.scss']
 })
-export class MessagingComponent implements OnInit, OnDestroy, OnChanges {
-    @Input() height: number;
+export class MessagingComponent extends CentralHubBaseComponent implements OnInit, OnDestroy {
+    @ViewChild('centralHubMessagesDetails') private chats: ElementRef;
     heightStringForDetails: string;
     heightStringForList: string;
-    @ViewChild('centralHubMessagesDetails') private chats: ElementRef;
     currentUser: User;
     searchedUsers: User[] = [];
     currentConversations: Conversation[] = [];
@@ -30,6 +30,7 @@ export class MessagingComponent implements OnInit, OnDestroy, OnChanges {
     constructor(
         private userApiService: UserApiService,
         private messagingService: MessagingService) {
+        super();
     }
 
     ngOnInit(): void {
@@ -40,15 +41,16 @@ export class MessagingComponent implements OnInit, OnDestroy, OnChanges {
                 this.createMessageList(this.currentUser);
             });
 
+        this.heightChanged$
+            .pipe(takeUntil(this.unsubscribe$))
+            .subscribe(([height, heightStr]) => {
+                this.heightStringForDetails = `${height - 100}px`
+                this.heightStringForList = `${height - 170}px`;
+            });
     }
 
     ngOnDestroy() {
         this.stopMessaging();
-    }
-
-    ngOnChanges(changes: SimpleChanges) {
-        this.heightStringForDetails = `${this.height - 100}px`
-        this.heightStringForList = `${this.height - 170}px`;
     }
 
     userSelected(user: User) {
