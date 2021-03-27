@@ -30,6 +30,10 @@ const routes: Routes = [
                 loadChildren: () => {
                     return import('../profile/profile.module').then(m => m.ProfileModule);
                 }
+            },
+            {
+                path: '',
+                redirectTo: 'profile'
             }
         ]
     }

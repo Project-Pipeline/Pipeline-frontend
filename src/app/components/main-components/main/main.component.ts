@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {Router} from "@angular/router";
 import {urlComponentAfter} from "../../../models/Global";
 
 @Component({
@@ -16,8 +15,7 @@ export class MainComponent implements OnInit {
     ];
     highlightIndex = 0;
 
-    constructor(private router: Router) {
-    }
+    constructor() {}
 
     ngOnInit(): void {
         const componentAfterMain = urlComponentAfter('main');
@@ -27,7 +25,6 @@ export class MainComponent implements OnInit {
             }
         } else { // on main comp
             this.highlightIndex = 0;
-            this.router.navigateByUrl('main/profile');
         }
     }
 }

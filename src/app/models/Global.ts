@@ -23,8 +23,11 @@ export function delayExecutionFor(milliseconds: number): Observable<any> {
     return of('').pipe(delay(milliseconds));
 }
 
-export function urlComponentAfter(component: string): string {
-    let components = window.location.href.split('/')
+export function urlComponentAfter(
+    component: string,
+    url: string = window.location.href
+): string {
+    let components = url.split('/')
         .map((c) => c.split("?")[0]); // remove query params
     let indexOfGivenComp = components.indexOf(component);
     if (indexOfGivenComp != -1 && indexOfGivenComp + 1 < components.length) {
