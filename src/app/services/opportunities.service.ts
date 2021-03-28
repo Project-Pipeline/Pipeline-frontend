@@ -7,10 +7,10 @@ import {Zipcode} from "../models/model classes/opportunities/Zipcode";
 import {OpportunityCategory} from "../models/model classes/opportunities/OpportunityCategory";
 import {opportunityCategoryToId} from "../models/BusinessConstants";
 import {ConfigService} from "./config.service";
-import {AddOpportunityPopupComponent} from "../components/main-components/opportunities/add-opportunity-popup/add-opportunity-popup.component";
+import {AddOpportunityPopupComponent} from "../components/profile/add-opportunity-popup/add-opportunity-popup.component";
 import {UserAndDetailCombo} from "../models/model classes/user/UserAndDetailCombo";
 import {filter, map, mergeMap} from "rxjs/operators";
-import {ModalPopupService} from "../components/main-components/modal-popup.service";
+import {ModalPopupService} from "../shared/services/modal-popup.service";
 import {User} from "../models/model classes/user/User";
 import {UserDetails} from "../models/model classes/user/UserDetails";
 

@@ -1,9 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {ProfileComponent} from "./profile/profile.component";
-import {OpportunitiesComponent} from "./opportunities/opportunities.component";
-import {NewsCenterComponent} from "./news-center/news-center.component";
-import {CentralHubComponent} from "./central-hub/central-hub.component";
 import {MainComponent} from "./main/main.component";
 
 const routes: Routes = [
@@ -12,10 +8,33 @@ const routes: Routes = [
         path: '',
         component: MainComponent,
         children: [
-            {path: 'profile', component: ProfileComponent},
-            {path: 'opportunities', component: OpportunitiesComponent},
-            {path: 'news-center', component: NewsCenterComponent},
-            {path: 'central-hub', component: CentralHubComponent}
+            {
+                path: 'opportunities',
+                loadChildren: () => {
+                    return import('../opportunities/opportunities.module').then(m => m.OpportunitiesModule);
+                }},
+            {
+                path: 'news-center',
+                loadChildren: () => {
+                    return import('../news-center/news-center.module').then(m => m.NewsCenterModule);
+                }
+            },
+            {
+                path: 'central-hub',
+                loadChildren: () => {
+                    return import('../central-hub/central-hub.module').then(m => m.CentralHubModule);
+                }
+            },
+            {
+                path: 'profile',
+                loadChildren: () => {
+                    return import('../profile/profile.module').then(m => m.ProfileModule);
+                }
+            },
+            {
+                path: '',
+                redirectTo: 'profile'
+            }
         ]
     }
 ];

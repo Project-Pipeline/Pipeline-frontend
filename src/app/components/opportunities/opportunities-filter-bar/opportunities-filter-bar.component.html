@@ -1,0 +1,58 @@
+<div class="flex">
+    <input [(ngModel)]="searchText" class="ppl-input-style" placeholder="Search">
+    <div (click)="applySearchText()">
+        <img class="opp-search-icon" src="../../../../assets/images/opportunities/search-icon.png">
+    </div>
+
+    <div class="dropdown">
+        <div (click)="toggleOverlayAt(0)" class="opportunities-dropdown-container">
+            <p class="helvetica-normal clear-text-paddings">Compensation</p>
+        </div>
+        <div class="dropdown-no-hover opportunities-dropdown" *ngIf="showingOverlays[0]">
+            <mat-checkbox [(ngModel)]="paid">Paid</mat-checkbox>
+            <mat-checkbox [(ngModel)]="volunteer">Volunteer</mat-checkbox>
+            <div class="opportunities-done-btn" (click)="saveCompensation(0)">Save</div>
+        </div>
+    </div>
+
+    <div class="dropdown" >
+        <div (click)="toggleOverlayAt(1)" class="opportunities-dropdown-container">
+            <p class="helvetica-normal clear-text-paddings">Schedule</p>
+        </div>
+        <div class="dropdown-no-hover opportunities-dropdown" *ngIf="showingOverlays[1]">
+            <mat-checkbox [(ngModel)]="partTime">Part-time</mat-checkbox>
+            <mat-checkbox [(ngModel)]="fullTime">Full-time</mat-checkbox>
+            <div class="opportunities-done-btn" (click)="saveSchedule(1)">Save</div>
+        </div>
+    </div>
+
+    <div class="dropdown" >
+        <div (click)="toggleOverlayAt(2)" class="opportunities-dropdown-container">
+            <p class="helvetica-normal clear-text-paddings">Categories</p>
+        </div>
+        <div class="dropdown-no-hover opportunities-dropdown" style="width: 400px" *ngIf="showingOverlays[2]">
+            <mat-checkbox
+                *ngFor="let cat of categories; let i = index" [attr.data-index]="i"
+                [(ngModel)]="checkedCategories[i]"
+            >{{cat}}</mat-checkbox>
+            <div class="opportunities-done-btn" (click)="saveCategories(2)">Save</div>
+        </div>
+    </div>
+
+    <div class="dropdown" >
+        <div (click)="toggleOverlayAt(3)" class="opportunities-dropdown-container">
+            <p class="helvetica-normal clear-text-paddings">Grade Levels</p>
+        </div>
+        <div class="dropdown-no-hover opportunities-dropdown" *ngIf="showingOverlays[3]">
+            <mat-checkbox
+                [(ngModel)]="checkedGradeLevels[i]"
+                *ngFor="let grade of gradeLevels; let i = index" [attr.data-index]="i"
+            >{{grade}}</mat-checkbox>
+            <div class="opportunities-done-btn" (click)="saveGrades(3)">Save</div>
+        </div>
+    </div>
+
+    <div class="clear-button" (click)="reset()">
+        <p class="helvetica-normal clear-text-paddings">Clear</p>
+    </div>
+</div>

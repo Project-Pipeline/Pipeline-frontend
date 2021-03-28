@@ -3,7 +3,6 @@ import {HttpClient} from "@angular/common/http";
 import {PlacePrediction, PlacePredictionResult} from "../models/model classes/maps/PlacePrediction";
 import {Observable} from "rxjs";
 import {LatLng} from "../models/model classes/maps/GeocodingResponse";
-import * as xml2js from 'xml2js';
 import {map} from "rxjs/operators";
 import {ConfigService} from "./config.service";
 import {GeonamesPostalCode, GeonamesResponse} from "../models/model classes/maps/GeonamesResponse";
@@ -80,18 +79,5 @@ export class MapsService {
                 }
             })
             .pipe(map((res) => res.postalCodes));
-    }
-
-    private xmlToJson<Result>(xml: any): Observable<Result> {
-        const parser: xml2js.Parser = new xml2js.Parser();
-        return new Observable<Result>((observer) => {
-            parser.parseString(xml, (err, result) => {
-                if (err) {
-                    observer.error(err);
-                } else {
-                    observer.next(result);
-                }
-            });
-        });
     }
 }

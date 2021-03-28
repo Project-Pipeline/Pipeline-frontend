@@ -8,7 +8,7 @@ import {UserApiService} from "../../../../services/user-api.service";
 import {LikeForPost} from "../../../../models/model classes/posts/LikeForPost";
 import {Subscription} from "rxjs";
 import {CommentForPost} from "../../../../models/model classes/posts/CommentForPost";
-import {rightPanelFade} from "../../opportunities/OpportunitiesViewModel";
+import {rightPanelFade} from "../../../opportunities/OpportunitiesViewModel";
 import {rotate180Degrees} from "../../../../models/model classes/AngularAnimations";
 
 @Component({

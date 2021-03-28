@@ -1,10 +1,4 @@
 // https://developers.google.com/maps/documentation/geocoding/start
-export class GeocodingResponse {
-    // omit plus_code
-    constructor(public results: GeocodingResponseResult[]) {
-    }
-}
-
 export class GeocodingResponseResult {
     constructor(
         public address_components: GeocodingAddressComponents[],

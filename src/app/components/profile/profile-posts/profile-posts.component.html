@@ -1,0 +1,28 @@
+<div class="profile-tab-left-section">
+    <div
+        class="ppl-button-green-with-image"
+        (click)="writePost()"
+    >
+        <img src="../../../../assets/images/writing-icon.png">
+        <h4>Write a Post</h4>
+    </div>
+</div>
+<div class="profile-tab-right-section">
+    <app-post-details
+        class="ml-auto mr-auto"
+        *ngFor="let post of posts"
+        [post]="post"
+        [user]="user"
+    ></app-post-details>
+
+    <app-paginator
+        [page]="page"
+        [per]="per"
+        [total]="total"
+        (pageChanged)="pageChanged($event)"
+    ></app-paginator>
+
+    <div style="padding: 10px 0 20px 0">
+        <ngx-spinner [type]="'ball-spin-fade'"></ngx-spinner>
+    </div>
+</div>
