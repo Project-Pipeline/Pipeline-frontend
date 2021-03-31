@@ -19,7 +19,19 @@ describe('OpportunitiesFilterBarComponent', () => {
     fixture.detectChanges();
   });
 
+  afterAll(() => {
+      component.reset();
+  });
+
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('searchText should be empty string', () => {
+      expect(component.searchText).toEqual('');
+  });
+
+  it('paid should be false', () => {
+      expect(component.paid).toBeFalse();
   });
 });

@@ -1,8 +1,80 @@
+<!--<div class="width-container central-hub-container flex" [ngStyle]="{'height': viewportHeightString}">-->
+<!--    <div class="navigator">-->
+<!--        <div class="navigator-inner">-->
+<!--            <div class="navigator-cell" (click)="showMessage()" [ngClass]="{'highlighted': showMessages}">-->
+<!--                <nav>-->
+<!--                    <ul class="sections-of-central-hub">-->
+<!--                        <li>-->
+<!--                            <a href="#" class="notification-icon">-->
+<!--                                <img src="../../../../assets/images/central-hub/Bell@3x.png" alt="notification" style="float:left">-->
+<!--                                <span class="notification-text">Notification</span>-->
+<!--                            </a>-->
+<!--                        </li>-->
+<!--                        <li>-->
+<!--                            <a href="#" class="message-icon">-->
+<!--                            <img src="../../../../assets/images/central-hub/Asset%201-100@3x.png" alt="message">-->
+<!--                                <span class="message-text">Message</span>-->
+<!--                            </a>-->
+<!--                        </li>-->
+<!--                        <li>-->
+<!--                            <a href="#" class="resume-builder-icon">-->
+<!--                                <img src="../../../../assets/images/central-hub/Group%20871@3x.png" alt="message">-->
+<!--                                <span class="resume-builder-text">Resume Builder</span>-->
+<!--                            </a>-->
+<!--                        </li>-->
+<!--                        <li>-->
+<!--                            <a href="#" class="application-icon">-->
+<!--                                <img src="../../../../assets/images/central-hub/Applacation@3x.png" alt="message">-->
+<!--                                <span class="application-text">Application</span>-->
+<!--                            </a>-->
+<!--                        </li>-->
+<!--                    </ul>-->
+<!--                </nav>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <div class="details">-->
+<!--        <app-messaging *ngIf="showMessages" [height]="viewportHeight"></app-messaging>-->
+<!--    </div>-->
+<!--&lt;!&ndash;</div>-->
+
+
+
+<!--&lt;!&ndash;&ndash;&gt;-->
+<!-- Load an icon library -->
+<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">-->
+<!--<div class="width-container central-hub-container flex" [ngStyle]="{'height': viewportHeightString}">-->
+<!--    <div class="navigator">-->
+<!--        <div class="navigator-inner">-->
+<!--            <div class="navigator-cell" (click)="showMessage()" [ngClass]="{'highlighted': showMessages}">-->
+<!--                <div class="icon-bar">-->
+<!--                    <a href="#" class="active"> <img src="../../../../assets/images/central-hub/Bell@3x.png" height="5" width="5" class="d-inline-block align-top" alt="icon"> <span class="notification-text">Notification</span></a>-->
+<!--                    <a href="#"> <img src="../../../../assets/images/central-hub/Asset%201-100@3x.png" height="30" class="d-inline-block align-top" alt="icon"> <span class="messages-text">Messages</span></a>-->
+<!--                    <a href="#"> <img src="../../../../assets/images/central-hub/Group%20871@3x.png" height="30" class="d-inline-block align-top" alt="icon"> <span class="resume-text">Resume Builder</span></a>-->
+<!--                    <a href="#"> <img src="../../../../assets/images/central-hub/Applacation@3x.png" height="30" class="d-inline-block align-top" alt="icon"> <span class="applications-text">Applications</span></a>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <div class="details">-->
+<!--        <app-messaging *ngIf="showMessages" [height]="viewportHeight"></app-messaging>-->
+<!--    </div>-->
+<!--</div>-->
+<!---->
+<!---->
+<!---->
+<!---->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <div class="width-container central-hub-container flex" [ngStyle]="{'height': viewportHeightString}">
     <div class="navigator">
         <div class="navigator-inner">
             <div class="navigator-cell" (click)="showMessage()" [ngClass]="{'highlighted': showMessages}">
-                <img src="../../../../assets/images/central-hub/messaging-icon.png">
+                <div class="icon-bar">
+                    <a href="#" class="active"> <img src="../../../../assets/images/central-hub/Bell@3x.png" height="5" width="5" class="d-inline-block align-top" alt="icon"> <span class="notification-text">Notification</span></a>
+                    <a href="#"> <img src="../../../../assets/images/central-hub/Asset%201-100@3x.png" height="5" width="5" class="d-inline-block align-top" alt="icon"> <span class="messages-text">Messages</span></a>
+                    <a href="#"> <img src="../../../../assets/images/central-hub/Group%20871@3x.png" height="5" width="5" class="d-inline-block align-top" alt="icon"> <span class="resume-text">Resume Builder</span></a>
+                    <a href="#"> <img src="../../../../assets/images/central-hub/Applacation@3x.png" height="5" width="5" class="d-inline-block align-top" alt="icon"> <span class="applications-text">Applications</span></a>
+                </div>
             </div>
         </div>
     </div>

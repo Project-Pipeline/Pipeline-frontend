@@ -1,7 +1,7 @@
 .central-hub-container {
     width: 100%;
     .navigator {
-        width: 100px;
+        width: 300px;
         margin-right: 30px;
         background-color: rgb(244, 244, 244);
         .navigator-cell {
@@ -25,4 +25,60 @@
 
 .navigator-inner {
     padding: 10px;
+    margin: 0;
+    .grid-container{
+        display: grid;
+    }
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 10px;
+}
+.icon-bar {
+    width: 250px; /* Set a specific width */
+    //background-color: #555; /* Dark-grey background */
+    padding: 5px;
+    margin: 0px;
+    height: auto;
+}
+.icon-bar a:link{
+
+}
+.icon-bar a{
+    display: block;
+    text-align: left;
+    padding: 10px;
+    margin: 0;
+    transition: all 0.3s ease;
+    color: black;
+    font-size: 20px;
+    width: 250px;
+}
+.icon-bar a:hover{
+    background-color: #4AD630;
+}
+.active{
+    background-color: #00AE0D;
+    padding: 10px;
+    margin: 0;
+}
+img{
+    display: inline-block;
+    max-width:35px;
+    max-height:35px;
+    width: auto;
+    height: auto;
+    padding: 0px;
+}
+#icon-bar{
+    float:right;
+    margin-top:30px;
+}
+a {
+    text-decoration: none;
+    padding: 10px;
+    margin: 0;
+    border-radius: 10px;
+    height: auto;
 }
