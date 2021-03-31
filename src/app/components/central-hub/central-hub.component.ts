@@ -12,7 +12,10 @@ export class CentralHubComponent extends CentralHubBaseComponent implements OnIn
     @ViewChild('subComponent', { read: ViewContainerRef }) subComponent: ViewContainerRef;
     // highlighting on the bar on the left
     highlights: {[key: string]: boolean} = {
-        'messaging': false
+        'messaging': false,
+        'notifications': false,
+        'resumebuilder': false,
+        'applications': false,
     };
     heightChanged: (height: number, heightStr: string) => void = null;
 

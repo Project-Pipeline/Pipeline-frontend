@@ -1,16 +1,17 @@
 .central-hub-container {
     width: 100%;
     .navigator {
-        width: 100px;
+        width: 300px;
         margin-right: 30px;
         background-color: rgb(244, 244, 244);
         .navigator-cell {
             img {
                 margin: 10px 10px 0 10px;
-                width: 60px;
-                height: 60px;
+                width: 30px;
+                height: 30px;
             }
             cursor: pointer;
+            margin-bottom: 5px;
         }
     }
     .details {
@@ -25,4 +26,31 @@
 
 .navigator-inner {
     padding: 10px;
+}
+a{
+    text-decoration: none;
+}
+span{
+    margin-top: auto;
+    margin-bottom: auto;
+}
+.icon-bar {
+    width: 250px; /* Set a specific width */
+    //background-color: #555; /* Dark-grey background */
+    //padding: 5px;
+    //margin: 0px;
+    //height: auto;
+}
+
+.icon-bar {
+   a {
+       &:visited, &:link {
+           color: black;
+       }
+       &:hover{
+           font-weight: bold;
+       }
+       margin-top: 13px;
+   }
+    padding: 2.5px;
 }
