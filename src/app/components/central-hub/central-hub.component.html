@@ -2,15 +2,88 @@
     <div class="navigator">
         <div class="navigator-inner">
 
-            <a class="navigator-cell"
-               [routerLink]="'messaging'"
-               [routerLinkActive]="'active'"
-               (click)="highlightTabAt('messaging')"
+            <div class="navigator-cell"
+               (click)="highlightTabAt('notifications')"
             >
-                <div [ngClass]="{'highlighted': highlights['messaging']}">
-                    <img src="assets/images/central-hub/messaging-icon.png">
+                <div [ngClass]="{'highlighted': highlights['notifications']}" class="icon-bar flex">
+                    <img src="assets/images/central-hub/Bell.png">
+                    <a  [routerLink]="'notifications'"
+                        [routerLinkActive]="'active'"
+                        class="helvetica-normal"
+                    >
+                        Notification
+                    </a>
                 </div>
-            </a>
+            </div>
+            <div class="navigator-cell"
+                 (click)="highlightTabAt('messaging')"
+            >
+                <div [ngClass]="{'highlighted': highlights['messaging']}" class="icon-bar flex">
+                    <img src="assets/images/central-hub/messaging-icon.png">
+                    <a  [routerLink]="'messaging'"
+                        [routerLinkActive]="'active'"
+                        class="helvetica-normal"
+                    >
+                        Messages
+                    </a>
+                </div>
+            </div>
+            <div class="navigator-cell"
+                 (click)="highlightTabAt('resumebuilder')"
+            >
+                <div [ngClass]="{'highlighted': highlights['resumebuilder']}" class="icon-bar flex">
+                    <img src="assets/images/central-hub/Resume_builder.png">
+                    <a  [routerLink]="'resumebuilder'"
+                        [routerLinkActive]="'active'"
+                        class="helvetica-normal"
+                    >
+                        Resume Builder
+                    </a>
+                </div>
+            </div>
+            <div class="navigator-cell"
+                 (click)="highlightTabAt('applications')"
+            >
+                <div [ngClass]="{'highlighted': highlights['applications']}" class="icon-bar flex">
+                    <img src="assets/images/central-hub/Applacation.png">
+                    <a  [routerLink]="'applications'"
+                        [routerLinkActive]="'active'"
+                        class="helvetica-normal"
+                    >
+                        Application
+                    </a>
+                </div>
+            </div>
+<!--            <a class="navigator-cell icon-bar"-->
+<!--               [routerLink]="'messaging'"-->
+<!--               [routerLinkActive]="'active'"-->
+<!--               (click)="highlightTabAt('messaging')"-->
+<!--            >-->
+<!--                <div [ngClass]="{'highlighted': highlights['messaging']}">-->
+<!--                    <img src="assets/images/central-hub/messaging-icon.png">-->
+<!--                    <span>Messages</span>-->
+<!--                </div>-->
+<!--            </a>-->
+<!--            <a class="navigator-cell icon-bar"-->
+<!--               [routerLink]="'messaging'"-->
+<!--               [routerLinkActive]="'active'"-->
+<!--               (click)="highlightTabAt('messaging')"-->
+<!--            >-->
+<!--                <div [ngClass]="{'highlighted': highlights['messaging']}">-->
+<!--                    <img src="assets/images/central-hub/Resume_builder.png" width="3">-->
+<!--                    <span>Resume Builder</span>-->
+<!--                </div>-->
+<!--            </a>-->
+<!--            <a class="navigator-cell icon-bar"-->
+<!--               [routerLink]="'messaging'"-->
+<!--               [routerLinkActive]="'active'"-->
+<!--               (click)="highlightTabAt('messaging')"-->
+<!--            >-->
+<!--                <div [ngClass]="{'highlighted': highlights['messaging']}">-->
+<!--                    <img src="assets/images/central-hub/Applacation.png">-->
+<!--                    <span>Applications</span>-->
+<!--                </div>-->
+<!--            </a>-->
 
         </div>
     </div>

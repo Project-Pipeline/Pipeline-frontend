@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {CentralHubComponent} from "./central-hub.component";
-import {MessagingComponent} from "./messaging/messaging.component";
+import {CentralHubComponent} from './central-hub.component';
+import {MessagingComponent} from './messaging/messaging.component';
+import {NotificationsComponent} from './notifications/notifications.component';
+import {ResumeBuilderComponent} from './resume-builder/resume-builder.component';
+import {ApplicationsComponent} from './applications/applications.component';
 
 const routes: Routes = [
     {
@@ -15,6 +18,18 @@ const routes: Routes = [
             {
                 path: '',
                 redirectTo: 'messaging'
+            },
+            {
+                path: 'notifications',
+                component: NotificationsComponent
+            },
+            {
+                path: 'resumebuilder',
+                component: ResumeBuilderComponent
+            },
+            {
+                path: 'applications',
+                component: ApplicationsComponent
             },
         ]
     }
