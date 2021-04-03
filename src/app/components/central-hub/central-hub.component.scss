@@ -1,7 +1,7 @@
 .central-hub-container {
     width: 100%;
     .navigator {
-        width: 300px;
+        width: 200px;
         margin-right: 30px;
         background-color: rgb(244, 244, 244);
         .navigator-cell {
@@ -12,6 +12,17 @@
             }
             cursor: pointer;
             margin-bottom: 5px;
+            &:hover{
+               p {
+                   font-weight: bold;
+               }
+            }
+        }
+        a {
+            &:visited, &:link {
+                color: black;
+            }
+            margin-top: 13px;
         }
     }
     .details {
@@ -27,30 +38,14 @@
 .navigator-inner {
     padding: 10px;
 }
-a{
+a {
     text-decoration: none;
 }
 span{
     margin-top: auto;
     margin-bottom: auto;
 }
-.icon-bar {
-    width: 250px; /* Set a specific width */
-    //background-color: #555; /* Dark-grey background */
-    //padding: 5px;
-    //margin: 0px;
-    //height: auto;
-}
 
 .icon-bar {
-   a {
-       &:visited, &:link {
-           color: black;
-       }
-       &:hover{
-           font-weight: bold;
-       }
-       margin-top: 13px;
-   }
     padding: 2.5px;
 }

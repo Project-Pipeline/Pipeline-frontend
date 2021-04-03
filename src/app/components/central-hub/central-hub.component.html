@@ -2,58 +2,49 @@
     <div class="navigator">
         <div class="navigator-inner">
 
-            <div class="navigator-cell"
+            <a class="navigator-cell"
+               [routerLink]="'notifications'"
+               [routerLinkActive]="'active'"
                (click)="highlightTabAt('notifications')"
             >
                 <div [ngClass]="{'highlighted': highlights['notifications']}" class="icon-bar flex">
-                    <img src="assets/images/central-hub/Bell.png">
-                    <a  [routerLink]="'notifications'"
-                        [routerLinkActive]="'active'"
-                        class="helvetica-normal"
-                    >
-                        Notification
-                    </a>
+                    <img src="assets/images/central-hub/bell.svg">
+                    <p class="helvetica-normal">Notifications</p>
                 </div>
-            </div>
-            <div class="navigator-cell"
-                 (click)="highlightTabAt('messaging')"
+            </a>
+
+            <a class="navigator-cell"
+                [routerLink]="'messaging'"
+                [routerLinkActive]="'active'"
+                (click)="highlightTabAt('messaging')"
             >
                 <div [ngClass]="{'highlighted': highlights['messaging']}" class="icon-bar flex">
                     <img src="assets/images/central-hub/messaging-icon.png">
-                    <a  [routerLink]="'messaging'"
-                        [routerLinkActive]="'active'"
-                        class="helvetica-normal"
-                    >
-                        Messages
-                    </a>
+                    <p class="helvetica-normal">Messages</p>
                 </div>
-            </div>
-            <div class="navigator-cell"
-                 (click)="highlightTabAt('resumebuilder')"
+            </a>
+
+            <a class="navigator-cell"
+               [routerLink]="'resumebuilder'"
+               [routerLinkActive]="'active'"
+               (click)="highlightTabAt('resumebuilder')"
             >
                 <div [ngClass]="{'highlighted': highlights['resumebuilder']}" class="icon-bar flex">
-                    <img src="assets/images/central-hub/Resume_builder.png">
-                    <a  [routerLink]="'resumebuilder'"
-                        [routerLinkActive]="'active'"
-                        class="helvetica-normal"
-                    >
-                        Resume Builder
-                    </a>
+                    <img src="assets/images/central-hub/resumeBuilder.svg">
+                    <p class="helvetica-normal">Resume Builder</p>
                 </div>
-            </div>
-            <div class="navigator-cell"
-                 (click)="highlightTabAt('applications')"
+            </a>
+
+            <a class="navigator-cell"
+                [routerLink]="'applications'"
+                [routerLinkActive]="'active'"
+                (click)="highlightTabAt('applications')"
             >
                 <div [ngClass]="{'highlighted': highlights['applications']}" class="icon-bar flex">
-                    <img src="assets/images/central-hub/Applacation.png">
-                    <a  [routerLink]="'applications'"
-                        [routerLinkActive]="'active'"
-                        class="helvetica-normal"
-                    >
-                        Application
-                    </a>
+                    <img src="assets/images/central-hub/application.svg">
+                    <p class="helvetica-normal">Application</p>
                 </div>
-            </div>
+            </a>
         </div>
     </div>
     <div class="details">

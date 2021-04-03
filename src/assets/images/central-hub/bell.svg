@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-miterlimit:1.5;">
+    <g transform="matrix(1,0,0,1,-271.476,-394.012)">
+        <g id="Bell" transform="matrix(1,0,0,1,-560.203,394.012)">
+            <rect x="831.678" y="0" width="100" height="100" style="fill:none;"/>
+            <clipPath id="_clip1">
+                <rect x="831.678" y="0" width="100" height="100"/>
+            </clipPath>
+            <g clip-path="url(#_clip1)">
+                <g transform="matrix(-1.00624,0,0,1.00624,1208.58,-392.851)">
+                    <path d="M285.997,413.233C285.997,413.233 280.447,422.427 280.447,433.853C280.447,445.278 285.997,454.171 285.997,454.171" style="fill:none;stroke:black;stroke-width:6.21px;"/>
+                </g>
+                <g transform="matrix(1.00624,0,0,1.00624,554.85,-392.851)">
+                    <path d="M285.997,413.233C285.997,413.233 280.447,422.427 280.447,433.853C280.447,445.278 285.997,454.171 285.997,454.171" style="fill:none;stroke:black;stroke-width:6.21px;"/>
+                </g>
+                <g transform="matrix(1.17084,0,0,1.17084,505.856,-464.241)">
+                    <path d="M320.801,413.233C320.801,413.233 303.252,414.528 303.252,426.772L303.252,447.881C303.252,447.881 303.454,450.753 300.036,454.171C296.617,457.589 296.617,458.714 296.617,458.714C296.617,458.714 295.822,461.341 298.408,461.341L320.801,461.341" style="fill:none;stroke:black;stroke-width:5.34px;"/>
+                </g>
+                <g transform="matrix(-1.17084,0,0,1.17084,1256.28,-464.241)">
+                    <path d="M320.801,413.233C320.801,413.233 303.252,414.528 303.252,426.772L303.252,447.881C303.252,447.881 303.454,450.753 300.036,454.171C296.617,457.589 296.617,458.714 296.617,458.714C296.617,458.714 295.822,461.341 298.408,461.341L320.801,461.341" style="fill:none;stroke:black;stroke-width:5.34px;"/>
+                </g>
+                <g transform="matrix(1.17084,0,0,1.17084,505.653,-463.149)">
+                    <path d="M317.547,411.597C317.547,411.597 316.683,407.849 320.801,407.849C324.919,407.849 323.603,412.3 323.603,412.3" style="fill:none;stroke:black;stroke-width:5.34px;"/>
+                </g>
+                <g transform="matrix(1.63987,0,0,1.63987,355.156,-682.405)">
+                    <path d="M313.425,465.95L328.32,465.95C328.32,465.95 325.896,470.562 320.801,470.562C315.707,470.562 313.425,465.95 313.425,465.95"/>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

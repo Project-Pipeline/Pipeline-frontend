@@ -17,7 +17,6 @@ export class CentralHubComponent extends CentralHubBaseComponent implements OnIn
         'resumebuilder': false,
         'applications': false,
     };
-    heightChanged: (height: number, heightStr: string) => void = null;
 
     constructor(private title: Title) {
         super();
