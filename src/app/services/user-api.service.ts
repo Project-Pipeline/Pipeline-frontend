@@ -1,4 +1,4 @@
-import {Injectable, SkipSelf} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {User, UserEmail} from "../models/model classes/user/User";
 import {Observable, of} from "rxjs";
@@ -13,6 +13,7 @@ import {Post} from "../models/model classes/posts/Post";
 import {CategoryForPost} from "../models/model classes/posts/CateogryForPost";
 import {categoryToId, postCategoryLookUp} from "../models/BusinessConstants";
 import {ConfigService} from "./config.service";
+import {Resume} from "../models/model classes/central-hub/resume/Resume";
 
 @Injectable({
     providedIn: 'root'
@@ -109,6 +110,20 @@ export class UserApiService {
     getCategoryForPost(): CategoryForPost {
         const cat = postCategoryLookUp[this.currentUser.type];
         return new CategoryForPost(categoryToId(cat), cat);
+    }
+
+    getPublicResumes(userId: string): Observable<Resume[]> {
+        return this.http.get<Resume[]>(
+            `${this.configService.apiRoot}api/user/resumes`,
+            this.authService.authHeadersWithParams({ userId: userId })
+        )
+    }
+
+    getAllResumes(): Observable<Resume[]> {
+        return this.http.get<Resume[]>(
+            `${this.configService.apiRoot}api/user/resumes/all`,
+            this.authService.authHeaders()
+        )
     }
 
 }
