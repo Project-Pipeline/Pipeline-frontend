@@ -1,1 +1,32 @@
-<p>resume-builder works!</p>
+<div class="flex">
+    <div class="resume-builder-sidebar">
+        <div class="ppl-button-green-with-image"  style="margin-bottom: 20px" (click)="addResume()">
+            <img src='assets/images/common/plus.svg'>
+            <h4> Add a resume</h4>
+        </div>
+        <div
+            *ngFor="let resume of resumes; let i = index"
+            [attr.data-index]="i"
+            class="header-img-2-line-txt resume-cell"
+            (click)="selectResume(resume, i)"
+        >
+            <img src="assets/images/central-hub/resumeBuilder.svg">
+            <div>
+                <h4>Resume {{i + 1}}</h4>
+                <p>Modified: {{getModifiedDate(resume) | messagingDateFormatter}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="resume-builder-main" *ngIf="currentResume">
+        <h3 class="helvetica clea">{{currentResumeTitle}}</h3>
+
+        <div class="resume-builder-sections" [ngStyle]="{'height': heightForList}">
+            <app-resume-builder-education [educations]="currentResume.education"></app-resume-builder-education>
+        </div>
+        <div class="resume-builder-buttons flex">
+            <button class="ppl-button-green">Publish</button>
+            <button class="ppl-button-green" (click)="saveAsDraft()">Save as Draft</button>
+            <button class="ppl-button-red">Delete</button>
+        </div>
+    </div>
+</div>

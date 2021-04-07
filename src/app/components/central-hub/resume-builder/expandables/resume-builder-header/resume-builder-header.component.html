@@ -1,0 +1,15 @@
+<div style="position: relative">
+    <div class="flex resume-expandable-header" (click)="toggleRotation()">
+        <h4 class="helvetica clear-text-paddings">{{title}}</h4>
+        <div class="ml-auto flex">
+            <img src="assets/images/common/down-caret.svg"
+                 [@rotate180Degrees]="rotated ? 'rotated' : 'default'"
+            >
+        </div>
+    </div>
+
+    <button
+        class="ppl-button-green resume-header-action-btn"
+        (click)="actionButtonClicked.emit()">{{actionTitle}}
+    </button>
+</div>

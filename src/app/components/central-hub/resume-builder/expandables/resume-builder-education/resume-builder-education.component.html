@@ -1,0 +1,69 @@
+<app-resume-builder-header
+    [title]="'Education'"
+    [initialState]="true"
+    [actionTitle]="'Add Education'"
+    (expanded)="expanded = true"
+    (collapsed)="onCollapse()"
+    (actionButtonClicked)="addEducation()"
+></app-resume-builder-header>
+
+<div class="resume-builder-education" [@expand]="expanded ? 'expanded' : 'shrinked'">
+    <div class="triple-column" *ngFor="let education of educations">
+        <div class="first">
+            <!--            school-->
+            <br>
+            <mat-form-field style="width: 100%">
+                <mat-label>School</mat-label>
+                <label>
+                    <input style="width: 100%"  matInput required [(ngModel)]="education.school.name">
+                </label>
+            </mat-form-field>
+
+            <!--            start date-->
+            <mat-form-field appearance="fill">
+                <mat-label>Start Date</mat-label>
+                <input matInput [matDatepicker]="picker" [(ngModel)]="education.startDate">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+
+        </div>
+
+        <div class="second">
+            <!--            focus-->
+            <br>
+            <mat-form-field style="width: 100%">
+                <mat-label>Focus (concentration, major etc)</mat-label>
+                <label>
+                    <input style="width: 100%" matInput required [(ngModel)]="education.focus">
+                </label>
+            </mat-form-field>
+
+            <!--            end date-->
+            <mat-form-field appearance="fill">
+                <mat-label>End Date</mat-label>
+                <input matInput [matDatepicker]="picker2" [(ngModel)]="education.endDate">
+                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker>
+            </mat-form-field>
+
+        </div>
+
+        <div class="third">
+            <!--            Degree-->
+            <br>
+            <mat-form-field style="width: 100%">
+                <mat-label>Degree</mat-label>
+                <label>
+                    <input style="width: 100%"  matInput required [(ngModel)]="education.degree">
+                </label>
+            </mat-form-field>
+
+            <!--            current-->
+            <br><br>
+            <mat-checkbox [checked]="education.current">
+                I currently study there
+            </mat-checkbox>
+        </div>
+    </div>
+</div>

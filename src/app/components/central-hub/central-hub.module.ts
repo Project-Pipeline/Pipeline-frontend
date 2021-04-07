@@ -10,6 +10,13 @@ import { CentralHubBaseComponent } from './central-hub-base/central-hub-base.com
 import { NotificationsComponent } from './notifications/notifications.component';
 import { ResumeBuilderComponent } from './resume-builder/resume-builder.component';
 import { ApplicationsComponent } from './applications/applications.component';
+import { ResumeBuilderEducationComponent } from './resume-builder/expandables/resume-builder-education/resume-builder-education.component';
+import { ResumeBuilderHeaderComponent } from './resume-builder/expandables/resume-builder-header/resume-builder-header.component';
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatSelectModule} from "@angular/material/select";
+import {MatInputModule} from "@angular/material/input";
+import {MatCheckboxModule} from "@angular/material/checkbox";
+import {MatDatepickerModule} from "@angular/material/datepicker";
 
 
 @NgModule({
@@ -19,7 +26,9 @@ import { ApplicationsComponent } from './applications/applications.component';
         CentralHubBaseComponent,
         NotificationsComponent,
         ResumeBuilderComponent,
-        ApplicationsComponent
+        ApplicationsComponent,
+        ResumeBuilderEducationComponent,
+        ResumeBuilderHeaderComponent
     ],
     imports: [
         CommonModule,
@@ -27,6 +36,12 @@ import { ApplicationsComponent } from './applications/applications.component';
         FormsModule,
         MainComponentsModule,
         SharedModule,
+        // Angular material
+        MatFormFieldModule,
+        MatSelectModule,
+        MatInputModule,
+        MatCheckboxModule,
+        MatDatepickerModule
     ]
 })
 export class CentralHubModule {

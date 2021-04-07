@@ -10,16 +10,17 @@ export class CentralHubBaseComponent implements AfterViewInit, OnDestroy {
     // height
     viewportHeight: number = null;
     viewportHeightString: string = null;
-    heightChanged$: Subject<[number, string]> = new Subject();
     // memory mgmt
     unsubscribe$: Subject<void> = new Subject<void>();
 
-    constructor() {
-    }
+    constructor() {}
+
+    // Override this method to get the height change info
+    heightChanged(height: number, heightInString: string) {}
 
     ngAfterViewInit() {
         this.viewportHeightString = this.getViewportHeight();
-        this.heightChanged$.next([this.viewportHeight, this.viewportHeightString]);
+        this.heightChanged(this.viewportHeight, this.viewportHeightString)
     }
 
     ngOnDestroy() {
@@ -30,7 +31,7 @@ export class CentralHubBaseComponent implements AfterViewInit, OnDestroy {
     @HostListener('window:resize', ['$event'])
     onResize(event?) {
         this.viewportHeightString = this.getViewportHeight();
-        this.heightChanged$.next([this.viewportHeight, this.viewportHeightString]);
+        this.heightChanged(this.viewportHeight, this.viewportHeightString)
     }
 
     getViewportHeight(): string {

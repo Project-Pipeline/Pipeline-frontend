@@ -1,7 +1,7 @@
 import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {UserApiService} from "../../../services/user-api.service";
 import {User} from "../../../models/model classes/user/User";
-import {mergeMap, takeUntil} from "rxjs/operators";
+import {mergeMap} from "rxjs/operators";
 import {MessagingService} from "../../../services/messaging.service";
 import {Conversation, ConversationParticipantInfo} from "../../../models/model classes/messaging/Conversation";
 import {MessagingConnect} from "../../../models/model classes/messaging/MessagingConnect";
@@ -40,13 +40,12 @@ export class MessagingComponent extends CentralHubBaseComponent implements OnIni
                 this.currentUser = user;
                 this.createMessageList(this.currentUser);
             });
+    }
 
-        this.heightChanged$
-            .pipe(takeUntil(this.unsubscribe$))
-            .subscribe(([height, heightStr]) => {
-                this.heightStringForDetails = `${height - 100}px`
-                this.heightStringForList = `${height - 170}px`;
-            });
+    heightChanged(height: number, heightInString: string) {
+        super.heightChanged(height, heightInString);
+        this.heightStringForDetails = `${height - 100}px`
+        this.heightStringForList = `${height - 170}px`;
     }
 
     ngOnDestroy() {

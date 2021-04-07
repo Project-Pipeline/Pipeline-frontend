@@ -28,6 +28,27 @@ $theme-color-lighter: #dbffde;
     transition: all .2s ease-in-out;
 }
 
+@mixin ppl-button($bgColor, $textColor) {
+    @include ppl-button-outline;
+    @include ppl-animation-transition;
+    background-color: $bgColor;
+    color: $textColor;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+    height: 31px;
+    cursor: pointer;
+    margin-top: 8px;
+    border: 1px solid $bgColor;
+    &:focus {
+        outline: none;
+    }
+    &:hover {
+        border-color: black;
+    }
+}
+
 .helvetica {
     @include helvetica-style;
 }
@@ -50,24 +71,11 @@ $theme-color-lighter: #dbffde;
 }
 
 .ppl-button-green {
-    @include ppl-button-outline;
-    @include ppl-animation-transition;
-    background-color: $theme-color;
-    color: black;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 13px;
-    height: 31px;
-    cursor: pointer;
-    margin-top: 8px;
-    border: 1px solid $theme-color;
-    &:focus {
-        outline: none;
-    }
-    &:hover {
-        border-color: black;
-    }
+    @include ppl-button($theme-color, black)
+}
+
+.ppl-button-red {
+    @include ppl-button(red, white)
 }
 
 .ppl-button-green-with-image {
@@ -192,5 +200,45 @@ $theme-color-lighter: #dbffde;
         font-size: 12px;
         margin-top: 4px;
     }
+}
+
+.header-img-2-line-txt {
+    display: flex;
+    img {
+        width: 30px;
+        height: 30px;
+        margin-right: 10px;
+    }
+    h4 {
+        @include helvetica-style();
+        @include clear-spacing;
+    }
+    p {
+        @include helvetica-thin-style();
+        @include clear-spacing;
+        font-size: 12px;
+        margin-top: 4px;
+    }
+}
+
+
+.triple-column {
+    display: flex;
+    width: 100%;
+
+    .first {
+        width: 31%;
+        margin-right: 3.5%;
+    }
+
+    .second {
+        width: 31%;
+        margin-right: 3.5%;
+    }
+
+    .third {
+        width: 31%;
+    }
+
 }
 

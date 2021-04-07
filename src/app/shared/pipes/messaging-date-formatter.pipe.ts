@@ -7,6 +7,7 @@ import {DatePipe} from "@angular/common";
 export class MessagingDateFormatterPipe implements PipeTransform {
 
     transform(date: Date): string {
+        if (date == null) date = new Date();
         const pipe = new DatePipe('en-US');
         if (this.isToday(date)) {
             return pipe.transform(date, 'shortTime'); // 9:00 AM
@@ -18,10 +19,10 @@ export class MessagingDateFormatterPipe implements PipeTransform {
     }
 
     isToday(someDate: Date): boolean {
-        const today = new Date()
+        const today = new Date();
         return someDate.getDate() == today.getDate() &&
             someDate.getMonth() == today.getMonth() &&
-            someDate.getFullYear() == today.getFullYear()
+            someDate.getFullYear() == today.getFullYear();
     }
 
     isSameYear(date: Date): boolean {

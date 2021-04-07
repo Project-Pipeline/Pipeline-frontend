@@ -1,0 +1,26 @@
+.resume-builder-sidebar {
+    width: 20%;
+    padding: 20px 10px;
+    margin-right: 2%
+}
+
+.resume-builder-main {
+    width: 78%;
+}
+
+.resume-builder-sections {
+    overflow: auto;
+}
+
+.resume-cell {
+    padding: 10px 0;
+    border-bottom: solid 0.5px gray;
+    cursor: pointer;
+}
+
+
+.resume-builder-buttons {
+    button {
+        margin-right: 15px;
+    }
+}
