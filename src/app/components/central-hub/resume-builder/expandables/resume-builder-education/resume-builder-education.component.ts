@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {expand} from "../../../../../models/model classes/AngularAnimations";
 import {ResumeEducation, ResumeEntity} from "../../../../../models/model classes/central-hub/resume/Resume";
+import {MatCheckboxChange} from "@angular/material/checkbox";
 
 @Component({
     selector: 'app-resume-builder-education',
@@ -28,10 +29,6 @@ export class ResumeBuilderEducationComponent implements OnInit {
 
     }
 
-    complete() {
-        console.log(this.educations);
-    }
-
     onCollapse() {
         this.expanded = false;
     }
@@ -45,6 +42,17 @@ export class ResumeBuilderEducationComponent implements OnInit {
 
     addEducation() {
         this.educations.push(this.getSampleEdu());
+    }
+
+    deleteEducationAt(index: number) {
+        this.educations.splice(index, 1);
+    }
+
+    currentCheckBoxChecked(event: MatCheckboxChange, edu: ResumeEducation) {
+        edu.current = event.checked;
+        if (event.checked) {
+            edu.endDate = null;
+        }
     }
 
 

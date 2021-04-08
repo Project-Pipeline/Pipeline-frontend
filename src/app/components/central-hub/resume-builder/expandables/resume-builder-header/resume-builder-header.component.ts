@@ -1,11 +1,11 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {rotate180Degrees} from "../../../../../models/model classes/AngularAnimations";
+import {fadeOnAppear, rotate180Degrees} from "../../../../../models/model classes/AngularAnimations";
 
 @Component({
     selector: 'app-resume-builder-header',
     templateUrl: './resume-builder-header.component.html',
     styleUrls: ['./resume-builder-header.component.scss'],
-    animations: [rotate180Degrees]
+    animations: [rotate180Degrees, fadeOnAppear]
 })
 export class ResumeBuilderHeaderComponent implements OnInit {
     @Input() title: string;

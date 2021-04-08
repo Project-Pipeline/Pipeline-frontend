@@ -27,7 +27,13 @@ export class ResumeBuilderViewModel {
 
     saveResumeAsDraft(resume: Resume): Observable<any> {
         console.log(resume);
-        return this.resumeService.createResume(resume)
-            .pipe(take(1));
+        const observable = this.isResumeSaved(resume)
+            ? this.resumeService.updateResume(resume)
+            : this.resumeService.createResume(resume);
+        return observable.pipe(take(1));
+    }
+
+    private isResumeSaved(resume: Resume): boolean {
+        return resume.created !== null;
     }
 }

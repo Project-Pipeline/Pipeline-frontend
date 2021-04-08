@@ -4,6 +4,7 @@ import {Resume} from "../../../models/model classes/central-hub/resume/Resume";
 import {ResumeBuilderViewModel} from "./ResumeBuilderViewModel";
 import {UserApiService} from "../../../services/user-api.service";
 import {ResumeService} from "../../../services/central-hub/resume.service";
+import {NgxSpinnerService} from "ngx-spinner";
 
 @Component({
     selector: 'app-resume-builder',
@@ -17,14 +18,22 @@ export class ResumeBuilderComponent extends CentralHubBaseComponent implements O
     currentResume: Resume = null;
     currentResumeTitle = '';
 
-    constructor(userApi: UserApiService, resumeService: ResumeService) {
+    constructor(
+        userApi: UserApiService,
+        resumeService: ResumeService,
+        private spinner: NgxSpinnerService
+    ) {
         super();
         this.viewModel = new ResumeBuilderViewModel(userApi, resumeService);
     }
 
     ngOnInit(): void {
+        this.spinner.show();
         this.viewModel.getAllResumes()
-            .subscribe((resumes) => this.resumes = resumes);
+            .subscribe((resumes) => {
+                this.resumes = resumes;
+                this.spinner.hide();
+            });
     }
 
     addResume() {
@@ -45,8 +54,9 @@ export class ResumeBuilderComponent extends CentralHubBaseComponent implements O
     }
 
     saveAsDraft() {
+        this.spinner.show();
         this.viewModel.saveResumeAsDraft(this.currentResume)
-            .subscribe(() => {});
+            .subscribe(() => this.spinner.hide());
     }
 
     getModifiedDate(resume: Resume): Date {

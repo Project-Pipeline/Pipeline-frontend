@@ -9,7 +9,9 @@
     </div>
 
     <button
+        [@fadeOnAppear]
+        *ngIf="rotated"
         class="ppl-button-green resume-header-action-btn"
-        (click)="actionButtonClicked.emit()">{{actionTitle}}
-    </button>
+        (click)="actionButtonClicked.emit()"
+    >{{actionTitle}}</button>
 </div>

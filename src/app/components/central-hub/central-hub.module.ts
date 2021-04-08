@@ -17,6 +17,7 @@ import {MatSelectModule} from "@angular/material/select";
 import {MatInputModule} from "@angular/material/input";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatDatepickerModule} from "@angular/material/datepicker";
+import {NgxSpinnerModule} from "ngx-spinner";
 
 
 @NgModule({
@@ -41,7 +42,9 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
         MatSelectModule,
         MatInputModule,
         MatCheckboxModule,
-        MatDatepickerModule
+        MatDatepickerModule,
+        // misc
+        NgxSpinnerModule
     ]
 })
 export class CentralHubModule {

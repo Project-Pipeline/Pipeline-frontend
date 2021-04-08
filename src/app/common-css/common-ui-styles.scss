@@ -239,6 +239,24 @@ $theme-color-lighter: #dbffde;
     .third {
         width: 31%;
     }
+}
 
+.header-text-img {
+    display: flex;
+    margin-top: 14px;
+    img {
+        margin-left: auto;
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+        @include ppl-animation-transition;
+        &:hover {
+            transform: scale(1.2);
+        }
+    }
+    h4 {
+        @include helvetica-style;
+        @include clear-spacing;
+    }
 }
 
