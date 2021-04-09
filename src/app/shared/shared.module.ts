@@ -19,11 +19,11 @@ import {ModalPopupComponent} from "./ui-components/modal-popup/modal-popup.compo
 import {FormsModule} from "@angular/forms";
 import {AddressAutoCompleterComponent} from "./ui-components/address-auto-completer/address-auto-completer.component";
 import {MessagingDateFormatterPipe} from "./pipes/messaging-date-formatter.pipe";
+import { DateRangePickerComponent } from './ui-components/date-range-picker/date-range-picker.component';
 
 /// Angular module that holds all reusable/shared components, services and pipes
 @NgModule({
     declarations: [
-        // minor-UI
         HorizontalScrollableTabsComponent,
         PaginatorComponent,
         SegmentedControlComponent,
@@ -31,8 +31,8 @@ import {MessagingDateFormatterPipe} from "./pipes/messaging-date-formatter.pipe"
         RowTextEditorComponent,
         ModalPopupComponent,
         AddressAutoCompleterComponent,
-        // pipes
-        MessagingDateFormatterPipe
+        MessagingDateFormatterPipe,
+        DateRangePickerComponent
     ],
     imports: [
         CommonModule,
@@ -50,7 +50,6 @@ import {MessagingDateFormatterPipe} from "./pipes/messaging-date-formatter.pipe"
         MatCheckboxModule,
     ],
     exports: [
-        // minor-UI
         HorizontalScrollableTabsComponent,
         PaginatorComponent,
         SegmentedControlComponent,
@@ -58,8 +57,8 @@ import {MessagingDateFormatterPipe} from "./pipes/messaging-date-formatter.pipe"
         RowTextEditorComponent,
         ModalPopupComponent,
         AddressAutoCompleterComponent,
-        // pipes
-        MessagingDateFormatterPipe
+        MessagingDateFormatterPipe,
+        DateRangePickerComponent
     ]
 })
 export class SharedModule {

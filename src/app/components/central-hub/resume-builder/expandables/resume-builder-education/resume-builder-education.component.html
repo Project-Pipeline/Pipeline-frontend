@@ -23,15 +23,6 @@
                         <input style="width: 100%"  matInput required [(ngModel)]="education.school.name">
                     </label>
                 </mat-form-field>
-
-                <!--            start date-->
-                <mat-form-field appearance="fill">
-                    <mat-label>Start Date</mat-label>
-                    <input matInput [matDatepicker]="picker" [(ngModel)]="education.startDate">
-                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
-                </mat-form-field>
-
             </div>
 
             <div class="second">
@@ -42,14 +33,6 @@
                     <label>
                         <input style="width: 100%" matInput required [(ngModel)]="education.focus">
                     </label>
-                </mat-form-field>
-
-                <!--            end date-->
-                <mat-form-field appearance="fill">
-                    <mat-label>End Date</mat-label>
-                    <input matInput [matDatepicker]="picker2" [(ngModel)]="education.endDate" [disabled]="education.current">
-                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-                    <mat-datepicker #picker2></mat-datepicker>
                 </mat-form-field>
 
             </div>
@@ -63,13 +46,12 @@
                         <input style="width: 100%"  matInput required [(ngModel)]="education.degree">
                     </label>
                 </mat-form-field>
-
-                <!--            current-->
-                <br><br>
-                <mat-checkbox (change)="currentCheckBoxChecked($event, education)">
-                    I currently study there
-                </mat-checkbox>
             </div>
         </div>
+
+        <app-date-range-picker
+            [pickable]="education"
+            [currentCheckboxText]="'I currently study there'"
+        ></app-date-range-picker>
     </div>
 </div>

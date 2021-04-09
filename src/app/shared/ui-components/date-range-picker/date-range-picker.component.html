@@ -1,0 +1,31 @@
+<div class="triple-column">
+    <div class="first">
+        <!--            start date-->
+        <mat-form-field appearance="fill">
+            <mat-label>{{startDateTitle}}</mat-label>
+            <input matInput [matDatepicker]="picker" [(ngModel)]="pickable.startDate">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+    </div>
+
+    <div class="second">
+        <!--            end date-->
+        <mat-form-field appearance="fill">
+            <mat-label>{{endDateTitle}}</mat-label>
+            <input matInput [matDatepicker]="picker2" [(ngModel)]="pickable.endDate" [disabled]="pickable.current">
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+
+    </div>
+
+    <div class="third">
+        <!--            current-->
+        <br>
+        <mat-checkbox #checkbox (change)="currentCheckBoxChecked($event)">
+            {{currentCheckboxText}}
+        </mat-checkbox>
+    </div>
+</div>

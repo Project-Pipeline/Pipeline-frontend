@@ -1,5 +1,6 @@
 import {UserDTO} from "../../user/UserDetails";
 import {generateUUID} from "../../../Global";
+import {DateRangePickable} from "../../../../shared/ui-components/date-range-picker/DateRangePickable";
 
 export class Resume {
     public user: UserDTO
@@ -35,7 +36,7 @@ export class ResumeEntity {
     }
 }
 
-export class ResumeEducation {
+export class ResumeEducation implements DateRangePickable {
     constructor(
         public school: ResumeEntity,
         public degree: string,
