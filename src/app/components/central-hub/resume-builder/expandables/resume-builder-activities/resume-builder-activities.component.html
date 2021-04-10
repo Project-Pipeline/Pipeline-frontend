@@ -1,0 +1,72 @@
+<app-resume-builder-header
+    [title]="'Activities'"
+    [actionTitle]="'Add an Activity'"
+    (expanded)="expanded = true"
+    (collapsed)="expanded = false"
+    (actionButtonClicked)="addActivity()"
+></app-resume-builder-header>
+
+<div [@expand]="expanded ? 'expanded' : 'shrinked'">
+    <div *ngFor="let activity of activities; let i = index" [attr.data-index]="i">
+        <div class="header-text-img">
+            <h4>Activity {{i + 1}}</h4>
+            <img src="assets/images/profile/trash.png" (click)="deleteActivityAt(i)">
+        </div>
+
+        <div class="triple-column">
+            <div class="first">
+                <!--            type-->
+                <br>
+                <mat-form-field style="width: 100%">
+                    <mat-label>Type</mat-label>
+                    <label>
+                        <input style="width: 100%"
+                               matInput required
+                               placeholder="Clubs / sports etc"
+                               [(ngModel)]="activity.type">
+                    </label>
+                </mat-form-field>
+
+            </div>
+            <div class="second">
+                <!--            name-->
+                <br>
+                <mat-form-field style="width: 100%">
+                    <mat-label>Name</mat-label>
+                    <label>
+                        <input style="width: 100%"
+                               matInput required
+                               [(ngModel)]="activity.name">
+                    </label>
+                </mat-form-field>
+
+            </div>
+            <div class="third">
+                <!--            position-->
+                <br>
+                <mat-form-field style="width: 100%">
+                    <mat-label>Your position in this activity</mat-label>
+                    <label>
+                        <input style="width: 100%"
+                               matInput required
+                               placeholder="Captain, member etc"
+                               [(ngModel)]="activity.position">
+                    </label>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <app-row-text-editor
+            description="Describe this activity in a few sentences"
+            inputPlaceholder="description"
+            [alternateDataSource]="activity.descriptions"
+            (alternateDataSourceUpdated)="activity.descriptions = $event"
+        ></app-row-text-editor>
+
+        <br>
+        <app-date-range-picker
+            [pickable]="activity"
+            [currentCheckboxText]="'I currently participate \n in this activity'"
+        ></app-date-range-picker>
+    </div>
+</div>

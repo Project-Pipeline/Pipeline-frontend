@@ -48,7 +48,7 @@ export class ResumeEducation implements DateRangePickable {
     }
 }
 
-export class ResumeActivity {
+export class ResumeActivity  implements DateRangePickable {
     constructor(
         public type: string,
         public name: string,

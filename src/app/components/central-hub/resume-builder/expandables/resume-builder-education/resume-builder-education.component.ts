@@ -1,7 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {expand} from "../../../../../models/model classes/AngularAnimations";
 import {ResumeEducation, ResumeEntity} from "../../../../../models/model classes/central-hub/resume/Resume";
-import {MatCheckboxChange} from "@angular/material/checkbox";
 
 @Component({
     selector: 'app-resume-builder-education',
@@ -18,10 +17,6 @@ export class ResumeBuilderEducationComponent implements OnInit {
 
     ngOnInit(): void {
 
-    }
-
-    onCollapse() {
-        this.expanded = false;
     }
 
     getSampleEdu(): ResumeEducation {
