@@ -1,6 +1,6 @@
 <div *ngIf="dataSource">
     <div class="add-section">
-        <label class="helvetica-normal">{{description}}&nbsp;&nbsp;&nbsp;</label>
+        <label class="helvetica-medium">{{description}}&nbsp;&nbsp;&nbsp;</label>
         <button mat-stroked-button (click)="addRow()">+</button>
     </div>
     <div class="remove-section" *ngFor="let txt of dataSource; let i = index" [attr.data-index]="i">
@@ -16,7 +16,7 @@
 
 <div *ngIf="alternateDataSource">
     <div class="add-section">
-        <label class="helvetica-normal">{{description}}&nbsp;&nbsp;&nbsp;</label>
+        <label class="helvetica-medium">{{description}}&nbsp;&nbsp;&nbsp;</label>
         <button mat-stroked-button (click)="addRowAlternate()">+</button>
     </div>
     <div class="remove-section" *ngFor="let txt of alternateDataSourceMapped; let i = index" [attr.data-index]="i">

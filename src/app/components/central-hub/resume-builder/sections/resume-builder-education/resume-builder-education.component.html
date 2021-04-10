@@ -7,7 +7,7 @@
     (actionButtonClicked)="addEducation()"
 ></app-resume-builder-header>
 
-<div class="resume-builder-education" [@expand]="expanded ? 'expanded' : 'shrinked'">
+<div class="resume-builder-section-container" [@expand]="expanded ? 'expanded' : 'shrinked'">
     <div *ngFor="let education of educations; let i = index" [attr.data-index]="i">
         <div class="header-text-img">
             <h4>Education {{i + 1}}</h4>
@@ -51,7 +51,7 @@
 
         <app-date-range-picker
             [pickable]="education"
-            [currentCheckboxText]="'I currently study there'"
+            [currentCheckboxText]="'Currently attending'"
         ></app-date-range-picker>
     </div>
 </div>

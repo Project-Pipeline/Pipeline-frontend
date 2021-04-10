@@ -6,7 +6,7 @@
     (actionButtonClicked)="addActivity()"
 ></app-resume-builder-header>
 
-<div [@expand]="expanded ? 'expanded' : 'shrinked'">
+<div class="resume-builder-section-container" [@expand]="expanded ? 'expanded' : 'shrinked'">
     <div *ngFor="let activity of activities; let i = index" [attr.data-index]="i">
         <div class="header-text-img">
             <h4>Activity {{i + 1}}</h4>
@@ -66,7 +66,7 @@
         <br>
         <app-date-range-picker
             [pickable]="activity"
-            [currentCheckboxText]="'I currently participate \n in this activity'"
+            [currentCheckboxText]="'Currently participating'"
         ></app-date-range-picker>
     </div>
 </div>

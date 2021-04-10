@@ -14,6 +14,11 @@ $theme-color-lighter: #dbffde;
     font-weight: 300;
 }
 
+@mixin helvetica-medium {
+    font-family: "Helvetica", "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+    font-weight: 500;
+}
+
 @mixin ppl-button-outline {
     padding: 8px 16px;
     border-radius: 10px;
@@ -55,6 +60,10 @@ $theme-color-lighter: #dbffde;
 
 .helvetica-normal {
     @include helvetica-thin-style;
+}
+
+.helvetica-medium {
+    @include helvetica-medium;
 }
 
 // UIs

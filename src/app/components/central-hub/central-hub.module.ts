@@ -10,15 +10,15 @@ import { CentralHubBaseComponent } from './central-hub-base/central-hub-base.com
 import { NotificationsComponent } from './notifications/notifications.component';
 import { ResumeBuilderComponent } from './resume-builder/resume-builder.component';
 import { ApplicationsComponent } from './applications/applications.component';
-import { ResumeBuilderEducationComponent } from './resume-builder/expandables/resume-builder-education/resume-builder-education.component';
-import { ResumeBuilderHeaderComponent } from './resume-builder/expandables/resume-builder-header/resume-builder-header.component';
+import { ResumeBuilderEducationComponent } from './resume-builder/sections/resume-builder-education/resume-builder-education.component';
+import { ResumeBuilderHeaderComponent } from './resume-builder/sections/resume-builder-header/resume-builder-header.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatSelectModule} from "@angular/material/select";
 import {MatInputModule} from "@angular/material/input";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {NgxSpinnerModule} from "ngx-spinner";
-import { ResumeBuilderActivitiesComponent } from './resume-builder/expandables/resume-builder-activities/resume-builder-activities.component';
+import { ResumeBuilderActivitiesComponent } from './resume-builder/sections/resume-builder-activities/resume-builder-activities.component';
 
 
 @NgModule({
