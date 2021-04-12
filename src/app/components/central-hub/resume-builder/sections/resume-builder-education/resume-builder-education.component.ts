@@ -5,7 +5,6 @@ import {ResumeEducation, ResumeEntity} from "../../../../../models/model classes
 @Component({
     selector: 'app-resume-builder-education',
     templateUrl: './resume-builder-education.component.html',
-    styleUrls: ['./resume-builder-education.component.scss'],
     animations: [expand]
 })
 export class ResumeBuilderEducationComponent implements OnInit {

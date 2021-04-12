@@ -5,7 +5,6 @@ import {expand} from "../../../../../models/model classes/AngularAnimations";
 @Component({
     selector: 'app-resume-builder-activities',
     templateUrl: './resume-builder-activities.component.html',
-    styleUrls: ['./resume-builder-activities.component.scss'],
     animations: [expand]
 })
 export class ResumeBuilderActivitiesComponent implements OnInit {

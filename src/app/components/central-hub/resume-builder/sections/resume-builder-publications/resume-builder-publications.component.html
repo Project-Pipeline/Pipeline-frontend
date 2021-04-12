@@ -1,0 +1,50 @@
+<app-resume-builder-header
+    title="Publications"
+    actionTitle="Add a Publication"
+    (expanded)="expanded = true"
+    (collapsed)="expanded = false"
+    (actionButtonClicked)="addPublication()"
+></app-resume-builder-header>
+
+<div class="resume-builder-section-container" [@expand]="expanded ? 'expanded' : 'shrinked'">
+    <div *ngFor="let publication of publications; let i = index" [attr.data-index]="i">
+        <div class="header-text-img">
+            <h4>Publication {{i + 1}}</h4>
+            <img src="assets/images/profile/trash.png" (click)="deletePublicationAt(i)">
+        </div>
+
+        <div class="dual-column">
+            <div class="dual-column-left">
+                <!--                Type-->
+                <mat-form-field style="width: 100%">
+                    <mat-label>What's the type of your publication?</mat-label><br>
+                    <label>
+                        <input placeholder="Type" matInput required>
+                    </label>
+                    <mat-select [(ngModel)]="publication.type">
+                        <mat-option *ngFor="let type of possibleTypes" value="{{type}}">{{type}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="dual-column-right">
+                <!--                    Title-->
+                <br><br>
+                <mat-form-field style="width: 100%">
+                    <mat-label>Title of your publication</mat-label>
+                    <label>
+                        <input style="width: 100%"
+                               matInput required
+                               placeholder="Title of your publication"
+                               [(ngModel)]="publication.title">
+                    </label>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <mat-label class="helvetica-medium">Enter the content</mat-label><br><br>
+        <mat-form-field appearance="fill"  style="width: 100%">
+            <mat-label class="helvetica-medium">content</mat-label>
+            <textarea style="width: 100%" [(ngModel)]="publication.content" matInput matTextareaAutosize></textarea>
+        </mat-form-field>
+    </div>
+</div>

@@ -19,6 +19,7 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {NgxSpinnerModule} from "ngx-spinner";
 import { ResumeBuilderActivitiesComponent } from './resume-builder/sections/resume-builder-activities/resume-builder-activities.component';
+import { ResumeBuilderPublicationsComponent } from './resume-builder/sections/resume-builder-publications/resume-builder-publications.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { ResumeBuilderActivitiesComponent } from './resume-builder/sections/resu
         ApplicationsComponent,
         ResumeBuilderEducationComponent,
         ResumeBuilderHeaderComponent,
-        ResumeBuilderActivitiesComponent
+        ResumeBuilderActivitiesComponent,
+        ResumeBuilderPublicationsComponent
     ],
     imports: [
         CommonModule,

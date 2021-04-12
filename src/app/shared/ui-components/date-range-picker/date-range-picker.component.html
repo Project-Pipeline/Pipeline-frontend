@@ -1,7 +1,7 @@
 <div class="triple-column">
     <div class="first">
         <!--            start date-->
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="fill" style="width: 100%">
             <mat-label>{{startDateTitle}}</mat-label>
             <input matInput [matDatepicker]="picker" [(ngModel)]="pickable.startDate">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -12,7 +12,7 @@
 
     <div class="second">
         <!--            end date-->
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="fill" style="width: 100%">
             <mat-label>{{endDateTitle}}</mat-label>
             <input matInput [matDatepicker]="picker2" [(ngModel)]="pickable.endDate" [disabled]="pickable.current">
             <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
