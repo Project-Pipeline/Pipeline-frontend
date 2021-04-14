@@ -20,6 +20,7 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import {NgxSpinnerModule} from "ngx-spinner";
 import { ResumeBuilderActivitiesComponent } from './resume-builder/sections/resume-builder-activities/resume-builder-activities.component';
 import { ResumeBuilderPublicationsComponent } from './resume-builder/sections/resume-builder-publications/resume-builder-publications.component';
+import { ResumeBuilderVolunteeringComponent } from './resume-builder/sections/resume-builder-volunteering/resume-builder-volunteering.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { ResumeBuilderPublicationsComponent } from './resume-builder/sections/re
         ResumeBuilderEducationComponent,
         ResumeBuilderHeaderComponent,
         ResumeBuilderActivitiesComponent,
-        ResumeBuilderPublicationsComponent
+        ResumeBuilderPublicationsComponent,
+        ResumeBuilderVolunteeringComponent
     ],
     imports: [
         CommonModule,

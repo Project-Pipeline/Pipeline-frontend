@@ -33,7 +33,7 @@ export class ResumeBuilderComponent extends CentralHubBaseComponent implements O
             .subscribe((resumes) => {
                 this.resumes = resumes;
                 this.spinner.hide();
-            });
+            }, () => this.spinner.hide());
     }
 
     addResume() {
@@ -56,7 +56,10 @@ export class ResumeBuilderComponent extends CentralHubBaseComponent implements O
     saveAsDraft() {
         this.spinner.show();
         this.viewModel.saveResumeAsDraft(this.currentResume)
-            .subscribe(() => this.spinner.hide());
+            .subscribe(
+                () => this.spinner.hide(),
+                () => this.spinner.hide()
+            );
     }
 
     getModifiedDate(resume: Resume): Date {

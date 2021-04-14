@@ -70,17 +70,17 @@ export class ResumePublication {
     }
 }
 
-export class ResumeVolunteering {
+export class ResumeVolunteering implements DateRangePickable {
     constructor(
         public role: string,
-        public category: string,
+        public cause: string,
         public entity: ResumeEntity,
         public location: string,
         public startDate: string,
         public endDate: string,
         public descriptions: string[],
         public current: boolean,
-        public hours: number
+        public hours?: number
     ) {
     }
 }
