@@ -1,0 +1,91 @@
+<div class="landing-page-navbar ">
+
+    <div class="width-container flex">
+        <button [routerLink]="['/login']" class="ppl-button-green ml-auto">Log In</button>
+    </div>
+
+</div>
+
+<div class="landing-page-content width-container">
+    <div class="headline">
+        <div>
+            <br>
+            <h1 class="helvetica">{{landingPageData.headline}}</h1>
+            <h2 class="helvetica-normal">{{landingPageData.headlineSubtitle}}</h2>
+        </div>
+        <div>
+            <img src="{{landingPageData.headLineImgLink}}">
+        </div>
+    </div>
+
+    <div id="customer-segments">
+        <div class="customer-segments-inner">
+            <div class="left">
+                <div class="inner">
+                    <img src="{{landingPageData.segment1.headerImgLink}}">
+                    <h1 class="mohave">{{landingPageData.segment1.title}}</h1>
+                    <div class="icon-text-row" *ngFor="let row of landingPageData.segment1.contents">
+                        <img src="{{row.image}}">
+                        <div class="helvetica-normal">
+                            {{row.text}}
+                        </div>
+                    </div>
+                </div>
+                <div class="landing-page-segment-btn">
+                    <a href="{{landingPageData.segment1.joinLink}}">JOIN</a>
+                </div>
+            </div>
+
+
+            <div class="mid">
+                <div class="inner">
+                    <img src="{{landingPageData.segment2.headerImgLink}}">
+                    <h1 class="mohave">{{landingPageData.segment2.title}}</h1>
+                    <div class="icon-text-row" *ngFor="let row of landingPageData.segment2.contents">
+                        <img src="{{row.image}}">
+                        <div class="helvetica-normal">
+                            {{row.text}}
+                        </div>
+                    </div>
+                </div>
+                <div class="landing-page-segment-btn">
+                    <a href="{{landingPageData.segment2.joinLink}}">JOIN</a>
+                </div>
+            </div>
+
+
+            <div class="right">
+                <div class="inner">
+                    <img src="{{landingPageData.segment3.headerImgLink}}">
+                    <h1 class="mohave">{{landingPageData.segment3.title}}</h1>
+                    <div class="icon-text-row" *ngFor="let row of landingPageData.segment3.contents">
+                        <img src="{{row.image}}">
+                        <div class="helvetica-normal">
+                            {{row.text}}
+                        </div>
+                    </div>
+                </div>
+                <div class="landing-page-segment-btn">
+                    <a href="{{landingPageData.segment3.joinLink}}">JOIN</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="features">
+        <div *ngFor="let feature of landingPageData.features" [ngSwitch]="feature.imageSide">
+            <div *ngSwitchCase="0" class="feature-left-img">
+                <div>
+                    <img src="{{feature.image}}">
+                </div>
+                <div>
+                    <h1 class="helvetica">{{feature.title}}</h1>
+                    <h2 class="helvetica-normal">{{feature.subtitle}}</h2>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+</div>

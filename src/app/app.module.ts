@@ -8,12 +8,14 @@ import {FormsModule} from "@angular/forms";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {JWTErrorInterceptor} from "./models/helpers/JWTErrorInterceptor";
+import { LandingPageComponent } from './components/landing-page/landing-page.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         LoginComponent,
         SignupComponent,
+        LandingPageComponent,
     ],
     imports: [
         BrowserModule,
