@@ -1,12 +1,6 @@
 @import "src/app/common-css/common-ui-styles";
 
 .landing-page-navbar {
-    background-image: url("../../../assets/logos/pipeline-logo-2.svg");
-    background-size: 200px;
-    background-repeat: no-repeat;
-    background-position-y: 50%;
-    background-position-x: center;
-    padding: 30px 0;
     background-color: $theme-color;
     position: fixed;
     left: 0;
@@ -16,8 +10,15 @@
     box-shadow: 10px 5px 5px $theme-color-gray;
     z-index: 999;
 
+    .width-container {
+        position: relative;
+    }
+
     button {
+        position: absolute;
+        right: 0;
         width: 80px;
+        height: 40px;
         margin-left: auto;
         border: 1px solid black;
         @include ppl-animation-transition;
@@ -25,6 +26,22 @@
             transform: scale(1.1);
         }
     }
+
+    img {
+        transform: scale(2.3);
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
+}
+
+.wheel {
+    width: 20px;
+}
+
+@mixin feature-common {
+    padding: 3%;
+    display: flex;
 }
 
 h1 {
@@ -32,6 +49,44 @@ h1 {
 }
 h2 {
     color: gray;
+}
+
+@mixin segment-card($height) {
+    .inner {
+        &>img {
+            width: 75px;
+            height: 75px;
+            margin-left: auto;
+            display: block;
+            margin-right: auto;
+            margin-top: -50px;
+        }
+        background-color: $theme-color;
+        height: $height;
+        padding: 15px;
+        border-radius: 10px;
+    }
+    h1 {
+        text-align: center;
+    }
+    .landing-page-segment-btn {
+        @include ppl-button-outline;
+        background-color: #33CC33;
+        a {
+            &:visited, &:link {
+                color: white;
+                text-decoration: none;
+                @include helvetica-thin-style;
+            }
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+        text-align: center;
+        margin-left: 20%;
+        width: 50%;
+        margin-top: -20px;
+    }
 }
 
 .landing-page-content {
@@ -51,6 +106,8 @@ h2 {
             }
         }
     }
+
+    $customer-segment-card-height: 350px;
 
     #customer-segments {
         padding: 10%;
@@ -72,60 +129,23 @@ h2 {
             .left {
                 width: 30%;
                 margin-right: 5%;
+                @include segment-card($customer-segment-card-height);
             }
             .mid {
                 width: 30%;
                 margin-right: 5%;
+                @include segment-card($customer-segment-card-height);
             }
             .right {
                 width: 30%;
-            }
-            .left, .mid, .right {
-                position: relative;
-                .inner {
-                    &>img {
-                        width: 75px;
-                        height: 75px;
-                        margin-left: auto;
-                        display: block;
-                        margin-right: auto;
-                        margin-top: -50px;
-                    }
-                    background-color: $theme-color;
-                    height: 350px;
-                    padding: 15px;
-                    border-radius: 10px;
-                }
-                h1 {
-                    text-align: center;
-                    font-size: 40px;
-                }
-                .landing-page-segment-btn {
-                    @include ppl-button-outline;
-                    background-color: #33CC33;
-                    a {
-                        &:visited, &:link {
-                            color: white;
-                            text-decoration: none;
-                            @include helvetica-thin-style;
-                        }
-                        &:hover {
-                            text-decoration: underline;
-                        }
-                    }
-                    text-align: center;
-                    margin-left: 20%;
-                    width: 50%;
-                    margin-top: -20px;
-                }
+                @include segment-card($customer-segment-card-height);
             }
         }
     }
 
     #features {
         .feature-left-img {
-            padding: 3%;
-            display: flex;
+            @include feature-common;
             div:nth-child(1) {
                 width: 60%;
                 margin-right: 5%;
@@ -140,7 +160,108 @@ h2 {
         }
 
         .feature-right-img {
-
+            @include feature-common;
+            div:nth-child(1) {
+                padding-top: 7%;
+                width: 35%;
+            }
+            div:nth-child(2) {
+                width: 60%;
+                margin-right: 5%;
+                img {
+                    width: 100%;
+                }
+            }
         }
     }
+
+    #join-2 {
+        padding: 5%;
+        width: 300px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        @include segment-card(200px);
+        .join-2-inner {
+            margin-top: 60px;
+            margin-left: 52px;
+            display: block;
+            width: 200px;
+            a {
+                font-size: 25px;
+                padding: 18px;
+                text-align: center;
+                @include helvetica-style();
+                background-color: #33CC33;
+                border-radius: 10px;
+                &:link, &:visited {
+                    color: white;
+                    text-decoration: none;
+                }
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+}
+
+.landing-page-footer-container {
+    background-color: $theme-color;
+}
+
+.landing-page-footer {
+    display: flex;
+    padding: 3% 2%;
+    div:nth-child(1) {
+        width: 20%;
+        margin-right: 2.5%;
+        img {
+            margin-top: 30px;
+            width: 150px;
+        }
+    }
+    div:nth-child(2) {
+        width: 17.5%;
+        margin-right: 2.5%;
+    }
+    div:nth-child(3) {
+        width: 17.5%;
+        margin-right: 2.5%;
+    }
+    div:nth-child(4) {
+        width: 17.5%;
+        margin-right: 2.5%;
+    }
+    div:nth-child(5) {
+        width: 17.5%;
+    }
+    h3 {
+        @include helvetica-style;
+        @include clear-spacing;
+    }
+    a {
+        &:link, &:visited {
+            color: black;
+            text-decoration: none;
+        }
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+    ul {
+        @include helvetica-thin-style;
+        list-style: none;
+        margin-left: 0;
+        padding-left: 0;
+        margin-top: 3px;
+    }
+    li {
+        padding-top: 5px;
+    }
+}
+
+.landing-page-copyright {
+    p { text-align: center; }
+    padding: 4px;
 }

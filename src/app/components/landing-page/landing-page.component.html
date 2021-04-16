@@ -1,9 +1,12 @@
-<div class="landing-page-navbar ">
-
-    <div class="width-container flex">
-        <button [routerLink]="['/login']" class="ppl-button-green ml-auto">Log In</button>
+<div class="landing-page-navbar">
+    <div class="width-container flex" [@navbarHeightExpand]="shouldChangeNavbar ?  'shrinked' : 'expanded'">
+        <img src="assets/logos/pipeline-logo-2.svg" class="regular-logo">
+        <button
+            [routerLink]="['/login']"
+            class="ppl-button-green ml-auto"
+            [ngStyle]="{'bottom': shouldChangeNavbar ? '15px' : '30px'}"
+        >Log In</button>
     </div>
-
 </div>
 
 <div class="landing-page-content width-container">
@@ -84,8 +87,76 @@
                 </div>
 
             </div>
+            <div *ngSwitchCase="1" class="feature-right-img">
+                <div>
+                    <h1 class="helvetica">{{feature.title}}</h1>
+                    <h2 class="helvetica-normal">{{feature.subtitle}}</h2>
+                </div>
+                <div>
+                    <img src="{{feature.image}}">
+                </div>
+            </div>
         </div>
     </div>
 
+    <div class="segment-card" id="join-2">
+        <div class="inner">
+            <img src="{{landingPageData.segment2.headerImgLink}}">
+            <div class="join-2-inner">
+                <a href="#customer-segments">JOIN NOW</a>
+            </div>
+        </div>
+    </div>
 
+</div>
+
+<div class="landing-page-footer-container">
+    <div class="landing-page-footer width-container">
+        <div>
+            <img src="assets/logos/pipeline-logo.svg">
+        </div>
+
+        <div>
+            <h3>Join</h3>
+            <ul>
+                <li class="link"><a href="#customer-segments">High Schools</a></li>
+                <li class="link"><a href="#customer-segments">High School Students</a>
+                <li class="link"><a href="#customer-segments">Companies</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <h3>Connect with us</h3>
+            <ul>
+                <li class="link"><a target="_blank" href="https://www.instagram.com/project_pipeline/">Instagram</a>
+                <li class="link">
+                    <a target="_blank" href="https://www.youtube.com/channel/UC-N4EAFPF4dElpcCEhHn51Q">YouTube</a>
+                </li>
+            </ul>
+        </div>
+
+        <div>
+            <h3>Privacy</h3>
+            <ul>
+                <li class="link"><a>Cookies</a></li>
+                <li class="link"><a>Ad Choices</a>
+                <li class="link"><a>Feedback</a></li>
+                <li class="link"><a>Privacy Policy</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <h3>More</h3>
+            <ul>
+                <li class="link"><a>Language</a></li>
+                <li class="link"><a>Donation</a>
+                <li class="link"><a>Careers</a></li>
+                <li class="link"><a>Diversity</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="landing-page-copyright">
+        <p class="helvetica-normal">&copy; 2021 Project Pipeline</p>
+    </div>
 </div>

@@ -102,7 +102,7 @@ export const mockLandingPageData = new LandingPageData(
         new LandingPageFeature(
             'Build Social Equity',
             'Free and equal access to local community opportunities and resources.',
-            '',
+            'https://res.cloudinary.com/dd8cb6u97/image/upload/v1618504892/project-pipeline-public/landing-page-equity_vaf3jp.svg',
             1
         ),
         new LandingPageFeature(
