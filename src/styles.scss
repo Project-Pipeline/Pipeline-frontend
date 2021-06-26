@@ -91,3 +91,7 @@ html, body { height: 100%; }
 .default-overflow {
     overflow: auto;
 }
+
+label, mat-label {
+    @include helvetica-medium;
+}

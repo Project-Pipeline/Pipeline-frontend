@@ -85,7 +85,7 @@ export class ResumeVolunteering implements DateRangePickable {
     }
 }
 
-export class ResumeExperience {
+export class ResumeExperience implements DateRangePickable {
     constructor(
         public role: string,
         public type: string,
