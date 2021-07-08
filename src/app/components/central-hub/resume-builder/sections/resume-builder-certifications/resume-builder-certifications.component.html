@@ -1,0 +1,60 @@
+<app-resume-builder-header
+    title="Certifications"
+    actionTitle="Add a Certification"
+    (expanded)="expanded = true"
+    (collapsed)="expanded = false"
+    (actionButtonClicked)="addCertification()"
+></app-resume-builder-header>
+
+<div class="resume-builder-section-container" [@expand]="expanded ? 'expanded' : 'shrinked'">
+    <div *ngFor="let certification of certifications; let i = index" [attr.data-index]="i">
+        <div class="header-text-img">
+            <h4>Volunteering Activity {{i + 1}}</h4>
+            <img src="assets/images/profile/trash.png" (click)="deleteCertificationAt(i)">
+        </div>
+
+        <div class="dual-column">
+            <div class="dual-column-left">
+                <!--            Name-->
+                <br>
+                <mat-form-field style="width: 100%">
+                    <mat-label>Name</mat-label>
+                    <label>
+                        <input style="width: 100%"  matInput required [(ngModel)]="certification.name">
+                    </label>
+                </mat-form-field>
+
+                <!--            Issuer-->
+                <br><br>
+                <mat-form-field style="width: 100%">
+                    <mat-label>Issuer</mat-label>
+                    <label>
+                        <input style="width: 100%"  matInput required [(ngModel)]="certification.issuer">
+                    </label>
+                </mat-form-field>
+            </div>
+            <div class="dual-column-right">
+                <!--            Date Issued-->
+                <br>
+                <mat-form-field appearance="fill" style="width: 100%">
+                    <mat-label>Date Issued</mat-label>
+                    <input matInput [matDatepicker]="picker2" [(ngModel)]="certification.issued">
+                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2></mat-datepicker>
+                </mat-form-field>
+
+                <!--            Url-->
+                <br>
+                <mat-form-field style="width: 100%">
+                    <mat-label>(Optional) Link to Certification</mat-label>
+                    <label>
+                        <input style="width: 100%"  matInput [(ngModel)]="certification.url">
+                    </label>
+                </mat-form-field>
+
+            </div>
+        </div>
+
+
+    </div>
+</div>

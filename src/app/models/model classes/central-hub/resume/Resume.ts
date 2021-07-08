@@ -104,7 +104,7 @@ export class ResumeCertification {
         public name: string,
         public issued: string,
         public issuer: string,
-        public url: string
+        public url?: string
     ) {
     }
 }

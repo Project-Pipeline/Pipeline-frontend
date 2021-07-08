@@ -22,6 +22,7 @@ import { ResumeBuilderActivitiesComponent } from './resume-builder/sections/resu
 import { ResumeBuilderPublicationsComponent } from './resume-builder/sections/resume-builder-publications/resume-builder-publications.component';
 import { ResumeBuilderVolunteeringComponent } from './resume-builder/sections/resume-builder-volunteering/resume-builder-volunteering.component';
 import { ResumeBuilderExperiencesComponent } from './resume-builder/sections/resume-builder-experiences/resume-builder-experiences.component';
+import { ResumeBuilderCertificationsComponent } from './resume-builder/sections/resume-builder-certifications/resume-builder-certifications.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { ResumeBuilderExperiencesComponent } from './resume-builder/sections/res
         ResumeBuilderActivitiesComponent,
         ResumeBuilderPublicationsComponent,
         ResumeBuilderVolunteeringComponent,
-        ResumeBuilderExperiencesComponent
+        ResumeBuilderExperiencesComponent,
+        ResumeBuilderCertificationsComponent
     ],
     imports: [
         CommonModule,

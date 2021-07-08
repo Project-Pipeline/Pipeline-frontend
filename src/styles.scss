@@ -66,18 +66,6 @@ html, body { height: 100%; }
     display: flex;
 }
 
-.dual-column {
-    width: 100%;
-    display: flex;
-    .dual-column-left {
-        width: 45%;
-        margin-right: 10%;
-    }
-    .dual-column-right {
-        width: 45%;
-    }
-}
-
 .horizontal-scroll-outer {
     overflow: auto;
     white-space: nowrap;

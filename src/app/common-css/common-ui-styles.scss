@@ -250,6 +250,19 @@ $theme-color-lighter: #dbffde;
     }
 }
 
+.dual-column {
+    width: 100%;
+    display: flex;
+    .dual-column-left {
+        width: 45%;
+        margin-right: 10%;
+    }
+    .dual-column-right {
+        width: 45%;
+    }
+}
+
+
 .header-text-img {
     display: flex;
     margin-top: 14px;
